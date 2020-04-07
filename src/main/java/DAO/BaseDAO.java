@@ -35,7 +35,7 @@ import javafx.css.PseudoClass;
 
 
 @WebServlet("/dao")
-public class BaseDAO<T> {
+public abstract class BaseDAO<T> {
 	
 	public DataSource Druid() throws Exception {
 	Properties properties = new Properties();
