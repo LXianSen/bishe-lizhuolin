@@ -28,14 +28,14 @@ import org.junit.jupiter.api.Test;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
-
+import MODEL.cart;
 import MODEL.user;
 import javafx.css.PseudoClass;
 
 
 
 @WebServlet("/dao")
-public abstract class BaseDAO<T> {
+public  class BaseDAO<T> {
 	
 	public DataSource Druid() throws Exception {
 	Properties properties = new Properties();
@@ -251,7 +251,8 @@ public abstract class BaseDAO<T> {
 	        // 保存条件参数的集合
 	        List<Object> parList = new ArrayList();
 	        
-	        StringBuffer sb = new StringBuffer("select * from zonearea");
+	        StringBuffer sb = new StringBuffer("select * from ");
+	        sb.append(clasz.getSimpleName());
 	        sb.append(" where 1 = 1");
 	        for (Field f : fs)
 	        {
@@ -314,6 +315,12 @@ public abstract class BaseDAO<T> {
 	        }
 	        return objList;
 		}
+
+
+	public int add(int custId, cart cart) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	public static void main() throws SQLException, Exception
 	{

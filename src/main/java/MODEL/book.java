@@ -4,6 +4,7 @@ package MODEL;
 public class book {
 	//编号、书名、作者、出版商、出版日期、单价、折扣、简介、库存
 	private String ISBN;
+	private String img;
 	private String bname;
 	private String bauthor;
 	private String bpublish;
@@ -14,17 +15,11 @@ public class book {
 	private long stock;
 	
 	
-	public String getISBN() {
-		return ISBN;
-	}
-	public book() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public book(String iSBN, String bname, String bauthor, String bpublish, String bdate, double bprice,
+	public book(String iSBN, String img, String bname, String bauthor, String bpublish, String bdate, double bprice,
 			double bdiscount, String synopsis, long stock) {
 		super();
 		ISBN = iSBN;
+		this.img = img;
 		this.bname = bname;
 		this.bauthor = bauthor;
 		this.bpublish = bpublish;
@@ -34,13 +29,27 @@ public class book {
 		this.synopsis = synopsis;
 		this.stock = stock;
 	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public String getISBN() {
+		return ISBN;
+	}
+	public book() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public String toString() {
-		return "book [ISBN=" + ISBN + ", bname=" + bname + ", bauthor=" + bauthor + ", bpublish=" + bpublish
-				+ ", bdate=" + bdate + ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", synopsis=" + synopsis
-				+ ", stock=" + stock + "]";
+		return "book [ISBN=" + ISBN + ", img=" + img + ", bname=" + bname + ", bauthor=" + bauthor + ", bpublish="
+				+ bpublish + ", bdate=" + bdate + ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", synopsis="
+				+ synopsis + ", stock=" + stock + "]";
 	}
-	public void setISBN(String iSBN) {
+	public void setISBN(Long iSBN) {
 		ISBN = iSBN;
 	}
 	public String getBname() {
