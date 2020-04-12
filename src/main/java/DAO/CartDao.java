@@ -2,89 +2,58 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import MODEL.cart;
+import MODEL.cartitem;
 
-public class CartDao extends BaseDAO<cart> {
+public class CartDao extends BaseDAO<cartitem> {
 
-	@Override
-	public int add(int custId, cart cart) {
-		StringBuffer sb=new StringBuffer();
-		PreparedStatement ps = Druid().getConnection().prepareStatement(sb.toString());
-		String sql = "insert into gwc(custId,bookId,bookName,smallImg,price,hyPrice,num)" +
-				"values("+custId+","+cart.getBookId()+",'"+ cart.getBookName()+"','"+cart.getSmallImg()+"'," +
-						" "+gwc.getPrice()+", "+gwc.getHyPrice()+","+gwc.getNum()+")";
+	//购物车新增
+	public void add(cartitem cartitem) throws SQLException, Exception {
+		Connection connection=Druid().getConnection();
+		String sql = "insert into cartitem(id,isbn,count)" +
+				"values("+cartitem.getId()+","+cartitem.getIsbn()+","+cartitem.getCount()+")";
 		System.out.println(sql);
-		return dbManager.update(sql);
-	}
-
-	@Override
-	public int updateNum(int custId, int bookId, int num) {
-		String sql = "update gwc set num = "+num+" where custId = "+custId+" and bookId = "+bookId+"";
+		PreparedStatement ps=connection.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();	}
+	//修改商品数量
+	public void updateNum(cartitem cartitem) throws Exception {
+		Connection connection=Druid().getConnection();
+		String sql = "update cartitem set count = "+cartitem.getCount()+" where id = "+cartitem.getId()+" and isbn = "+cartitem.getIsbn()+"";
 		System.out.println(sql);
-		return dbManager.update(sql);
+		PreparedStatement ps=connection.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
 	}
+	//删除商品
+	public void delete(cartitem cartitem) throws SQLException, Exception {
+		Connection connection=Druid().getConnection();
+		String sql = "delete from cartitem where id = "+cartitem.getId()+" and isbn = "+cartitem.getIsbn()+" ";
+		PreparedStatement ps=connection.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
 
-	@Override
-	public int delete(int custId, int bookId) {
-		String sql = "delete from gwc where custId = "+custId+" and bookId = "+bookId+" ";
-		return dbManager.update(sql);
 	}
+	//清空购物车
+	public void clear(cartitem cartitem) throws SQLException, Exception {
+		Connection connection=Druid().getConnection();
+		String sql = "delete from cartitem where id = "+cartitem.getId()+"";
+		PreparedStatement ps=connection.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
 
-	@Override
-	public int clear(int custId) {
-		String sql = "delete from gwc where custId = "+custId+"";
-		return dbManager.update(sql);
 	}
-
-	@Override
-	public float getOldPrices(int custId) {
-		float price = 0;
-		String sql = "select sum(price) from gwc where custId = "+custId+"";
-		ResultSet rs = dbManager.query(sql);
-		try {
-			if (rs.next()) {
-				price = rs.getFloat(1);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return price;
-	}
-
-	@Override
-	public float getHyPrices(int custId) {
-		float price = 0;
-		String sql = "select sum(hyPrice) from gwc where custId = "+custId+"";
-		ResultSet rs = dbManager.query(sql);
-		try {
-			if (rs.next()) {
-				price = rs.getFloat(1);
-				System.out.println(price);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return price;
-	}
-
-	@Override
-	public float getYhPrice(int custId) {
-		return this.getOldPrices(custId) - this.getHyPrices(custId);
-	}
-
-	@Override
-	public List<Gwc> getAllItems(int custId) {
-		List<Gwc> list = new ArrayList<Gwc>();
-		String sql = "select * from gwc where custId="+custId+"";
-		ResultSet rs = dbManager.query(sql);
+	//查询购物车所有元素
+	public List<cartitem> getAllItems(String custId) throws SQLException, Exception {
+		Connection connection=Druid().getConnection();
+		List<cartitem> list = new ArrayList<cartitem>();
+		String sql = "select * from cartitem where custId="+custId+"";
+		PreparedStatement ps=connection.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
 		try {
 			while (rs.next()) {
-				Gwc gwc = new Gwc(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getFloat(6), rs.getFloat(7), rs.getInt(8));
-				list.add(gwc);
+				cartitem cartitem = new cartitem(rs.getString(1), rs.getString(2), rs.getInt(3));
+				list.add(cartitem);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -92,20 +61,23 @@ public class CartDao extends BaseDAO<cart> {
 		}
 		return list;
 	}
-	@Override
-	public Gwc findById(int custId, int bookId) {
-		Gwc gwc = null;
-		String sql = "select * from gwc where custId = "+custId+" and bookId = "+bookId+"";
-		ResultSet rs = dbManager.query(sql);
+	
+	//获取总价
+	public double getsumPrice(String userid) throws SQLException, Exception {
+		Connection connection=Druid().getConnection();
+		double price = 0;
+		String sql = "select sum(price) from cartitem where id = "+userid+"";
+		PreparedStatement ps=connection.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
 		try {
 			if (rs.next()) {
-				gwc = new Gwc(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getFloat(6), rs.getFloat(7), rs.getInt(8));
+				price = rs.getDouble(1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return gwc;
+		return price;
 	}
-}
 
+}

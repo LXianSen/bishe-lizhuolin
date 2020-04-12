@@ -1,40 +1,45 @@
+
 package MODEL;
 
 public class cartitem {
-	private book book;
-	private Integer count;
-	private double sump;
-	public book getBook() {
-		return book;
+
+	//ÓÃ»§id¡¢Êé¼®×Ö¶Î
+	private String id;
+	private String isbn;
+	private int count;
+	public String getId() {
+		return id;
 	}
-	public void setBook(book book) {
-		this.book = book;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public Integer getCount() {
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public int getCount() {
 		return count;
 	}
-	public void setCount(Integer count) {
+	public void setCount(int count) {
 		this.count = count;
 	}
-	public double getSump() {
-		return sump;
-	}
-	public void setSump(double sump) {
-		this.sump = sump;
-	}
+
 	@Override
 	public String toString() {
-		return "cartitem [book=" + book + ", count=" + count + ", sump=" + sump + "]";
+		return "cartitem [id=" + id + ", isbn=" + isbn + ", count=" + count + "]";
 	}
-	public cartitem(MODEL.book book, Integer count, double sump) {
+	public cartitem(String id, String isbn, int count) {
 		super();
-		this.book = book;
+		this.id = id;
+		this.isbn = isbn;
 		this.count = count;
-		this.sump = sump;
 	}
 	public cartitem() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-}
+	
+	}

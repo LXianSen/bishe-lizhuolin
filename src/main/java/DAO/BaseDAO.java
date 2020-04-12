@@ -61,10 +61,21 @@ public  class BaseDAO<T> {
         // 保存对象的属性的值
         List parList = new ArrayList();
         for (Field f : fs)
-        {
+        {  // 属性名称 （对应的是表的列名）
             String columnName = f.getName();
-            sb.append(columnName);
-            sb.append(",");
+            f.setAccessible(true);
+            
+            // 传递过来的泛型对象t的属性的值
+            Object value = f.get(t);
+            if (value != null && !"".equals(value))
+            {
+
+                sb.append(columnName);
+                sb.append(",");
+                // 把条件添加到集合中
+                parList.add(value);
+            }
+
             
             // 拼装get方法
             String methodName = "get" + columnName.substring(0, 1).toUpperCase() + columnName.substring(1);

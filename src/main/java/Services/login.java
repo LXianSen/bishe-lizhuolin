@@ -7,12 +7,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.BaseDAO;
 import MODEL.user;
 import DAO.*;
 import java.awt.*;
 import java.util.List;
+import java.util.Map;
 import java.io.*;
 
 @WebServlet("/login")
@@ -21,11 +25,11 @@ public class login extends HttpServlet {
     public login() {
         super();
     }
-    user u=new user();
-    public boolean check() throws Exception {
+    
+    public boolean check(user u) throws Exception {
 		UserDao dao1=new UserDao();
 		List<user> user=dao1.selects(u);
-			if(u.getId().equals(user.get(0).getId())&&u.getPwd().equals(user.get(0).getPwd())) {
+			if(user.isEmpty()) {
 				return true;
 			}else {
 				return false;
@@ -33,28 +37,27 @@ public class login extends HttpServlet {
 
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String piccode = (String) request.getSession().getAttribute("piccode");
-        String checkcode = request.getParameter("checkcode");
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset =UTF-8");
-        u.setName(request.getParameter("username"));
-        u.setPwd(request.getParameter("pwd"));
-        PrintWriter out = response.getWriter();
-        if(checkcode.equals(piccode)){
+		PrintWriter out = response.getWriter();
             try {
-				if(check()) {
-					request.getRequestDispatcher("/navigate.jsp").forward(request, response);
+            	Map<String, String[]> parameterMap = request.getParameterMap();
+        		user user=new user();
+        		BeanUtils.populate(user, parameterMap);
+        		
+        		HttpSession session = request.getSession();
+        		session.setAttribute("userid", user.getId());
+                request.setCharacterEncoding("utf-8");
+                response.setContentType("text/html;charset =UTF-8");
+                
+				if(check(user)) {
+					out.print('1');
 					return;
 				}else {
-					out.print("登录失败！");
+					out.print("0");
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        }else{
-            out.print("验证码输入不正确！");
-        }
         out.flush();
         out.close();}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
