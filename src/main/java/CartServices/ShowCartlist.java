@@ -1,4 +1,4 @@
-package Services;
+package CartServices;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,23 +16,25 @@ import MODEL.cartitem;
 import MODEL.user;
 
 
-@WebServlet("/cartlist")
-public class cartlist extends HttpServlet {
+@WebServlet("/ShowCartlist")
+public class ShowCartlist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public cartlist() {
+    public ShowCartlist() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		CartDao cartDao = new CartDao();
 		HttpSession session = request.getSession();
-		String userid=(String) session.getAttribute("userid");
-		double price;
+		user user=(user) session.getAttribute("user");
+		cartitem cartitem=new cartitem();
+		cartitem.setuserId(user.getuserId());
+		double sumprice;
 		try {
-			List<cartitem> list = cartDao.getAllItems(userid);
-			price = cartDao.getsumPrice(userid);
-			session.setAttribute("price", price);
+			List<cartitem> list = cartDao.getAllItems(cartitem);
+			sumprice = cartDao.getsumPrice(cartitem);
+			session.setAttribute("sumprice", sumprice);
 			session.setAttribute("list", list);
 		}  catch (Exception e) {
 			// TODO Auto-generated catch block

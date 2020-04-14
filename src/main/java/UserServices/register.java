@@ -1,4 +1,4 @@
-package Services;
+package UserServices;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -19,14 +19,14 @@ import DAO.UserDao;
 import MODEL.user;
 
 
-@WebServlet("/zhuce")
-public class zhuce extends HttpServlet {
+@WebServlet("/register")
+public class register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public zhuce() {
+    public register() {
         super();
     }
-    user u=new user();
-    public boolean addUser() throws SQLException, Exception {
+
+    public boolean addUser(user u) throws SQLException, Exception {
     	UserDao dao1=new UserDao();
     	List<user> list=dao1.selects(u);
 		if(list==null) {
@@ -50,8 +50,8 @@ public class zhuce extends HttpServlet {
 				buffer.append(t+",");
 			}
 			String ids = buffer.substring(0, buffer.length()-1);
-			user.setId(ids);
-			if(addUser()) {
+			user.setuserId(ids);
+			if(addUser(user)) {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 				return;
 			}else {

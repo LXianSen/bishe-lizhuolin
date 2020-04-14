@@ -24,11 +24,13 @@ import javax.sql.DataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 import MODEL.cart;
+import MODEL.cartitem;
 import MODEL.user;
 import javafx.css.PseudoClass;
 
@@ -52,37 +54,34 @@ public  class BaseDAO<T> {
 		Class clasz = t.getClass();
         StringBuffer sb = new StringBuffer("insert into ");
         sb.append(clasz.getSimpleName());
-        System.out.println(clasz.getSimpleName());
         sb.append("(");
         
         // 获得所有的属性
         Field[] fs = clasz.getDeclaredFields();
-        
+        Connection connection=Druid().getConnection();
+		List parList = new ArrayList();
         // 保存对象的属性的值
-        List parList = new ArrayList();
         for (Field f : fs)
         {  // 属性名称 （对应的是表的列名）
-            String columnName = f.getName();
+            String Name = f.getName();
             f.setAccessible(true);
-            
             // 传递过来的泛型对象t的属性的值
             Object value = f.get(t);
             if (value != null && !"".equals(value))
             {
 
-                sb.append(columnName);
+                sb.append(Name);
                 sb.append(",");
                 // 把条件添加到集合中
                 parList.add(value);
             }
-
-            
-            // 拼装get方法
-            String methodName = "get" + columnName.substring(0, 1).toUpperCase() + columnName.substring(1);
-            Method getMethod = clasz.getMethod(methodName);
-            
-            // 通过get方法获取 此属性的值
-            parList.add(getMethod.invoke(t));
+			/*
+			 * 
+			 * // 拼装get方法 String methodName = "get" + Name.substring(0, 1).toUpperCase() +
+			 * Name.substring(1); Method getMethod = clasz.getMethod(methodName);
+			 * 
+			 * // 通过get方法获取 此属性的值 objList.add(getMethod.invoke(t));
+			 */
         }
         
         sb = new StringBuffer(sb.toString().substring(0, sb.toString().length() - 1));
@@ -98,28 +97,27 @@ public  class BaseDAO<T> {
         
         System.out.println(sb.toString());
         
-        PreparedStatement ps = Druid().getConnection().prepareStatement(sb.toString());
+        PreparedStatement ps = connection.prepareStatement(sb.toString());
         
         for (int i = 0; i < parList.size(); i++)
         {
             ps.setObject(i + 1, parList.get(i));
         }
         
-        int count = ps.executeUpdate();
+        ps.executeUpdate();
 		return parList;
     }
 
 	public List<T> deletes(T t) throws SQLException, Exception{
-		//delete * from *** where ?=? and ?=?
+		//delete from *** where ?=? and ?=?
 		Class clasz=t.getClass();
-		List<T> objList=new ArrayList<T>();
-		StringBuffer sb=new StringBuffer("delete * from ");
+		StringBuffer sb=new StringBuffer("delete from ");
 		sb.append(clasz.getSimpleName());
 		sb.append("where 1=1 ");
 		// 获得属性对象数组
 		Field []fs=clasz.getDeclaredFields();
 		Connection con=Druid().getConnection();
-		List<Object> parList = new ArrayList();
+		List parList = new ArrayList();
 		for(Field f:fs)
 		{
 			String name=f.getName();
@@ -137,39 +135,8 @@ public  class BaseDAO<T> {
 	            ps.setObject(i + 1, parList.get(i));
 	        }
 	        
-	        ResultSet rs = ps.executeQuery();
-	        
-	        // 元数据对象(里面包含了表头)
-	        ResultSetMetaData rsmd = rs.getMetaData();
-	        
-	        // 此表一共有多少列
-	        int columnCount = rsmd.getColumnCount();
-	        // System.out.println();
-	        // rsmd.getColumnName(column)
-	        
-	        while (rs.next())
-	        {
-	            T obj = (T)clasz.newInstance();
-	            
-	            for (int i = 1; i <= columnCount; i++)
-	            {
-	                // 根据列号 来获得 列名
-	                String columnName = rsmd.getColumnName(i);
-	                // 根据列名 来获取 当前列的数据
-	                Object value = rs.getObject(columnName);
-	                // 根据列名 通过反射来找属性对象
-	                Field f = clasz.getDeclaredField(columnName);
-	                if (f != null)
-	                {
-	                    f.setAccessible(true);
-	                    f.set(obj, value);
-	                }
-	                System.out.println(columnName+": "+value);
-	            }
-	            
-	            objList.add(obj);
-	        }
-	        return objList;
+	        ps.executeUpdate();
+	        return parList;
 	}
 	
 
@@ -190,40 +157,29 @@ public  class BaseDAO<T> {
         for (Field f : fs1)
         {
             String name = f.getName();
+            f.setAccessible(true);
+			Object value=f.get(t1);
+			if(value!=null&&!"".equals(value)) {
             sb.append(name);
             sb.append("=?,");
-            
-            // 拼装get方法
-            String methodName = "get" + name.substring(0, 1).toUpperCase() + name.substring(1);
-            Method getMethod = clasz1.getMethod(methodName);
-            
-            // 通过get方法获取 此属性的值
-            parList.add(getMethod.invoke(t1));
+            parList.add(value);
+			}
         }
         //取     where ?=? and ?=?
+        sb = new StringBuffer(sb.toString().substring(0, sb.toString().length() - 1));
         sb.append(" where ");
         for (Field f : fs2)
         {
             String name = f.getName();
+            f.setAccessible(true);
+            Object value=f.get(t2);
+            if(value!=null&&!"".equals(value)) {
             sb.append(name);
-            sb.append("=?,");
-            
-            // 拼装get方法
-            String methodName = "get" + name.substring(0, 1).toUpperCase() + name.substring(1);
-            Method getMethod = clasz2.getMethod(methodName);
-            
-            // 通过get方法获取 此属性的值
-            parList.add(getMethod.invoke(t2));
+            sb.append("=? and ");
+            parList.add(value);
+            }
         }
-        sb = new StringBuffer(sb.toString().substring(0, sb.toString().length() - 1));
-        
-        for (Object o : parList)
-        {
-            sb.append("?,");
-        }
-        
-        sb = new StringBuffer(sb.toString().substring(0, sb.toString().length() - 1));
-        
+        sb = new StringBuffer(sb.toString().substring(0, sb.toString().length() - 4));
         System.out.println(sb.toString());
         
         PreparedStatement ps = Druid().getConnection().prepareStatement(sb.toString());
@@ -232,7 +188,7 @@ public  class BaseDAO<T> {
         {
             ps.setObject(i + 1, parList.get(i));
         }
-        
+        System.out.println(ps.toString());
         int count = ps.executeUpdate();
 		return parList;
 		
@@ -328,14 +284,14 @@ public  class BaseDAO<T> {
 		}
 
 
-	public int add(int custId, cart cart) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
+
 	public static void main() throws SQLException, Exception
 	{
-		
+		cartitem cartitem1=new cartitem("123","222",13,3);
+		cartitem cartitem2=new cartitem("12333","233322",113,31);
+
+		BaseDAO dao=new BaseDAO();
+		dao.updates(cartitem1, cartitem2);
 	}
 }
 

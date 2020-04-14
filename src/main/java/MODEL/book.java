@@ -49,7 +49,7 @@ public class book {
 				+ bpublish + ", bdate=" + bdate + ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", synopsis="
 				+ synopsis + ", stock=" + stock + "]";
 	}
-	public void setISBN(Long iSBN) {
+	public void setISBN(String iSBN) {
 		ISBN = iSBN;
 	}
 	public String getBname() {

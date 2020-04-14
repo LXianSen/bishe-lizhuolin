@@ -1,4 +1,4 @@
-package Services;
+package UserServices;
 
 
 import java.io.IOException;
@@ -30,9 +30,9 @@ public class login extends HttpServlet {
 		UserDao dao1=new UserDao();
 		List<user> user=dao1.selects(u);
 			if(user.isEmpty()) {
-				return true;
-			}else {
 				return false;
+			}else {
+				return true;
 			}
 
 	}
@@ -44,12 +44,12 @@ public class login extends HttpServlet {
         		BeanUtils.populate(user, parameterMap);
         		
         		HttpSession session = request.getSession();
-        		session.setAttribute("userid", user.getId());
                 request.setCharacterEncoding("utf-8");
                 response.setContentType("text/html;charset =UTF-8");
                 
 				if(check(user)) {
 					out.print('1');
+	        		session.setAttribute("user", user);
 					return;
 				}else {
 					out.print("0");

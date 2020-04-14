@@ -31,7 +31,7 @@ public class BookDao extends BaseDAO<book> {
 		rs=st.executeQuery(sql);
 		//ISBN;bname;bauthor; bpublish;bdate;bprice;bdiscount;synopsis;stock;
 		if(rs.next()) {
-			book.setISBN(rs.getLong(1));
+			book.setISBN(rs.getString(1));
 			book.setBname(rs.getString(2));
 			book.setBauthor(rs.getString(3));
 			book.setBpublish(rs.getString(4));

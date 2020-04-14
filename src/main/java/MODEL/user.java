@@ -2,8 +2,8 @@ package MODEL;
 
 public class user {
 	//±àºÅ
-	private String id;
-	private String name;
+	private String userid;
+	private String username;
 	private String pwd;
 	private String email;
 	private String phone;
@@ -16,25 +16,25 @@ public class user {
 
 	@Override
 	public String toString() {
-		return "user [id=" + id + ", name=" + name + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
+		return "user [userid=" + userid + ", username=" + username + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
 				+ ", gender=" + gender + "]";
 	}
-	public String getId() {
-		return id;
+	public String getuserId() {
+		return userid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setuserId(String userid) {
+		this.userid = userid;
 	}
-	public String getName() {
-		return name;
+	public String getuserName() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setuserName(String username) {
+		this.username = username;
 	}
-	public user(String id, String name, String pwd, String email, String phone, String gender) {
+	public user(String userid, String username, String pwd, String email, String phone, String gender) {
 		super();
-		this.id = id;
-		this.name = name;
+		this.userid = userid;
+		this.username = username;
 		this.pwd = pwd;
 		this.email = email;
 		this.phone = phone;

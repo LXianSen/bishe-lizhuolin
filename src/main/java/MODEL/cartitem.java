@@ -4,14 +4,15 @@ package MODEL;
 public class cartitem {
 
 	//ÓÃ»§id¡¢Êé¼®×Ö¶Î
-	private String id;
+	private String userid;
 	private String isbn;
+	private double price;
 	private int count;
-	public String getId() {
-		return id;
+	public String getuserId() {
+		return userid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setuserId(String userid) {
+		this.userid = userid;
 	}
 	public String getIsbn() {
 		return isbn;
@@ -26,15 +27,22 @@ public class cartitem {
 		this.count = count;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public cartitem(String userid, String isbn, double price, int count) {
+		super();
+		this.userid = userid;
+		this.isbn = isbn;
+		this.price = price;
+		this.count = count;
+	}
 	@Override
 	public String toString() {
-		return "cartitem [id=" + id + ", isbn=" + isbn + ", count=" + count + "]";
-	}
-	public cartitem(String id, String isbn, int count) {
-		super();
-		this.id = id;
-		this.isbn = isbn;
-		this.count = count;
+		return "cartitem [userid=" + userid + ", isbn=" + isbn + ", price=" + price + ", count=" + count + "]";
 	}
 	public cartitem() {
 		super();
