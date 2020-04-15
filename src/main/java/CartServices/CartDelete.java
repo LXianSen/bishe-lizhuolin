@@ -33,7 +33,7 @@ public class CartDelete extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("InitGwcListServlet");
+		response.sendRedirect("ShowCartlist");
 
 	}
 	
