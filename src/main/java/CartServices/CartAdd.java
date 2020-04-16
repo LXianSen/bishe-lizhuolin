@@ -34,30 +34,26 @@ public class CartAdd extends HttpServlet {
 		}
 		System.out.println(user);
 		CartDao cartDao = new CartDao();
-		
-		//查询用户对应的书籍是否存在购物车
 		cartitem cartitem=new cartitem();
 		cartitem.setIsbn(request.getParameter("isbn").toString());
 		cartitem.setuserId(user.getuserId());
-		List<cartitem> cartitemlist= cartDao.selects(cartitem);
+		cartitem.setCount(Integer.parseInt(request.getParameter("count")));
+		cartitem cartitem2= cartDao.findById(cartitem);
 		//如果用户购物车存在该购物项，购物项数量+1，否则新建一个购物项
-		if (cartitemlist == null) {
-			cartitem.setCount(Integer.parseInt(request.getParameter("count")));
-			cartitemlist.set(1, cartitem);
-			cartDao.adds(cartitemlist.get(1));
+		if (cartitem2 == null) {
+			 cartitem2 = cartitem;
+			cartDao.adds(cartitem2);
 		} else {
-			cartitem.setCount(Integer.parseInt(request.getParameter("count")));
-			cartitem cartitem2=new cartitem();
-			cartitem2.setCount(cartitem.getCount()+1);
-			
-			//set   ...count=newcount  where=....
-				cartDao.updates(cartitem2, cartitem);
+			int num = cartitem.getCount() + 1;
+
+				cartDao.updateNum(cartitem);
 			}
 		} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		response.sendRedirect("ShowCartlist");
+		response.sendRedirect("cartlist");
+
 	}
 	
 	

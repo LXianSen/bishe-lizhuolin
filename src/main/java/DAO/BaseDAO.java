@@ -196,7 +196,7 @@ public  class BaseDAO<T> {
 	public List<T> selects(T t) throws Exception {
 		 if (t == null)
 	        {
-	            throw new Exception("查询有误");
+	            throw new Exception("对不起，没钱不能办事");
 	        }
 	        
 	        // 获得连接对象Connection
@@ -287,7 +287,11 @@ public  class BaseDAO<T> {
 
 	public static void main() throws SQLException, Exception
 	{
-		
+		cartitem cartitem1=new cartitem("123","222",13,3);
+		cartitem cartitem2=new cartitem("12333","233322",113,31);
+
+		BaseDAO dao=new BaseDAO();
+		dao.updates(cartitem1, cartitem2);
 	}
 }
 

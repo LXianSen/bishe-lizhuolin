@@ -32,16 +32,17 @@ public class ShowCartlist extends HttpServlet {
 		cartitem.setuserId(user.getuserId());
 		double sumprice;
 		try {
-			List<cartitem> list = cartDao.selects(cartitem);
+			List<cartitem> list = cartDao.getAllItems(cartitem);
 			sumprice = cartDao.getsumPrice(cartitem);
-			request.setAttribute("sumprice", sumprice);
-			request.setAttribute("list", list);
+			session.setAttribute("sumprice", sumprice);
+			session.setAttribute("list", list);
 		}  catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		request.getRequestDispatcher("......").forward(request, response);
+		response.sendRedirect("cart.jsp");
+
 	}
 	
 	
