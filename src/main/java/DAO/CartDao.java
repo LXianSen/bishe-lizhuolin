@@ -29,7 +29,23 @@ public class CartDao extends BaseDAO<cartitem> {
 		}
 		return price;
 	}
-	
+	//获取折扣总价
+	public double getsumdiscountPrice(cartitem cartitem) throws SQLException, Exception {
+		Connection connection=Druid().getConnection();
+		double price = 0;
+		String sql = "select sum(price*discount) from cartitem where userid = "+cartitem.getuserId()+"";
+		PreparedStatement ps=connection.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		try {
+			if (rs.next()) {
+				price = rs.getDouble(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return price;
+	}
 
 	//购物车新增
 	/*

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.crypto.provider.RSACipher;
+
 
 @WebServlet("/Search")
 public class Search extends HttpServlet {
@@ -15,7 +17,9 @@ public class Search extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//SELECT * FROM `表明` join ' 表明' WHERE CONCAT(IFNULL(`字段1`,''),IFNULL(`字段2`,''),IFNULL(`字段3`,'')) LIKE ‘%关键字%’
+		
+		String inputmsg=(String)request.getAttribute("inputmsg");
+		
 		
 		
 	}

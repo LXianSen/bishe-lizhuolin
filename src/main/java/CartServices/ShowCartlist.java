@@ -30,10 +30,13 @@ public class ShowCartlist extends HttpServlet {
 		user user=(user) session.getAttribute("user");
 		cartitem cartitem=new cartitem();
 		cartitem.setuserId(user.getuserId());
+		//原价总价、折扣总价
 		double sumprice;
+		double discountprice;
 		try {
 			List<cartitem> list = cartDao.selects(cartitem);
 			sumprice = cartDao.getsumPrice(cartitem);
+			
 			request.setAttribute("sumprice", sumprice);
 			request.setAttribute("list", list);
 		}  catch (Exception e) {

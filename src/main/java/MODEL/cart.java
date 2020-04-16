@@ -6,6 +6,9 @@ public class cart {
 	//”√ªßid£¨ ÈºÆ
 	private Map<Integer, cartitem> carMap; 
 	private double finalprice;
+	
+	
+	
 	public Map<Integer, cartitem> getCarMap() {
 		return carMap;
 	}

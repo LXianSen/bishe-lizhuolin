@@ -42,9 +42,8 @@ public class CartAdd extends HttpServlet {
 		List<cartitem> cartitemlist= cartDao.selects(cartitem);
 		//如果用户购物车存在该购物项，购物项数量+1，否则新建一个购物项
 		if (cartitemlist == null) {
-			cartitem.setCount(Integer.parseInt(request.getParameter("count")));
-			cartitemlist.set(1, cartitem);
-			cartDao.adds(cartitemlist.get(1));
+			cartitem.setCount(Integer.parseInt(request.getParameter("count")));	
+			cartDao.adds(cartitem);
 		} else {
 			cartitem.setCount(Integer.parseInt(request.getParameter("count")));
 			cartitem cartitem2=new cartitem();
