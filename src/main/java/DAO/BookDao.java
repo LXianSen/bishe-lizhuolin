@@ -47,27 +47,18 @@ public class BookDao extends BaseDAO<book> {
 	}
 	
 	
+	//book表结果+booktype表结果
 	public List<book> getBookNoClear(String msg) throws SQLException, Exception{
 		
-		//SELECT * FROM `表明` join ' 表明' WHERE CONCAT(IFNULL(`字段1`,''),IFNULL(`字段2`,''),IFNULL(`字段3`,'')) LIKE ‘%关键字%’
 		List<book> booklist=new ArrayList<book>();
 		Connection connection=Druid().getConnection();
-		StringBuffer sb=new StringBuffer("select * from ");
-		sb.append(book.class.getSimpleName());
-		sb.append("join");
-		sb.append(Booktype.class.getSimpleName());
-        sb.append(" where 1 = 1 and concat(");
-		Field[] fs=book.class.getDeclaredFields();
-		  for (Field f : fs)
-	        {
-	            // 属性名称 （对应的是表的列名）
-	            String name = f.getName();
-	            f.setAccessible(true);
-	            sb.append("IFNULL(");
-                sb.append(name).append(",''), ");	            
-	        }
-	        sb = new StringBuffer(sb.toString().substring(0, sb.toString().length() - 1));
-	        sb.append(")like '%");
+		
+		//select DISTINCT book.* from book LEFT JOIN type on book.typeid=type.typeid where CONCAT(IFNULL(type.typeson,' '),IFNULL(type.typefather,' '),IFNULL(book.author,' '),IFNULL(book.bname,' ')) LIKE '%i%'
+
+		StringBuffer sb=new StringBuffer(
+			"select DISTINCT book.* from book LEFT JOIN type on book.typeid=type.typeid "
+			+ "where CONCAT(IFNULL(type.typeson,' '),IFNULL(type.typefather,' '),IFNULL(book.author,' '),IFNULL(book.bname,' ')) "
+			+ "LIKE '%");
 	        sb.append(msg);
 	        sb.append("%'");
 	        PreparedStatement ps=connection.prepareStatement(sb.toString());
@@ -94,12 +85,9 @@ public class BookDao extends BaseDAO<book> {
 		            }
 		            
 		            booklist.add(booktemp);
-				
+		            
 			}
-			
-			
-			
-			return null;
+			return booklist;
 			
 	}
 	
