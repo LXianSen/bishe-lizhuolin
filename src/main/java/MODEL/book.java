@@ -1,5 +1,7 @@
 package MODEL;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 
 public class book {
 	//编号、图片、书名、作者、出版商、出版日期、单价、折扣、简介、库存、类别
@@ -8,9 +10,9 @@ public class book {
 	private String bname;
 	private String bauthor;
 	private String bpublish;
-	private String bdate;
-	private double bprice;
-	private double bdiscount;
+	private Date bdate;
+	private BigDecimal bprice;
+	private BigDecimal bdiscount;
 	private String synopsis;
 	private long stock;
 	private String typeid;
@@ -46,22 +48,22 @@ public class book {
 	public void setBpublish(String bpublish) {
 		this.bpublish = bpublish;
 	}
-	public String getBdate() {
+	public Date getBdate() {
 		return bdate;
 	}
-	public void setBdate(String bdate) {
+	public void setBdate(Date bdate) {
 		this.bdate = bdate;
 	}
-	public double getBprice() {
+	public BigDecimal getBprice() {
 		return bprice;
 	}
-	public void setBprice(double bprice) {
+	public void setBprice(BigDecimal bprice) {
 		this.bprice = bprice;
 	}
-	public double getBdiscount() {
+	public BigDecimal getBdiscount() {
 		return bdiscount;
 	}
-	public void setBdiscount(double bdiscount) {
+	public void setBdiscount(BigDecimal bdiscount) {
 		this.bdiscount = bdiscount;
 	}
 	public String getSynopsis() {
@@ -88,8 +90,8 @@ public class book {
 				+ bpublish + ", bdate=" + bdate + ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", synopsis="
 				+ synopsis + ", stock=" + stock + ", typeid=" + typeid + "]";
 	}
-	public book(String iSBN, String img, String bname, String bauthor, String bpublish, String bdate, double bprice,
-			double bdiscount, String synopsis, long stock, String typeid) {
+	public book(String iSBN, String img, String bname, String bauthor, String bpublish, Date bdate, BigDecimal bprice,
+			BigDecimal bdiscount, String synopsis, long stock, String typeid) {
 		super();
 		ISBN = iSBN;
 		this.img = img;

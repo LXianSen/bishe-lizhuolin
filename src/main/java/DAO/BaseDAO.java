@@ -230,12 +230,15 @@ public  class BaseDAO<T> {
 	            // 传递过来的泛型对象t的属性的值
 	            Object value = f.get(t);
 	            
-	            if (value != null && !"".equals(value))
+	            if ((value != null && !"".equals(value)))
 	            {
-	                sb.append(" and ");
+	            	if ((!value.toString().equalsIgnoreCase("0")&&!value.toString().equalsIgnoreCase("0.0"))) {
+	            	sb.append(" and ");
 	                sb.append(name).append("=? ");
 	                // 把条件添加到集合中
 	                parList.add(value);
+				}
+	                
 	            }
 	        }
 	        
@@ -280,6 +283,7 @@ public  class BaseDAO<T> {
 	            
 	            objList.add(obj);
 	        }
+	        System.out.println(objList);
 	        return objList;
 		}
 

@@ -42,7 +42,7 @@ public class login extends HttpServlet {
             	Map<String, String[]> parameterMap = request.getParameterMap();
         		user user=new user();
         		BeanUtils.populate(user, parameterMap);
-        		
+        		System.out.println(user);
         		HttpSession session = request.getSession();
                 request.setCharacterEncoding("utf-8");
                 response.setContentType("text/html;charset =UTF-8");

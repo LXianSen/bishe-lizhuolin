@@ -1,173 +1,229 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>用户注册</title>
 <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        .main{
-            position: fixed;
-            background: #f9f9f9;
-            height: 100%;
-            width: 100%;
+* {
+	margin: 0;
+	padding: 0;
+}
 
-        }
-        section{
-            position: absolute;
-            width: 854px;
-            height: 548px;
-            background: white;
-            top:50%;
-            left: 50%;
-            margin-left: -427px;
-            margin-top: -274px;
-        }
-        .formStyle{
-            color: #646464;
-            position: absolute;
-            left:50%;
-            transform: translateX(-50%);
-        }
-        .title{
-            padding: 40px 0;
-            text-align: center;
-            font-size: 28px;
-        }
-        .name{
-            display: inline-block;
-            width: 80px;
-        }
-        .inputStyle{
-            width: 290px;
-            height: 18px;
-            border: 1px solid #e6e6e6;
-            padding: 9px 10px;
-            margin-bottom: 10px;
-        }
-        .inputStyle.short{
-            width: 160px;
-        }
-        .red{
-            border:1px solid red;
-            background: #fef0ef;
-            color: red;
-        }
-        .boxStyle{
-            padding-bottom: 10px;
-        }
-        .btn{
-            /* display: inline-block; */
-            font-size: 20px;
-            border: 0;
-            width: 178px;
-            height: 44px;
-            line-height: 44px;
-            cursor: pointer;
-            text-align: center;
-            background-color: #ff2832;
-            color: #fff;
-            border-radius: 22px;
-            position: absolute;
-            left: 50%;
-            margin-left: -89px;
-            /* margin-left: 50px; */
-        }
-        .alertText{
-            color: red;
-            font-size: 12px;
-            padding-left: 90px;
-            height: 18px;
-        }
-        .infoText{
-            color:#787878;
-            font-size: 12px;
-            padding-left: 90px;
-            height: 18px;
-        }
-        #text2 span{
-            display: inline-block;
-            height: 10px;
-            margin-left: 1px;
-            width: 22px;
-            background-color: #d6d6d6;
-        }
-        #text2 span.c1{
-            background-color: #ff3600;
-        }
-        #text2 span.c2{
-            background-color: #ffc000;
-        }
-        #text2 span.c3{
-            background-color: #71b300;
-        }
-        #canvas{
-            vertical-align: middle;
-            margin-left: 25px;
-        }
-    </style>
+.main {
+	position: fixed;
+	background: #f9f9f9;
+	height: 100%;
+	width: 100%;
+}
+
+section {
+	position: absolute;
+	width: 854px;
+	height: 548px;
+	background: white;
+	top: 50%;
+	left: 50%;
+	margin-left: -427px;
+	margin-top: -274px;
+}
+
+.formStyle {
+	color: #646464;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.title {
+	padding: 40px 0;
+	text-align: center;
+	font-size: 28px;
+}
+
+.name {
+	display: inline-block;
+	width: 80px;
+}
+
+.inputStyle {
+	width: 290px;
+	height: 18px;
+	border: 1px solid #e6e6e6;
+	padding: 9px 10px;
+	margin-bottom: 10px;
+}
+
+.inputStyle.short {
+	width: 160px;
+}
+
+.red {
+	border: 1px solid red;
+	background: #fef0ef;
+	color: red;
+}
+
+.boxStyle {
+	padding-bottom: 10px;
+}
+
+.btn {
+	/* display: inline-block; */
+	font-size: 20px;
+	border: 0;
+	width: 178px;
+	height: 44px;
+	line-height: 44px;
+	cursor: pointer;
+	text-align: center;
+	background-color: #ff2832;
+	color: #fff;
+	border-radius: 22px;
+	position: absolute;
+	left: 50%;
+	margin-left: -89px;
+	/* margin-left: 50px; */
+}
+
+.alertText {
+	color: red;
+	font-size: 12px;
+	padding-left: 90px;
+	height: 18px;
+}
+
+.infoText {
+	color: #787878;
+	font-size: 12px;
+	padding-left: 90px;
+	height: 18px;
+}
+
+#text2 span {
+	display: inline-block;
+	height: 10px;
+	margin-left: 1px;
+	width: 22px;
+	background-color: #d6d6d6;
+}
+
+#text2 span.c1 {
+	background-color: #ff3600;
+}
+
+#text2 span.c2 {
+	background-color: #ffc000;
+}
+
+#text2 span.c3 {
+	background-color: #71b300;
+}
+
+#canvas {
+	vertical-align: middle;
+	margin-left: 25px;
+}
+.to-login{
+	cursor: pointer;
+    color: black;
+    text-decoration: none;
+}
+</style>
 </head>
 <body>
-    <div class="main">
-        <section>
-            <h1 class="title">注册账号</h1>
-            <form action="${pageContext.request.contextPath}/zhuce" class="formStyle" method="post">
-                <div class="boxStyle">
-                    <span class="name">手机号码</span>
-                    <input type="text" class="inputStyle tel" onblur="telBlur(this)" onfocus="telFoucus()" name="phone">
-                    <p id="text1" class="alertText"></p>
-                </div>
-                <div class="boxStyle">
-                    <span  class="name">登录密码</span>
-                    <input type="password" class="inputStyle password" onblur="pswdBlur(this)" onfocus="pswdFoucus()" onkeyup="pswdChange(this)" name="pwd">
-                    <span id="text2" class="infoText">
-                    </span>
-                </div>
-                <div class="boxStyle">
-                    <span  class="name">确认密码</span>
-                    <input type="password" class="inputStyle qrpswd" onblur="qrBlur(this)" onfocus="qrFoucus()">
-                    <p id="text3" class="alertText"></p>
-                </div>
-                <div class="boxStyle">
-                    <span  class="name">验证码</span>
-                    <input type="text" class="inputStyle short">
-                    <span><canvas id="canvas" width="100" height="36" style="border:1px solid #000000;"></canvas></span>
-                    <p id="text4" class="alertText"></p>
-                </div>
-                <input type="submit" value="立即注册" class="btn">
-            </form>
-        </section>
-    </div>
-    
+	<div class="main">
+		<section>
+			<h1 class="title">注册账号</h1>
+			<!-- action="${pageContext.request.contextPath}/zhuce" method="post"-->
+			<form 
+				class="formStyle" >
+				<div class="boxStyle">
+					<span class="name">手机号码</span> <input type="text"
+						class="inputStyle tel" onblur="telBlur(this)"
+						onfocus="telFoucus()" name="phone">
+					<p id="text1" class="alertText"></p>
+				</div>
+				<div class="boxStyle">
+					<span class="name">登录密码</span> <input type="password"
+						class="inputStyle password" onblur="pswdBlur(this)"
+						onfocus="pswdFoucus()" onkeyup="pswdChange(this)" name="pwd">
+					<span id="text2" class="infoText"> </span>
+				</div>
+				<div class="boxStyle">
+					<span class="name">确认密码</span> <input type="password"
+						class="inputStyle qrpswd" onblur="qrBlur(this)"
+						onfocus="qrFoucus()">
+					<p id="text3" class="alertText"></p>
+				</div>
+				<div class="boxStyle">
+					<span class="name">验证码</span> <input type="text"
+						class="inputStyle short"> <span><canvas id="canvas"
+							width="100" height="36" style="border: 1px solid #000000;"></canvas></span>
+					<p id="text4" class="alertText"></p>
+				</div>
+				<input type="button" value="立即注册" class="btn">
+			</form>
+		</section>
+	</div>
+
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-    <script>
+<script>
         var text1=$('#text1')
         var text2=$('#text2')
         var text3=$('#text3')
         var telInput=$('.tel')
         var pswdInput=$('.password')
         var qrInput=$('.qrpswd')
-        var isBlur,password
-        /* function telBlur(text){
-            if(!(/^1[3456789]\d{9}$/.test(text.value))){
+        var btn=$('.btn')
+        var toLogin=$(".to-login")
+        var isBlur,password,isreg,ispwd
+        function genID(length){
+        	return Number(Math.random().toString().substr(3,length) + Date.now()).toString(36)
+        }
+        toLogin.click(function(){
+        	console.log(1111)
+        	window.location.href="login.jsp"
+        })
+        function telBlur(){
+            if(!(/^1[3456789]\d{9}$/.test(telInput.val()))){
                 text1.text('手机格式不正确，请重新输入')
                 telInput.addClass('red')
             }else{
-            	$.post('',{
-            		phone:text
+            	$.post('register',{
+            		phone:"13551761763",
+            		type:"select"
             	},function(data){
-            		if(data=='1'){
-            			text1.text('该手机号已注册，请尝试登录！')
+            		data=JSON.parse(data)
+            		console.log(data)
+            		if(data.code=="error"){
+            			text1.html('该手机号已注册，请尝试<a href="login.jsp" class="to-login">登录</a>')
                         telInput.addClass('red')
+            		}else{
+            			isreg=true
             		}
-            	})
+            	}) 
             }
-        } */
+        }  
+        btn.click(function(){
+        	console.log(1)
+        	if(isreg==true&& ispwd==true){
+        		$.post('register',{
+            		phone:telInput.val(),
+            		pwd:qrInput.val(),
+            		userid:String(genID(9)),
+            		type:"add"
+            	},function(data){
+            		console.log(data)
+            	})
+        	}else{
+        		
+        	}
+        	
+        })
+        
         function telFoucus(){
             text1.text('')
             telInput.removeClass('red')
@@ -249,9 +305,9 @@
             if(text.value!=password){
                 text3.text('两次输入的密码不一致，请重新输入')
                 qrInput.addClass('red')
-                
             }else{
                 text3.text('')
+                ispwd=true
             }
         }
         function qrFoucus(){
