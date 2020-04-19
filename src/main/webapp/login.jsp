@@ -315,11 +315,15 @@ fieldset {
     		phone:$('.tel').val(),
     		pwd:$('.password').val()
     	},function(data){
-    		if(data=='0'){
+    		
+    		data=JSON.parse(data)
+    		console.log(data)
+    		if(data.code=='error'){
     			tips.removeClass('hide')
     			$('.tips>.text').text('用户或密码输入错误，请重新输入！')
-    		}else if(data=='1'){
-    			window.location.href='${pageContext.request.contextPath}/shouye.jsp'
+    		}else if(data.code=='200'){
+    			sessionStorage.setItem("user",JSON.stringify(data.user))
+    			window.location.href='${pageContext.request.contextPath}/shouye.jsp' 
     		}
     	})
     }

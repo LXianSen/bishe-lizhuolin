@@ -74,13 +74,6 @@ public class register extends HttpServlet {
 				if(!list1.isEmpty()) {
 					jsonobj.put("code", "200");
 				}
-//				if(checkuser(user)) {
-//					request.getRequestDispatcher("login.jsp").forward(request, response);
-//					return;
-//				}else {
-//					response.setContentType("text/html;charset=utf-8");
-//					response.getWriter().write("×¢²áÊ§°Ü£¡");
-//				}
 			}else {
 				System.out.println("1");
 			}
