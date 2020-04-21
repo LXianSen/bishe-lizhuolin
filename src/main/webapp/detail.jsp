@@ -234,7 +234,7 @@
 					<div class="btn-line">
 						<div class="buy-btn-container">
 							<a class="m-btns m-btn-middle m-btn-brown cart"
-								href="javascript:;">加入购物车</a>
+								>加入购物车</a>
 						</div>
 						<div class="buy-btn-container">
 							<a class="m-btns m-btn-middle m-btn-brown-stroke buy"
@@ -282,7 +282,15 @@
 		})
 	}
 	cart.click(function(e) {
-		// $.post("",{isbn:})
+		
+		 $.post("CartAdd",{isbn:'0000001',count:$('.count-input').val()},function(data){
+			 data=JSON.parse(data)
+			 if(data.code=="error"){
+				 console.log(111111111111)
+				 
+				 window.location.href="login.jsp"
+			 }
+		 })
 	})
 	plus.click(function() {
 		var num = count.val()

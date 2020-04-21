@@ -55,7 +55,7 @@ public class login extends HttpServlet {
 				}else {
 					jsonobj.put("code", "200");
 					jsonobj.put("user", userlist.get(0));
-	        		session.setAttribute("user", userjson);
+	        		session.setAttribute("user", userlist.get(0));
 				}
 				out.println(jsonobj);
 			} catch (Exception e) {
