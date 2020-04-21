@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import MODEL.Booktype;
+import MODEL.booktype;
 import MODEL.book;
 import MODEL.cartitem;
 

@@ -1,6 +1,5 @@
 package MODEL;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 
 public class book {
@@ -11,11 +10,11 @@ public class book {
 	private String bauthor;
 	private String bpublish;
 	private Date bdate;
-	private BigDecimal bprice;
-	private BigDecimal bdiscount;
+	private double bprice;
+	private double bdiscount;
 	private String synopsis;
 	private long stock;
-	private String typeid;
+	private String sontype;
 	
 	
 	public String getISBN() {
@@ -54,16 +53,16 @@ public class book {
 	public void setBdate(Date bdate) {
 		this.bdate = bdate;
 	}
-	public BigDecimal getBprice() {
+	public double getBprice() {
 		return bprice;
 	}
-	public void setBprice(BigDecimal bprice) {
+	public void setBprice(double bprice) {
 		this.bprice = bprice;
 	}
-	public BigDecimal getBdiscount() {
+	public double getBdiscount() {
 		return bdiscount;
 	}
-	public void setBdiscount(BigDecimal bdiscount) {
+	public void setBdiscount(double bdiscount) {
 		this.bdiscount = bdiscount;
 	}
 	public String getSynopsis() {
@@ -78,20 +77,20 @@ public class book {
 	public void setStock(long stock) {
 		this.stock = stock;
 	}
-	public String getTypeid() {
-		return typeid;
+	public String getsontype() {
+		return sontype;
 	}
-	public void setTypeid(String typeid) {
-		this.typeid = typeid;
+	public void setsontype(String sontype) {
+		this.sontype = sontype;
 	}
 	@Override
 	public String toString() {
 		return "book [ISBN=" + ISBN + ", img=" + img + ", bname=" + bname + ", bauthor=" + bauthor + ", bpublish="
 				+ bpublish + ", bdate=" + bdate + ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", synopsis="
-				+ synopsis + ", stock=" + stock + ", typeid=" + typeid + "]";
+				+ synopsis + ", stock=" + stock + ", sontype=" + sontype + "]";
 	}
-	public book(String iSBN, String img, String bname, String bauthor, String bpublish, Date bdate, BigDecimal bprice,
-			BigDecimal bdiscount, String synopsis, long stock, String typeid) {
+	public book(String iSBN, String img, String bname, String bauthor, String bpublish, Date bdate, double bprice,
+			double bdiscount, String synopsis, long stock, String sontype) {
 		super();
 		ISBN = iSBN;
 		this.img = img;
@@ -103,7 +102,7 @@ public class book {
 		this.bdiscount = bdiscount;
 		this.synopsis = synopsis;
 		this.stock = stock;
-		this.typeid = typeid;
+		this.sontype = sontype;
 	}
 	public book() {
 		super();

@@ -1,8 +1,6 @@
-package pages;
+package CartsandOrders;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,45 +13,41 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.alibaba.druid.util.StringUtils;
-import com.google.gson.Gson;
-
+import DAO.BaseDAO;
 import DAO.BookDao;
-import MODEL.book;
+import MODEL.order;
 import MODEL.user;
 
 
-@WebServlet("/BookDetail")
-public class BookDetail extends HttpServlet {
+@WebServlet("/MyOrderList")
+public class ShowOrderList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public BookDetail() {
+    public ShowOrderList() {
         super();
     }
     
- 
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			request.setCharacterEncoding("utf-8");
-			response.setContentType("text/html;charset =UTF-8");
 			HttpSession session=request.getSession();
-			book book=new book();
-			book.setISBN(request.getParameter("isbn"));
-			BookDao bkDao=new BookDao();
-			List<book> bkList=bkDao.selects(book);
-			System.out.println(bkList);
-			//转化为 key value形式
-			Gson gson=new Gson();
-			String bookjson=gson.toJson(bkList);
-			System.out.println(bookjson);
-			request.setAttribute("book", bkList);
-
+			//判断用户是否登录
+			user user = (user) session.getAttribute("user");
+			if (user == null) {
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			BaseDAO<order> bkDao=new BaseDAO<order>();
+			order order=new order();
+			order.setFatherorder(request.getParameter("fatherorder"));
+			order.setSonorder(request.getParameter("sonorder"));
+			List<order> orderlists=bkDao.selects(order);
+			request.setAttribute("myorders", orderlists);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

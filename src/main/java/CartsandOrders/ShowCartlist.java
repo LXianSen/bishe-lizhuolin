@@ -1,4 +1,4 @@
-package CartServices;
+package CartsandOrders;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -32,12 +32,13 @@ public class ShowCartlist extends HttpServlet {
 		cartitem.setuserId(user.getuserId());
 		//原价总价、折扣总价
 		double sumprice;
-		double discountprice;
+		double discountsumprice;
 		try {
 			List<cartitem> list = cartDao.selects(cartitem);
 			sumprice = cartDao.getsumPrice(cartitem);
-			
+			discountsumprice=cartDao.getsumdiscountPrice(cartitem);
 			request.setAttribute("sumprice", sumprice);
+			request.setAttribute("discountsumprice", discountsumprice);
 			request.setAttribute("list", list);
 		}  catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -1,7 +1,9 @@
 package pages;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,11 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.dbutils.handlers.MapListHandler;
+
 import com.google.gson.Gson;
 
 import DAO.BkTypeDao;
 import DAO.BookDao;
-import MODEL.Booktype;
+import MODEL.book;
+import MODEL.booktype;
 import MODEL.user;
 
 
@@ -34,15 +39,19 @@ public class HomePage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  		try {
  			
-			HttpSession session=request.getSession();
-			user user=(user) session.getAttribute("user");
 			BkTypeDao bktypeDao=new BkTypeDao();
-			Booktype types=new Booktype();
-			List<Booktype> bktypeList=bktypeDao.selects(types);
-			Gson gson=new Gson();
-			String jsonString=gson.toJson(bktypeList);
-			request.setAttribute("bktypelist", jsonString);
-			
+			booktype types=new booktype();
+			//获取目录信息
+			List<Map<String, Object>> typesList=bktypeDao.getSontypesbyFather();
+			System.out.println(typesList);
+			request.setAttribute("typeslist", typesList);
+			//点击目录跳转
+			BookDao bkDao=new BookDao();
+			book book=new book();
+			book.setsontype(request.getParameter("name"));
+			List<book> books=bkDao.selects(book);
+			request.setAttribute("books", books);
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,6 +60,22 @@ public class HomePage extends HttpServlet {
 	}
 	
 	
+	
+	/*
+	 [ //list<map>
+		 {//map(string,list<map>)
+		 father1:"aa",
+		 sonlist:[      //map<string,object>
+		 						{son1:"s1",
+		 						son2:"s2"},
+		 						{...................}
+		 					  ] 				 
+		 },
+		 
+		 {father2:"bb"},{sonlist:[{son1:**,son2:***}]}, 
+		 ..... 
+	 ]
+	 */
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

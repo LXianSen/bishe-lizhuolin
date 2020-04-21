@@ -30,16 +30,6 @@ public class login extends HttpServlet {
         super();
     }
     
-    public boolean check(user u) throws Exception {
-		UserDao dao1=new UserDao();
-		List<user> user=dao1.selects(u);
-			if(user.isEmpty()) {
-				return false;
-			}else {
-				return true;
-			}
-
-	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset =UTF-8");
@@ -56,7 +46,7 @@ public class login extends HttpServlet {
         		BeanUtils.populate(user, parameterMap);
         		
     			String userjson=gson.toJson(user);
-//        		HttpSession session = request.getSession();
+        		HttpSession session = request.getSession();
     			List<user> userlist=dao1.selects(user);
     			System.out.println(userlist);
 				if(userlist.isEmpty()) {
@@ -65,7 +55,7 @@ public class login extends HttpServlet {
 				}else {
 					jsonobj.put("code", "200");
 					jsonobj.put("user", userlist.get(0));
-//	        		session.setAttribute("user", userjson);
+	        		session.setAttribute("user", userjson);
 				}
 				out.println(jsonobj);
 			} catch (Exception e) {
