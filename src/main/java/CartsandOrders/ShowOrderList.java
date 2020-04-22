@@ -1,6 +1,7 @@
 package CartsandOrders;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import DAO.BaseDAO;
 import DAO.BookDao;
 import MODEL.order;
 import MODEL.user;
+import net.sf.json.JSONObject;
 
 
 @WebServlet("/MyOrderList")
@@ -29,17 +31,21 @@ public class ShowOrderList extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			JSONObject jsonobj = new JSONObject();
+			PrintWriter out=response.getWriter();
 			HttpSession session=request.getSession();
 			//判断用户是否登录
 			user user = (user) session.getAttribute("user");
 			if (user == null) {
-				response.sendRedirect("login.jsp");
+				jsonobj.put("code", "error");
+				jsonobj.put("msg", "用户未登录或登录态过期！");
+				out.println(jsonobj);
+//				response.sendRedirect("login.jsp");
 				return;
 			}
 			BaseDAO<order> bkDao=new BaseDAO<order>();
 			order order=new order();
-			order.setFatherorder(request.getParameter("fatherorder"));
-			order.setSonorder(request.getParameter("sonorder"));
+			order.setUserid(user.getuserId().toString());
 			List<order> orderlists=bkDao.selects(order);
 			request.setAttribute("myorders", orderlists);
 		} catch (Exception e) {

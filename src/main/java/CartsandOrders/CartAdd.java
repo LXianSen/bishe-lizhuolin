@@ -32,7 +32,7 @@ public class CartAdd extends HttpServlet {
 			
 		HttpSession session = request.getSession();
 		//判断用户是否登录
-		Object user = session.getAttribute("user");
+		user user = (user) session.getAttribute("user");
 		if (user == null) {
 			jsonobj.put("code", "error");
 			jsonobj.put("msg", "用户未登录或登录态过期！");
@@ -42,11 +42,10 @@ public class CartAdd extends HttpServlet {
 		}
 		System.out.println(user);
 		CartDao cartDao = new CartDao();
-		user user2=(user) user;
 		//查询用户对应的书籍是否存在购物车
 		cartitem cartitem=new cartitem();
 		cartitem.setIsbn(request.getParameter("isbn").toString());
-		cartitem.setuserId(user2.getuserId());
+		cartitem.setuserId(user.getuserId());
 		List<cartitem> cartitemlist= cartDao.selects(cartitem);
 		//如果用户购物车存在该购物项，购物项数量+1，否则新建一个购物项
 		if (cartitemlist.isEmpty()) {

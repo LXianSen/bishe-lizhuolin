@@ -6,7 +6,7 @@ public class cart {
 	//”√ªßid£¨ ÈºÆ
 	private Map<Integer, cartitem> carMap; 
 	private double finalprice;
-	
+	private double finaldiscountprice;
 	
 	
 	public Map<Integer, cartitem> getCarMap() {
@@ -15,26 +15,36 @@ public class cart {
 	public void setCarMap(Map<Integer, cartitem> carMap) {
 		this.carMap = carMap;
 	}
-	public double getfinalprice() {
+	public double getFinalprice() {
 		return finalprice;
 	}
-	public void setfinalprice(double finalprice) {
+	public void setFinalprice(double finalprice) {
 		this.finalprice = finalprice;
+	}
+	public double getFinaldiscountprice() {
+		return finaldiscountprice;
+	}
+	public void setFinaldiscountprice(double finaldiscountprice) {
+		this.finaldiscountprice = finaldiscountprice;
 	}
 	@Override
 	public String toString() {
-		return "cart [carMap=" + carMap + ", finalprice=" + finalprice + "]";
+		return "cart [carMap=" + carMap + ", finalprice=" + finalprice + ", finaldiscountprice=" + finaldiscountprice
+				+ "]";
 	}
-	public cart(Map<Integer, cartitem> carMap, double finalprice) {
+	public cart(Map<Integer, cartitem> carMap, double finalprice, double finaldiscountprice) {
 		super();
 		this.carMap = carMap;
 		this.finalprice = finalprice;
+		this.finaldiscountprice = finaldiscountprice;
 	}
 	public cart() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
+
 	
 }
 /*

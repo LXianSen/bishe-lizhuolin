@@ -35,27 +35,21 @@ public class login extends HttpServlet {
         response.setContentType("text/html;charset =UTF-8");
         
 		PrintWriter out = response.getWriter();
-		JSONObject jsonobj = new JSONObject();
-		JSONArray jsonarray = new JSONArray();
-		
+		JSONObject jsonobj = new JSONObject();		
 		user user=new user();
 		UserDao dao1=new UserDao();
-		Gson gson=new Gson();
             try {
             	Map<String, String[]> parameterMap = request.getParameterMap();
         		BeanUtils.populate(user, parameterMap);
-        		
-    			String userjson=gson.toJson(user);
         		HttpSession session = request.getSession();
-    			List<user> userlist=dao1.selects(user);
-    			System.out.println(userlist);
-				if(userlist.isEmpty()) {
+    			user myuser=dao1.selects(user).get(0);
+				if(myuser!=null&&!"".equals(myuser)) {
 					
 					jsonobj.put("code", "error");
 				}else {
 					jsonobj.put("code", "200");
-					jsonobj.put("user", userlist.get(0));
-	        		session.setAttribute("user", userlist.get(0));
+					jsonobj.put("user", myuser);
+	        		session.setAttribute("user", myuser);
 				}
 				out.println(jsonobj);
 			} catch (Exception e) {
