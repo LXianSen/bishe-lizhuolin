@@ -39,6 +39,7 @@ public class login extends HttpServlet {
 		user user=new user();
 		UserDao dao1=new UserDao();
             try {
+            	//取出表单的user数据，放到user对象中
             	Map<String, String[]> parameterMap = request.getParameterMap();
         		BeanUtils.populate(user, parameterMap);
         		HttpSession session = request.getSession();
