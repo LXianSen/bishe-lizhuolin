@@ -32,7 +32,7 @@ public class BookDao extends BaseDAO<book> {
 	public double getdiscountPrice(cartitem cartitem) throws SQLException, Exception {
 		Connection connection=Druid().getConnection();
 		double price = 0;
-		String sql = "select price*discount from cartitem where userid = "+cartitem.getuserId()+"";
+		String sql = "select price*discount from cartitem where userid = "+cartitem.getUserid()+"";
 		PreparedStatement ps=connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		try {

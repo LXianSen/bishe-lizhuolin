@@ -1335,8 +1335,9 @@ ul:after, .fbox:after, .clearfix:after {
 		if(user){
 			userbox.removeClass('userhide')
 			loginbox.addClass('userhide')
+			$('.m-username').text(user.userName||user.userId)
 		}
-		$('.m-username').text(user.userName||user.userId)
+		
 		
 		//处理分类
 	}
@@ -1379,12 +1380,12 @@ ul:after, .fbox:after, .clearfix:after {
 	book.click(function(e) {
 		var tar = $(e.target)
 		var Isbn = tar.parents('.book').data('isbn')
-		/* window.location.href="detail.jsp?isbn="+Isbn */
-		$.post('BookDetail', {
+		window.location.href="detail.jsp"
+		/* $.post('BookDetail', {
 			isbn : Isbn
 		}, function(data) {
-
-		})
+			console.log(data)
+		}) */
 	})
 </script>
 </html>

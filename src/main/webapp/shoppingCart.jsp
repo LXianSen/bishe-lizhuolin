@@ -490,7 +490,7 @@ img {
 							<div>
 								<div class="good-item-container cart-goods-con">
 									<div class="merchant-reduce-top"></div>
-									<div class="cart-good-items clearfix">
+									<div class="cart-good-items clearfix" data-isbn="0000001">
 										<div class="select">
 											<a class="m-icons m-icons-check-active select-icon"
 												data-src="" href="javascript:;"></a>
@@ -517,10 +517,10 @@ img {
 										<div class="num">
 											<div class="can-edit">
 												<div class="num-reduce-add" style="width: 134px;">
-													<a class="m-icons m-icons-reduce minus-plus" data-src=""
+													<a class="m-icons m-icons-reduce minus-plus minus" data-src=""
 														href="javascript:;"></a><span class="txt"
 														style="width: 70px;">1</span><a
-														class="m-icons m-icons-add-active minus-plus" data-src=""
+														class="m-icons m-icons-add-active minus-plus plus" data-src=""
 														href="javascript:;"></a>
 												</div>
 											</div>
@@ -529,7 +529,7 @@ img {
 											<span>￥159</span>
 										</div>
 										<div class="del">
-											<a class="m-icons m-icons-close-hover icon" data-src=""
+											<a class="m-icons m-icons-close-hover icon delete" data-src=""
 												href="javascript:;"></a>
 										</div>
 									</div>
@@ -554,4 +554,50 @@ img {
 	</div>
 	<footer></footer>
 </body>
+<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+<script>
+	var cart;
+	$.post("ShowCartlist",{},function(data){
+		data=JSON.parse(data)
+		if(data.code=="error"){
+			window.location.href="login.jsp"
+		}else{
+			cart=data.carMap
+			init(cart)
+		}
+		
+	})
+	
+	function init(cart){
+		for(let key in cart){
+			if(cart[key].isbn==$(".cart-good-items").data('isbn')){
+				$('.txt').text(cart[key].count)
+			}
+		}
+		$(".cart-good-items")
+	}
+	
+	$('.txt').text(cart)
+	
+	$(".delete").click(function(){
+		$.post("CartDelete",{isbn:"0000001"},function(){
+			
+		})
+	})
+	
+	$(".minus").click(function(){
+		var num = $(".txt").text()
+		if (num > 1) {
+			num--
+		}
+		 $(".txt").text(num)
+		$.post("CartAdd",{
+			isbn:"0000001",
+			type:"minus",
+			count: "1"
+		},function(){
+			
+		})
+	})
+</script>
 </html>

@@ -26,7 +26,7 @@ public class CartClear extends HttpServlet {
 		cartitem cartitem=new cartitem();
 		HttpSession session=request.getSession();
 		user user=(user)session.getAttribute("user");
-		cartitem.setuserId(user.getuserId());
+		cartitem.setUserid(user.getuserId());
 			cartDao.deletes(cartitem);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

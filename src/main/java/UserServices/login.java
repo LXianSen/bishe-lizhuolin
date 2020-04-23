@@ -45,12 +45,13 @@ public class login extends HttpServlet {
         		HttpSession session = request.getSession();
     			user myuser=dao1.selects(user).get(0);
 				if(myuser!=null&&!"".equals(myuser)) {
-					
-					jsonobj.put("code", "error");
-				}else {
 					jsonobj.put("code", "200");
 					jsonobj.put("user", myuser);
 	        		session.setAttribute("user", myuser);
+					
+				}else {
+					
+	        		jsonobj.put("code", "error");
 				}
 				out.println(jsonobj);
 			} catch (Exception e) {

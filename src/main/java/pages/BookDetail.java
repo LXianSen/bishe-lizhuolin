@@ -32,6 +32,7 @@ public class BookDetail extends HttpServlet {
     
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset =UTF-8");
@@ -46,7 +47,7 @@ public class BookDetail extends HttpServlet {
 			String bookjson=gson.toJson(bkList);
 			System.out.println(bookjson);
 			request.setAttribute("book", bkList);
-
+			out.println(bkList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

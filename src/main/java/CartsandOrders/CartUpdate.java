@@ -21,7 +21,7 @@ public class CartUpdate extends HttpServlet {
 		HttpSession session = request.getSession();
 		cartitem cartitem1 = new cartitem();
 		cartitem cartitem2=new cartitem();
-		cartitem1.setuserId(session.getAttribute("userid").toString());
+		cartitem1.setUserid(session.getAttribute("userid").toString());
 		cartitem1.setIsbn(request.getParameter("isbn").toString());
 		cartitem2.setCount(Integer.parseInt(request.getParameter("count")));
 		CartDao cartDao = new CartDao();

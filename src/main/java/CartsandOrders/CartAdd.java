@@ -45,17 +45,22 @@ public class CartAdd extends HttpServlet {
 		//查询用户对应的书籍是否存在购物车
 		cartitem cartitem=new cartitem();
 		cartitem.setIsbn(request.getParameter("isbn").toString());
-		cartitem.setuserId(user.getuserId());
+		cartitem.setUserid(user.getuserId());
 		List<cartitem> cartitemlist= cartDao.selects(cartitem);
 		//如果用户购物车存在该购物项，购物项数量+1，否则新建一个购物项
 		if (cartitemlist.isEmpty()) {
 			cartitem.setCount(Integer.parseInt(request.getParameter("count")));	
 			cartDao.adds(cartitem);
 		} else {
-			cartitem.setCount(Integer.parseInt(request.getParameter("count")));
+			cartitem.setCount(cartitemlist.get(0).getCount());
 			cartitem cartitem2=new cartitem();
-			cartitem2.setCount(cartitem.getCount()+1);
+			if(request.getParameter("type").equals("minus")||"".equals(request.getParameter("type"))) {
+				cartitem2.setCount(cartitem.getCount()-Integer.parseInt(request.getParameter("count")));
+			}else {
+				cartitem2.setCount(cartitem.getCount()+Integer.parseInt(request.getParameter("count")));
+			}
 			
+			System.out.println(cartitem2.getCount());
 			//set   ...count=newcount  where=....
 				cartDao.updates(cartitem2, cartitem);
 			}

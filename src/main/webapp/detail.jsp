@@ -31,7 +31,7 @@
 					<span class="iconfont icon-icon-test1 search_font"></span> <input
 						type="text">
 				</div>
-				<span class="iconfont icon-icon-test search_font"></span>
+				<span class="iconfont icon-icon-test search_font shopcart"></span>
 			</div>
 		</div>
 		<div class="book-info">
@@ -322,6 +322,10 @@
 		var url = tar.attr('src')
 		console.log(url)
 		bigImg.attr('src', url)
+	})
+	//跳转到购物车
+	$('.shopcart').click(function(){
+		window.location.href="shoppingCart.jsp"
 	})
 </script>
 </html>
