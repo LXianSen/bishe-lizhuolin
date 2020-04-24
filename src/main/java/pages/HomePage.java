@@ -37,19 +37,21 @@ public class HomePage extends HttpServlet {
     
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
- 		try {
+		PrintWriter out = response.getWriter(); 
+		try {
  			
 			BkTypeDao bktypeDao=new BkTypeDao();
 			booktype types=new booktype();
-			//»ñÈ¡Ä¿Â¼ÐÅÏ¢
+			//ï¿½ï¿½È¡Ä¿Â¼ï¿½ï¿½Ï¢
 			List<Map<String, Object>> typesList=bktypeDao.getSontypesbyFather();
 			System.out.println(typesList);
 			request.setAttribute("typeslist", typesList);
-			//µã»÷Ä¿Â¼Ìø×ª
+			//ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½×ª
 			BookDao bkDao=new BookDao();
 			book book=new book();
 			book.setsontype(request.getParameter("name"));
 			List<book> books=bkDao.selects(book);
+			out.println(book);
 			request.setAttribute("books", books);
 
 		} catch (Exception e) {
