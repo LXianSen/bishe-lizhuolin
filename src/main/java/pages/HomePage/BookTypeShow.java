@@ -1,4 +1,4 @@
-package pages;
+package pages.HomePage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,7 +27,7 @@ import MODEL.user;
 /**
  * Servlet implementation class HomePage
  */
-@WebServlet("/HomePage")
+@WebServlet("/BookTypeShow")
 public class BookTypeShow extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

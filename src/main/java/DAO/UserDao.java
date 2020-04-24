@@ -28,7 +28,7 @@ public class UserDao extends BaseDAO<user> {
 			jsonobj.put("msg", "用户未登录或登录态过期！");
 			out.println(jsonobj);
 //			response.sendRedirect("login.jsp");
-			return null;
+			return user;
 		}
 		return user;
 	}

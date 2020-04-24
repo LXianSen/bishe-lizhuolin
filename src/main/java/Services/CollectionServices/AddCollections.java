@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.UserDao;
+import MODEL.user;
+
 
 @WebServlet("/AddCollections")
 public class AddCollections extends HttpServlet {
@@ -15,8 +18,18 @@ public class AddCollections extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset =UTF-8");
+		
+		UserDao userDao=new UserDao();
+		userDao.CheckIsLogin(request, response);
+		
+		user u=userDao.CheckIsLogin(request, response);
+
+		if(u!=null&&"".equals(u.toString())) {
+			
+		}
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
