@@ -1,4 +1,4 @@
-package AddressMangement;
+package Services.UserServices;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,22 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/ShowAddress")
-public class ShowAddress extends HttpServlet {
+@WebServlet("/charge")
+public class charge extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public ShowAddress() {
+    public charge() {
         super();
     }
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		
 	}
-	
-	
+
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -5,27 +5,27 @@ public class cartitem {
 
 	//ÓÃ»§id¡¢Êé¼®×Ö¶Î
 	private String userid;
-	private String isbn;
-	private double price;
+	private String ISBN;
+	private double bprice;
 	private int count;
-	private double discount;
+	private double bdiscount;
 	public String getUserid() {
 		return userid;
 	}
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public String getIsbn() {
-		return isbn;
+	public String getISBN() {
+		return ISBN;
 	}
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+	public void setISBN(String iSBN) {
+		ISBN = iSBN;
 	}
-	public double getPrice() {
-		return price;
+	public double getBprice() {
+		return bprice;
 	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setBprice(double bprice) {
+		this.bprice = bprice;
 	}
 	public int getCount() {
 		return count;
@@ -33,30 +33,28 @@ public class cartitem {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public double getDiscount() {
-		return discount;
+	public double getBdiscount() {
+		return bdiscount;
 	}
-	public void setDiscount(double discount) {
-		this.discount = discount;
+	public void setBdiscount(double bdiscount) {
+		this.bdiscount = bdiscount;
 	}
 	@Override
 	public String toString() {
-		return "cartitem [userid=" + userid + ", isbn=" + isbn + ", price=" + price + ", count=" + count + ", discount="
-				+ discount + "]";
+		return "cartitem [userid=" + userid + ", ISBN=" + ISBN + ", bprice=" + bprice + ", count=" + count
+				+ ", bdiscount=" + bdiscount + "]";
 	}
-	public cartitem(String userid, String isbn, double price, int count, double discount) {
+	public cartitem(String userid, String iSBN, double bprice, int count, double bdiscount) {
 		super();
 		this.userid = userid;
-		this.isbn = isbn;
-		this.price = price;
+		ISBN = iSBN;
+		this.bprice = bprice;
 		this.count = count;
-		this.discount = discount;
+		this.bdiscount = bdiscount;
 	}
 	public cartitem() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
 	}

@@ -1,4 +1,4 @@
-package CartsandOrders;
+package Services.CartsServices;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.CartDao;
+import DAO.UserDao;
 import MODEL.cartitem;
 import MODEL.user;
 
@@ -22,18 +23,26 @@ public class CartDelete extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-		HttpSession session = request.getSession();
-		cartitem cartitem=new cartitem();
-		cartitem.setIsbn(request.getParameter("isbn"));
-		CartDao cartDao = new CartDao();
-		user user = (user) session.getAttribute("user");
-		cartitem.setUserid(user.getuserId());
-		cartDao.deletes(cartitem);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		response.sendRedirect("ShowCartlist");
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset =UTF-8");
+			//检查用户是否登录
+			UserDao userDao=new UserDao();
+			userDao.CheckIsLogin(request, response);
+			
+			user u=userDao.CheckIsLogin(request, response);
+
+			if(u!=null&&"".equals(u.toString())) {
+				cartitem cartitem=new cartitem();
+				cartitem.setISBN(request.getParameter("isbn"));
+				CartDao cartDao = new CartDao();
+				cartitem.setUserid(u.getuserId());
+				cartDao.deletes(cartitem);
+				}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				response.sendRedirect("ShowCartlist");
 
 	}
 	

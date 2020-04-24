@@ -3,16 +3,38 @@ package MODEL;
 import java.sql.Date;
 
 public class order {
-	//订单号（父订单号、子订单号）、创单时间、isbn、价格、折扣、数量、订单状态、用户id
+	//订单号（父订单号、子订单号）、创单时间、isbn、价格、折扣、数量、订单状态、用户id、收货地址
 	private String fatherorder;
 	private String sonorder;
 	private Date date;
-	private String isbn;
+	private String ISBN;
 	private double bprice;
 	private double bdiscount;
 	private int count;
 	private String status;
 	private String userid;
+	private address address;
+	
+	public order(String fatherorder, String sonorder, Date date, String iSBN, double bprice, double bdiscount,
+			int count, String status, String userid, MODEL.address address) {
+		super();
+		this.fatherorder = fatherorder;
+		this.sonorder = sonorder;
+		this.date = date;
+		ISBN = iSBN;
+		this.bprice = bprice;
+		this.bdiscount = bdiscount;
+		this.count = count;
+		this.status = status;
+		this.userid = userid;
+		this.address = address;
+	}
+	public address getAddress() {
+		return address;
+	}
+	public void setAddress(address address) {
+		this.address = address;
+	}
 	public String getFatherorder() {
 		return fatherorder;
 	}
@@ -31,11 +53,11 @@ public class order {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getIsbn() {
-		return isbn;
+	public String getISBN() {
+		return ISBN;
 	}
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+	public void setISBN(String iSBN) {
+		ISBN = iSBN;
 	}
 	public double getBprice() {
 		return bprice;
@@ -69,22 +91,9 @@ public class order {
 	}
 	@Override
 	public String toString() {
-		return "orderlist [fatherorder=" + fatherorder + ", sonorder=" + sonorder + ", date=" + date + ", isbn=" + isbn
+		return "order [fatherorder=" + fatherorder + ", sonorder=" + sonorder + ", date=" + date + ", ISBN=" + ISBN
 				+ ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", count=" + count + ", status=" + status
-				+ ", userid=" + userid + "]";
-	}
-	public order(String fatherorder, String sonorder, Date date, String isbn, double bprice, double bdiscount,
-			int count, String status, String userid) {
-		super();
-		this.fatherorder = fatherorder;
-		this.sonorder = sonorder;
-		this.date = date;
-		this.isbn = isbn;
-		this.bprice = bprice;
-		this.bdiscount = bdiscount;
-		this.count = count;
-		this.status = status;
-		this.userid = userid;
+				+ ", userid=" + userid + ", address=" + address + "]";
 	}
 	public order() {
 		super();

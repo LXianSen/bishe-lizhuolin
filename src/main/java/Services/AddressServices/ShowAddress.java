@@ -1,10 +1,8 @@
-package pages;
+package Services.AddressServices;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,45 +11,50 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.beanutils.BeanUtils;
-
-import com.alibaba.druid.util.StringUtils;
 import com.google.gson.Gson;
 
-import DAO.BookDao;
-import MODEL.book;
+import DAO.AddressDao;
+import DAO.UserDao;
+import MODEL.address;
 import MODEL.user;
+import net.sf.json.JSONObject;
 
 
-@WebServlet("/BookDetail")
-public class BookDetail extends HttpServlet {
+@WebServlet("/ShowAddress")
+public class ShowAddress extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public BookDetail() {
+
+    public ShowAddress() {
         super();
     }
     
- 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset =UTF-8");
 		try {
-			book book=new book();
-			book.setISBN(request.getParameter("isbn"));
-			BookDao bkDao=new BookDao();
-			List<book> bkList=bkDao.selects(book);
-			System.out.println(bkList);
-			//转化为 key value形式
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset =UTF-8");
+			AddressDao addressDao=new AddressDao();
 			Gson gson=new Gson();
-			String bookjson=gson.toJson(bkList);
-			out.println(bookjson);
-		} catch (Exception e) {
+			address myAddress=new address();
+			
+			//检查用户是否登录
+			UserDao userDao=new UserDao();
+			userDao.CheckIsLogin(request, response);
+			
+			user u=userDao.CheckIsLogin(request, response);
+
+			if(u!=null&&"".equals(u.toString())) {
+				myAddress.setUserid(u.getuserId());
+				List<address> addresslist=addressDao.selects(myAddress);
+				String addressJSON=gson.toJson(addresslist);
+				PrintWriter o=response.getWriter();
+				o.println(addressJSON);
+				} 
+			}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

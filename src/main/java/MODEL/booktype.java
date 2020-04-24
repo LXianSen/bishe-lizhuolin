@@ -1,14 +1,12 @@
 package MODEL;
 
 public class booktype {
-	//类别编码、所属一级目录、二级目录
-	private String typeid;
+	//、所属一级目录、二级目录
 	private String fathertype;
 	private String sontype;
 	private String typeimg;
-	public booktype(String typeid, String fathertype, String sontype, String typeimg) {
+	public booktype(String fathertype, String sontype, String typeimg) {
 		super();
-		this.typeid = typeid;
 		this.fathertype = fathertype;
 		this.sontype = sontype;
 		this.typeimg = typeimg;
@@ -19,12 +17,7 @@ public class booktype {
 	public void setTypeimg(String typeimg) {
 		this.typeimg = typeimg;
 	}
-	public String getTypeid() {
-		return typeid;
-	}
-	public void setTypeid(String typeid) {
-		this.typeid = typeid;
-	}
+
 	public String getFathertype() {
 		return fathertype;
 	}
@@ -39,7 +32,7 @@ public class booktype {
 	}
 	@Override
 	public String toString() {
-		return "booktype [typeid=" + typeid + ", fathertype=" + fathertype + ", sontype=" + sontype + ", typeimg="
+		return "booktype [fathertype=" + fathertype + ", sontype=" + sontype + ", typeimg="
 				+ typeimg + "]";
 	}
 

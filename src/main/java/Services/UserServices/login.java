@@ -1,4 +1,4 @@
-package UserServices;
+package Services.UserServices;
 
 
 import java.io.IOException;
