@@ -283,7 +283,7 @@
 	}
 	cart.click(function(e) {
 		
-		 $.post("CartAdd",{isbn:'0000001',count:$('.count-input').val()},function(data){
+		 $.post("CartAdd",{isbn:'0000002',count:$('.count-input').val(),type:"add"},function(data){
 			 data=JSON.parse(data)
 			 if(data.code=="error"){
 				 console.log(111111111111)

@@ -3426,7 +3426,7 @@
 	
 		var newbooks=[
 			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
-			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
+			{name:"ceshi",isbn:"0000002",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
 			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
 			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
 			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
@@ -3458,7 +3458,7 @@
 				// 立即设置为false
 				canRun = false;
 				// 将外部传入的函数的执行放在setTimeout中
-				setTimeout(() => {
+				setTimeout(function() {
 					// 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。
 					// 当定时器没有执行的时候标记永远是false，在开头被return掉
 					fn.apply(this, arguments);
@@ -3543,7 +3543,8 @@
 			console.log(li)
 			$(li.children[2]).removeClass("show")
 		})
-		book.click(function (e) {
+		
+		$('.new_bookList>.book').click(function (e) {
 			var tar = $(e.target)
 			var Isbn = tar.parents('.book').data('isbn')
 			window.location.href = "detail.jsp"
@@ -3551,8 +3552,9 @@
 				isbn : Isbn
 			}, function(data) {
 				console.log(data)
-			}) */
+			}) */ 
 		})
+		
 	</script>
 	
 	</html>

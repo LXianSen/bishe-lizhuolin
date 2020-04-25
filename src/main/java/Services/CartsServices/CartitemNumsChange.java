@@ -31,11 +31,10 @@ public class CartitemNumsChange extends HttpServlet {
 			response.setContentType("text/html;charset =UTF-8");
 			
 			UserDao userDao=new UserDao();
-			userDao.CheckIsLogin(request, response);
 			
 			user u=userDao.CheckIsLogin(request, response);
 
-			if(u!=null&&"".equals(u.toString())) {
+			if(u!=null&&!"".equals(u.toString())) {
 				CartDao cartDao = new CartDao();
 				//查询用户对应的书籍是否存在购物车
 				cartitem cartitem=new cartitem();
@@ -50,7 +49,7 @@ public class CartitemNumsChange extends HttpServlet {
 					cartitem.setCount(cartitemlist.get(0).getCount());
 					cartitem cartitem2=new cartitem();
 					//增加数量/减少数量
-					if(request.getParameter("type").equals("minus")||"".equals(request.getParameter("type"))) {
+					if(request.getParameter("type").equals("minus")) {
 						cartitem2.setCount(cartitem.getCount()-Integer.parseInt(request.getParameter("count")));
 					}else {
 						cartitem2.setCount(cartitem.getCount()+Integer.parseInt(request.getParameter("count")));

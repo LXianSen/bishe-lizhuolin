@@ -570,7 +570,7 @@ img {
 	
 	function init(cart){
 		for(let key in cart){
-			if(cart[key].isbn==$(".cart-good-items").data('isbn')){
+			if(cart[key].isbn==$(".cart-good-items").data('ISBN')){
 				$('.txt').text(cart[key].count)
 			}
 		}
