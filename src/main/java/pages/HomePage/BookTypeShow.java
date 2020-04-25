@@ -51,7 +51,8 @@ public class BookTypeShow extends HttpServlet {
 			
 			//获取目录信息
 			List<Map<String, Object>> typesList=bktypeDao.getSontypesbyFather();
-			outlist.println(typesList);
+			String listjson=gson.toJson(typesList);
+			outlist.println(listjson);
 			
 			//点击目录跳转
 			String typename=request.getParameter("typename");

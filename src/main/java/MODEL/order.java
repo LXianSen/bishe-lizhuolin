@@ -13,28 +13,7 @@ public class order {
 	private int count;
 	private String status;
 	private String userid;
-	private address address;
-	
-	public order(String fatherorder, String sonorder, Date date, String iSBN, double bprice, double bdiscount,
-			int count, String status, String userid, MODEL.address address) {
-		super();
-		this.fatherorder = fatherorder;
-		this.sonorder = sonorder;
-		this.date = date;
-		ISBN = iSBN;
-		this.bprice = bprice;
-		this.bdiscount = bdiscount;
-		this.count = count;
-		this.status = status;
-		this.userid = userid;
-		this.address = address;
-	}
-	public address getAddress() {
-		return address;
-	}
-	public void setAddress(address address) {
-		this.address = address;
-	}
+	private String addressid;
 	public String getFatherorder() {
 		return fatherorder;
 	}
@@ -89,15 +68,37 @@ public class order {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
+	public String getAddressid() {
+		return addressid;
+	}
+	public void setAddressid(String addressid) {
+		this.addressid = addressid;
+	}
 	@Override
 	public String toString() {
 		return "order [fatherorder=" + fatherorder + ", sonorder=" + sonorder + ", date=" + date + ", ISBN=" + ISBN
 				+ ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", count=" + count + ", status=" + status
-				+ ", userid=" + userid + ", address=" + address + "]";
+				+ ", userid=" + userid + ", addressid=" + addressid + "]";
+	}
+	public order(String fatherorder, String sonorder, Date date, String iSBN, double bprice, double bdiscount,
+			int count, String status, String userid, String addressid) {
+		super();
+		this.fatherorder = fatherorder;
+		this.sonorder = sonorder;
+		this.date = date;
+		ISBN = iSBN;
+		this.bprice = bprice;
+		this.bdiscount = bdiscount;
+		this.count = count;
+		this.status = status;
+		this.userid = userid;
+		this.addressid = addressid;
 	}
 	public order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 }
