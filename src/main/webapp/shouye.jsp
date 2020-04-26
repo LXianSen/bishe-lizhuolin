@@ -1202,7 +1202,32 @@
 			
 		]
 		
-		
+	var searchData=[
+        {name:"张爱玲",type:"author",no:"001"},
+        {name:"白夜行",type:"book",no:"0000001"},
+        {name:"清华出版社",type:"publish",no:"0011"}
+    ]
+
+    $(".m-auto-list>ul").empty()
+    searchData.forEach(function(item,index){
+        $(".m-auto-list>ul").append("<li data-type="+item.type+" data-no="+item.no+">"+item.name+"</li>")
+    })
+    $(".m-auto-list>ul>li").click(function(e){
+        let Ttype=$(e.target).data("type")
+        let Tno=$(e.target).data("no")
+        let value=$(e.target).val()
+        console.log(Ttype)
+        if(Ttype=="book"){
+            window.location.href="detail.jsp?search_name="+value+"&ISBN="+Tno
+        }else{
+            window.location.href="booklist.jsp?search_name="+value+"&ISBN="+Tno
+        }
+        // window.location.href="booklist.jsp?type="+Ttype
+    })
+    $(".search_box").click(function(e){
+        var e=e||window.event;
+        e.stopPropagation()
+    })
 		
 		var newbooks=[
 			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
@@ -1298,9 +1323,9 @@
 	
 		$('.search-input').on("input", throttle(handle, 1000))
 	
-		$(".search-input").blur(function(){
-			$('.m-auto-list').removeClass('show')
-		})
+		$("body").click(function(e){
+	        $('.m-auto-list').removeClass('show')
+	    })
 	
 		$(".search-input").focus(function(e){
 			$('.m-auto-list').addClass('show')
