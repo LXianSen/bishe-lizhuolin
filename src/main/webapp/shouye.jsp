@@ -812,7 +812,7 @@
 						</a>
 						<div class="site-item-nav hidden">
 							<ul class="site-nav user-nav">
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/orders" href="#"
+								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/orders" href="personCenter.jsp"
 										class="m-safe-anchor">我的订单</a></li>
 								<li><a rel="nofollow" data-target="_blank" data-src="//app.youpin.mi.com/r/afterServiceList"
 										href="#" class="m-safe-anchor">退款/售后</a></li>
