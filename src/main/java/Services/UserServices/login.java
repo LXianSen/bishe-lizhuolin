@@ -44,15 +44,14 @@ public class login extends HttpServlet {
 
         
             try {
-            	//取出表单的user数据，放到user对象中
             	Map<String, String[]> parameterMap = request.getParameterMap();
             	if(parameterMap.isEmpty()) {
-            		Gson gson=new Gson();
-                    String publicKey = gson.toJson(RSAUtils.generateBase64PublicKey());
-                    System.out.println(publicKey);
-                    writer.println(publicKey); 
+                    String publicKey = RSAUtils.generateBase64PublicKey();
+                    writer.write(publicKey); 
             	}else {
-            		BeanUtils.populate(user, parameterMap);
+                	//取出表单的user数据，放到user对象中
+            		user.setPhone(RSAUtils.decryptBase64(request.getParameter("phone").toString()));
+            		user.setPwd(RSAUtils.decryptBase64(request.getParameter("pwd").toString()));
             		HttpSession session = request.getSession();
         			user myuser=dao1.selects(user).get(0);
     				if(myuser!=null&&!"".equals(myuser)) {
