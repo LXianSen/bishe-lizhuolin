@@ -17,6 +17,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import com.alibaba.druid.util.StringUtils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import DAO.BookDao;
 import MODEL.book;
@@ -32,9 +33,10 @@ public class BookDetail extends HttpServlet {
     
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset =UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
 		try {
 			book book=new book();
 			book.setISBN(request.getParameter("isbn"));
@@ -42,7 +44,7 @@ public class BookDetail extends HttpServlet {
 			List<book> bkList=bkDao.selects(book);
 			System.out.println(bkList);
 			//转化为 key value形式
-			Gson gson=new Gson();
+			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			String bookjson=gson.toJson(bkList);
 			out.println(bookjson);
 		} catch (Exception e) {

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sun.crypto.provider.RSACipher;
 
 import DAO.BookDao;
@@ -25,14 +26,16 @@ public class Search extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset =UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		try {
 			BookDao bkDao=new BookDao();
-			Gson gson=new Gson();
+			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			PrintWriter out=response.getWriter();
 			String inputmsg=(String)request.getParameter("inputmsg");
 			List<book> books=bkDao.getBookNoClear(inputmsg);
-			String booksJSON=gson.toJson(books);
+			System.out.println(books);
+			String booksJSON=gson.toJson(books.toString());
+			System.out.println(booksJSON);
 			out.println(booksJSON);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
