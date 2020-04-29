@@ -27,6 +27,21 @@
     <version>2.9.2</version>
 </dependency>
 <dependency>
+  <groupId>com.sun.mail</groupId>
+  <artifactId>javax.mail</artifactId>
+  <version>1.6.2</version>
+</dependency>
+<dependency>
+  <groupId>com.liferay</groupId>
+  <artifactId>org.bouncycastle.provider</artifactId>
+  <version>1.61.LIFERAY-PATCHED-1</version>
+</dependency>
+<dependency>
+  <groupId>org.eclipse.ecf</groupId>
+  <artifactId>org.apache.commons.codec</artifactId>
+  <version>1.9.0.v20170208-1614</version>
+</dependency>
+<dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
     <version>2.9.2</version>

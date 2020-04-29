@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.google.gson.Gson;
+import com.mysql.fabric.Response;
 
 import DAO.BaseDAO;
 import MODEL.user;
@@ -29,15 +30,19 @@ public class login extends HttpServlet {
     public login() {
         super();
     }
-    
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset =UTF-8");
         
 		PrintWriter out = response.getWriter();
+        PrintWriter writer = response.getWriter();
 		JSONObject jsonobj = new JSONObject();		
 		user user=new user();
 		UserDao dao1=new UserDao();
+        String publicKey = RSAUtils.generateBase64PublicKey();
+        writer.write(publicKey); 
+        
             try {
             	//取出表单的user数据，放到user对象中
             	Map<String, String[]> parameterMap = request.getParameterMap();
