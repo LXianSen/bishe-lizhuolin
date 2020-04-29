@@ -59,7 +59,7 @@ public class BookTypeShow extends HttpServlet {
 			if(typename!=null&&!"".equals(typename)) {
 			BookDao bkDao=new BookDao();
 			book book=new book();
-			book.setsontype(typename);
+			book.setSontype(typename);
 			List<book> books=bkDao.selects(book);
 			String bookJSON=gson.toJson(books);
 			outbooks.println(bookJSON);

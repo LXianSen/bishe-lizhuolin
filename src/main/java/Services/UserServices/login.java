@@ -40,25 +40,30 @@ public class login extends HttpServlet {
 		JSONObject jsonobj = new JSONObject();		
 		user user=new user();
 		UserDao dao1=new UserDao();
-        String publicKey = RSAUtils.generateBase64PublicKey();
-        writer.write(publicKey); 
+
+
         
             try {
             	//取出表单的user数据，放到user对象中
             	Map<String, String[]> parameterMap = request.getParameterMap();
-        		BeanUtils.populate(user, parameterMap);
-        		HttpSession session = request.getSession();
-    			user myuser=dao1.selects(user).get(0);
-				if(myuser!=null&&!"".equals(myuser)) {
-					jsonobj.put("code", "200");
-					jsonobj.put("user", myuser);
-	        		session.setAttribute("user", myuser);
-					
-				}else {
-					
-	        		jsonobj.put("code", "error");
+            	if(parameterMap.isEmpty()) {
+                    String publicKey = RSAUtils.generateBase64PublicKey();
+                    writer.write(publicKey); 
+            	}else {
+            		BeanUtils.populate(user, parameterMap);
+            		HttpSession session = request.getSession();
+        			user myuser=dao1.selects(user).get(0);
+    				if(myuser!=null&&!"".equals(myuser)) {
+    					jsonobj.put("code", "200");
+    					jsonobj.put("user", myuser);
+    	        		session.setAttribute("user", myuser);
+    					
+    				}else {
+    					
+    	        		jsonobj.put("code", "error");
+    				}
+    				out.println(jsonobj);
 				}
-				out.println(jsonobj);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
