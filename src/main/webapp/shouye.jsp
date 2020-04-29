@@ -3,30 +3,13 @@
 
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-
-<head>
-	<title>Bootstrap 模板</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- 引入 Bootstrap -->
-	<link href="./css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="./iconfont/iconfont.css">
-	<link rel="stylesheet" href="css/shouye.css">
-</head>
-
-<body>
-	<!-- 顶部 -->
-	<header>
-		<div class="headerCenter">
-			<div class=" login">
-				<a href="login.jsp">登录</a> <a href="register.jsp">注册</a>
-=======
 	<head>
 		<title>Bootstrap 模板</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- 引入 Bootstrap -->
 		<link href="./css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="./iconfont/iconfont.css">
+		<link rel="stylesheet" href="css/shouye.css">
 		<style>
 			* {
 				margin: 0;
@@ -845,7 +828,6 @@
 						</div>
 					</div>
 				</div>
->>>>>>> 8f9e2e7346f86b97665639cdef14b293a7d87fd6
 			</div>
 			<div class="fr site-item m-user-con userhide">
 				<div class="m-login-info">
