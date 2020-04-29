@@ -75,7 +75,7 @@ public class BookDao extends BaseDAO<book> {
 		                // 根据列名 来获取 当前列的数据
 		                Object value = rs.getObject(columnName);
 		                // 根据列名 通过反射来找属性对象
-		                Field f = book.class.getDeclaredField(columnName);
+		                Field f = booktemp.getClass().getDeclaredField(columnName);
 		                if (f != null)
 		                {
 		                    f.setAccessible(true);
