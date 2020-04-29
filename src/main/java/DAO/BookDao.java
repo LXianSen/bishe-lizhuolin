@@ -94,7 +94,7 @@ public class BookDao extends BaseDAO<book> {
 
 	public List<book> selectnewBooks() throws SQLException, Exception{
 		Connection connection=Druid().getConnection();
-		String sql="select * from book order by bdate desc limit(6)";
+		String sql="select * from book order by bdate desc limit 6";
 		PreparedStatement ps=connection.prepareStatement(sql);
 		ResultSet rs=ps.executeQuery();
 		ResultSetMetaData rsmd = rs.getMetaData();
