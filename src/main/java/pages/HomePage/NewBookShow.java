@@ -32,7 +32,7 @@ public class NewBookShow extends HttpServlet {
 		try {
 			BookDao bkDao=new BookDao();
 			List<book> newbookList=bkDao.selectnewBooks();
-			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").serializeNulls().create();
 			PrintWriter o=response.getWriter();
 			String newbookJSON=gson.toJson(newbookList);
 			o.println(newbookJSON);
