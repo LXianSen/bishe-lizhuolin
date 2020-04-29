@@ -48,7 +48,8 @@ public class login extends HttpServlet {
             	Map<String, String[]> parameterMap = request.getParameterMap();
             	if(parameterMap.isEmpty()) {
                     String publicKey = RSAUtils.generateBase64PublicKey();
-                    writer.write(publicKey); 
+                    System.out.println(publicKey);
+                    writer.println(publicKey); 
             	}else {
             		BeanUtils.populate(user, parameterMap);
             		HttpSession session = request.getSession();
