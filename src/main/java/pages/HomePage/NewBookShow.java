@@ -35,6 +35,7 @@ public class NewBookShow extends HttpServlet {
 			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").serializeNulls().create();
 			PrintWriter o=response.getWriter();
 			String newbookJSON=gson.toJson(newbookList);
+			newbookJSON=newbookJSON.replaceAll("null", "\"\"");
 			o.println(newbookJSON);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
