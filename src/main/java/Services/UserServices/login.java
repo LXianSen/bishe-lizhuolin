@@ -47,7 +47,8 @@ public class login extends HttpServlet {
             	//取出表单的user数据，放到user对象中
             	Map<String, String[]> parameterMap = request.getParameterMap();
             	if(parameterMap.isEmpty()) {
-                    String publicKey = RSAUtils.generateBase64PublicKey();
+            		Gson gson=new Gson();
+                    String publicKey = gson.toJson(RSAUtils.generateBase64PublicKey());
                     System.out.println(publicKey);
                     writer.println(publicKey); 
             	}else {
