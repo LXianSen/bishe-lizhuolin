@@ -56,8 +56,8 @@ public class BookDao extends BaseDAO<book> {
 		//select DISTINCT book.* from book LEFT JOIN type on book.typeid=type.typeid where CONCAT(IFNULL(type.typeson,' '),IFNULL(type.typefather,' '),IFNULL(book.author,' '),IFNULL(book.bname,' ')) LIKE '%i%'
 
 		StringBuffer sb=new StringBuffer(
-			"select DISTINCT book.* from book LEFT JOIN type on book.typeid=type.typeid "
-			+ "where CONCAT(IFNULL(type.typeson,' '),IFNULL(type.typefather,' '),IFNULL(book.author,' '),IFNULL(book.bname,' ')) "
+			"select DISTINCT book.* from book LEFT JOIN booktype on book.sontype=booktype.sontype "
+			+ "where CONCAT(IFNULL(booktype.sontype,' '),IFNULL(booktype.fathertype,' '),IFNULL(book.bauthor,' '),IFNULL(book.bname,' ')) "
 			+ "LIKE '%");
 	        sb.append(msg);
 	        sb.append("%'");

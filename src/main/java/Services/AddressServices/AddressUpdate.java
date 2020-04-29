@@ -35,8 +35,7 @@ public class AddressUpdate extends HttpServlet {
 			response.setContentType("text/html;charset =UTF-8");
 
 			UserDao userDao=new UserDao();
-			userDao.CheckIsLogin(request, response);
-			
+
 			user u=userDao.CheckIsLogin(request, response);
 
 			if(u!=null&&"".equals(u.toString())) {

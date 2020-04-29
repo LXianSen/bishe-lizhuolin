@@ -38,8 +38,6 @@ public class ShowAddress extends HttpServlet {
 			
 			//检查用户是否登录
 			UserDao userDao=new UserDao();
-			userDao.CheckIsLogin(request, response);
-			
 			user u=userDao.CheckIsLogin(request, response);
 
 			if(u!=null&&"".equals(u.toString())) {
