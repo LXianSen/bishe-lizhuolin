@@ -3,6 +3,24 @@
 
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
+
+<head>
+	<title>Bootstrap 模板</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 引入 Bootstrap -->
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="./iconfont/iconfont.css">
+	<link rel="stylesheet" href="css/shouye.css">
+</head>
+
+<body>
+	<!-- 顶部 -->
+	<header>
+		<div class="headerCenter">
+			<div class=" login">
+				<a href="login.jsp">登录</a> <a href="register.jsp">注册</a>
+=======
 	<head>
 		<title>Bootstrap 模板</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -827,573 +845,363 @@
 						</div>
 					</div>
 				</div>
+>>>>>>> 8f9e2e7346f86b97665639cdef14b293a7d87fd6
 			</div>
-		</header>
-		<!-- 主体 -->
-		<div class="content_center">
-	
-			<!-- 搜索 -->
-			<div class="clear">
-				<div class="search_box">
-					<div class="search">
-						<span class="iconfont icon-icon-test1 search_font"></span>
-						<input type="text" class="search-input">
-					</div>
-					<span class="iconfont icon-icon-test search_font shopcart"></span>
-	
-					<div class="m-auto-list">
-						<ul>
-							<li class="">扫地机器人</li>
-							<li class="">扫地机</li>
-							<li class="">三星</li>
-							<li class="">伞</li>
-							<li class="">扫把</li>
-							<li class="">扫拖一体机器人</li>
-							<li class="">三明治机</li>
-							<li class="">扫地机器人配件</li>
-							<li class="">散热器</li>
-							<li class="">三脚架</li>
+			<div class="fr site-item m-user-con userhide">
+				<div class="m-login-info">
+					<a href="personCenter.jsp" class="m-safe-anchor" data-src="/personal-center/orders"
+						data-target="_blank">
+						<span class="m-icons m-icons-user-active  h-user-icon" data-src="" href=""
+							style="background: ./images/user.png center center/100% no-repeat; border-radius: 50%;"></span>
+						<span class="m-username">丑丑小怪物</span>
+						<span class="m-icons m-icons-dropdown  h-down-icon" data-src="" href=""></span>
+					</a>
+					<div class="site-item-nav hidden">
+						<ul class="site-nav user-nav">
+							<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/orders" href="#"
+									class="m-safe-anchor">我的订单</a></li>
+							<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/collections" href="#"
+									class="m-safe-anchor">我的收藏</a></li>
+							<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/address" href="#"
+									class="m-safe-anchor">地址管理</a></li>
+							<li><a rel="nofollow" href="javascript:;">退出登录</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
-	
-			<!-- 分类 -->
-			<div class="top_box">
-				<div class="directory">
+		</div>
+	</header>
+	<!-- 主体 -->
+	<div class="content_center">
+
+		<!-- 搜索 -->
+		<div class="clear">
+			<div class="search_box">
+				<div class="search">
+					<span class="iconfont icon-icon-test1 search_font"></span>
+					<input type="text" class="search-input">
+				</div>
+				<span class="iconfont icon-icon-test search_font shopcart"></span>
+				<div class="shopcart-mark">1</div>
+				<div class="m-auto-list">
 					<ul>
-						<!-- <li><span>有书推荐</span></li>
-								<li>有书推荐</li>
-								<li>有书推荐</li> -->
+						<li class="">扫地机器人</li>
+						<li class="">扫地机</li>
+						<li class="">三星</li>
+						<li class="">伞</li>
+						<li class="">扫把</li>
+						<li class="">扫拖一体机器人</li>
+						<li class="">三明治机</li>
+						<li class="">扫地机器人配件</li>
+						<li class="">散热器</li>
+						<li class="">三脚架</li>
 					</ul>
-					<div class="nav-details hide">
-						<ul>
-							<li>
-								<img src="./images/28504153-1_l_3.jpg" alt="" class="smallimg">
-								<span>yingyu</span>
-							</li>
-						</ul>
-					</div>
-	
 				</div>
-				<div class="ads">
-					<div id="myCarousel" class="carousel slide">
-						<!-- 轮播（Carousel）指标 -->
-						<ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-							<li data-target="#myCarousel" data-slide-to="2"></li>
-						</ol>
-						<!-- 轮播（Carousel）项目 -->
-						<div class="carousel-inner">
-							<div class="item active">
-								<img src="https://img.youpin.mi-img.com/youpinoper/b11cfe646f29f79742dc6f8491d5cba6.jpg?id=&w=1080&h=450"
-									alt="First slide">
-							</div>
-							<div class="item">
-								<img src="https://img.youpin.mi-img.com/youpinoper/b11cfe646f29f79742dc6f8491d5cba6.jpg?id=&w=1080&h=450"
-									alt="Second slide">
-							</div>
-							<div class="item">
-								<img src="https://img.youpin.mi-img.com/youpinoper/b11cfe646f29f79742dc6f8491d5cba6.jpg?id=&w=1080&h=450"
-									alt="Third slide">
-							</div>
+			</div>
+		</div>
+
+		<!-- 分类 -->
+		<div class="top_box">
+			<div class="directory">
+				<ul>
+					<!-- <li><span>有书推荐</span></li>
+									<li>有书推荐</li>
+									<li>有书推荐</li> -->
+				</ul>
+				<div class="nav-details hide">
+					<ul>
+						<li>
+							<img src="./images/28504153-1_l_3.jpg" alt="" class="smallimg">
+							<span>yingyu</span>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="ads">
+				<div id="myCarousel" class="carousel slide">
+					<!-- 轮播（Carousel）指标 -->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
+					<!-- 轮播（Carousel）项目 -->
+					<div class="carousel-inner">
+						<div class="item active">
+							<img src="https://img.youpin.mi-img.com/youpinoper/b11cfe646f29f79742dc6f8491d5cba6.jpg?id=&w=1080&h=450"
+								alt="First slide">
 						</div>
-						<!-- 轮播（Carousel）导航 -->
-						<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span
-								class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						</a> <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span
-								class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						</a>
+						<div class="item">
+							<img src="https://img.youpin.mi-img.com/youpinoper/b11cfe646f29f79742dc6f8491d5cba6.jpg?id=&w=1080&h=450"
+								alt="Second slide">
+						</div>
+						<div class="item">
+							<img src="https://img.youpin.mi-img.com/youpinoper/b11cfe646f29f79742dc6f8491d5cba6.jpg?id=&w=1080&h=450"
+								alt="Third slide">
+						</div>
+					</div>
+					<!-- 轮播（Carousel）导航 -->
+					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span
+							class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span
+							class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="new_box">
+			<div class="new_title">
+				<h2>新书上架</h2>
+			</div>
+			<div class="new_bookList">
+				<div data-ISBN="0000001" class="book">
+					<div class="newBook clearfix">
+						<img src="./images/28504153-1_l_3.jpg" alt="" class="img">
+						<p class="titleText">
+							<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
+								target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
+							<p class="author">路遥</p>
+							<p class="price">
+								<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
+										class="tail">.80</span>
+								</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
+									<span class="tail">.00</span>
+								</span>
+							</p>
+						</p>
+					</div>
+				</div>
+				<div>
+					<div class="newBook clearfix">
+						<img src="./images/28506743-1_l_8.jpg" alt="" class="img">
+						<p class="titleText">
+							<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
+								target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
+							<p class="author">路遥</p>
+							<p class="price">
+								<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
+										class="tail">.80</span>
+								</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
+									<span class="tail">.00</span>
+								</span>
+							</p>
+						</p>
+					</div>
+				</div>
+				<div>
+					<div class="newBook clearfix">
+						<img src="./images/28519012-1_l_9.jpg" alt="" class="img">
+						<p class="titleText">
+							<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
+								target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
+							<p class="author">路遥</p>
+							<p class="price">
+								<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
+										class="tail">.80</span>
+								</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
+									<span class="tail">.00</span>
+								</span>
+							</p>
+						</p>
+					</div>
+				</div>
+				<div>
+					<div class="newBook clearfix">
+						<img src="./images/28523273-1_l_2.jpg" alt="" class="img">
+						<p class="titleText">
+							<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
+								target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
+							<p class="author">路遥</p>
+							<p class="price">
+								<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
+										class="tail">.80</span>
+								</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
+									<span class="tail">.00</span>
+								</span>
+							</p>
+						</p>
+					</div>
+				</div>
+				<div>
+					<div class="newBook clearfix">
+						<img src="./images/28504153-1_l_3.jpg" alt="" class="img">
+						<p class="titleText">
+							<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
+								target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
+							<p class="author">路遥</p>
+							<p class="price">
+								<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
+										class="tail">.80</span>
+								</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
+									<span class="tail">.00</span>
+								</span>
+							</p>
+						</p>
+					</div>
+				</div>
+				<div>
+					<div class="newBook clearfix">
+						<img src="./images/28504153-1_l_3.jpg" alt="" class="img">
+						<p class="titleText">
+							<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
+								target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
+							<p class="author">路遥</p>
+							<p class="price">
+								<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
+										class="tail">.80</span>
+								</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
+									<span class="tail">.00</span>
+								</span>
+							</p>
+						</p>
 					</div>
 				</div>
 			</div>
-	
-			<div class="new_box">
-				<div class="new_title">
-					<h2>新书上架</h2>
-				</div>
-				<div class="new_bookList">
-					<div data-ISBN="0000001" class="book">
-						<div class="newBook clearfix">
-							<img src="./images/28504153-1_l_3.jpg" alt="" class="img">
-							<p class="titleText">
-								<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
-									target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
-								<p class="author">路遥</p>
-								<p class="price">
-									<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
-											class="tail">.80</span>
-									</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
-										<span class="tail">.00</span>
-									</span>
-								</p>
-							</p>
-						</div>
-					</div>
-					<div>
-						<div class="newBook clearfix">
-							<img src="./images/28506743-1_l_8.jpg" alt="" class="img">
-							<p class="titleText">
-								<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
-									target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
-								<p class="author">路遥</p>
-								<p class="price">
-									<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
-											class="tail">.80</span>
-									</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
-										<span class="tail">.00</span>
-									</span>
-								</p>
-							</p>
-						</div>
-					</div>
-					<div>
-						<div class="newBook clearfix">
-							<img src="./images/28519012-1_l_9.jpg" alt="" class="img">
-							<p class="titleText">
-								<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
-									target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
-								<p class="author">路遥</p>
-								<p class="price">
-									<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
-											class="tail">.80</span>
-									</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
-										<span class="tail">.00</span>
-									</span>
-								</p>
-							</p>
-						</div>
-					</div>
-					<div>
-						<div class="newBook clearfix">
-							<img src="./images/28523273-1_l_2.jpg" alt="" class="img">
-							<p class="titleText">
-								<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
-									target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
-								<p class="author">路遥</p>
-								<p class="price">
-									<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
-											class="tail">.80</span>
-									</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
-										<span class="tail">.00</span>
-									</span>
-								</p>
-							</p>
-						</div>
-					</div>
-					<div>
-						<div class="newBook clearfix">
-							<img src="./images/28504153-1_l_3.jpg" alt="" class="img">
-							<p class="titleText">
-								<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
-									target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
-								<p class="author">路遥</p>
-								<p class="price">
-									<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
-											class="tail">.80</span>
-									</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
-										<span class="tail">.00</span>
-									</span>
-								</p>
-							</p>
-						</div>
-					</div>
-					<div>
-						<div class="newBook clearfix">
-							<img src="./images/28504153-1_l_3.jpg" alt="" class="img">
-							<p class="titleText">
-								<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
-									target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
-								<p class="author">路遥</p>
-								<p class="price">
-									<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
-											class="tail">.80</span>
-									</span> <span class="price_r"> <span class="sign">¥</span> <span class="num">45</span>
-										<span class="tail">.00</span>
-									</span>
-								</p>
-							</p>
-						</div>
-					</div>
-				</div>
-	
-            </div>
-            
-            <div class="hot-author">
-                <div class="new_title">
-					<h2>热门作者</h2>
-                </div>
-                <div class="hot-box clearfix">
-                    <div class="person-box">
-                        <div class="person-info">
-                            <div class="person-img">
-                                <img src="http://img63.ddimg.cn/topic_img/gys_0014951/cl.jpg" alt="">
-                            </div>
-                            <div class="person-detail">
-                                <div class="person-name">二混子</div>
-                                <div class="person-brief">陈磊（笔名：二混子）漫画式科普的开创者，80后，创立拥有全网700万粉丝的知识类公众号“混子曰”“混子谈钱”“着迷小课”及“混子谈命”，总阅读量超过2.5亿人次，曾获网站度新锐作家、年度挚爱阅读大使等称号。“混子曰”公众号下的“Stone历史剧”栏目，</div>
-                            </div>
-                        </div>
-                        <div class="person-book">
-                            <div class="perbook">
-                                <div class="perbook-img">
-                                    <img src="https://img3.doubanio.com/view/subject/l/public/s29053580.jpg">
-                                </div>
-                                <div class="perbook-name">马伯庸笑翻中国简史</div>
-                            </div>
-                            <div class="perbook">
-                                <div class="perbook-img">
-                                    <img src="http://img3m0.ddimg.cn/30/25/24156030-1_l_12.jpg" alt="长安十二时辰 上下册套装">
-                                </div>
-                                <div class="perbook-name">长安十二时辰 上下册套装</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="person-rank-box">
-                        <div class="per-person">
-                            <span class="per-no">1</span>
-                            <span class="per-person-name">张嘉佳</span>
-                        </div>
-                        <div class="per-person">
-                            <span class="per-no">2</span>
-                            <span class="per-person-name">安妮宝贝</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-			<!-- <div>
-				<h2>推荐专区</h2>
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#panel-901172" data-toggle="tab">主打</a></li>
-					<li><a href="#panel-392690" data-toggle="tab">童书</a></li>
-					<li><a href="#" data-toggle="tab">文艺</a></li>
-					<li><a href="#" data-toggle="tab">小说</a></li>
-					<li><a href="#" data-toggle="tab">社科</a></li>
-					<li><a href="#" data-toggle="tab">生活</a></li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane active" id="panel-901172">
-						<div class="new_bookList">
-							<div class="newBook clearfix">
-								<img src="./images/28504153-1_l_3.jpg" alt="" class="img">
-								<p class="titleText">
-									<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
-										target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
-									<p class="author">路遥</p>
-									<p class="price">
-										<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
-												class="tail">.80</span>
-										</span> <span class="price_r"> <span class="sign">¥</span> <span
-												class="num">45</span> <span class="tail">.00</span>
-										</span>
-									</p>
-								</p>
-							</div>
-							<div class="newBook clearfix">
-								<img src="./images/28504153-1_l_3.jpg" alt="" class="img">
-								<p class="titleText">
-									<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
-										target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
-									<p class="author">路遥</p>
-									<p class="price">
-										<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
-												class="tail">.80</span>
-										</span> <span class="price_r"> <span class="sign">¥</span> <span
-												class="num">45</span> <span class="tail">.00</span>
-										</span>
-									</p>
-								</p>
-							</div>
-	
-						</div>
-					</div>
-					<div class="tab-pane" id="panel-392690">
-						<p>Howdy, I'm in Section 2.</p>
-					</div>
-				</div>
-			</div> -->
-	
-            <div class="bookads">
-                <div class="ads-images">
-                    <img src="https://img1.doubanio.com/view/freyr_page_photo/raw/public/5537.jpg" alt="">
-                </div>
-                <div class="ads-images">
-                    <img src="https://img3.doubanio.com/view/freyr_page_photo/raw/public/5481.jpg" alt="">
-                </div>
-                <div class="ads-images">
-                    <img src="https://img3.doubanio.com/view/freyr_page_photo/raw/public/5411.jpg" alt="">
-                </div>
-            </div>
-            
-		</div>
-		<div class="m-fixedBar">
-			<ul class="fixed-nav">
-				<li><a class="m-icons m-icons- m-icons-service-fixed" data-src="" href="javascript:;"></a>
-					<p class="text">购物车</p>
-				</li>
-				<li><a class="m-icons m-icons- m-icons-download" data-src="" href="javascript:;"></a>
-					<p class="text">个人中心</p>
-				</li>
-	
-				<li><a class="m-icons m-icons- m-icons-wx-chat" data-src="" href="javascript:;"></a>
-					<p class="text">关注微信</p>
-					<div class="fixed-pop fixed-wx-pop ">
-						<div class="pop-inner">
-							<img class="qr-code"
-								src="https://shop.io.mi-img.com/static/h5/static3/media/wx_code.83208f15.png" alt="qr-code">
-							<p class="site-info">扫码关注「小米有品」微信服务号，签到积分赢大奖</p>
-						</div>
-						<a class="m-icons m-icons-arrow-right " data-src="" href="javascript:;"></a>
-					</div>
-				</li>
-				<li><a class="m-icons m-icons- m-icons-top" data-src="" href="javascript:;"></a>
-					<p class="text">回到顶部</p>
-				</li>
-			</ul>
-		</div>
-	
-		<footer> </footer>
-	
-		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-		<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-	</body>
-	
-	<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-	<script type="text/javascript">
-	
-	/* {
-		firstname: "教育",
-		secodename: [
-			{
-				name: "英语综合教材",
-				imgurl: ""
-			},
-			{
-				name: "中小学教辅",
-				imgurl: ""
-			}
-		]
-	},
-	{
-		firstname: "小说",
-		secodename: [
-			{
-				name: "中国当代小说",
-				imgurl: "./images/28504153-1_l_3.jpg"
-			},
-			{
-				name: "四大名著",
-				imgurl: ""
-			}
-		]
-	}, */
-	
-		var navDetails = $('.top_box .directory .nav-details')
-		var fixedlis = $('.fixed-nav li')
-		var book = $('.new_bookList>.book')
-		var userbox = $('.m-user-con')
-		var loginbox = $('.login')
-		var type = [
-			
-		]
-		
-	var searchData=[
-        {name:"张爱玲",type:"author",no:"001"},
-        {name:"白夜行",type:"book",no:"0000001"},
-        {name:"清华出版社",type:"publish",no:"0011"}
-    ]
 
-    $(".m-auto-list>ul").empty()
-    searchData.forEach(function(item,index){
-        $(".m-auto-list>ul").append("<li data-type="+item.type+" data-no="+item.no+">"+item.name+"</li>")
-    })
-    $(".m-auto-list>ul>li").click(function(e){
-        let Ttype=$(e.target).data("type")
-        let Tno=$(e.target).data("no")
-        let value=$(e.target).val()
-        console.log(Ttype)
-        if(Ttype=="book"){
-            window.location.href="detail.jsp?search_name="+value+"&ISBN="+Tno
-        }else{
-            window.location.href="booklist.jsp?search_name="+value+"&ISBN="+Tno
-        }
-        // window.location.href="booklist.jsp?type="+Ttype
-    })
-    $(".search_box").click(function(e){
-        var e=e||window.event;
-        e.stopPropagation()
-    })
-		
-		var newbooks=[
-			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
-			{name:"ceshi",isbn:"0000002",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
-			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
-			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
-			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
-			{name:"人生（茅盾文学奖得主路遥代表作，全新精装版）",isbn:"0000001",author:"路遥",price:"40.00",disprice:"25.80",img:"./images/28504153-1_l_3.jpg"},
-		]
-		
-		$.post("BookTypeShow",{typename:""},function(data){
-			type=JSON.parse(data)
-			$('.directory>ul').empty()
-			for (let i = 0; i < type.length; i++) {
-				$('.directory>ul').append("<li data-no=" + i + "><span>" + type[i].firstname + "</span></li>")
-				console.log(222222)
-			}
-			var lis = $('.top_box .directory ul li');
-			userbox.mouseenter(function (e) {
-				$('.site-item-nav').removeClass('hidden').addClass('show')
-			})
-			userbox.mouseleave(function (e) {
-				$('.site-item-nav').removeClass('show').addClass('hidden')
-			})
-			$('.top_box .directory ul li').mouseenter(function (e) {
-		
-				navDetails.removeClass('hide')
-				var li = e.target
-				console.log(li)
-				var second = type[$(li).data('no')]
-				$('.nav-details>ul').empty()
-				for (let i = 0; i < second.secondname.length; i++) {
-					$('.nav-details>ul').append('<li><img src=' + second.secondname[i].imgurl + ' alt="" class="smallimg"><span>' + second.secondname[i].name + '</span></li>')
-				}
-		
-			})
-			$('.directory').mouseleave(function () {
-				navDetails.addClass('hide')
-			})
-		})
-	
-		//处理新书
-		$('.new_box .new_bookList').empty()
-		newbooks.forEach(function(item,index){
-			
-			$('.new_box .new_bookList').append('<div data-ISBN='+item.isbn+' class="book"><div class="newBook clearfix"><img src='+item.img+' alt="" class="img"><p class="titleText"><a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"target="_blank">'+item.name+'</a><p class="author">'+item.author+'</p><p class="price"><span class="rob"> <span class="sign">¥</span> <span class="num">'+item.disprice+'</span> </span> <span class="price_r"> <span class="sign">¥</span> <span class="num">'+item.price+'</span></span></p></p></div></div>')
-	
-		})
-	
-		//防抖函数
-		function debounce(fn, wait) {
-			var timeout = null;
-			return function () {
-				if (timeout !== null) clearTimeout(timeout);
-				timeout = setTimeout(fn, wait);
-			}
-		}
-		//节流
-		function throttle(fn, await) {
-			let canRun = true; // 通过闭包保存一个标记
-			return function () {
-				// 在函数开头判断标记是否为true，不为true则return
-				if (!canRun) return;
-				// 立即设置为false
-				canRun = false;
-				// 将外部传入的函数的执行放在setTimeout中
-				setTimeout(function() {
-					// 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。
-					// 当定时器没有执行的时候标记永远是false，在开头被return掉
-					fn.apply(this, arguments);
-					canRun = true;
-				}, 500);
-			};
-		}
-	
-		function handle(e) {
-			console.log(1)
-			var tar = $(e.target)
-			console.log(tar)
-			$('.m-auto-list').addClass('show')
-			$.post("Search", { inputmsg: tar.val() }, function (data) {
-				console.log(data)
-				var textdata=data
-				if (data.length > 8) {
-					textdata.slice(0,9)
-				}
-				textdata.forEach(function(item,index){
-					$('.m-auto-list').text(item)
-				})
-				$('.m-auto-list').addClass('show')
-			})
-		}
-	
-		$('.search-input').on("input", throttle(handle, 1000))
-	
-		$("body").click(function(e){
-	        $('.m-auto-list').removeClass('show')
-	    })
-	
-		$(".search-input").focus(function(e){
-			$('.m-auto-list').addClass('show')
-		})
-	
-		window.onload = function () {
-			//处理用户登录
-			var user = JSON.parse(sessionStorage.getItem("user"))
-			if (user) {
-				userbox.removeClass('userhide')
-				loginbox.addClass('userhide')
-				$('.m-username').text(user.userName || user.userId)
-			}
-	
-	
-			//处理分类
-		}
-		for (let i = 0; i < type.length; i++) {
-			$('.directory>ul').append("<li data-no=" + i + "><span>" + type[i].firstname + "</span></li>")
-			console.log(222222)
-		}
-		var lis = $('.top_box .directory ul li');
-		userbox.mouseenter(function (e) {
-			$('.site-item-nav').removeClass('hidden').addClass('show')
-		})
-		userbox.mouseleave(function (e) {
-			$('.site-item-nav').removeClass('show').addClass('hidden')
-		})
-		$('.top_box .directory ul li').mouseenter(function (e) {
-	
-			navDetails.removeClass('hide')
-			var li = e.target
-			console.log(li)
-			var second = type[$(li).data('no')]
-			$('.nav-details>ul').empty()
-			for (let i = 0; i < second.secodename.length; i++) {
-				$('.nav-details>ul').append('<li><img src=' + second.secodename[i].imgurl + ' alt="" class="smallimg"><span>' + second.secodename[i].name + '</span></li>')
-			}
-	
-		})
-		$('.directory').mouseleave(function () {
-			navDetails.addClass('hide')
-		})
-		
-		
-		fixedlis.mouseenter(function (e) {
-			let li = e.target
-			$(li.children[2]).addClass("show")
-			$('.fixed-nav li fixed-pop')
-		})
-		fixedlis.mouseleave(function (e) {
-			let li = e.target
-			console.log(li)
-			$(li.children[2]).removeClass("show")
-		})
-		
-		$('.new_bookList>.book').click(function (e) {
-			var tar = $(e.target)
-			var Isbn = tar.parents('.book').data('isbn')
-			window.location.href = "detail.jsp"
-			/* $.post('BookDetail', {
-				isbn : Isbn
-			}, function(data) {
-				console.log(data)
-			}) */ 
-		})
-		
-	</script>
-	
-	</html>
+		</div>
 
+		<div class="hot-author">
+			<div class="new_title">
+				<h2>热门作者</h2>
+			</div>
+			<div class="hot-box clearfix">
+				<div class="person-box">
+					<div class="person-info">
+						<div class="person-img">
+							<img src="http://img63.ddimg.cn/topic_img/gys_0014951/cl.jpg" alt="">
+						</div>
+						<div class="person-detail">
+							<div class="person-name">二混子</div>
+							<div class="person-brief">
+								陈磊（笔名：二混子）漫画式科普的开创者，80后，创立拥有全网700万粉丝的知识类公众号“混子曰”“混子谈钱”“着迷小课”及“混子谈命”，总阅读量超过2.5亿人次，曾获网站度新锐作家、年度挚爱阅读大使等称号。“混子曰”公众号下的“Stone历史剧”栏目，
+							</div>
+						</div>
+					</div>
+					<div class="person-book">
+						<div class="perbook">
+							<div class="perbook-img">
+								<img src="https://img3.doubanio.com/view/subject/l/public/s29053580.jpg">
+							</div>
+							<div class="perbook-name">马伯庸笑翻中国简史</div>
+						</div>
+						<div class="perbook">
+							<div class="perbook-img">
+								<img src="http://img3m0.ddimg.cn/30/25/24156030-1_l_12.jpg" alt="长安十二时辰 上下册套装">
+							</div>
+							<div class="perbook-name">长安十二时辰 上下册套装</div>
+						</div>
+					</div>
+				</div>
+				<div class="person-rank-box">
+					<div class="per-person">
+						<span class="per-no">1</span>
+						<span class="per-person-name">张嘉佳</span>
+					</div>
+					<div class="per-person">
+						<span class="per-no">2</span>
+						<span class="per-person-name">安妮宝贝</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div>
+					<h2>推荐专区</h2>
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#panel-901172" data-toggle="tab">主打</a></li>
+						<li><a href="#panel-392690" data-toggle="tab">童书</a></li>
+						<li><a href="#" data-toggle="tab">文艺</a></li>
+						<li><a href="#" data-toggle="tab">小说</a></li>
+						<li><a href="#" data-toggle="tab">社科</a></li>
+						<li><a href="#" data-toggle="tab">生活</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="panel-901172">
+							<div class="new_bookList">
+								<div class="newBook clearfix">
+									<img src="./images/28504153-1_l_3.jpg" alt="" class="img">
+									<p class="titleText">
+										<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
+											target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
+										<p class="author">路遥</p>
+										<p class="price">
+											<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
+													class="tail">.80</span>
+											</span> <span class="price_r"> <span class="sign">¥</span> <span
+													class="num">45</span> <span class="tail">.00</span>
+											</span>
+										</p>
+									</p>
+								</div>
+								<div class="newBook clearfix">
+									<img src="./images/28504153-1_l_3.jpg" alt="" class="img">
+									<p class="titleText">
+										<a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"
+											target="_blank">人生（茅盾文学奖得主路遥代表作，全新精装版）</a>
+										<p class="author">路遥</p>
+										<p class="price">
+											<span class="rob"> <span class="sign">¥</span> <span class="num">25</span> <span
+													class="tail">.80</span>
+											</span> <span class="price_r"> <span class="sign">¥</span> <span
+													class="num">45</span> <span class="tail">.00</span>
+											</span>
+										</p>
+									</p>
+								</div>
+		
+							</div>
+						</div>
+						<div class="tab-pane" id="panel-392690">
+							<p>Howdy, I'm in Section 2.</p>
+						</div>
+					</div>
+				</div> -->
+
+		<div class="bookads">
+			<div class="ads-images">
+				<img src="https://img1.doubanio.com/view/freyr_page_photo/raw/public/5537.jpg" alt="">
+			</div>
+			<div class="ads-images">
+				<img src="https://img3.doubanio.com/view/freyr_page_photo/raw/public/5481.jpg" alt="">
+			</div>
+			<div class="ads-images">
+				<img src="https://img3.doubanio.com/view/freyr_page_photo/raw/public/5411.jpg" alt="">
+			</div>
+		</div>
+
+	</div>
+	<div class="m-fixedBar">
+		<ul class="fixed-nav">
+			<li class="toCart">
+				<span class="iconfont icon-icon-test search_font shopcart"></span>
+				<!-- <a class="m-icons m-icons- m-icons-service-fixed" data-src="" href="javascript:;"></a> -->
+				<p class="text">购物车</p>
+			</li>
+			<li class="toPerson">
+				<span class="iconfont icon-icon-test2 search_font"></span>
+				<!-- <a class="m-icons m-icons- m-icons-download" data-src="" href="javascript:;"></a> -->
+				<p class="text">个人中心</p>
+			</li>
+			<li class="toTop"><a class="m-icons m-icons- m-icons-top " data-src="" href="javascript:;"></a>
+				<p class="text">回到顶部</p>
+			</li>
+		</ul>
+	</div>
+
+	<footer>
+		<div class="footer-text">@2020.04 </div>
+	</footer>
+
+	<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</body>
+
+<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="js/shouye.js"></script>
+
+</html>

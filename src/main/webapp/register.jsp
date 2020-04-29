@@ -166,7 +166,11 @@ section {
 				<input type="button" value="立即注册" class="btn">
 			</form>
 		</section>
-	</div>
+    </div>
+    
+    <div class="over">
+        
+    </div>
 
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
@@ -315,6 +319,9 @@ section {
             text3.addClass('infoText')
         }
         draw([])
+        $("#canvas").click(function(){
+            draw([])
+        })
         function draw(show_num) {
             var canvas_width=$('#canvas').width();
             var canvas_height=$('#canvas').height();
