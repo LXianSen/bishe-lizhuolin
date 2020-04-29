@@ -39,8 +39,7 @@ public class ShowCartlist extends HttpServlet {
 			response.setContentType("text/html;charset =UTF-8");
 			//检查用户是否登录
 			UserDao userDao=new UserDao();
-			
-			
+				
 			user u=userDao.CheckIsLogin(request, response);
 			
 			if(u!=null&&!"".equals(u)) {
