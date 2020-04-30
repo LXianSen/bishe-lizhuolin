@@ -24,12 +24,12 @@ public class FindPwd extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		UserDao userDao=new UserDao();
-        String user = "你的邮箱地址";
-        String password = "你的邮箱授权码";
+        String user = "bishelzl@163.com";
+        String password = "LRLBBHSOWSYCEBZI";
         String host = "smtp.163.com";
-        String from = "你的邮箱地址";
-        String to = "目标邮箱地址";// 收件人
-        String subject = "输入邮件主题";
+        String from = "bishelzl@163.com";
+        String to = "479411198@qq.com";// 收件人
+        String subject = "send a email";
         //邮箱内容
         StringBuffer sb = new StringBuffer();
         String yzm = RandomUtil.getRandomString(6);
