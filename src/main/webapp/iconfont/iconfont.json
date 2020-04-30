@@ -18,6 +18,27 @@
       "font_class": "icon-test1",
       "unicode": "e63c",
       "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "8777250",
+      "name": "user",
+      "font_class": "icon-test2",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "8777414",
+      "name": "info",
+      "font_class": "icon-test3",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "8777511",
+      "name": "arrow_down",
+      "font_class": "icon-test4",
+      "unicode": "e658",
+      "unicode_decimal": 58968
     }
   ]
 }
