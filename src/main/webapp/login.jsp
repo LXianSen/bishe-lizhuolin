@@ -261,7 +261,7 @@ fieldset {
 					<input type="button" value="登录" class="btn" onclick=Check()>
 					<div class="register">
 						<a href="${pageContext.request.contextPath}/register.jsp"
-							class="registerNow">立即注册</a> <span>|</span> <a href=""
+							class="registerNow">立即注册</a> <span>|</span> <a href="${pageContext.request.contextPath}/forgetpwd.jsp"
 							class="forgotPswd">忘记密码？</a>
 					</div>
 					<fieldset class="oth_type_tit">
