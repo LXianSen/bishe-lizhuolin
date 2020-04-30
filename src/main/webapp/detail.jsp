@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="./iconfont/iconfont.css">
-<link rel="stylesheet" href="./css/detail.css">
+<link rel="stylesheet" href="./css/detail.css?ver=1">
 <!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
 <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
 <!--[if lt IE 9]>
@@ -81,8 +82,7 @@
 						<div class="price-line">
 							<h5 class="sku-title">售价</h5>
 							<div class="price">
-								<span class="money-symbol">¥</span><span class="value">199</span><span
-									class="money-symbol">起</span>
+								<span class="money-symbol">¥</span><span class="value">199</span>
 							</div>
 						</div>
 						<div class="service-line">
@@ -193,16 +193,16 @@
 							</div>
 							<div class="service">
 								<div class="service-item">
-									<span class="service-item-text">作者</span>
+									<span class="service-item-text author">作者：<span>路遥</span></span>
 								</div>
 								<div class="service-item">
-									<span class="service-item-text">出版社</span>
+									<span class="service-item-text publish">出版社：<span></span></span>
 								</div>
 								<div class="service-item">
-									<span class="service-item-text">出版时间</span>
+									<span class="service-item-text publish-data">出版时间：<span></span></span>
 								</div>
 								<div class="service-item">
-									<span class="service-item-text">库存</span>
+									<span class="service-item-text stock">库存：<span></span></span>
 								</div>
 							</div>
 						</div>
@@ -247,13 +247,7 @@
 								<p>收藏</p>
 							</div>
 						</div>
-						<div class="faver-service-btn favor-btn ">
-							<div>
-								<a class="m-icons m-icons-service-detail " data-src=""
-									href="javascript:;"></a>
-								<p>客服</p>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -268,5 +262,7 @@
 </body>
 <script type="text/javascript"
 	src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/detail.js"></script>
+<script src="js/detail.js?ver=1">
+	
+</script>
 </html>

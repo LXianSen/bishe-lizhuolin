@@ -1,29 +1,3 @@
-/* {
-		firstname: "教育",
-		secodename: [
-			{
-				name: "英语综合教材",
-				imgurl: ""
-			},
-			{
-				name: "中小学教辅",
-				imgurl: ""
-			}
-		]
-	},
-	{
-		firstname: "小说",
-		secodename: [
-			{
-				name: "中国当代小说",
-				imgurl: "./images/28504153-1_l_3.jpg"
-			},
-			{
-				name: "四大名著",
-				imgurl: ""
-			}
-		]
-	}, */
 
 	var navDetails = $('.top_box .directory .nav-details')
 	var fixedlis = $('.fixed-nav li')
@@ -33,16 +7,16 @@
 	var type = [
 
 	]
-
+	console.log("acsfdsafasd")
 	var searchData = [
-		{ name: "张爱玲", type: "author", no: "001" },
+		/*{ name: "张爱玲", type: "author", no: "001" },
 		{ name: "白夜行", type: "book", no: "0000001" },
-		{ name: "清华出版社", type: "publish", no: "0011" }
+		{ name: "清华出版社", type: "publish", no: "0011" }*/
 	]
 	// $(window).scroll(function(){
 	//     console.log($("body").scrollTop())
 	// })
-
+	//处理返回顶部按钮
 	$(".toTop").click(function () {
 		$('body,html').animate({
 			scrollTop: 0
@@ -50,11 +24,16 @@
 			500);
 		return false;
 	});
-
-	$(".m-auto-list>ul").empty()
-	searchData.forEach(function (item, index) {
-		$(".m-auto-list>ul").append("<li data-type=" + item.type + " data-no=" + item.no + ">" + item.name + "</li>")
-	})
+	
+	//渲染搜索列表
+	function searchList(searchData){
+		$(".m-auto-list>ul").empty()
+		searchData.forEach(function (item, index) {
+			$(".m-auto-list>ul").append("<li data-type=" + item.type + " data-no=" + item.no + ">" + item.name + "</li>")
+		})
+	}
+	
+	
 	$(".m-auto-list>ul>li").click(function (e) {
 		let Ttype = $(e.target).data("type")
 		let Tno = $(e.target).data("no")
@@ -112,13 +91,7 @@
 		})
 	})
 
-	//处理新书
-	$('.new_box .new_bookList').empty()
-	newbooks.forEach(function (item, index) {
-
-		$('.new_box .new_bookList').append('<div data-ISBN=' + item.isbn + ' class="book"><div class="newBook clearfix"><img src=' + item.img + ' alt="" class="img"><p class="titleText"><a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" href="http://product.dangdang.com/28504153.html"target="_blank">' + item.name + '</a><p class="author">' + item.author + '</p><p class="price"><span class="rob"> <span class="sign">¥</span> <span class="num">' + item.disprice + '</span> </span> <span class="price_r"> <span class="sign">¥</span> <span class="num">' + item.price + '</span></span></p></p></div></div>')
-
-	})
+	
 
 	//防抖函数
 	function debounce(fn, wait) {
@@ -142,36 +115,71 @@
 				// 当定时器没有执行的时候标记永远是false，在开头被return掉
 				fn.apply(this, arguments);
 				canRun = true;
-			}, 500);
+			}, await);
 		};
 	}
 
 	function handle(e) {
-		console.log(1)
-		var tar = $(e.target)
-		console.log(tar)
-		$('.m-auto-list').addClass('show')
-		$.post("Search", { inputmsg: tar.val() }, function (data) {
-			console.log(data)
-			var textdata = data
-			if (data.length > 8) {
-				textdata.slice(0, 9)
-			}
-			textdata.forEach(function (item, index) {
-				$('.m-auto-list').text(item)
+		let ary=[]
+		$(".m-auto-list>ul").empty()
+		if($(".search-input").val()){
+			$.post("Search", { inputmsg: $(".search-input").val() }, function (data) {
+				var textdata = JSON.parse(data)
+				if(textdata){
+					if (textdata.length > 8) {
+						textdata.slice(0, 9)
+					}
+					textdata.forEach(function (item, index) {
+						for(var i in item){
+							if(typeof(item[i])=="string"){
+								if(item[i].indexOf($(".search-input").val())!=-1){
+									if(ary.indexOf(item[i])==-1){
+										ary.push(item[i])
+										$('.m-auto-list>ul').append("<li data-type=" + item.sontype + " data-no=" + item.no + ">" + item[i] + "</li>")
+									}
+								}
+							}	
+						}
+					})
+					$('.m-auto-list').addClass('show')
+				}else{
+					
+				}
 			})
-			$('.m-auto-list').addClass('show')
-		})
+		}else{
+			console.log("hide")
+			$('.m-auto-list').removeClass('show')
+		}
+		
 	}
-
+	//用户输入文字
 	$('.search-input').on("input", throttle(handle, 1000))
 
 	$("body").click(function (e) {
 		$('.m-auto-list').removeClass('show')
+		
 	})
-
+	//聚焦输入框
 	$(".search-input").focus(function (e) {
-		$('.m-auto-list').addClass('show')
+		let tar=$(e.target)
+		if(tar.val()){
+			$.post("Search",{inputmsg:tar.val()},function(data){
+				data=JSON.parse(data)
+				if(data){
+					$('.m-auto-list').addClass('show')
+					searchList(data)
+				}
+				
+			})
+		}
+	})
+	
+	$(".search-input").keydown(function(e){
+		console.log("weeeeeeeeeee")
+		var val=encodeURI(encodeURI($(".search-input").val()));
+		if(e.keyCode==13){
+			window.location.href="booklist.jsp?search_name="+val
+		}
 	})
 
 	window.onload = function () {
@@ -188,7 +196,6 @@
 	}
 	for (let i = 0; i < type.length; i++) {
 		$('.directory>ul').append("<li data-no=" + i + "><span>" + type[i].firstname + "</span></li>")
-		console.log(222222)
 	}
 	var lis = $('.top_box .directory ul li');
 	userbox.mouseenter(function (e) {
@@ -234,4 +241,16 @@
 		}, function(data) {
 			console.log(data)
 		}) */
+	})
+	
+	$.post("NewBookShow",{},function(data){
+		data=JSON.parse(data)
+		console.log(data)
+		//处理新书
+	$('.new_box .new_bookList').empty()
+	data.forEach(function (item, index) {
+
+		$('.new_box .new_bookList').append('<div data-ISBN=' + item.ISBN + ' class="book"><div class="newBook clearfix"><div style="width:150px;height:150px;text-align:center"><img src=' + item.img1 + ' alt="" class="img" style="width:150px;height:150px"></div><div style="text-align:left"><p class="titleText"><a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" target="_blank">' + item.bname + '</a><p class="author">' + item.bauthor + '</p><p class="price"><span class="rob"> <span class="sign">¥</span> <span class="num">' + (item.bprice*item.bdiscount).toFixed(2) + '</span> </span> <span class="price_r"> <span class="sign">¥</span> <span class="num">' + item.bprice + '</span></span></p></div></p></div></div>')
+
+	})
 	})

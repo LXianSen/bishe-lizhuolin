@@ -301,9 +301,32 @@ fieldset {
 	</div>
 </body>
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+<script src="js/jsencrypt.min.js"></script>
 <script type="text/javascript">
     var language=$('footer>ul>li>a')
     var tips=$('.tips')
+    var publicKey = null
+    var encrypt = new JSEncrypt()
+    $.post("login",{},function(data){
+    	publicKey=data
+    	encrypt.setPublicKey(publicKey);
+    })
+    /* if(publicKey != null){
+			            encrypt.setPublicKey(publicKey);
+			            var password = encrypt.encrypt(pstring);
+			            var username = encrypt.encrypt(ustring);
+			            //提交之前，检查是否已经加密。假设用户的密码不超过20位，加密后的密码不小于20位
+			            if(password.length < 20) {
+			                //加密失败提示
+			            	alert("登录失败，请稍后重试...");
+			            }else{
+			            	 $.ajax({
+						url: "login",
+				            	type: "post",
+				            	data: {"usname": username,"pwd": password,"vcstring": vcstring},
+				            	dataType: "json",
+				    }
+				} */
     function Check(){
     	var loginName=$('.tel').val(),name='nickname'
     	if(/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(loginName)){
@@ -311,11 +334,13 @@ fieldset {
     	}else if(/^1[3456789]\d{9}$/.test(loginName)){
     		name='phone'
     	}
+    	
+    	
+    	
     	$.post('login',{
-    		phone:$('.tel').val(),
-    		pwd:$('.password').val()
+    		phone:encrypt.encrypt($('.tel').val()),
+    		pwd:encrypt.encrypt($('.password').val())
     	},function(data){
-    		
     		data=JSON.parse(data)
     		console.log(data)
     		if(data.code=='error'){
@@ -354,7 +379,7 @@ fieldset {
             register:'create account',
             forget:'Forgot password?',
             btn:'sign in',
-            other:'More options'
+            others:'More options'
         }
     }
 
@@ -386,7 +411,7 @@ fieldset {
         $('.tel').attr('placeholder',item.id)
         $('.password').attr('placeholder',item.pswd)
         $('.btn').attr('value',item.btn)
-        $('.oth_type_tit legend').text(item.other)
+        $('.oth_type_tit legend').text(item.others)
     }
 </script>
 </html>

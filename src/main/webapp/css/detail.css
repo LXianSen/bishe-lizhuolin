@@ -5691,12 +5691,13 @@
         }
 
         .sku-container .card .service-line .service .service-item {
-            float: left;
+            /* float: left; */
             overflow: hidden;
             min-height: 24px;
             margin-right: 13px;
             line-height: 24px;
-            font-size: 16px
+            font-size: 16px;
+            padding-bottom: 10px;
         }
 
         .sku-container .card .service-line .service .service-item .m-icons,
