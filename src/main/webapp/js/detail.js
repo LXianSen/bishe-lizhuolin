@@ -21,11 +21,12 @@ var cart = $('.cart')
         return params;
     }
 
-    var getparams=getParams().isbn
-
+    var getparams=getParams().ISBN
+    
     $.post('BookDetail',{isbn:getparams},function(data){
+    	sessionStorage.setItem("bookinfo",data[0])
         data=JSON.parse(data)
-        console.log(data)
+        
         $(".good-name").text(data[0].bname)
         $(".price .value").text(data[0].bprice)
         $(".author span").text(data[0].bauthor)
@@ -83,6 +84,14 @@ var cart = $('.cart')
 	})
 	//跳转到购物车
 	$('.shopcart').click(function(){
+		$.post("CartAdd",{isbn:getparams,count:$('.count-input').val(),type:"add"},function(data){
+			 data=JSON.parse(data)
+			 if(data.code=="error"){
+				 console.log(111111111111)
+				 
+				 window.location.href="login.jsp"
+			 }
+		 })
 		window.location.href="shoppingCart.jsp"
 	})
 	
@@ -100,6 +109,8 @@ var cart = $('.cart')
 			$(".favor-btn a").addClass("m-icons-collection-checked")
 		}
 	})
+	
+	//收藏
 	$(".favor-btn").click(function(e){
 		$(".favor-btn a").toggleClass("m-icons-collection").toggleClass("m-icons-collection-checked")
 		$.post("ACCollections",{isbn:getparams},function(){
@@ -117,3 +128,9 @@ var cart = $('.cart')
 		
 		
 	})
+	
+	//购买
+	$(".buy").click(function(){
+		window.location.href="order.jsp"
+	})
+	

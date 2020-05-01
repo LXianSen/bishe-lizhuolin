@@ -262,7 +262,7 @@
 </body>
 <script type="text/javascript"
 	src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/detail.js?ver=1">
+<script src="js/detail.js?ver=2">
 	
 </script>
 </html>

@@ -32,7 +32,9 @@ header {
     width: 1080px;
     margin: 20px auto;
 }
-
+.book{
+	width:16.66%;
+}
 .search_box {
     position: relative;
     float: right;
@@ -190,6 +192,7 @@ header {
 
 .new_bookList {
     display: flex;
+    justify-content: space-between;
 }
 
 .m-fixedBar {

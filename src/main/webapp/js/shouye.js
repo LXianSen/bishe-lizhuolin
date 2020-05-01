@@ -7,7 +7,7 @@
 	var type = [
 
 	]
-	console.log("acsfdsafasd")
+	console.log("rrrrrrrrrrrrrrrrrr")
 	var searchData = [
 		/*{ name: "张爱玲", type: "author", no: "001" },
 		{ name: "白夜行", type: "book", no: "0000001" },
@@ -236,11 +236,11 @@
 		var tar = $(e.target)
 		var Isbn = tar.parents('.book').data('isbn')
 		window.location.href = "detail.jsp"
-		/* $.post('BookDetail', {
-			isbn : Isbn
-		}, function(data) {
-			console.log(data)
-		}) */
+	})
+	$(".new_bookList").on("click",".book",function(e){
+		var tar = $(e.target)
+		var Isbn = tar.parents('.book').data('isbn')
+		window.location.href = "detail.jsp?ISBN="+Isbn
 	})
 	
 	$.post("NewBookShow",{},function(data){

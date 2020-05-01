@@ -9,7 +9,7 @@
 		<!-- 引入 Bootstrap -->
 		<link href="./css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="./iconfont/iconfont.css?ver=1">
-		<link rel="stylesheet" href="css/shouye.css?ver=1">
+		<link rel="stylesheet" href="css/shouye.css?ver=2">
 		
 		
 	</head>
@@ -352,15 +352,14 @@
 		<ul class="fixed-nav">
 			<li class="toCart">
 				<span class="iconfont icon-icon-test search_font shopcart"></span>
-				<!-- <a class="m-icons m-icons- m-icons-service-fixed" data-src="" href="javascript:;"></a> -->
 				<p class="text">购物车</p>
 			</li>
 			<li class="toPerson">
 				<span class="iconfont icon-icon-test2 search_font"></span>
-				<!-- <a class="m-icons m-icons- m-icons-download" data-src="" href="javascript:;"></a> -->
 				<p class="text">个人中心</p>
 			</li>
-			<li class="toTop"><a class="m-icons m-icons- m-icons-top " data-src="" href="javascript:;"></a>
+			<li class="toTop">
+				<span class="iconfont icon-icon-test7 search_font"></span>
 				<p class="text">回到顶部</p>
 			</li>
 		</ul>
@@ -377,6 +376,6 @@
 </body>
 
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="js/shouye.js?ver=1"></script>
+<script type="text/javascript" src="js/shouye.js?ver=2"></script>
 
 </html>

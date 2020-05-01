@@ -37,22 +37,23 @@ section {
 }
 
 .title {
-	padding: 40px 0;
+	padding: 30px 0;
 	text-align: center;
-	font-size: 28px;
+	font-size: 24px;
 }
 
 .name {
 	display: inline-block;
 	width: 80px;
+	font-size:14px;
 }
 
 .inputStyle {
 	width: 290px;
-	height: 18px;
+	height: 15px;
 	border: 1px solid #e6e6e6;
 	padding: 9px 10px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 .inputStyle.short {
@@ -66,7 +67,7 @@ section {
 }
 
 .boxStyle {
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 }
 
 .btn {
@@ -130,6 +131,9 @@ section {
     color: black;
     text-decoration: none;
 }
+.redrequire{
+	color:red;
+}
 </style>
 </head>
 <body>
@@ -139,26 +143,39 @@ section {
 			<!-- action="${pageContext.request.contextPath}/zhuce" method="post"-->
 			<form 
 				class="formStyle" >
+				
+				<div class="boxStyle">
+					<span class="name">用户名</span> <input type="text"
+						class="inputStyle username" onblur="telBlur('username')"
+						onfocus="telFoucus('username')" name="username">
+					<p id="text0" class="alertText"></p>
+				</div>
 				<div class="boxStyle">
 					<span class="name">手机号码</span> <input type="text"
-						class="inputStyle tel" onblur="telBlur(this)"
-						onfocus="telFoucus()" name="phone">
+						class="inputStyle tel" onblur="telBlur('tel')"
+						onfocus="telFoucus('tel')" name="phone">
 					<p id="text1" class="alertText"></p>
 				</div>
 				<div class="boxStyle">
-					<span class="name">登录密码</span> <input type="password"
+					<span class="name"><span class="redrequire">*</span>邮箱</span> <input type="text"
+						class="inputStyle email" onblur="telBlur('email')"
+						onfocus="telFoucus('email')" name="email">
+					<p id="text" class="alertText"></p>
+				</div>
+				<div class="boxStyle">
+					<span class="name"><span class="redrequire">*</span>登录密码</span> <input type="password"
 						class="inputStyle password" onblur="pswdBlur(this)"
 						onfocus="pswdFoucus()" onkeyup="pswdChange(this)" name="pwd">
 					<span id="text2" class="infoText"> </span>
 				</div>
 				<div class="boxStyle">
-					<span class="name">确认密码</span> <input type="password"
+					<span class="name"><span class="redrequire">*</span>确认密码</span> <input type="password"
 						class="inputStyle qrpswd" onblur="qrBlur(this)"
 						onfocus="qrFoucus()">
 					<p id="text3" class="alertText"></p>
 				</div>
 				<div class="boxStyle">
-					<span class="name">验证码</span> <input type="text"
+					<span class="name"><span class="redrequire">*</span>验证码</span> <input type="text"
 						class="inputStyle short"> <span><canvas id="canvas"
 							width="100" height="36" style="border: 1px solid #000000;"></canvas></span>
 					<p id="text4" class="alertText"></p>
@@ -183,52 +200,98 @@ section {
         var qrInput=$('.qrpswd')
         var btn=$('.btn')
         var toLogin=$(".to-login")
-        var isBlur,password,isreg,ispwd
+        var isBlur,password,isreg,ispwd,isusername=true,isphone=true,isemail
+        //生成随机数，唯一id
         function genID(length){
         	return Number(Math.random().toString().substr(3,length) + Date.now()).toString(36)
         }
+        
         toLogin.click(function(){
         	console.log(1111)
         	window.location.href="login.jsp"
         })
-        function telBlur(){
-            if(!(/^1[3456789]\d{9}$/.test(telInput.val()))){
-                text1.text('手机格式不正确，请重新输入')
-                telInput.addClass('red')
-            }else{
-            	$.post('register',{
-            		phone:"13551761763",
-            		type:"select"
-            	},function(data){
-            		data=JSON.parse(data)
-            		console.log(data)
-            		if(data.code=="error"){
-            			text1.html('该手机号已注册，请尝试<a href="login.jsp" class="to-login">登录</a>')
-                        telInput.addClass('red')
-            		}else{
-            			isreg=true
-            		}
-            	}) 
-            }
+        //
+        function telBlur(e){
+        	var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
+        	var ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        	if(e=="username"){
+        		if(uPattern.test($(".username").val())){
+        			isusername=true
+        		}else{
+        			if($(".username").val()){
+        				$("#text0").text('用户名格式输入错误！')
+            			$("#text0").addClass("alertText").removeClass("infoText")
+            			isusername=false
+        			}else{
+        				$("#text0").text("")
+        				isusername=true
+        			}
+        		}
+        	}else if(e=="phone"){
+        		if(!(/^1[3456789]\d{9}$/.test(telInput.val()))){
+                    text1.text('手机格式不正确，请重新输入')
+                    telInput.addClass('red')
+                    isphone=false
+                }else{
+                	$("#text1").text('')
+					isphone=true
+                }
+        	}else if(e=="email"){
+				if(ePattern.test($(".email").val())){
+					$.post('register',{
+                		email:$("#text").text(),
+                		type:"select"
+                	},function(data){
+                		data=JSON.parse(data)
+                		if(data.code=="error"){
+                			text1.html('该邮箱已注册，请尝试<a href="login.jsp" class="to-login">登录</a>')
+                            $(".email").addClass('red')
+                            isemail=false
+                		}else{
+                			isemail=true
+                		}
+                	}) 
+        		}else{
+        			$("#text").text('请输入正确的邮箱格式')
+            		$("#text").addClass("alertText").removeClass("infoText")
+            		isemail=false
+        		}
+        	}
+            
         }  
         btn.click(function(){
-        	console.log(1)
-        	if(isreg==true&& ispwd==true){
+        	console.log(isreg,ispwd,isusername,isphone,isemail)
+        	if(isreg==true&& ispwd==true && isusername==true && isphone==true && isemail==true){
+        		console.log(111)
         		$.post('register',{
-            		phone:telInput.val(),
+            		phone:$(".phone").val(),
+            		email:$(".email").val(),
+            		username:$(".username").val(),
             		pwd:qrInput.val(),
             		userid:String(genID(9)),
             		type:"add"
             	},function(data){
             		console.log(data)
             	})
-        	}else{
-        		
+        	}else if(isreg==false){
+        		alert("正则表达式错误")
+        	}else if(ispwd==false){
+        		alert("密码输入错误")
+        	}else if(isusername==false){
+        		alert("用户名输入错误")
+        	}else if(isphone==false){
+        		alert("手机号输入错误")
+        	}else if(isemail==false){
+        		alert("邮箱输入错误或者邮箱已存在")
         	}
         	
         })
         
-        function telFoucus(){
+        function telFoucus(e){
+        	if(e=="username"){
+        		$("#text0").text('请输入4-16位，且只包含字母、数字、下划线、减号的用户名')
+        		$("#text0").removeClass("alertText").addClass("infoText")
+        	}
             text1.text('')
             telInput.removeClass('red')
         }
@@ -318,9 +381,23 @@ section {
             text3.text('请再次输入密码')
             text3.addClass('infoText')
         }
-        draw([])
+        
+        var show_num=[]
+        show_num=draw([])
         $("#canvas").click(function(){
-            draw([])
+        	show_num=draw([])
+        })
+        
+        $(".short").blur(function(){
+        	console.log(show_num.join(""))
+        	if($(".short").val()==show_num.join("")){
+        		$("#text4").text("")
+        		isreg=true
+        	}else{
+        		$("#text4").text("验证码输入错误！")
+        		$("#text4").addClass("alertText").removeClass("infoText")
+        		isreg=false
+        	}
         })
         function draw(show_num) {
             var canvas_width=$('#canvas').width();
@@ -349,28 +426,29 @@ section {
                 context.translate(-x, -y);
             }
             for (var i = 0; i <= 5; i++) { //验证码上显示线条
-            context.strokeStyle = randomColor();
-            context.beginPath();
-            context.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
-            context.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
-            context.stroke();
+	            context.strokeStyle = randomColor();
+	            context.beginPath();
+	            context.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
+	            context.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
+	            context.stroke();
             }
             for (var i = 0; i <= 30; i++) { //验证码上显示小点
-            context.strokeStyle = randomColor();
-            context.beginPath();
-            var x = Math.random() * canvas_width;
-            var y = Math.random() * canvas_height;
-            context.moveTo(x, y);
-            context.lineTo(x + 1, y + 1);
-            context.stroke();
+	            context.strokeStyle = randomColor();
+	            context.beginPath();
+	            var x = Math.random() * canvas_width;
+	            var y = Math.random() * canvas_height;
+	            context.moveTo(x, y);
+	            context.lineTo(x + 1, y + 1);
+	            context.stroke();
             }
-            }
+            return show_num;
+        }
             //得到随机的颜色值
             function randomColor() {
-            var r = Math.floor(Math.random() * 256);
-            var g = Math.floor(Math.random() * 256);
-            var b = Math.floor(Math.random() * 256);
-            return "rgb(" + r + "," + g + "," + b + ")";
-        }
+	            var r = Math.floor(Math.random() * 256);
+	            var g = Math.floor(Math.random() * 256);
+	            var b = Math.floor(Math.random() * 256);
+	            return "rgb(" + r + "," + g + "," + b + ")";
+        	}
     </script>
 </html>

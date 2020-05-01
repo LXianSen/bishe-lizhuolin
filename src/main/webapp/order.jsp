@@ -7,7 +7,6 @@
         <meta charset="UTF-8">
         <title>结算</title>
         <link rel="stylesheet" href="css/order.css">
-        <link rel="stylesheet" href="css/city-picker.css">
         <style>
             * {
                 margin: 0;
@@ -689,13 +688,22 @@
                             </div>
                             <div class="merchant-spread">
                                 <div class="good-container clearfix">
-                                    <p class="pro-support"><a class="m-icons m-icons-service " data-src=""
-                                            href="javascript:;"></a>支持7天无理由退货</p><span class="img"><img class=""
-                                            src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
+                                    <p class="pro-support">
+                                    	<a class="m-icons m-icons-service " data-src="" href="javascript:;"></a>
+                                    	支持7天无理由退货
+                                    </p>
+                                    <span class="img">
+                                    	<img class="" src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
                                             data-src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
-                                            alt="" style="width: 50px; height: 50px;"></span><span class="name"><span
-                                            class="product-name">朗菲去污地垫套装（3D）版CS-627 黑色 组合装</span></span><span
-                                        class="total"><span class="">￥</span><span class="txt">159.00</span></span><span
+                                            alt="" style="width: 50px; height: 50px;">
+                                    </span>
+                                    <span class="name">
+                                          <span class="product-name">朗菲去污地垫套装（3D）版CS-627 黑色 组合装</span>
+                                    </span>
+                                    <span class="total"><span class="">￥</span>
+                                    <span class="txt">159.00</span>
+                                    </span>
+                                    <span
                                         class="price">159.00元×1</span>
                                 </div>
                                 
@@ -781,9 +789,12 @@
         </div>
     </body>
     <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/city-picker.data.js"></script>
     <script src="js/city-picker.js"></script>
     <script>
+    console.log("eeeeeeee")
+    	$.post("OrderCommit",{},function(data){
+    		data=JSON.parse(data)
+    	})
         $(".address-item").mouseover(function (e) {
             console.log(1)
             var tar = $(e.target)
@@ -832,6 +843,11 @@
         $(".toAddAddress").click(function(){
             $(".m-modal-portal").removeClass("isHidden")
         })
+        var data=JSON.parse(sessionStorage.getItem("bookinfo"))
+        console.log(data)
+        /* $(".img img").attr(src,data.) */
+        $(".product-name").text(data.bname)
+        $(".txt").text(data.bprice)
     </script>
     
     </html>
