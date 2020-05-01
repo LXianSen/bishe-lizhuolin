@@ -14,8 +14,12 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import DAO.BaseDAO;
 import DAO.BookDao;
+import DAO.OrderDao;
 import DAO.UserDao;
 import MODEL.order;
 import MODEL.user;
@@ -42,11 +46,13 @@ public class ShowOrderList extends HttpServlet {
 			user u=userDao.CheckIsLogin(request, response);
 			
 			if(u!=null&&"".equals(u.toString())) {
-				BaseDAO<order> bkDao=new BaseDAO<order>();
+				OrderDao orderDao=new OrderDao();
 				order order=new order();
 				order.setUserid(u.getuserId().toString());
-				List<order> orderlists=bkDao.selects(order);
+				List<Map> orderlists=orderDao.showorderList(order);
 				PrintWriter o=response.getWriter();
+				Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+				String orderJSON=gson.toJson(orderlists);
 				o.println(orderlists);
 			}
 		}catch (Exception e) {
