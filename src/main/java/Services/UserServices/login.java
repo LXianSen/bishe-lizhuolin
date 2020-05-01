@@ -50,7 +50,7 @@ public class login extends HttpServlet {
                     writer.write(publicKey); 
             	}else {
                 	//取出表单的user数据，放到user对象中
-            		user.setPhone(RSAUtils.decryptBase64(request.getParameter("phone").toString()));
+            		user.setEmail(RSAUtils.decryptBase64(request.getParameter("email").toString()));
             		user.setPwd(RSAUtils.decryptBase64(request.getParameter("pwd").toString()));
             		HttpSession session = request.getSession();
         			user myuser=dao1.selects(user).get(0);

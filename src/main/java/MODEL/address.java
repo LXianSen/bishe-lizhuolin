@@ -2,7 +2,7 @@ package MODEL;
 
 public class address {
 	//地址编号（自增）、用户id(外键)、省、市、县、详细地址、联系人、联系电话
-	private int addressid;
+	private String addressid;
 	private String userid;
 	private String province;
 	private String city;
@@ -11,7 +11,7 @@ public class address {
 	private String contact;
 	private String tel;
 	private String isdefault;
-	public address(int addressid, String userid, String province, String city, String county, String details,
+	public address(String addressid, String userid, String province, String city, String county, String details,
 			String contact, String tel, String isdefault) {
 		super();
 		this.addressid = addressid;
@@ -30,10 +30,10 @@ public class address {
 	public void setIsdefault(String isdefault) {
 		this.isdefault = isdefault;
 	}
-	public int getAddressid() {
+	public String getAddressid() {
 		return addressid;
 	}
-	public void setAddressid(int addressid) {
+	public void setAddressid(String addressid) {
 		this.addressid = addressid;
 	}
 	public String getUserid() {

@@ -42,7 +42,7 @@ public class OderSearch extends HttpServlet {
 				order order=new order();
 				Map<String, String[]> parameterMap = request.getParameterMap();
 				BeanUtils.populate(order, parameterMap);
-				List<order> orders=orderDao.selects(order);
+				List<Map> orders=orderDao.showorderList(order);
 				
 				String orderJSON=gson.toJson(order);
 				out.println(orderJSON);

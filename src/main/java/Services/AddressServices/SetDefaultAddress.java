@@ -23,7 +23,7 @@ public class SetDefaultAddress extends HttpServlet {
 			AddressDao addressDao=new AddressDao();
 			address oldAddress=new address();
 			address newAddress=new address();
-			oldAddress.setAddressid(Integer.parseInt(request.getParameter("addressid")));
+			oldAddress.setAddressid(request.getParameter("addressid"));
 			newAddress.setIsdefault(request.getParameter("isdefault"));
 			addressDao.updates(newAddress, oldAddress);
 		} catch (Exception e) {

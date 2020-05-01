@@ -46,7 +46,7 @@ public class AddressUpdate extends HttpServlet {
 				BeanUtils.populate(newAddress, addressMap);
 				//获取旧信息的地址id
 				//oldAddress.setAddressid(Integer.parseInt(addressMap.get("addressid").toString()));
-				oldAddress.setAddressid(Integer.parseInt(request.getParameter("addressid")));
+				oldAddress.setAddressid(request.getParameter("addressid"));
 				addressDao.updates(newAddress, oldAddress);
 				
 				}

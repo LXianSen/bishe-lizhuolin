@@ -32,7 +32,6 @@ public class OrderDao extends BaseDAO<order> {
 	            String columnName = rsmd.getColumnName(i);
 	            // 根据列名 来获取 当前列的数据
 	            Object value = rs.getObject(columnName);
-	            // 根据列名 通过反射来找属性对象
 	            tempmap.put(columnName, value);
 	        }
 			orderList.add(tempmap);

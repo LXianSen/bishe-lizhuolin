@@ -43,6 +43,7 @@ public class OrderAdd extends HttpServlet {
 				order order=new order();
 				Map<String, String[]> parameterMap = request.getParameterMap();
 				BeanUtils.populate(order, parameterMap);
+				order.setAddressid(request.getParameter("addressid"));
 				orderDao.adds(order);
 				} 
 		}		catch (Exception e) {

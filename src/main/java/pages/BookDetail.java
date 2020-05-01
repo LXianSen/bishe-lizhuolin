@@ -44,7 +44,7 @@ public class BookDetail extends HttpServlet {
 			List<book> bkList=bkDao.selects(book);
 			System.out.println(bkList);
 			//转化为 key value形式
-			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			Gson gson=new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create();
 			String bookjson=gson.toJson(bkList);
 			out.println(bookjson);
 		} catch (Exception e) {

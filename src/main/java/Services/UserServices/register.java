@@ -61,6 +61,7 @@ public class register extends HttpServlet {
 			user user=new user();
 			BeanUtils.populate(user, parameterMap);
 			user.setuserId(request.getParameter("userid"));
+			//输入数据的时候判断数据库是否存在该数据
 			if(type.equals("select")) {
 				if(adduser(user)) {
 					jsonobj.put("code", "200");
