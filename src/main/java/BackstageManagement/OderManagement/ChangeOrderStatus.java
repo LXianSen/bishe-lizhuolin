@@ -1,6 +1,8 @@
 package BackstageManagement.OderManagement;
 
 import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +35,16 @@ public class ChangeOrderStatus extends HttpServlet {
 		
 		if(u!=null&&!"".equals(u.toString())) {
 			OrderDao orderDao=new OrderDao();
-			order ordernew=
+			order ordernew=new order();
+			order orderold=new order();
+			Map<String, String[]> tempMap=request.getParameterMap();
+			orderold.setUserid(u.getUserid());
+			try {
+				orderDao.updates(ordernew, orderold);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
