@@ -51,7 +51,7 @@ public class OderSearch extends HttpServlet {
 				String orderJSON=gson.toJson(orders);
 				jsonobj.put("code", 0);
 				jsonobj.put("msg", "");
-				jsonobj.put("count","");
+				jsonobj.put("count",orderDao.showorderList(order).size());
 				jsonobj.put("data", orderJSON);
 				out.println(jsonobj);
 				

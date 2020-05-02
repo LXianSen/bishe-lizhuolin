@@ -8,18 +8,40 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import MODEL.order;
 
 public class OrderDao extends BaseDAO {
+	//将子订单以父订单封装
+	public Map<String,List<String>> putfatherList(List<Map> lists){	
+		Map<String, List<String>> map=new HashMap<String, List<String>>();
+		for(Map m:lists) {
+			Iterator<String> iterator=m.keySet().iterator();
+			while (iterator.hasNext()) {
+				String	key=iterator.next();
+				if (!map.containsKey(key)) {
+					List newList=new ArrayList<>();
+					newList.add(m.get(key));
+					map.put(key, newList);
+				}else {
+					map.get(key).add((String) m.get(key));
+				}
+				
+			}
+		}
+		return map;
+	}
+	
+	
 	public List<Map> showorderList(order order) throws SQLException, Exception{
 
 		Connection connection=Druid().getConnection();
 		List<Object> valueList=new ArrayList<Object>();
 		Field[] fs=order.getClass().getDeclaredFields();
-		StringBuffer sqlString=new StringBuffer("select `order`.*,book.bname from `order` LEFT JOIN book on book.ISBN=`order`.ISBN where 1=1 ");
+		StringBuffer sqlString=new StringBuffer("select `order`.*,book.bname,`user`.username,address.* from ((`order` LEFT JOIN book on book.ISBN=`order`.ISBN) LEFT JOIN `user` on `order`.userid=`user`.userid) LEFT JOIN address USING(addressid) where 1=1");
 		for(Field f:fs) {
             // 属性名称 （对应的是表的列名）
 			String name=f.getName();
@@ -63,19 +85,10 @@ public class OrderDao extends BaseDAO {
 
 
 		}
-		return orderList;
+		List<Map>orders=new ArrayList<Map>();
+		orders.add(putfatherList(orderList));
+		return orders;
 		
 	}
-	
-	public List<String> getfatherorders() throws SQLException, Exception{
-		Connection connection=Druid().getConnection();
-		List<String> fatherorders=new ArrayList<String>();
-		String sqlString="select DISTINCT fatherorder from order";
-		PreparedStatement ps=connection.prepareStatement(sqlString);
-		ResultSet rs=ps.executeQuery();
-		while (rs.next()) {
-			fatherorders.add(rs.getString("fatherorder"));
-		}
-		return fatherorders;
-	}
+
 }
