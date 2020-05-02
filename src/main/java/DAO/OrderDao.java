@@ -19,7 +19,7 @@ public class OrderDao extends BaseDAO {
 		Connection connection=Druid().getConnection();
 		List<Object> valueList=new ArrayList<Object>();
 		Field[] fs=order.getClass().getDeclaredFields();
-		StringBuffer sqlString=new StringBuffer("select order.*,book.bname from order,book on book.ISBN=order.ISBN where 1=1 ");
+		StringBuffer sqlString=new StringBuffer("select `order`.*,book.bname from `order` LEFT JOIN book on book.ISBN=`order`.ISBN where 1=1 ");
 		for(Field f:fs) {
             // 属性名称 （对应的是表的列名）
 			String name=f.getName();
