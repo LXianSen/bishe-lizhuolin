@@ -44,14 +44,16 @@ public class OderSearch extends HttpServlet {
 				Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 				//保存用户输入的搜索条件
 				order order=new order();
+				user user=new user();
 				Map<String, String[]> parameterMap = request.getParameterMap();
 				BeanUtils.populate(order, parameterMap);
-				List<Map> orders=orderDao.showorderList(order);
+				BeanUtils.populate(user, parameterMap);
+				List<Map> orders=orderDao.showorderList(orderDao.fatherorderList(order, user));
 				
 				String orderJSON=gson.toJson(orders);
 				jsonobj.put("code", 0);
 				jsonobj.put("msg", "");
-				jsonobj.put("count",orderDao.showorderList(order).size());
+				jsonobj.put("count",orderDao.showorderList(orderDao.fatherorderList(order, user)).size());
 				jsonobj.put("data", orderJSON);
 				out.println(jsonobj);
 				
