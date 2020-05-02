@@ -239,15 +239,16 @@ section {
         	}else if(e=="email"){
 				if(ePattern.test($(".email").val())){
 					$.post('register',{
-                		email:$("#text").text(),
+                		email:$(".email").val(),
                 		type:"select"
                 	},function(data){
                 		data=JSON.parse(data)
                 		if(data.code=="error"){
-                			text1.html('该邮箱已注册，请尝试<a href="login.jsp" class="to-login">登录</a>')
+                			$("#text").html('该邮箱已注册，请尝试<a href="login.jsp" class="to-login">登录</a>')
                             $(".email").addClass('red')
                             isemail=false
                 		}else{
+                			$("#text").html('')
                 			isemail=true
                 		}
                 	}) 
@@ -264,13 +265,17 @@ section {
         	if(isreg==true&& ispwd==true && isusername==true && isphone==true && isemail==true){
         		console.log(111)
         		$.post('register',{
-            		phone:$(".phone").val(),
+        			userid:String(genID(9)),
+        			username:$(".username").val(),
+            		phone:$(".tel").val(),
             		email:$(".email").val(),
-            		username:$(".username").val(),
             		pwd:qrInput.val(),
-            		userid:String(genID(9)),
             		type:"add"
             	},function(data){
+            		data=JSON.parse(data)
+            		if(data){
+            			
+            		}
             		console.log(data)
             	})
         	}else if(isreg==false){

@@ -9,6 +9,22 @@ public class user {
 	private String phone;
 	private String gender;
 	
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public user() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -18,6 +34,15 @@ public class user {
 	public String toString() {
 		return "user [userid=" + userid + ", username=" + username + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
 				+ ", gender=" + gender + "]";
+	}
+	public user(String userid, String username, String pwd, String email, String phone, String gender) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.pwd = pwd;
+		this.email = email;
+		this.phone = phone;
+		this.gender = gender;
 	}
 	public String getuserId() {
 		return userid;
@@ -31,15 +56,7 @@ public class user {
 	public void setuserName(String username) {
 		this.username = username;
 	}
-	public user(String userid, String username, String pwd, String email, String phone, String gender) {
-		super();
-		this.userid = userid;
-		this.username = username;
-		this.pwd = pwd;
-		this.email = email;
-		this.phone = phone;
-		this.gender = gender;
-	}
+	
 	public String getPwd() {
 		return pwd;
 	}

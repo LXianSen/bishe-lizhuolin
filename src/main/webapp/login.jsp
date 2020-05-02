@@ -305,6 +305,7 @@ fieldset {
 <script type="text/javascript">
     var language=$('footer>ul>li>a')
     var tips=$('.tips')
+    
     var publicKey = null
     var encrypt = new JSEncrypt()
     $.post("login",{},function(data){
