@@ -13,7 +13,7 @@ import java.util.Map;
 
 import MODEL.order;
 
-public class OrderDao extends BaseDAO<order> {
+public class OrderDao extends BaseDAO {
 	public List<Map> showorderList(order order) throws SQLException, Exception{
 
 		Connection connection=Druid().getConnection();
@@ -23,6 +23,8 @@ public class OrderDao extends BaseDAO<order> {
 		for(Field f:fs) {
             // 属性名称 （对应的是表的列名）
 			String name=f.getName();
+			f.setAccessible(true);
+
             // 传递过来的泛型对象t的属性的值
 			Object value=f.get(order);
 			

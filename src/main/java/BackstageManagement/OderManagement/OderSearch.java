@@ -36,7 +36,7 @@ public class OderSearch extends HttpServlet {
 			UserDao userDao=new UserDao();
 			user u=userDao.CheckIsLogin(request, response);
 			
-			if(u!=null&&"".equals(u.toString())) {
+			if(u!=null&&!"".equals(u.toString())) {
 				OrderDao orderDao=new OrderDao();
 				PrintWriter out=response.getWriter();
 				Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();

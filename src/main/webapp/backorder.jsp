@@ -466,7 +466,7 @@
               </script>
         </div>
         <!-- <script src="../src/layui.js"></script> -->
-        <!-- <script type="text/javascript" src="js/jquery-3.4.1.js"></script>  -->
+        <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
         <script>
             //JavaScript代码区域
             layui.use('element', function () {
@@ -499,27 +499,55 @@
             // })
             layui.use('table', function(){
             var table = layui.table;
-            
+            table.render({
+                elem: '#roleTable'
+                ,height: 312
+                ,url: 'OderSearch' //数据接口
+                ,method:"post"
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                ,{field: 'id', title: 'ID', width:'10%', fixed: 'left'}
+                ,{field: 'orderno', title: '订单号', width:'10%'}
+                ,{field: 'date', title: '日期', width:'10%' , sort: true}
+                ,{field: 'totalprice', title: '总价', width: '10%'}
+                ,{field: 'orderstatus', title: '订单状态', width: '10%'}
+                ,{field: 'username', title: '用户名', width: '10%'}
+                ,{field: 'address', title: '地址', width: '10%'}
+                ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
+                ]]
+                ,toolbar: 'default'
+                // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
+            });
+            /* $.post("OderSearch",{},function(data){
+            	data=JSON.parse(data)
+            	if(data.code=="error"){
+            		window.location.href="backlogin.jsp"
+            		
+            	}else{
+            		table.render({
+                        elem: '#roleTable'
+                        ,height: 312
+                        ,url: 'OderSearch' //数据接口
+                        ,page: true //开启分页
+                        ,cols: [[ //表头
+                        {type: 'checkbox', fixed: 'left'}
+                        ,{field: 'id', title: 'ID', width:'10%', fixed: 'left'}
+                        ,{field: 'orderno', title: '订单号', width:'10%'}
+                        ,{field: 'date', title: '日期', width:'10%' , sort: true}
+                        ,{field: 'totalprice', title: '总价', width: '10%'}
+                        ,{field: 'orderstatus', title: '订单状态', width: '10%'}
+                        ,{field: 'username', title: '用户名', width: '10%'}
+                        ,{field: 'address', title: '地址', width: '10%'}
+                        ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
+                        ]]
+                        ,toolbar: 'default'
+                        // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
+                    });
+            	}
+            }) */
             // 第一个实例
-                table.render({
-                    elem: '#roleTable'
-                    ,height: 312
-                    ,url: 'OderSearch' //数据接口
-                    ,page: true //开启分页
-                    ,cols: [[ //表头
-                    {type: 'checkbox', fixed: 'left'}
-                    ,{field: 'id', title: 'ID', width:'10%', fixed: 'left'}
-                    ,{field: 'orderno', title: '订单号', width:'10%'}
-                    ,{field: 'date', title: '日期', width:'10%' , sort: true}
-                    ,{field: 'totalprice', title: '总价', width: '10%'}
-                    ,{field: 'orderstatus', title: '订单状态', width: '10%'}
-                    ,{field: 'username', title: '用户名', width: '10%'}
-                    ,{field: 'address', title: '地址', width: '10%'}
-                    ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
-                    ]]
-                    ,toolbar: 'default'
-                    // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
-                });
+                
             
             });
             layui.use('layer', function(){
