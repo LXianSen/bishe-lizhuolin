@@ -46,7 +46,7 @@ public class OderSearch extends HttpServlet {
 				BeanUtils.populate(order, parameterMap);
 				List<Map> orders=orderDao.showorderList(order);
 				
-				String orderJSON=gson.toJson(order);
+				String orderJSON=gson.toJson(orders);
 				out.println(orderJSON);
 				
 			}

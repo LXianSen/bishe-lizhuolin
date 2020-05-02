@@ -16,9 +16,32 @@ import MODEL.order;
 public class OrderDao extends BaseDAO<order> {
 	public List<Map> showorderList(order order) throws SQLException, Exception{
 
-		String sqlString="select order.*,book.bname from order,book on book.ISBN=order.ISBN where order.userid="+order.getUserid();
 		Connection connection=Druid().getConnection();
-		PreparedStatement ps=connection.prepareStatement(sqlString);
+		List<Object> valueList=new ArrayList<Object>();
+		Field[] fs=order.getClass().getDeclaredFields();
+		StringBuffer sqlString=new StringBuffer("select order.*,book.bname from order,book on book.ISBN=order.ISBN where 1=1 ");
+		for(Field f:fs) {
+            // 属性名称 （对应的是表的列名）
+			String name=f.getName();
+            // 传递过来的泛型对象t的属性的值
+			Object value=f.get(order);
+			
+			if (value!=null&&!"".equals(value)) {
+				if ((!value.toString().equalsIgnoreCase("0")&&!value.toString().equalsIgnoreCase("0.0"))) {
+					sqlString.append("and ");
+					//占位符
+					sqlString.append(name).append("=?");
+					valueList.add(value);
+				}
+				
+			}
+		}
+		System.out.println(sqlString.toString());
+		PreparedStatement ps=connection.prepareStatement(sqlString.toString());
+        for (int i = 0; i < valueList.size(); i++)
+        {
+            ps.setObject(i + 1, valueList.get(i));
+        }
 		ResultSet rs=ps.executeQuery();
         ResultSetMetaData rsmd = rs.getMetaData();
         int count=rsmd.getColumnCount();
