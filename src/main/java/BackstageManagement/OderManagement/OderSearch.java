@@ -30,6 +30,8 @@ public class OderSearch extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=UTF-8");
 		try {
 			UserDao userDao=new UserDao();
 			user u=userDao.CheckIsLogin(request, response);
