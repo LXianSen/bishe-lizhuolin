@@ -55,6 +55,7 @@ public class OrderDao extends BaseDAO {
 		List<String> fatherList = new ArrayList<String>();
 		Field[] fs1 = order.getClass().getDeclaredFields();
 		Field[] fs2 = user.getClass().getDeclaredFields();
+        List<Object> parList = new ArrayList();
 		StringBuffer sql1 = new StringBuffer("select distinct fatherorder from ((`order` LEFT JOIN book on book.ISBN=`order`.ISBN) LEFT JOIN `user` on `order`.userid=`user`.userid) LEFT JOIN address USING(addressid) where 1=1 ");
 		for (Field f : fs1) {
 			// 属性名称 （对应的是表的列名）
@@ -68,11 +69,13 @@ public class OrderDao extends BaseDAO {
 				if ((!value.toString().equalsIgnoreCase("0") && !value.toString().equalsIgnoreCase("0.0"))) {
 					sql1.append("and ");
 					// 占位符
-					sql1.append(name).append("=?");
-				}
+					sql1.append(order.getClass().getSimpleName()).append(".").append(name).append("=?");
+					parList.add(value);
 
+				}
 			}
 		}
+		
 		for (Field f : fs2) {
 			// 属性名称 （对应的是表的列名）
 			String name = f.getName();
@@ -85,12 +88,17 @@ public class OrderDao extends BaseDAO {
 				if ((!value.toString().equalsIgnoreCase("0") && !value.toString().equalsIgnoreCase("0.0"))) {
 					sql1.append("and ");
 					// 占位符
-					sql1.append(name).append("=?");
-				}
+					sql1.append(user.getClass().getSimpleName()).append(".").append(name).append("=?");
+					parList.add(value);
 
+				}
 			}
 		}
 		PreparedStatement ps = connection.prepareStatement(sql1.toString());
+        for (int i = 0; i < parList.size(); i++)
+        {
+            ps.setObject(i + 1, parList.get(i));
+        }
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			fatherList.add(rs.getString("fatherorder"));

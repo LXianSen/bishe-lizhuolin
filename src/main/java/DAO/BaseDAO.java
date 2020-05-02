@@ -161,9 +161,11 @@ public  class BaseDAO<T> {
             f.setAccessible(true);
 			Object value=f.get(t1);
 			if(value!=null&&!"".equals(value)) {
+				if ((!value.toString().equalsIgnoreCase("0")&&!value.toString().equalsIgnoreCase("0.0"))) {
             sb.append(name);
             sb.append("=?,");
             parList.add(value);
+			}
 			}
         }
         //ȡ     where ?=? and ?=?

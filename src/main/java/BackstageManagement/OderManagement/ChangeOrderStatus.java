@@ -1,6 +1,7 @@
 package BackstageManagement.OderManagement;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.OrderDao;
 import DAO.UserDao;
@@ -38,6 +41,15 @@ public class ChangeOrderStatus extends HttpServlet {
 			order ordernew=new order();
 			order orderold=new order();
 			Map<String, String[]> tempMap=request.getParameterMap();
+			try {
+				BeanUtils.populate(ordernew, tempMap);
+			} catch (IllegalAccessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InvocationTargetException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			orderold.setUserid(u.getUserid());
 			try {
 				orderDao.updates(ordernew, orderold);

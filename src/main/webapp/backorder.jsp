@@ -153,30 +153,30 @@
                                     <div class="layui-inline">
                                         <label class="layui-form-label">ISBN:</label>
                                         <div class="layui-input-inline">
-                                            <input name="roleCode" class="layui-input" placeholder="输入ISBN">
+                                            <input name="ISBN" class="layui-input" placeholder="输入ISBN">
                                         </div>
                                     </div>
                                     <div class="layui-inline">
                                         <label class="layui-form-label">用户名:</label>
                                         <div class="layui-input-inline">
-                                            <input name="roleCode" class="layui-input" placeholder="输入用户名">
+                                            <input name="username" class="layui-input" placeholder="输入用户名">
                                         </div>
                                     </div>
                                     <div class="layui-inline">
                                         <label class="layui-form-label">订单号:</label>
                                         <div class="layui-input-inline"  style="width: 290px;">
-                                            <input name="roleName" class="layui-input" placeholder="输入订单号">
+                                            <input name="fatherorder" class="layui-input" placeholder="输入订单号">
                                         </div>
                                     </div>
                                     <div class="layui-inline">
                                         <label class="layui-form-label">订单状态:</label>
                                         <div class="layui-input-inline">
-                                            <select name="orderstatus" lay-verify="">
+                                            <select name="status" lay-verify="">
                                                 <option value="">请选择订单状态</option>
-                                                <option value="010">待支付</option>
-                                                <option value="021">支付成功</option>
-                                                <option value="0571">订单完成</option>
-                                                <option value="0571">订单取消</option>
+                                                <option value="待支付">待支付</option>
+                                                <option value="支付成功">支付成功</option>
+                                                <option value="已完成">已完成</option>
+                                                <option value="已取消">已取消</option>
                                             </select>
                                         </div>
                                     </div>
@@ -479,22 +479,15 @@
         <div class="layui-form-item">
             <label class="layui-form-label layui-form-required">订单号:</label>
             <div class="layui-input-block">
-                <input name="username" placeholder="请输入订单号" class="layui-input"
-                       lay-verType="tips" lay-verify="required" required/>
+                <input name="fatherorder" placeholder="请输入订单号" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required disabled=""/>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label layui-form-required">订单生成日期:</label>
             <div class="layui-input-block">
-                <input name="nickName" placeholder="请输入日期" class="layui-input"
-                       lay-verType="tips" lay-verify="required" required/>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label layui-form-required">订单总价:</label>
-            <div class="layui-input-block">
-                <input name="phone" placeholder="请输入总价" class="layui-input"
-                       lay-verType="tips" lay-verify="required" required/>
+                <input name="date" placeholder="请输入日期" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required disabled=""/>
             </div>
         </div>
         <div class="layui-form-item">
@@ -502,10 +495,10 @@
             <div class="layui-input-block">
                 <select name="status" lay-verify="">
   <option value="">请选择一个状态</option>
-  <option value="010">待支付</option>
-  <option value="021">支付成功</option>
-  <option value="0571">已完成</option>
-	<option value="0571">已取消</option>
+  <option value="待支付">待支付</option>
+  <option value="支付成功">支付成功</option>
+  <option value="已完成">已完成</option>
+	<option value="已取消">已取消</option>
 </select>
             </div>
         </div>
@@ -577,19 +570,46 @@
 	                if(layEvent === 'detail'){
 	                  layer.msg('查看操作');
 	                }else if(layEvent === 'edit'){
-	                	layer.open({
+	                	console.log(data)
+	                	var index=layer.open({
 	                		type:1,
 	                		title:"修改订单状态",
 	                		content:$("#orderEditDialog").html(),
 	                		success:function(layero,index){
 	                			form.val('orderEditForm',data);
 	                			form.on('submit(orderEditSubmit)',function(data){
+	                				$.post("ChangeOrderStatus",data.field,function(data){
+	                					layer.close(index)
+	                				})
 	                				return false
 	                			})
 	                		}
 	                	})
 	                }
 	              });
+	            form.on('submit(roleTbSearch)',function(data){
+	            	table.render({
+		                elem: '#roleTable'
+		                ,height: 312
+		                ,url: 'OderSearch' //数据接口
+		                ,method:"post"
+		                ,where:data.field
+		                ,page: true //开启分页
+		                ,cols: [[ //表头
+		                {type: 'checkbox', fixed: 'left'}
+		                ,{field: 'fatherorder', title: '订单号', width:'10%'}
+		                ,{field: 'date', title: '日期', width:'10%' , sort: true}
+		                ,{field: 'bprice', title: '总价', width: '10%'}
+		                ,{field: 'status', title: '订单状态', width: '10%'}
+		                ,{field: 'username', title: '用户名', width: '10%'}
+		                ,{field: 'address', title: '地址', width: '10%'}
+		                ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
+		                ]]
+		                ,toolbar: 'default'
+		                // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
+		            });
+	            	return false;
+	            })
             /* $.post("OderSearch",{},function(data){
             	data=JSON.parse(data)
             	if(data.code=="error"){
