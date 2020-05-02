@@ -124,6 +124,7 @@ public  class BaseDAO<T> {
 			f.setAccessible(true);
 			Object value=f.get(t);
 			if(value!=null&&!"".equals(value)) {
+				
 				sb.append("and ");
 				sb.append(name).append("=? ");
 				parList.add(value);
@@ -174,10 +175,11 @@ public  class BaseDAO<T> {
             f.setAccessible(true);
             Object value=f.get(t2);
             if(value!=null&&!"".equals(value)) {
+            	if ((!value.toString().equalsIgnoreCase("0")&&!value.toString().equalsIgnoreCase("0.0"))) {
             sb.append(name);
             sb.append("=? and ");
             parList.add(value);
-            }
+            }}
         }
         sb = new StringBuffer(sb.toString().substring(0, sb.toString().length() - 4));
         System.out.println(sb.toString());
