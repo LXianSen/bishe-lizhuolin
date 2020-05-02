@@ -339,7 +339,7 @@ fieldset {
     	
     	
     	$.post('login',{
-    		phone:encrypt.encrypt($('.tel').val()),
+    		email:encrypt.encrypt($('.tel').val()),
     		pwd:encrypt.encrypt($('.password').val())
     	},function(data){
     		data=JSON.parse(data)

@@ -794,6 +794,11 @@
     console.log("eeeeeeee")
     	$.post("OrderCommit",{},function(data){
     		data=JSON.parse(data)
+    		if(data.code=="error"){
+    			window.location.href="login.jsp"
+    		}else{
+    			console.log(data)
+    		}
     	})
         $(".address-item").mouseover(function (e) {
             console.log(1)

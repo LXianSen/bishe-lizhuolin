@@ -22,6 +22,7 @@ import DAO.OrderDao;
 import DAO.UserDao;
 import MODEL.order;
 import MODEL.user;
+import net.sf.json.JSONObject;
 
 @WebServlet("/OderSearch")
 public class OderSearch extends HttpServlet {
@@ -32,6 +33,7 @@ public class OderSearch extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
+		JSONObject jsonobj=new JSONObject();
 		try {
 			UserDao userDao=new UserDao();
 			user u=userDao.CheckIsLogin(request, response);
@@ -47,7 +49,11 @@ public class OderSearch extends HttpServlet {
 				List<Map> orders=orderDao.showorderList(order);
 				
 				String orderJSON=gson.toJson(orders);
-				out.println(orderJSON);
+				jsonobj.put("code", 0);
+				jsonobj.put("msg", "");
+				jsonobj.put("count","");
+				jsonobj.put("data", orderJSON);
+				out.println(jsonobj);
 				
 			}
 		}catch (IllegalAccessException | InvocationTargetException e) {

@@ -507,11 +507,10 @@
                 ,page: true //开启分页
                 ,cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'id', title: 'ID', width:'10%', fixed: 'left'}
-                ,{field: 'orderno', title: '订单号', width:'10%'}
+                ,{field: 'fatherorder', title: '订单号', width:'10%'}
                 ,{field: 'date', title: '日期', width:'10%' , sort: true}
-                ,{field: 'totalprice', title: '总价', width: '10%'}
-                ,{field: 'orderstatus', title: '订单状态', width: '10%'}
+                ,{field: 'bprice', title: '总价', width: '10%'}
+                ,{field: 'status', title: '订单状态', width: '10%'}
                 ,{field: 'username', title: '用户名', width: '10%'}
                 ,{field: 'address', title: '地址', width: '10%'}
                 ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
