@@ -42,7 +42,7 @@ public class OrderCommit extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset =UTF-8");
 			UserDao userDao = new UserDao();
-			userDao.CheckIsLogin(request, response);
+//			userDao.CheckIsLogin(request, response);
 
 			user u = userDao.CheckIsLogin(request, response);
 
