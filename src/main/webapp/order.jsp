@@ -7,6 +7,7 @@
         <meta charset="UTF-8">
         <title>结算</title>
         <link rel="stylesheet" href="css/order.css">
+        <link rel="stylesheet" href="iconfont/iconfont.css">
         <style>
             * {
                 margin: 0;
@@ -643,7 +644,7 @@
                                                 <div class="tel">151****2112</div>
                                                 <div class="city">四川（成都市）金牛区人民北路街道</div>
                                                 <div class="address">龙湖上城五栋一单元</div>
-                                                <div class="city">610036</div>
+                                                <div class="cityno">610036</div>
                                             </div>
                                             <div class="update isHidden"><span>修改</span><span>删除</span></div>
                                         </div>
@@ -798,14 +799,19 @@
     			window.location.href="login.jsp"
     		}else{
     			console.log(data)
+    			$(".address-list").empty()
+    			data.forEach(function(item,index){
+    				$(".address-list").append('<div class="address-item first selected notHidden"><div class="address-item-content"><div class="mark addr-visible">默认</div><div class="content"><div class="name">'+item.contact+'</div><div class="tel">'+item.tel+'</div><div class="city">'+item.province+"省"+item.city+"市"+item.county+"区"+'</div><div class="address">'+item.details+'</div><div class="cityno">'+item.addressid+'</div></div><div class="update isHidden"><span>修改</span><span>删除</span></div></div></div>')
+    			})
+    			$(".address-list").append('<div class="address-item others unselected toAddAddress"><div class="addIcon"><span class="iconfont icon-add"></span></div><div class="addAds">添加新地址</div></div>')
     		}
     	})
-        $(".address-item").mouseover(function (e) {
+        $(".address-list").on("mouseover",".address-item",function(e){
             console.log(1)
             var tar = $(e.target)
             tar.children().children(".update").removeClass("isHidden")
         })
-        $(".address-item").mouseleave(function (e) {
+        $(".address-list").on("mouseleave",".address-item",function(e){
             console.log($(e.target))
             var tar = $(e.target)
             if (tar.is("span")) {
@@ -815,7 +821,7 @@
             }
     
         })
-        $(".update").click(function (e) {
+        $(".address-list").on("click",".update",function(e){
             var tar = $(e.target)
             switch (tar.text()) {
                 case "设为默认地址": {
@@ -845,7 +851,7 @@
         $(".title>.closeIcon").click(function(){
             $(".m-modal-portal").addClass("isHidden")
         })
-        $(".toAddAddress").click(function(){
+        $(".address-list").on("click",".toAddAddress",function(e){
             $(".m-modal-portal").removeClass("isHidden")
         })
         var data=JSON.parse(sessionStorage.getItem("bookinfo"))

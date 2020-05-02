@@ -46,7 +46,7 @@ public class OrderCommit extends HttpServlet {
 
 			user u = userDao.CheckIsLogin(request, response);
 
-			if (u != null && "".equals(u.toString())) {
+			if (u != null && !"".equals(u.toString())) {
 
 				AddressDao addressDao=new AddressDao();
 				address address=new address();
@@ -54,7 +54,8 @@ public class OrderCommit extends HttpServlet {
 				List<address>addressList=addressDao.selects(address);
 				PrintWriter out=response.getWriter();
 				Gson gson=new Gson();
-				out.println(addressList);
+				String addressjson = gson.toJson(addressList);
+				out.println(addressjson);
 			}
 		}catch (Exception e) {
 			// TODO: handle exception

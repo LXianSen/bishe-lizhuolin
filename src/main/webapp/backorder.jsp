@@ -462,8 +462,47 @@
             <script type="text/html" id="barDemo">
                 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-              </script>
+            </script>
+            <script type="text/html" id="orderViewDialog">
+								
+
+			</script>
+			<script type="text/html" id="orderEditDialog">
+    <form id="orderEditForm" lay-filter="orderEditForm" class="layui-form model-form">
+        <input name="userId" type="hidden"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">订单号:</label>
+            <div class="layui-input-block">
+                <input name="username" placeholder="请输入订单号" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">订单生成日期:</label>
+            <div class="layui-input-block">
+                <input name="nickName" placeholder="请输入日期" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">订单总价:</label>
+            <div class="layui-input-block">
+                <input name="phone" placeholder="请输入总价" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">订单状态:</label>
+            <div class="layui-input-block">
+                <div id="orderEditRoleSel"></div>
+            </div>
+        </div>
+        <div class="layui-form-item text-right">
+            <button class="layui-btn" lay-filter="orderEditSubmit" lay-submit>保存</button>
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        </div>
+    </form>
+			</script>
         </div>
         <!-- <script src="../src/layui.js"></script> -->
         <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
@@ -497,27 +536,48 @@
             //     console.log(tar)
             //     tar.toggleClass("layui-form-selected")
             // })
-            layui.use('table', function(){
-            var table = layui.table;
-            table.render({
-                elem: '#roleTable'
-                ,height: 312
-                ,url: 'OderSearch' //数据接口
-                ,method:"post"
-                ,page: true //开启分页
-                ,cols: [[ //表头
-                {type: 'checkbox', fixed: 'left'}
-                ,{field: 'fatherorder', title: '订单号', width:'10%'}
-                ,{field: 'date', title: '日期', width:'10%' , sort: true}
-                ,{field: 'bprice', title: '总价', width: '10%'}
-                ,{field: 'status', title: '订单状态', width: '10%'}
-                ,{field: 'username', title: '用户名', width: '10%'}
-                ,{field: 'address', title: '地址', width: '10%'}
-                ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
-                ]]
-                ,toolbar: 'default'
-                // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
-            });
+            layui.use(['table','layer'], function(){
+	            var table = layui.table;
+	            var layer = layui.layer;
+	            table.render({
+	                elem: '#roleTable'
+	                ,height: 312
+	                ,url: 'OderSearch' //数据接口
+	                ,method:"post"
+	                ,page: true //开启分页
+	                ,cols: [[ //表头
+	                {type: 'checkbox', fixed: 'left'}
+	                ,{field: 'fatherorder', title: '订单号', width:'10%'}
+	                ,{field: 'date', title: '日期', width:'10%' , sort: true}
+	                ,{field: 'bprice', title: '总价', width: '10%'}
+	                ,{field: 'status', title: '订单状态', width: '10%'}
+	                ,{field: 'username', title: '用户名', width: '10%'}
+	                ,{field: 'address', title: '地址', width: '10%'}
+	                ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
+	                ]]
+	                ,toolbar: 'default'
+	                // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
+	            });
+	            table.on('tool(roleTable)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+	                var data = obj.data //获得当前行数据
+	                ,layEvent = obj.event; //获得 lay-event 对应的值
+	                if(layEvent === 'detail'){
+	                  layer.msg('查看操作');
+	                }else if(layEvent === 'edit'){
+	                	layer.open({
+	                		type:1,
+	                		title:"修改订单状态",
+	                		content:$("#orderEditDialog").html(),
+	                		success:function(layero,index){
+	                			form.val('orderEditForm',data);
+	                			form.on('submit(orderEditSubmit)',function(data){
+	                				return false
+	                			})
+	                		}
+	                	})
+	                  layer.msg('编辑操作');
+	                }
+	              });
             /* $.post("OderSearch",{},function(data){
             	data=JSON.parse(data)
             	if(data.code=="error"){
@@ -549,13 +609,13 @@
                 
             
             });
-            layui.use('layer', function(){
+            /* layui.use('layer', function(){
                 var layer = layui.layer;
                 layer.open({
                     type:1,
                     title:'订单详情'
                 })
-            });
+            }); */
         </script>
     </body>
 
