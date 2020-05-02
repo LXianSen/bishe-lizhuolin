@@ -71,6 +71,12 @@
                 border-radius: 5px;
                 background-color: #c1c1c1;
             }
+            .model-form {
+    padding: 25px 30px 0 0;
+}
+.text-right {
+    text-align: right;
+}
         </style>
     </head>
 
@@ -494,7 +500,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label layui-form-required">订单状态:</label>
             <div class="layui-input-block">
-                <div id="orderEditRoleSel"></div>
+                <select name="status" lay-verify="">
+  <option value="">请选择一个状态</option>
+  <option value="010">待支付</option>
+  <option value="021">支付成功</option>
+  <option value="0571">已完成</option>
+	<option value="0571">已取消</option>
+</select>
             </div>
         </div>
         <div class="layui-form-item text-right">
@@ -522,7 +534,7 @@
                     range: true,
                 });
             });
-            layui.use('form', function(){
+            /* layui.use('form', function(){
                 var form = layui.form;
                 
                 //监听提交
@@ -530,15 +542,16 @@
                     layer.msg(JSON.stringify(data.field));
                     return false;
                 });
-            });
+            }); */
             // $(".layui-unselect").click(function(e){
             //     let tar=$(e.target)
             //     console.log(tar)
             //     tar.toggleClass("layui-form-selected")
             // })
-            layui.use(['table','layer'], function(){
+            layui.use(['table','layer','form'], function(){
 	            var table = layui.table;
 	            var layer = layui.layer;
+	            var form=layui.form;
 	            table.render({
 	                elem: '#roleTable'
 	                ,height: 312
@@ -575,7 +588,6 @@
 	                			})
 	                		}
 	                	})
-	                  layer.msg('编辑操作');
 	                }
 	              });
             /* $.post("OderSearch",{},function(data){
