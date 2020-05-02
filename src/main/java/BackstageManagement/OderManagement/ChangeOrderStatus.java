@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.OrderDao;
+import DAO.UserDao;
+import MODEL.order;
+import MODEL.user;
+
 
 @WebServlet("/ChangeOrderStatus")
 public class ChangeOrderStatus extends HttpServlet {
@@ -23,6 +28,13 @@ public class ChangeOrderStatus extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
+		UserDao userDao=new UserDao();
+		user u=userDao.CheckIsLogin(request, response);
+		
+		if(u!=null&&!"".equals(u.toString())) {
+			OrderDao orderDao=new OrderDao();
+			order ordernew=
+		}
 	}
 
 

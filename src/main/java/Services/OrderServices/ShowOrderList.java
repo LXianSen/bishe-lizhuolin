@@ -49,7 +49,7 @@ public class ShowOrderList extends HttpServlet {
 				OrderDao orderDao=new OrderDao();
 				order order=new order();
 				order.setUserid(u.getuserId().toString());
-				List<Map> orderlists=orderDao.showorderList(order,u);
+				List<order> orderlists=orderDao.myOrders(order);
 				PrintWriter o=response.getWriter();
 				Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 				String orderJSON=gson.toJson(orderlists);

@@ -12,19 +12,50 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+
 import com.alibaba.druid.util.StringUtils;
 
 import MODEL.order;
 import MODEL.user;
 
 public class OrderDao extends BaseDAO {
+	
+	
+	public List<order> myOrders(order order) throws SQLException, Exception{
+		Connection connection=Druid().getConnection();
+		String sql="select * from `order` where userid="+order.getUserid();
+		PreparedStatement ps=connection.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();			
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int count=rsmd.getColumnCount();
+		List<order> myOrders=new ArrayList<order>();
+		while(rs.next()) {
+			order tempOrder=new order();
+			for (int i = 1; i < count; i++) {
+				 // 根据列号 来获得 列名
+                String columnName = rsmd.getColumnName(i);
+                // 根据列名 来获取 当前列的数据
+                Object value = rs.getObject(columnName);
+                // 根据列名 通过反射来找属性对象
+                Field f = tempOrder.getClass().getDeclaredField(columnName);
+                if (f != null)
+                {
+                    f.setAccessible(true);
+                    f.set(tempOrder, value);
+                }
+			}
+			myOrders.add(tempOrder);
+		}
+		return myOrders;
+		
+	}
 	// 将子订单以父订单封装
 	public List<String> fatherorderList(order order, user user) throws SQLException, Exception {
 		Connection connection = Druid().getConnection();
 		List<String> fatherList = new ArrayList<String>();
 		Field[] fs1 = order.getClass().getDeclaredFields();
 		Field[] fs2 = user.getClass().getDeclaredFields();
-		StringBuffer sql1 = new StringBuffer("select distinct fatherorder from `order` where 1=1 ");
+		StringBuffer sql1 = new StringBuffer("select distinct fatherorder from ((`order` LEFT JOIN book on book.ISBN=`order`.ISBN) LEFT JOIN `user` on `order`.userid=`user`.userid) LEFT JOIN address USING(addressid) where 1=1 ");
 		for (Field f : fs1) {
 			// 属性名称 （对应的是表的列名）
 			String name = f.getName();
