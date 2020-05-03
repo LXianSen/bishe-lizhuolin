@@ -595,7 +595,11 @@
 				var data = obj.data //获得当前行数据
 				, layEvent = obj.event; //获得 lay-event 对应的值
 				if (layEvent === 'del') {
-					layer.msg('查看操作');
+					obj.del();
+					$.post("UserDELETE",{email:data.email},function(data){
+						data=JSON.parse(data)
+						layer.msg(data.msg)
+					})
 				} else if (layEvent === 'edit') {
 					console.log(data)
 					var index = layer.open({

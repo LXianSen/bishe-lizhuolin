@@ -113,7 +113,7 @@ public  class BaseDAO<T> {
 		Class clasz=t.getClass();
 		StringBuffer sb=new StringBuffer("delete from ");
 		sb.append(clasz.getSimpleName());
-		sb.append("where 1=1 ");
+		sb.append(" where 1=1 ");
 		// 获得属性对象数组
 		Field []fs=clasz.getDeclaredFields();
 		Connection con=Druid().getConnection();
@@ -135,7 +135,7 @@ public  class BaseDAO<T> {
 	        {
 	            ps.setObject(i + 1, parList.get(i));
 	        }
-	        
+	        System.out.println(sb);
 	        ps.executeUpdate();
 	        return parList;
 	}

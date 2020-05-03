@@ -45,7 +45,8 @@ public class UserDELETE extends HttpServlet {
 			try {
 				BeanUtils.populate(user,paraMap);
 				userDao.deletes(user);
-				
+				jsonobj.put("code", "200");
+				jsonobj.put("msg", "成功删除该用户");
 			} catch (IllegalAccessException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
