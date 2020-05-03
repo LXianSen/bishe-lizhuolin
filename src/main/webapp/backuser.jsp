@@ -121,17 +121,17 @@
 								<a href="">超链接</a>
 							</dd>
 						</dl></li>
-					<li class="layui-nav-item"><a href="backuser.jsp">用户管理</a></li>
+					<li class="layui-nav-item layui-this"><a href="javascript:;">用户管理</a></li>
 					<li class="layui-nav-item"><a href="javascript:;">权限管理</a></li>
 					<li class="layui-nav-item"><a href="">类别管理</a></li>
-					<li class="layui-nav-item layui-this"><a href="javascript:;">订单管理</a></li>
+					<li class="layui-nav-item"><a href="backorder.jsp">订单管理</a></li>
 				</ul>
 			</div>
 		</div>
 
 		<div class="layui-body">
 			<div class="layui-body-header">
-				<span class="layui-body-header-title">订单管理</span>
+				<span class="layui-body-header-title">用户管理</span>
 			</div>
 			<div class="layui-fluid">
 				<div class="layui-card">
@@ -140,23 +140,9 @@
 						<form class="layui-form toolbar">
 							<div class="layui-form-item">
 								<div class="layui-inline">
-									<label class="layui-form-label">手机号:</label>
+									<label class="layui-form-label">Email:</label>
 									<div class="layui-input-inline">
-										<input name="roleCode" class="layui-input" placeholder="输入手机号">
-									</div>
-								</div>
-
-								<div class="layui-inline">
-									<label class="layui-form-label">日期范围:</label>
-									<div class="layui-input-inline" style="width: 290px;">
-										<input type="text" class="layui-input" id="test1">
-									</div>
-
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label">ISBN:</label>
-									<div class="layui-input-inline">
-										<input name="ISBN" class="layui-input" placeholder="输入ISBN">
+										<input name="email" class="layui-input" placeholder="输入Email">
 									</div>
 								</div>
 								<div class="layui-inline">
@@ -166,25 +152,11 @@
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label">订单号:</label>
-									<div class="layui-input-inline" style="width: 290px;">
-										<input name="fatherorder" class="layui-input"
-											placeholder="输入订单号">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label">订单状态:</label>
+									<label class="layui-form-label">手机号:</label>
 									<div class="layui-input-inline">
-										<select name="status" lay-verify="">
-											<option value="">请选择订单状态</option>
-											<option value="待支付">待支付</option>
-											<option value="支付成功">支付成功</option>
-											<option value="已完成">已完成</option>
-											<option value="已取消">已取消</option>
-										</select>
+										<input name="phone" class="layui-input" placeholder="输入手机号">
 									</div>
 								</div>
-
 								<div class="layui-inline">
 									&emsp;
 									<button class="layui-btn icon-btn" lay-filter="roleTbSearch"
@@ -200,11 +172,16 @@
 						<!-- <div class="layui-form layui-border-box layui-table-view" lay-filter="LAY-table-1"
                                 lay-id="roleTable" style=" ">
                                 <div class="layui-table-tool">
-                                    <div class="layui-table-tool-temp"><button lay-event="add"
-                                            class="layui-btn layui-btn-sm icon-btn"><i
-                                                class="layui-icon"></i>添加</button>&nbsp;<button lay-event="del"
-                                            class="layui-btn layui-btn-sm layui-btn-danger icon-btn"><i
-                                                class="layui-icon"></i>删除</button></div>
+                                    <div class="layui-table-tool-temp">
+                                    	<button lay-event="add" class="layui-btn layui-btn-sm icon-btn">
+                                    		<i class="layui-icon"></i>
+                                    		添加
+                                    	</button>&nbsp;
+                                    	<button lay-event="del" class="layui-btn layui-btn-sm layui-btn-danger icon-btn">
+                                    		<iclass="layui-icon"></i>
+                                    		删除
+                                    	</button>
+                                    </div>
                                     <div class="layui-table-tool-self">
                                         <div class="layui-inline" title="筛选列" lay-event="LAYTABLE_COLS"><i
                                                 class="layui-icon layui-icon-cols"></i></div>
@@ -472,40 +449,45 @@
 			© layui.com - 底部固定区域
 		</div>
 		<script type="text/html" id="barDemo">
-                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
             </script>
 		<script type="text/html" id="orderViewDialog">
 								
 
 			</script>
-		<script type="text/html" id="orderEditDialog">
-    <form id="orderEditForm" lay-filter="orderEditForm" class="layui-form model-form">
+		<script type="text/html" id="userEditDialog">
+    <form id="userEditForm" lay-filter="userEditForm" class="layui-form model-form">
         <input name="userId" type="hidden"/>
         <div class="layui-form-item">
-            <label class="layui-form-label layui-form-required">订单号:</label>
+            <label class="layui-form-label layui-form-required">用户名:</label>
             <div class="layui-input-block">
-                <input name="fatherorder" placeholder="请输入订单号" class="layui-input"
-                       lay-verType="tips" lay-verify="required" required disabled=""/>
+                <input name="username" placeholder="请输入用户名" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label layui-form-required">订单生成日期:</label>
+            <label class="layui-form-label layui-form-required">邮箱:</label>
             <div class="layui-input-block">
-                <input name="date" placeholder="请输入日期" class="layui-input"
-                       lay-verType="tips" lay-verify="required" required disabled=""/>
+                <input name="email" placeholder="请输入邮箱" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+		<div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">手机号:</label>
+            <div class="layui-input-block">
+                <input name="phone" placeholder="请输入手机号" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label layui-form-required">订单状态:</label>
+            <label class="layui-form-label layui-form-required">权限:</label>
             <div class="layui-input-block">
-                <select name="status" lay-verify="">
-  <option value="">请选择一个状态</option>
-  <option value="待支付">待支付</option>
-  <option value="支付成功">支付成功</option>
-  <option value="已完成">已完成</option>
-	<option value="已取消">已取消</option>
-</select>
+                <select name="permission" lay-verify="">
+  					<option value="">请选择一个状态</option>
+  					<option value="0">普通用户</option>
+  					<option value="1">管理员</option>
+				</select>
             </div>
         </div>
         <div class="layui-form-item text-right">
@@ -514,6 +496,34 @@
         </div>
     </form>
 			</script>
+			<script type="text/html" id="userTbState">
+    <input type="checkbox" lay-filter="userTbStateCk" lay-skin="switch"
+           lay-text="管理员|普通用户" />
+</script>
+		<script type="text/html" id="usertoolbar">
+			<div class="layui-form layui-border-box layui-table-view" lay-filter="LAY-table-1"
+                                lay-id="roleTable" style=" ">
+                                <div class="layui-table-tool">
+                                    <div class="layui-table-tool-temp">
+                                    	<button lay-event="add" class="layui-btn layui-btn-sm icon-btn">
+                                    		<i class="layui-icon"></i>
+                                    		添加
+                                    	</button>&nbsp;
+                                    	<button lay-event="del" class="layui-btn layui-btn-sm layui-btn-danger icon-btn">
+                                    		<iclass="layui-icon"></i>
+                                    		删除
+                                    	</button>
+                                    </div>
+                                    <div class="layui-table-tool-self">
+                                        <div class="layui-inline" title="筛选列" lay-event="LAYTABLE_COLS"><i
+                                                class="layui-icon layui-icon-cols"></i></div>
+                                        <div class="layui-inline" title="导出" lay-event="LAYTABLE_EXPORT"><i
+                                                class="layui-icon layui-icon-export"></i></div>
+                                        <div class="layui-inline" title="打印" lay-event="LAYTABLE_PRINT"><i
+                                                class="layui-icon layui-icon-print"></i></div>
+                                    </div>
+                                </div>
+		</script>
 	</div>
 	<!-- <script src="../src/layui.js"></script> -->
 	<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
@@ -562,48 +572,51 @@
 				cols : [ [ //表头
 				{
 					type : 'checkbox',
-					fixed : 'left'
-				}, {
-					field : 'fatherorder',
-					title : '订单号',
-				}, {
-					field : 'date',
-					title : '日期',
-					sort : true
-				}, {
-					field : 'bprice',
-					title : '总价',
-				}, {
-					field : 'status',
-					title : '订单状态',
+					fixed : 'left',
+					align : 'center',
 				}, {
 					field : 'username',
 					title : '用户名',
+					align : 'center',
 				}, {
-					field : 'address',
-					title : '地址',
+					field : 'email',
+					title : '邮箱',
+					align : 'center',
+				}, {
+					field : 'phone',
+					title : '手机号',
+					align : 'center',
+				}, {
+					field : 'permission',
+					title : '权限',
+					templet:'#userTbState',
+					width : '10%'
 				}, {
 					fixed : 'right',
-					width : 165,
+					minWidth : 160,
+					title : '操作',
 					align : 'center',
 					toolbar : '#barDemo'
 				} ] ],
-				toolbar : 'default'
+				toolbar: ['<p>',
+	                '<button lay-event="add" class="layui-btn layui-btn-sm icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>&nbsp;',
+	                '</p>'].join(''),
+	                defaultToolbar : [],
 			// ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
 			});
 			table.on('tool(roleTable)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
 				var data = obj.data //获得当前行数据
 				, layEvent = obj.event; //获得 lay-event 对应的值
-				if (layEvent === 'detail') {
+				if (layEvent === 'del') {
 					layer.msg('查看操作');
 				} else if (layEvent === 'edit') {
 					console.log(data)
 					var index = layer.open({
 						type : 1,
 						title : "修改订单状态",
-						content : $("#orderEditDialog").html(),
+						content : $("#userEditDialog").html(),
 						success : function(layero, index) {
-							form.val('orderEditForm', data);
+							form.val('userEditForm', data);
 							form.on('submit(orderEditSubmit)', function(data) {
 								$.post("ChangeOrderStatus", data.field,
 										function(data) {
@@ -615,6 +628,24 @@
 					})
 				}
 			});
+			
+			table.on('toolbar(roleTable)',function(obj){
+				if(obj.event=="add"){
+					
+					layer.open({
+						type:1,
+						title:"添加用户",
+						content:$("#userEditDialog").html(),
+						success:function(layero,index){
+							form.render()
+							form.on('submit(userEditSubmit)',function(data){
+								
+								return false;
+							})
+						}
+					})
+				}
+			})
 			form.on('submit(roleTbSearch)', function(data) {
 				table.render({
 					elem : '#roleTable',
@@ -693,15 +724,9 @@
 				}
 			}) */
 			// 第一个实例
+			form.render();
 
 		});
-		/* layui.use('layer', function(){
-		    var layer = layui.layer;
-		    layer.open({
-		        type:1,
-		        title:'订单详情'
-		    })
-		}); */
 	</script>
 </body>
 
