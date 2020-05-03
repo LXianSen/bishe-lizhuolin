@@ -102,4 +102,16 @@ public class BkTypeDao extends BaseDAO<booktype> {
 		
 		return fatherList;
 	}
+	public List<String> getsontypes() throws SQLException, Exception{
+		List<String>sontyypeList=new ArrayList<String>();
+		Connection connection=Druid().getConnection();
+		String sqlString="select distinct sontype from booktype";		
+		PreparedStatement ps=connection.prepareStatement(sqlString);
+		ResultSet rs=ps.executeQuery();
+		while (rs.next()) {
+			sontyypeList.add(rs.getString("sontype"));
+		}
+		return sontyypeList;
+		
+	}
 }
