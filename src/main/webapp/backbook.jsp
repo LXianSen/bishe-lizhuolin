@@ -540,7 +540,7 @@
         var table = layui.table;
         var layer=layui.layer;
         var laydate=layui.laydate;
-        latdate.render({
+        laydate.render({
         	elem:'#test1',
         })
         

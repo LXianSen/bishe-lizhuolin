@@ -332,19 +332,30 @@ fieldset {
     	}else if(/^1[3456789]\d{9}$/.test(loginName)){
     		name='phone'
     	}
-    	$.post('login',{
-    		email:encrypt.encrypt($('.tel').val()),
-    		pwd:encrypt.encrypt($('.password').val())
-    	},function(data){
-    		data=JSON.parse(data)
-    		if(data.code=='error'){
-    			tips.removeClass('hide')
-    			$('.tips>.text').text('用户或密码输入错误，请重新输入！')
-    		}else if(data.code=='200'){
-    			sessionStorage.setItem("user",JSON.stringify(data.user))
-    			/* window.location.href='${pageContext.request.contextPath}/shouye.jsp'  */
-    		}
-    	})
+    	
+    	if(loginName==""){
+    		tips.removeClass('hide')
+			$('.tips>.text').text('用户名不能为空！')
+    	}else if($(".password").val()==""){
+    		tips.removeClass('hide')
+			$('.tips>.text').text('密码不能为空！')
+    	}else{
+    		$.post('login',{
+        		email:encrypt.encrypt($('.tel').val()),
+        		pwd:encrypt.encrypt($('.password').val())
+        	},function(data){
+        		data=JSON.parse(data)
+        		if(data.code=='error'){
+        			tips.removeClass('hide')
+        			$('.tips>.text').text('用户或密码输入错误，请重新输入！')
+        		}else if(data.code=='200'){
+        			sessionStorage.setItem("user",JSON.stringify(data.user))
+        			window.location.href='${pageContext.request.contextPath}/shouye.jsp'
+        		}
+        	})
+    	}
+    	
+    	
     }
     
     var languageAry={

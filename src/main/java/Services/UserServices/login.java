@@ -53,8 +53,11 @@ public class login extends HttpServlet {
             		user.setEmail(RSAUtils.decryptBase64(request.getParameter("email").toString()));
             		user.setPwd(RSAUtils.decryptBase64(request.getParameter("pwd").toString()));
             		HttpSession session = request.getSession();
-        			user myuser=dao1.selects(user).get(0);
-    				if(myuser!=null&&!"".equals(myuser)) {
+        			user myuser=new user();
+        			if(!dao1.selects(user).isEmpty()) {
+        				myuser=dao1.selects(user).get(0);
+        			}
+    				if(myuser.getUserid()!=null&&!"".equals(myuser.getUserid())) {
     					jsonobj.put("code", "200");
     					jsonobj.put("user", myuser);
     	        		session.setAttribute("user", myuser);
