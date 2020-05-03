@@ -48,12 +48,14 @@ public class OderSearch extends HttpServlet {
 				Map<String, String[]> parameterMap = request.getParameterMap();
 				BeanUtils.populate(orders, parameterMap);
 				BeanUtils.populate(user, parameterMap);
-				List<Map> orderlist=orderDao.showorderList(orderDao.fatherorderList(orders, user));
+				int count=Integer.parseInt(request.getParameter("pagecount"));
+				int size=Integer.parseInt(request.getParameter("size"));
+				List<Map> orderlist=orderDao.showorderList(orderDao.fatherorderList(orders, user),count,size);
 				
 				String orderJSON=gson.toJson(orders);
 				jsonobj.put("code", 0);
 				jsonobj.put("msg", "");
-				jsonobj.put("count",orderDao.showorderList(orderDao.fatherorderList(orders, user)).size());
+				jsonobj.put("count",orderDao.showorderList(orderDao.fatherorderList(orders, user),count,size).size());
 				jsonobj.put("data", orderJSON);
 				out.println(jsonobj);
 				

@@ -106,7 +106,7 @@ public class OrderDao extends BaseDAO {
 		return fatherList;
 	}
 
-	public List<Map> showorderList(List<String> fatherlist) throws SQLException, Exception {
+	public List<Map> showorderList(List<String> fatherlist,int pagecount,int size) throws SQLException, Exception {
 
 		Connection connection = Druid().getConnection();
 		List<Map> orderList = new ArrayList<Map>();
@@ -115,6 +115,10 @@ public class OrderDao extends BaseDAO {
 			StringBuffer sqlString = new StringBuffer(
 					"select `orders`.*,book.bname,`user`.username,address.* from ((`orders` LEFT JOIN book on book.ISBN=`orders`.ISBN) LEFT JOIN `user` on `orders`.userid=`user`.userid) LEFT JOIN address USING(addressid) where `orders`.fatherorder=");
 			sqlString.append(fatherlist.get(i));
+			
+			// µœ÷∑÷“≥
+			sqlString.append(" limit ").append((pagecount-1)*size).append(",").append(size);
+			
 			System.out.println(sqlString);
 			PreparedStatement tempPS = connection.prepareStatement(sqlString.toString());
 			ResultSet rs = tempPS.executeQuery();
