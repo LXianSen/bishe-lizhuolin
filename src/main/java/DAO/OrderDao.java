@@ -157,4 +157,53 @@ public class OrderDao extends BaseDAO {
 
 		return orderList;
 	}
+	public List<Map> showorcount(List<String> fatherlist) throws SQLException, Exception {
+
+		Connection connection = Druid().getConnection();
+		List<Map> orderList = new ArrayList<Map>();
+
+		for (int i = 0; i < fatherlist.size(); i++) {
+			StringBuffer sqlString = new StringBuffer(
+					"select `orders`.*,book.bname,`user`.username,address.* from ((`orders` LEFT JOIN book on book.ISBN=`orders`.ISBN) LEFT JOIN `user` on `orders`.userid=`user`.userid) LEFT JOIN address USING(addressid) where `orders`.fatherorder=");
+			sqlString.append(fatherlist.get(i));
+			
+			
+			System.out.println(sqlString);
+			PreparedStatement tempPS = connection.prepareStatement(sqlString.toString());
+			ResultSet rs = tempPS.executeQuery();
+			// 元数据对象(里面包含了表头)
+			ResultSetMetaData rsmd = rs.getMetaData();
+
+			// 此表一共有多少列
+			int columnCount = rsmd.getColumnCount();
+			Map<Object, Object> tempMap = new HashMap<Object, Object>();
+
+			System.out.println("hhhhhhh");
+
+			for (int j = 1; j <= columnCount; j++) {
+				List<Object> tempList = new ArrayList<Object>();
+				ResultSet rs1 = tempPS.executeQuery();
+				// 元数据对象(里面包含了表头)
+				ResultSetMetaData rsmd1 = rs1.getMetaData();
+				// 根据列号 来获得 列名
+				String columnName = rsmd1.getColumnName(j);
+				while (rs1.next()) {
+					
+					// 根据列名 来获取 当前列的数据
+					Object value = rs1.getObject(columnName);
+					if (tempList.indexOf(value) != -1) {
+
+					} else {
+						tempList.add(value);
+					}
+				}
+				
+				tempMap.put(columnName, tempList);
+
+			}
+			orderList.add(tempMap);
+		}
+
+		return orderList;
+	}
 }

@@ -42,6 +42,7 @@ public class UserManagement extends HttpServlet {
 		if(u!=null&&!"".equals(u.toString())) {
 			List<user> userlist=new ArrayList<user>();
 			Map<String, String[]> parameterMap = request.getParameterMap();
+			List<user> tempList=new ArrayList<user>();
 			user user=new user();
 			int count=Integer.parseInt(request.getParameter("page"));
 			int size=Integer.parseInt(request.getParameter("limit"));
@@ -52,9 +53,10 @@ public class UserManagement extends HttpServlet {
 				Gson gson=new Gson();
 				PrintWriter outPrintWriter=response.getWriter();
 				String userJSON=gson.toJson(userlist);
+				tempList=userDao.selects(user);
 				jsonobj.put("code", 0);
 				jsonobj.put("msg", "");
-				jsonobj.put("count",userlist.size());
+				jsonobj.put("count",tempList.size());
 				jsonobj.put("data", userJSON);
 				outPrintWriter.println(jsonobj);
 

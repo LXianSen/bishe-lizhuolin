@@ -31,7 +31,7 @@ a {
 section {
 	position: absolute;
 	width: 854px;
-	height: 548px;
+	height: 500px;
 	background: white;
 	top: 50%;
 	left: 50%;
@@ -41,9 +41,6 @@ section {
 
 .formStyle {
 	color: #646464;
-	/* position: absolute;
-            left:50%;
-            transform: translateX(-50%); */
 }
 
 .title {
@@ -264,7 +261,7 @@ fieldset {
 							class="registerNow">立即注册</a> <span>|</span> <a href="${pageContext.request.contextPath}/forgetpwd.jsp"
 							class="forgotPswd">忘记密码？</a>
 					</div>
-					<fieldset class="oth_type_tit">
+					<!-- <fieldset class="oth_type_tit">
 						<legend align="center" class="oth_type_txt">其他方式登录</legend>
 					</fieldset>
 					<div id="sns-login-links" class="oth_type_links">
@@ -285,7 +282,7 @@ fieldset {
 							title="微信登录" target="_blank"> <i
 							class="btn_sns_icontype icon_default_weixin"></i>
 						</a>
-					</div>
+					</div> -->
 				</form>
 
 			</div>
@@ -305,7 +302,7 @@ fieldset {
 <script type="text/javascript">
     var language=$('footer>ul>li>a')
     var tips=$('.tips')
-    
+    var isemail,ispwd
     var publicKey = null
     var encrypt = new JSEncrypt()
     $.post("login",{},function(data){
@@ -335,21 +332,17 @@ fieldset {
     	}else if(/^1[3456789]\d{9}$/.test(loginName)){
     		name='phone'
     	}
-    	
-    	
-    	
     	$.post('login',{
     		email:encrypt.encrypt($('.tel').val()),
     		pwd:encrypt.encrypt($('.password').val())
     	},function(data){
     		data=JSON.parse(data)
-    		console.log(data)
     		if(data.code=='error'){
     			tips.removeClass('hide')
     			$('.tips>.text').text('用户或密码输入错误，请重新输入！')
     		}else if(data.code=='200'){
     			sessionStorage.setItem("user",JSON.stringify(data.user))
-    			window.location.href='${pageContext.request.contextPath}/shouye.jsp' 
+    			/* window.location.href='${pageContext.request.contextPath}/shouye.jsp'  */
     		}
     	})
     }

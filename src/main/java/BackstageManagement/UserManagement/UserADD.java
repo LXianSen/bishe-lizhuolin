@@ -51,13 +51,15 @@ public class UserADD extends HttpServlet {
 				if (tempList.isEmpty()) {
 					BeanUtils.populate(user, paraMap);
 					userDao.adds(user);
+					jsonobj.put("code", "200");
+					jsonobj.put("msg", "该用户添加成功");
 				}else {
 					jsonobj.put("code", "error");
 					jsonobj.put("msg", "该用户已存在");
-					PrintWriter outPrintWriter=response.getWriter();
-					outPrintWriter.println(jsonobj);
+					
 				}
-
+				PrintWriter outPrintWriter=response.getWriter();
+				outPrintWriter.println(jsonobj);
 				
 			} catch (IllegalAccessException | InvocationTargetException e1) {
 				// TODO Auto-generated catch block

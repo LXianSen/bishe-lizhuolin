@@ -443,7 +443,6 @@
 			</script>
 		<script type="text/html" id="userEditDialog">
     <form id="userEditForm" lay-filter="userEditForm" class="layui-form model-form">
-        <input name="userId" type="hidden"/>
         <div class="layui-form-item">
             <label class="layui-form-label layui-form-required">用户名:</label>
             <div class="layui-input-block">
@@ -476,7 +475,7 @@
             </div>
         </div>
         <div class="layui-form-item text-right">
-            <button class="layui-btn" lay-filter="orderEditSubmit" lay-submit>保存</button>
+            <button class="layui-btn" lay-filter="userEditSubmit" lay-submit>保存</button>
             <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
         </div>
     </form>
@@ -513,6 +512,9 @@
 	<!-- <script src="../src/layui.js"></script> -->
 	<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
 	<script>
+	function genID(length){
+    	return Number(Math.random().toString().substr(3,length) + Date.now()).toString(36)
+    }
 		//JavaScript代码区域
 		layui.use('element', function() {
 			var element = layui.element;
@@ -603,11 +605,12 @@
 						success : function(layero, index) {
 							form.val('userEditForm', data);
 							form.on('submit(userEditSubmit)', function(data) {
+								
 								$.post("ChangeOrderStatus", data.field,
 										function(data) {
 											layer.close(index)
 										})
-								return false
+								return false;
 							})
 						}
 					})
@@ -617,14 +620,25 @@
 			table.on('toolbar(roleTable)',function(obj){
 				if(obj.event=="add"){
 					
-					layer.open({
+					var index1=layer.open({
 						type:1,
 						title:"添加用户",
 						content:$("#userEditDialog").html(),
 						success:function(layero,index){
 							form.render()
 							form.on('submit(userEditSubmit)',function(data){
-								
+								var postdata=Object.assign({userid:genID(9)},data.field)
+								console.log(postdata)
+								layer.close(index1)
+								$.post("UserADD",postdata,function(data){
+									data=JSON.parse(data)
+									if(data.code=="error"){
+										layer.msg(data.msg)
+									}else{
+										layer.msg(data.msg)
+									}
+									
+								})
 								return false;
 							})
 						}

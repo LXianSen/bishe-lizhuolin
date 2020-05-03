@@ -3,6 +3,7 @@ package BackstageManagement.OderManagement;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,11 +52,13 @@ public class OderSearch extends HttpServlet {
 				int count=Integer.parseInt(request.getParameter("page"));
 				int size=Integer.parseInt(request.getParameter("limit"));
 				List<Map> orderlist=orderDao.showorderList(orderDao.fatherorderList(orders, user),count,size);
+				List<Map>tempList=new ArrayList<Map>();
+				tempList=orderDao.showorcount(orderDao.fatherorderList(orders, user));
 				
 				String orderJSON=gson.toJson(orderlist);
 				jsonobj.put("code", 0);
 				jsonobj.put("msg", "");
-				jsonobj.put("count",orderDao.showorderList(orderDao.fatherorderList(orders, user),count,size).size());
+				jsonobj.put("count",tempList.size());
 				jsonobj.put("data", orderJSON);
 				out.println(jsonobj);
 				

@@ -113,7 +113,7 @@ public class UserDao extends BaseDAO<user> {
     	List<user> userlist=new ArrayList<user>();
     	Field[] fs=u.getClass().getDeclaredFields();
     	List<Object> valuesList=new ArrayList<Object>();
-    	StringBuffer sqlString=new StringBuffer("select * from user where ");
+    	StringBuffer sqlString=new StringBuffer("select * from user where 1=1 ");
     	for(Field f:fs) {
     		String nameString=f.getName();
     		f.setAccessible(true);
@@ -131,7 +131,7 @@ public class UserDao extends BaseDAO<user> {
     	}
     	// µœ÷∑÷“≥
 		sqlString.append(" limit ").append((count-1)*size).append(",").append(size);
-		
+		System.out.println(sqlString);
     	PreparedStatement ps = connection.prepareStatement(sqlString.toString());
     	  for (int i = 0; i < valuesList.size(); i++)
           {
