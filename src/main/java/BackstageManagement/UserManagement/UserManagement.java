@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 
 import DAO.UserDao;
 import MODEL.user;
+import net.sf.json.JSONObject;
 
 
 @WebServlet("/UserManagement")
@@ -32,6 +33,8 @@ public class UserManagement extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
+		JSONObject jsonobj=new JSONObject();
+
 		
 		UserDao userDao=new UserDao();
 		user u=userDao.CheckIsLogin(request, response);
@@ -46,7 +49,11 @@ public class UserManagement extends HttpServlet {
 				Gson gson=new Gson();
 				PrintWriter outPrintWriter=response.getWriter();
 				String userJSON=gson.toJson(userlist);
-				outPrintWriter.println(userJSON);
+				jsonobj.put("code", 0);
+				jsonobj.put("msg", "");
+				jsonobj.put("count",userlist.size());
+				jsonobj.put("data", userJSON);
+				outPrintWriter.println(jsonobj);
 
 			} catch (IllegalAccessException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
