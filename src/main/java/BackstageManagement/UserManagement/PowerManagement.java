@@ -1,6 +1,7 @@
 package BackstageManagement.UserManagement;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.UserDao;
 import MODEL.user;
+import net.sf.json.JSONObject;
 
 
 @WebServlet("/PowerManagement")
@@ -29,7 +31,8 @@ public class PowerManagement extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
-		
+		JSONObject jsonObject=new JSONObject();
+		PrintWriter out=response.getWriter();
 		UserDao userDao=new UserDao();
 		user u=userDao.CheckIsLogin(request, response);
 		
@@ -41,6 +44,8 @@ public class PowerManagement extends HttpServlet {
 				BeanUtils.populate(usernew, userMap);
 				userold.setUserid(usernew.getUserid());
 				userDao.updates(usernew, userold);
+				jsonObject.put("code", "200");
+				out.println(jsonObject);
 			} catch (IllegalAccessException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

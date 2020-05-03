@@ -482,8 +482,8 @@
     </form>
 			</script>
 			<script type="text/html" id="userTbState">
-    <input type="checkbox" lay-filter="userTbStateCk" lay-skin="switch"
-           lay-text="管理员|普通用户" />
+    <input type="checkbox" lay-filter="userTbStateCk" lay-skin="switch" value="{{d.userid}}"
+           lay-text="管理员|普通用户" {{d.permission==1?'checked':''}}/>
 </script>
 		<script type="text/html" id="usertoolbar">
 			<div class="layui-form layui-border-box layui-table-view" lay-filter="LAY-table-1"
@@ -632,10 +632,10 @@
 				}
 			})
 			form.on('switch(userTbStateCk)',function(obj){
-			console.dir(obj)
 				var loadIndex=layer.load(2)
-				$.post("PowerManagement",{userid:obj.field.userid,permission:obj.elem.checked?1:0},function(data){
+				$.post("PowerManagement",{userid:obj.elem.value,permission:obj.elem.checked?1:0},function(data){
 					layer.close(loadIndex)
+					data=JSON.parse(data)
 					if(data.code==200){
 						layer.msg(data.msg,{icon:1})
 					}else{
