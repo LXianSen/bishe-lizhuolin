@@ -1,11 +1,24 @@
 package BackstageManagement.UserManagement;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
+
+import com.google.gson.Gson;
+
+import DAO.UserDao;
+import MODEL.user;
 
 
 @WebServlet("/UserManagement")
@@ -17,7 +30,32 @@ public class UserManagement extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=UTF-8");
 		
+		UserDao userDao=new UserDao();
+		user u=userDao.CheckIsLogin(request, response);
+		
+		if(u!=null&&!"".equals(u.toString())) {
+			List<user> userlist=new ArrayList<user>();
+			Map<String, String[]> parameterMap = request.getParameterMap();
+			user user=new user();
+			try {
+				BeanUtils.populate(user, parameterMap);
+				userlist=userDao.selects(user);
+				Gson gson=new Gson();
+				PrintWriter outPrintWriter=response.getWriter();
+				String userJSON=gson.toJson(userlist);
+				outPrintWriter.println(userJSON);
+
+			} catch (IllegalAccessException | InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 
