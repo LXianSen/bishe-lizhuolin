@@ -43,10 +43,12 @@ public class UserManagement extends HttpServlet {
 			List<user> userlist=new ArrayList<user>();
 			Map<String, String[]> parameterMap = request.getParameterMap();
 			user user=new user();
+			int count=Integer.parseInt(request.getParameter("page"));
+			int size=Integer.parseInt(request.getParameter("limit"));
 			try {
 				BeanUtils.populate(user, parameterMap);
 				System.out.println(user);
-				userlist=userDao.selects(user);
+				userlist=userDao.selectuserpages(user,count,size);
 				Gson gson=new Gson();
 				PrintWriter outPrintWriter=response.getWriter();
 				String userJSON=gson.toJson(userlist);
