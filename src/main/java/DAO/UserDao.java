@@ -107,7 +107,6 @@ public class UserDao extends BaseDAO<user> {
     }
 
     
-    // µœ÷∑÷“≥
     public List<user> selectuserpages(user u,int count,int size) throws SQLException, Exception{
     	Connection connection=Druid().getConnection();
     	List<user> userlist=new ArrayList<user>();

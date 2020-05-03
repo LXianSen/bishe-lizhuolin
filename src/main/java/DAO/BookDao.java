@@ -123,4 +123,62 @@ public class BookDao extends BaseDAO<book> {
 		
 	}
 		
+	  public List<book> selectbookpages(book b,int count,int size) throws SQLException, Exception{
+	    	Connection connection=Druid().getConnection();
+	    	List<book> booklist=new ArrayList<book>();
+	    	Field[] fs=b.getClass().getDeclaredFields();
+	    	List<Object> valuesList=new ArrayList<Object>();
+	    	StringBuffer sqlString=new StringBuffer("select * from book where 1=1 ");
+	    	for(Field f:fs) {
+	    		String nameString=f.getName();
+	    		f.setAccessible(true);
+
+				// 传递过来的泛型对象t的属性的值
+				Object value = f.get(b);
+				if (value != null && !"".equals(value)) {
+					if ((!value.toString().equalsIgnoreCase("0") && !value.toString().equalsIgnoreCase("0.0"))) {
+						sqlString.append("and ");
+						// 占位符
+						sqlString.append(b.getClass().getSimpleName()).append(".").append(nameString).append("=?");
+						valuesList.add(value);
+					}
+				}
+	    	}
+	    	//实现分页
+			sqlString.append(" limit ").append((count-1)*size).append(",").append(size);
+			System.out.println(sqlString);
+	    	PreparedStatement ps = connection.prepareStatement(sqlString.toString());
+	    	  for (int i = 0; i < valuesList.size(); i++)
+	          {
+	              ps.setObject(i + 1, valuesList.get(i));
+	          }
+	    	  ResultSet rs=ps.executeQuery();
+	    	   // 元数据对象(里面包含了表头)
+		        ResultSetMetaData rsmd = rs.getMetaData();
+		        
+		        // 此表一共有多少列
+		        int columnCount = rsmd.getColumnCount();
+	    	  while(rs.next()) {
+	    		     book book=new book();
+	 	            
+	 	            for (int i = 1; i <= columnCount; i++)
+	 	            {
+	 	                // 根据列号 来获得 列名
+	 	                String columnName = rsmd.getColumnName(i);
+	 	                // 根据列名 来获取 当前列的数据
+	 	                Object value = rs.getObject(columnName);
+	 	                // 根据列名 通过反射来找属性对象
+	 	                Field f = book.getClass().getDeclaredField(columnName);
+	 	                if (f != null)
+	 	                {
+	 	                    f.setAccessible(true);
+	 	                    f.set(book, value);
+	 	                }
+	 	                System.out.println(columnName+": "+value);
+	 	            }
+	 	            
+	 	            booklist.add(book);
+	    	  }
+			return booklist;
+	    }
 }
