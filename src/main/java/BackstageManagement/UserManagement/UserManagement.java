@@ -45,6 +45,7 @@ public class UserManagement extends HttpServlet {
 			user user=new user();
 			try {
 				BeanUtils.populate(user, parameterMap);
+				System.out.println(user);
 				userlist=userDao.selects(user);
 				Gson gson=new Gson();
 				PrintWriter outPrintWriter=response.getWriter();

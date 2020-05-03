@@ -428,6 +428,81 @@
             <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
           </script>
+          <script type="text/html" id="bookEditDialog">
+    <form id="bookEditForm" lay-filter="bookEditForm" class="layui-form model-form">
+        <input name="userId" type="hidden"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">ISBN:</label>
+            <div class="layui-input-block">
+                <input name="ISBN" placeholder="请输入ISBN" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">书名:</label>
+            <div class="layui-input-block">
+                <input name="bname" placeholder="请输入书名" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+		<div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">作者:</label>
+            <div class="layui-input-block">
+                <input name="bauthor" placeholder="请输入作者" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+		<div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">出版社:</label>
+            <div class="layui-input-block">
+                <input name="bpublish" placeholder="请输入出版社" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+		<div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">出版日期:</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" id="test1">
+            </div>
+        </div>
+		<div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">单价:</label>
+            <div class="layui-input-block">
+                <input name="bprice" placeholder="请输入单价" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+		<div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">折扣:</label>
+            <div class="layui-input-block">
+                <input name="bdiscount" placeholder="请输入折扣" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+		<div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">库存:</label>
+            <div class="layui-input-block">
+                <input name="stock" placeholder="请输入库存" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>							
+									
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">所属类别:</label>
+            <div class="layui-input-block">
+                <select name="permission" lay-verify="">
+  					<option value="">请选择一个类别</option>
+  					<option value="0">普通用户</option>
+  					<option value="1">管理员</option>
+				</select>
+            </div>
+        </div>
+        <div class="layui-form-item text-right">
+            <button class="layui-btn" lay-filter="orderEditSubmit" lay-submit>保存</button>
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        </div>
+    </form>
+			</script>
     </div>
     <!-- <script src="../src/layui.js"></script> -->
     <!-- <script type="text/javascript" src="js/jquery-3.4.1.js"></script>  -->
@@ -461,8 +536,13 @@
         //     console.log(tar)
         //     tar.toggleClass("layui-form-selected")
         // })
-        layui.use('table', function(){
+        layui.use(['table','layer','laydate'], function(){
         var table = layui.table;
+        var layer=layui.layer;
+        var laydate=layui.laydate;
+        latdate.render({
+        	elem:'#test1',
+        })
         
         // 第一个实例
             table.render({
@@ -482,19 +562,38 @@
                 ,{field: 'stock', title: '库存', width: '10%'}
                 ,{field: 'sontype', title: '类别', width: '10%'}
                 ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
-                ]]
-                ,toolbar: 'default'
+                ]],
+            toolbar: ['<p>',
+                '<button lay-event="add" class="layui-btn layui-btn-sm icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>&nbsp;',
+                '</p>'].join(''),
+                defaultToolbar : [],
                 // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
             });
-        
+            table.on('toolbar(roleTable)',function(obj){
+				if(obj.event=="add"){
+					
+					layer.open({
+						type:1,
+						title:"添加书籍",
+						content:$("#bookEditDialog").html(),
+						success:function(layero,index){
+							form.render()
+							form.on('submit(userEditSubmit)',function(data){
+								
+								return false;
+							})
+						}
+					})
+				}
+			})
         });
-        layui.use('layer', function(){
+        /* layui.use('layer', function(){
             var layer = layui.layer;
             layer.open({
                 type:1,
                 title:'订单详情'
             })
-        });
+        }); */
     </script>
 </body>
 

@@ -106,23 +106,8 @@
 			<div class="layui-side-scroll">
 				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
-					<li class="layui-nav-item"><a class="" href="javascript:;">书籍管理</a>
-						<dl class="layui-nav-child">
-							<dd>
-								<a href="javascript:;">列表一</a>
-							</dd>
-							<dd>
-								<a href="javascript:;">列表二</a>
-							</dd>
-							<dd>
-								<a href="javascript:;">列表三</a>
-							</dd>
-							<dd>
-								<a href="">超链接</a>
-							</dd>
-						</dl></li>
+					<li class="layui-nav-item"><a class="" href="backbook.jsp">书籍管理</a></li>
 					<li class="layui-nav-item layui-this"><a href="javascript:;">用户管理</a></li>
-					<li class="layui-nav-item"><a href="javascript:;">权限管理</a></li>
 					<li class="layui-nav-item"><a href="">类别管理</a></li>
 					<li class="layui-nav-item"><a href="backorder.jsp">订单管理</a></li>
 				</ul>
@@ -564,7 +549,7 @@
 			table.render({
 				elem : '#roleTable',
 				height : 312,
-				url : 'OderSearch' //数据接口
+				url : 'UserManagement' //数据接口
 				,
 				method : "post",
 				page : true //开启分页
@@ -617,7 +602,7 @@
 						content : $("#userEditDialog").html(),
 						success : function(layero, index) {
 							form.val('userEditForm', data);
-							form.on('submit(orderEditSubmit)', function(data) {
+							form.on('submit(userEditSubmit)', function(data) {
 								$.post("ChangeOrderStatus", data.field,
 										function(data) {
 											layer.close(index)
@@ -646,52 +631,63 @@
 					})
 				}
 			})
+			form.on('switch(userTbStateCk)',function(obj){
+			console.dir(obj)
+				var loadIndex=layer.load(2)
+				$.post("PowerManagement",{userid:obj.field.userid,permission:obj.elem.checked?1:0},function(data){
+					layer.close(loadIndex)
+					if(data.code==200){
+						layer.msg(data.msg,{icon:1})
+					}else{
+						layer.msg(data.msg,{icon:2})
+						$(obj.elem).prop('checked',!obj.elem.checked);
+						form.render('checked');
+					}
+				})
+			})
 			form.on('submit(roleTbSearch)', function(data) {
 				table.render({
 					elem : '#roleTable',
 					height : 312,
-					url : 'OderSearch' //数据接口
-					,
+					url : 'UserManagement' //数据接口
+					,where : data.field,
 					method : "post",
-					where : data.field,
 					page : true //开启分页
 					,
 					cols : [ [ //表头
 					{
 						type : 'checkbox',
-						fixed : 'left'
-					}, {
-						field : 'fatherorder',
-						title : '订单号',
-						width : '10%'
-					}, {
-						field : 'date',
-						title : '日期',
-						width : '10%',
-						sort : true
-					}, {
-						field : 'bprice',
-						title : '总价',
-						width : '10%'
-					}, {
-						field : 'status',
-						title : '订单状态',
-						width : '10%'
+						fixed : 'left',
+						align : 'center',
 					}, {
 						field : 'username',
 						title : '用户名',
-						width : '10%'
+						align : 'center',
 					}, {
-						field : 'address',
-						title : '地址',
+						field : 'email',
+						title : '邮箱',
+						align : 'center',
+					}, {
+						field : 'phone',
+						title : '手机号',
+						align : 'center',
+					}, {
+						field : 'permission',
+						title : '权限',
+						align : 'center',
+						templet:'#userTbState',
 						width : '10%'
 					}, {
 						fixed : 'right',
-						width : 165,
+						minWidth : 160,
+						title : '操作',
 						align : 'center',
 						toolbar : '#barDemo'
 					} ] ],
-					toolbar : 'default'
+					toolbar: ['<p>',
+		                '<button lay-event="add" class="layui-btn layui-btn-sm icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>&nbsp;',
+		                '</p>'].join(''),
+		                defaultToolbar : [],
 				// ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
 				});
 				return false;
