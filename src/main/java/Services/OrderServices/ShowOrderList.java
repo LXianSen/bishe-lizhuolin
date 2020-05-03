@@ -21,7 +21,7 @@ import DAO.BaseDAO;
 import DAO.BookDao;
 import DAO.OrderDao;
 import DAO.UserDao;
-import MODEL.order;
+import MODEL.orders;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
@@ -47,9 +47,9 @@ public class ShowOrderList extends HttpServlet {
 			
 			if(u!=null&&"".equals(u.toString())) {
 				OrderDao orderDao=new OrderDao();
-				order order=new order();
-				order.setUserid(u.getuserId().toString());
-				List<order> orderlists=orderDao.myOrders(order);
+				orders orders=new orders();
+				orders.setUserid(u.getUserid().toString());
+				List<orders> orderlists=orderDao.myOrders(orders);
 				PrintWriter o=response.getWriter();
 				Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 				String orderJSON=gson.toJson(orderlists);

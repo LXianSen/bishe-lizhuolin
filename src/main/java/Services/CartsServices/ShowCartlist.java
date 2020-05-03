@@ -51,7 +51,7 @@ public class ShowCartlist extends HttpServlet {
 				//购物车原价总价、折扣价总价
 				double money1=0,money2=0;
 				cartitem cartitem=new cartitem();
-				cartitem.setUserid(u.getuserId());
+				cartitem.setUserid(u.getUserid());
 					List<cartitem> list = cartDao.selects(cartitem);
 					for (int i = 0; i < list.size(); i++) {
 						tempMap.put(i, list.get(i));

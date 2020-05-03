@@ -34,7 +34,7 @@ public class CartClear extends HttpServlet {
 			//从session获取用户id，用于清空购物车
 			CartDao cartDao=new CartDao();
 			cartitem cartitem=new cartitem();
-			cartitem.setUserid(u.getuserId());
+			cartitem.setUserid(u.getUserid());
 				cartDao.deletes(cartitem);
 			} 
 			}	catch (Exception e) {

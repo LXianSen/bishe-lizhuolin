@@ -41,7 +41,7 @@ public class ShowAddress extends HttpServlet {
 			user u=userDao.CheckIsLogin(request, response);
 
 			if(u!=null&&"".equals(u.toString())) {
-				myAddress.setUserid(u.getuserId());
+				myAddress.setUserid(u.getUserid());
 				List<address> addresslist=addressDao.selects(myAddress);
 				String addressJSON=gson.toJson(addresslist);
 				PrintWriter o=response.getWriter();

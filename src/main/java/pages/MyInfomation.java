@@ -17,7 +17,7 @@ import DAO.AddressDao;
 import DAO.OrderDao;
 import DAO.UserDao;
 import MODEL.address;
-import MODEL.order;
+import MODEL.orders;
 import MODEL.user;
 
 
@@ -41,16 +41,16 @@ public class MyInfomation extends HttpServlet {
 			String msg=request.getParameter("msg");
 			if (msg.equals("order ")) {
 				OrderDao orderDao=new OrderDao();
-				order order=new order();
-				order.setUserid(user.getuserId());
+				orders orders=new orders();
+				orders.setUserid(user.getUserid());
 				
-				List<order> orderList=orderDao.selects(order);
+				List<orders> orderList=orderDao.selects(orders);
 				String orderJSON=gson.toJson(orderList);
 				o.println(orderJSON);
 			}else if (msg.equals("address")) {
 				AddressDao addressDao=new AddressDao();
 				address address=new address();
-				address.setUserid(user.getuserId());
+				address.setUserid(user.getUserid());
 				List<address>addressList=addressDao.selects(address);
 				String addressJSON=gson.toJson(addressList);
 				o.println(addressJSON);

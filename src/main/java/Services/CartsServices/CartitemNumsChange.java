@@ -39,7 +39,7 @@ public class CartitemNumsChange extends HttpServlet {
 				//查询用户对应的书籍是否存在购物车
 				cartitem cartitem=new cartitem();
 				cartitem.setISBN(request.getParameter("isbn").toString());
-				cartitem.setUserid(u.getuserId());
+				cartitem.setUserid(u.getUserid());
 				List<cartitem> cartitemlist= cartDao.selects(cartitem);
 				//如果用户购物车存在该购物项，购物项数量+count，否则新建一个购物项，数量为count
 				if (cartitemlist.isEmpty()) {

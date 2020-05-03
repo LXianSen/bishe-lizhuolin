@@ -2,7 +2,7 @@ package MODEL;
 
 import java.sql.Date;
 
-public class order {
+public class orders {
 	//订单号（父订单号、子订单号）、创单时间、isbn、价格、折扣、数量、订单状态、用户id、收货地址
 	private String fatherorder;
 	private String sonorder;
@@ -80,7 +80,7 @@ public class order {
 				+ ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", count=" + count + ", status=" + status
 				+ ", userid=" + userid + ", addressid=" + addressid + "]";
 	}
-	public order(String fatherorder, String sonorder, Date date, String iSBN, double bprice, double bdiscount,
+	public orders(String fatherorder, String sonorder, Date date, String iSBN, double bprice, double bdiscount,
 			int count, String status, String userid, String addressid) {
 		super();
 		this.fatherorder = fatherorder;
@@ -94,7 +94,7 @@ public class order {
 		this.userid = userid;
 		this.addressid = addressid;
 	}
-	public order() {
+	public orders() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

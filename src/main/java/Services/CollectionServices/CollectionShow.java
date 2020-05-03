@@ -42,7 +42,7 @@ public class CollectionShow extends HttpServlet {
 			List<collection> collectionlist=new ArrayList<collection>();
 			CollectionDao collectionDao=new CollectionDao();
 			collection myCollection=new collection();
-			myCollection.setUserid(user.getuserId().toString());
+			myCollection.setUserid(user.getUserid().toString());
 			try {
 				collectionlist=collectionDao.selects(myCollection);
 				String collerctionJSON=gson.toJson(collectionlist);

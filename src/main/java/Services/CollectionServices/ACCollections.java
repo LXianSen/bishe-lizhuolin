@@ -35,7 +35,7 @@ public class ACCollections extends HttpServlet {
 
 		if(u!=null&&"".equals(u.toString())) {
 			collection collection=new collection();
-			collection.setUserid(u.getuserId().toString());
+			collection.setUserid(u.getUserid().toString());
 			collection.setISBN(request.getParameter("ISBN"));
 			try {
 				collections=collectionDao.selects(collection);

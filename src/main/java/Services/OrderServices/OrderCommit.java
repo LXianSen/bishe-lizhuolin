@@ -23,7 +23,7 @@ import DAO.UserDao;
 import MODEL.address;
 import MODEL.book;
 import MODEL.cartitem;
-import MODEL.order;
+import MODEL.orders;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
@@ -50,7 +50,7 @@ public class OrderCommit extends HttpServlet {
 
 				AddressDao addressDao=new AddressDao();
 				address address=new address();
-				address.setUserid(u.getuserId());
+				address.setUserid(u.getUserid());
 				List<address>addressList=addressDao.selects(address);
 				PrintWriter out=response.getWriter();
 				Gson gson=new Gson();

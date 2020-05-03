@@ -20,7 +20,7 @@ import com.google.gson.GsonBuilder;
 
 import DAO.OrderDao;
 import DAO.UserDao;
-import MODEL.order;
+import MODEL.orders;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
@@ -43,17 +43,17 @@ public class OderSearch extends HttpServlet {
 				PrintWriter out=response.getWriter();
 				Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 				//保存用户输入的搜索条件
-				order order=new order();
+				orders orders=new orders();
 				user user=new user();
 				Map<String, String[]> parameterMap = request.getParameterMap();
-				BeanUtils.populate(order, parameterMap);
+				BeanUtils.populate(orders, parameterMap);
 				BeanUtils.populate(user, parameterMap);
-				List<Map> orders=orderDao.showorderList(orderDao.fatherorderList(order, user));
+				List<Map> orderlist=orderDao.showorderList(orderDao.fatherorderList(orders, user));
 				
 				String orderJSON=gson.toJson(orders);
 				jsonobj.put("code", 0);
 				jsonobj.put("msg", "");
-				jsonobj.put("count",orderDao.showorderList(orderDao.fatherorderList(order, user)).size());
+				jsonobj.put("count",orderDao.showorderList(orderDao.fatherorderList(orders, user)).size());
 				jsonobj.put("data", orderJSON);
 				out.println(jsonobj);
 				

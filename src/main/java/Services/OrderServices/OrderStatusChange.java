@@ -14,7 +14,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.OrderDao;
 import DAO.UserDao;
-import MODEL.order;
+import MODEL.orders;
 import MODEL.user;
 
 @WebServlet("/OrderCancel")
@@ -38,8 +38,8 @@ public class OrderStatusChange extends HttpServlet {
 			if(u!=null&&"".equals(u.toString())) {
 				OrderDao orderDao=new OrderDao();
 				//定义两个order：原状态order和新状态order
-				order orderold=new order();
-				order ordernew=new order();
+				orders orderold=new orders();
+				orders ordernew=new orders();
 				Map<String, String[]> listMap = request.getParameterMap();
 				BeanUtils.populate(orderold, listMap);
 				String newstatus=request.getParameter("status");

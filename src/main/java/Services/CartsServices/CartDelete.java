@@ -34,7 +34,7 @@ public class CartDelete extends HttpServlet {
 				cartitem cartitem=new cartitem();
 				cartitem.setISBN(request.getParameter("isbn"));
 				CartDao cartDao = new CartDao();
-				cartitem.setUserid(u.getuserId());
+				cartitem.setUserid(u.getUserid());
 				cartDao.deletes(cartitem);
 				}
 				} catch (Exception e) {

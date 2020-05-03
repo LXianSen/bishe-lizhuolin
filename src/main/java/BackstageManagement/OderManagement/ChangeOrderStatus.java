@@ -14,7 +14,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.OrderDao;
 import DAO.UserDao;
-import MODEL.order;
+import MODEL.orders;
 import MODEL.user;
 
 
@@ -38,8 +38,8 @@ public class ChangeOrderStatus extends HttpServlet {
 		
 		if(u!=null&&!"".equals(u.toString())) {
 			OrderDao orderDao=new OrderDao();
-			order ordernew=new order();
-			order orderold=new order();
+			orders ordernew=new orders();
+			orders orderold=new orders();
 			Map<String, String[]> tempMap=request.getParameterMap();
 			try {
 				BeanUtils.populate(ordernew, tempMap);

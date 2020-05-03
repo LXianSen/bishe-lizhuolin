@@ -15,22 +15,22 @@ import java.util.Map;
 
 import com.alibaba.druid.util.StringUtils;
 
-import MODEL.order;
+import MODEL.orders;
 import MODEL.user;
 
 public class OrderDao extends BaseDAO {
 	
 	
-	public List<order> myOrders(order order) throws SQLException, Exception{
+	public List<orders> myOrders(orders orders) throws SQLException, Exception{
 		Connection connection=Druid().getConnection();
-		String sql="select * from `order` where userid="+order.getUserid();
+		String sql="select * from `orders` where userid="+orders.getUserid();
 		PreparedStatement ps=connection.prepareStatement(sql);
 		ResultSet rs=ps.executeQuery();			
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int count=rsmd.getColumnCount();
-		List<order> myOrders=new ArrayList<order>();
+		List<orders> myOrders=new ArrayList<orders>();
 		while(rs.next()) {
-			order tempOrder=new order();
+			orders tempOrder=new orders();
 			for (int i = 1; i < count; i++) {
 				 // 根据列号 来获得 列名
                 String columnName = rsmd.getColumnName(i);
@@ -50,26 +50,26 @@ public class OrderDao extends BaseDAO {
 		
 	}
 	// 将子订单以父订单封装
-	public List<String> fatherorderList(order order, user user) throws SQLException, Exception {
+	public List<String> fatherorderList(orders orders, user user) throws SQLException, Exception {
 		Connection connection = Druid().getConnection();
 		List<String> fatherList = new ArrayList<String>();
-		Field[] fs1 = order.getClass().getDeclaredFields();
+		Field[] fs1 = orders.getClass().getDeclaredFields();
 		Field[] fs2 = user.getClass().getDeclaredFields();
         List<Object> parList = new ArrayList();
-		StringBuffer sql1 = new StringBuffer("select distinct fatherorder from ((`order` LEFT JOIN book on book.ISBN=`order`.ISBN) LEFT JOIN `user` on `order`.userid=`user`.userid) LEFT JOIN address USING(addressid) where 1=1 ");
+		StringBuffer sql1 = new StringBuffer("select distinct fatherorder from ((`orders` LEFT JOIN book on book.ISBN=`orders`.ISBN) LEFT JOIN `user` on `orders`.userid=`user`.userid) LEFT JOIN address USING(addressid) where 1=1 ");
 		for (Field f : fs1) {
 			// 属性名称 （对应的是表的列名）
 			String name = f.getName();
 			f.setAccessible(true);
 
 			// 传递过来的泛型对象t的属性的值
-			Object value = f.get(order);
+			Object value = f.get(orders);
 
 			if (value != null && !"".equals(value)) {
 				if ((!value.toString().equalsIgnoreCase("0") && !value.toString().equalsIgnoreCase("0.0"))) {
 					sql1.append("and ");
 					// 占位符
-					sql1.append(order.getClass().getSimpleName()).append(".").append(name).append("=?");
+					sql1.append(orders.getClass().getSimpleName()).append(".").append(name).append("=?");
 					parList.add(value);
 
 				}
@@ -113,7 +113,7 @@ public class OrderDao extends BaseDAO {
 
 		for (int i = 0; i < fatherlist.size(); i++) {
 			StringBuffer sqlString = new StringBuffer(
-					"select `order`.*,book.bname,`user`.username,address.* from ((`order` LEFT JOIN book on book.ISBN=`order`.ISBN) LEFT JOIN `user` on `order`.userid=`user`.userid) LEFT JOIN address USING(addressid) where `order`.fatherorder=");
+					"select `orders`.*,book.bname,`user`.username,address.* from ((`orders` LEFT JOIN book on book.ISBN=`orders`.ISBN) LEFT JOIN `user` on `orders`.userid=`user`.userid) LEFT JOIN address USING(addressid) where `orders`.fatherorder=");
 			sqlString.append(fatherlist.get(i));
 			System.out.println(sqlString);
 			PreparedStatement tempPS = connection.prepareStatement(sqlString.toString());

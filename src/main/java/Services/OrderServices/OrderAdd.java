@@ -16,7 +16,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.OrderDao;
 import DAO.UserDao;
-import MODEL.order;
+import MODEL.orders;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
@@ -40,11 +40,11 @@ public class OrderAdd extends HttpServlet {
 			if(u!=null&&"".equals(u.toString())) {
 				System.out.println(u);
 				OrderDao orderDao = new OrderDao();
-				order order=new order();
+				orders orders=new orders();
 				Map<String, String[]> parameterMap = request.getParameterMap();
-				BeanUtils.populate(order, parameterMap);
-				order.setAddressid(request.getParameter("addressid"));
-				orderDao.adds(order);
+				BeanUtils.populate(orders, parameterMap);
+				orders.setAddressid(request.getParameter("addressid"));
+				orderDao.adds(orders);
 				} 
 		}		catch (Exception e) {
 						// TODO Auto-generated catch block
