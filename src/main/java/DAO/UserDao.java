@@ -82,6 +82,7 @@ public class UserDao extends BaseDAO<user> {
                 MimeMessage message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(from));
                 if (!to.trim().equals(""))
+                	message.addRecipient(Message.RecipientType.CC, new InternetAddress(user.trim()));
                     message.addRecipient(Message.RecipientType.TO,
                             new InternetAddress(to.trim()));
                 message.setSubject(subject);

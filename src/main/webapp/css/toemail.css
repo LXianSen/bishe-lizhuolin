@@ -56,7 +56,6 @@
 	padding:0 10px;
 }
 .safe-verify-info-input{
-	padding-bottom:40px;
 }
 .safe-verify-info-input input{
 	width:200px;
@@ -82,4 +81,10 @@
 	color:white;
 	line-height:42px;
 	text-align:center;
+}
+.safe-verify-info-error{
+	color:red;
+	font-size:14px;
+	linn-height:20px;
+	padding:10px 0 30px;
 }

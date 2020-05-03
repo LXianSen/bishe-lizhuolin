@@ -12,7 +12,7 @@
 <div class="wrap">
 <div class="layout">  
   <div class="n-frame device-frame reg_frame">
-    <div class="external_logo_area"><a class="milogo" href="javascript:void(0)"></a></div>
+    <div class="external_logo_area" style="opacity:0"><a class="milogo" href="javascript:void(0)"></a></div>
     <div class="title-item t_c">
       <h4 class="title_big30">重置密码</h4>
     </div>
