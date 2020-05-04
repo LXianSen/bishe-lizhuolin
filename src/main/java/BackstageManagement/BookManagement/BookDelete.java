@@ -48,6 +48,7 @@ public class BookDelete extends HttpServlet {
 			try {
 				BeanUtils.populate(book,paraMap);
 				bkDao.deletes(book);
+				System.out.println(book);
 				jsonobj.put("code", "200");
 				jsonobj.put("msg", "成功删除该用户");
 			} catch (IllegalAccessException | InvocationTargetException e) {

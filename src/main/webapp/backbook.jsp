@@ -59,6 +59,13 @@
             border-radius: 5px;
             background-color: #c1c1c1;
         }
+        .model-form {
+	padding: 25px 30px 0 0;
+}
+
+.text-right {
+	text-align: right;
+}
     </style>
 </head>
 <body class="layui-layout-body">
@@ -115,26 +122,26 @@
                                     <div class="layui-inline">
                                         <label class="layui-form-label">书名:</label>
                                         <div class="layui-input-inline">
-                                            <input name="roleCode" class="layui-input" placeholder="输入书名">
+                                            <input name="bname" class="layui-input" placeholder="输入书名">
                                         </div>
                                     </div>
                                     <div class="layui-inline">
                                         <label class="layui-form-label">作者:</label>
                                         <div class="layui-input-inline">
-                                            <input name="roleCode" class="layui-input" placeholder="输入作者">
+                                            <input name="bauthor" class="layui-input" placeholder="输入作者">
                                         </div>
                                     </div>
                                     <div class="layui-inline">
                                         <label class="layui-form-label">出版社:</label>
                                         <div class="layui-input-inline">
-                                            <input name="roleCode" class="layui-input" placeholder="输入出版社">
+                                            <input name="bpublish" class="layui-input" placeholder="输入出版社">
                                         </div>
                                     </div>
                                     
                                     <div class="layui-inline">
                                         <label class="layui-form-label">ISBN:</label>
                                         <div class="layui-input-inline">
-                                            <input name="roleCode" class="layui-input" placeholder="输入ISBN">
+                                            <input name="ISBN" class="layui-input" placeholder="输入ISBN">
                                         </div>
                                     </div>
                                 </div>
@@ -434,41 +441,41 @@
         <div class="layui-form-item">
             <label class="layui-form-label layui-form-required">ISBN:</label>
             <div class="layui-input-block">
-                <input name="ISBN" placeholder="请输入ISBN" class="layui-input"
+                <input name="ISBN" placeholder="请输入ISBN" class="layui-input eisbn"
                        lay-verType="tips" lay-verify="required" required/>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label layui-form-required">书名:</label>
             <div class="layui-input-block">
-                <input name="bname" placeholder="请输入书名" class="layui-input"
+                <input name="bname" placeholder="请输入书名" class="layui-input ebname"
                        lay-verType="tips" lay-verify="required" required/>
             </div>
         </div>
 		<div class="layui-form-item">
             <label class="layui-form-label layui-form-required">作者:</label>
             <div class="layui-input-block">
-                <input name="bauthor" placeholder="请输入作者" class="layui-input"
+                <input name="bauthor" placeholder="请输入作者" class="layui-input ebauthor"
                        lay-verType="tips" lay-verify="required" required/>
             </div>
         </div>
 		<div class="layui-form-item">
             <label class="layui-form-label layui-form-required">出版社:</label>
             <div class="layui-input-block">
-                <input name="bpublish" placeholder="请输入出版社" class="layui-input"
+                <input name="bpublish" placeholder="请输入出版社" class="layui-input ebpublish"
                        lay-verType="tips" lay-verify="required" required/>
             </div>
         </div>
 		<div class="layui-form-item">
             <label class="layui-form-label layui-form-required">出版日期:</label>
             <div class="layui-input-block">
-                <input type="text" class="layui-input" id="test1">
+                <input type="text" class="layui-input ebdate" id="test1">
             </div>
         </div>
 		<div class="layui-form-item">
             <label class="layui-form-label layui-form-required">单价:</label>
             <div class="layui-input-block">
-                <input name="bprice" placeholder="请输入单价" class="layui-input"
+                <input name="bprice" placeholder="请输入单价" class="layui-input ebprice"
                        lay-verType="tips" lay-verify="required" required/>
             </div>
         </div>
@@ -490,7 +497,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label layui-form-required">所属类别:</label>
             <div class="layui-input-block">
-                <select name="permission" lay-verify="">
+                <select name="sontype" lay-verify="" class="setPermission">
   					<option value="">请选择一个类别</option>
   					<option value="0">普通用户</option>
   					<option value="1">管理员</option>
@@ -498,30 +505,21 @@
             </div>
         </div>
         <div class="layui-form-item text-right">
-            <button class="layui-btn" lay-filter="orderEditSubmit" lay-submit>保存</button>
+            <button class="layui-btn" lay-filter="bookEditSubmit" lay-submit>保存</button>
             <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
         </div>
     </form>
 			</script>
     </div>
     <!-- <script src="../src/layui.js"></script> -->
-    <!-- <script type="text/javascript" src="js/jquery-3.4.1.js"></script>  -->
+    <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
     <script>
         //JavaScript代码区域
         layui.use('element', function () {
             var element = layui.element;
 
         });
-        layui.use('laydate', function () {
-            var laydate = layui.laydate;
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#test1', //指定元素
-                type: 'datetime',
-                range: true,
-            });
-        });
+        
         layui.use('form', function(){
             var form = layui.form;
             
@@ -536,20 +534,53 @@
         //     console.log(tar)
         //     tar.toggleClass("layui-form-selected")
         // })
-        layui.use(['table','layer','laydate'], function(){
+        layui.use(['table','layer','laydate','form'], function(){
         var table = layui.table;
         var layer=layui.layer;
         var laydate=layui.laydate;
+        var form =layui.form;
+        
         laydate.render({
         	elem:'#test1',
+        })
+        
+        form.on('submit(roleTbSearch)',function(obj){
+        	table.render({
+                elem: '#roleTable'
+                ,height: 312
+                ,url: 'BooksShow' //数据接口
+                ,method:'post'
+                ,page: true //开启分页
+                ,where : obj.field
+                ,cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                ,{field: 'ISBN', title: 'ISBN', width:'10%', fixed: 'left'}
+                ,{field: 'bname', title: '书名', width:'10%'}
+                ,{field: 'bauthor', title: '作者', width:'10%' , sort: true}
+                ,{field: 'bpublish', title: '出版社', width: '10%'}
+                ,{field: 'bdate', title: '出版日期', width: '10%'}
+                ,{field: 'bprice', title: '单价', width: '10%'}
+                ,{field: 'bdiscount', title: '折扣', width: '10%'}
+                ,{field: 'stock', title: '库存', width: '10%'}
+                ,{field: 'sontype', title: '类别', width: '10%'}
+                ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
+                ]],
+            toolbar: ['<p>',
+                '<button lay-event="add" class="layui-btn layui-btn-sm icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>&nbsp;',
+                '</p>'].join(''),
+                defaultToolbar : [],
+                // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
+            });
+        	return false;
         })
         
         // 第一个实例
             table.render({
                 elem: '#roleTable'
                 ,height: 312
-                ,url: '/demo/table/user/' //数据接口
+                ,url: 'BooksShow' //数据接口
                 ,page: true //开启分页
+                ,method:'post'
                 ,cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
                 ,{field: 'ISBN', title: 'ISBN', width:'10%', fixed: 'left'}
@@ -570,30 +601,76 @@
                 // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
             });
             table.on('toolbar(roleTable)',function(obj){
+            	typedata();
 				if(obj.event=="add"){
 					
-					layer.open({
+					var index1=layer.open({
 						type:1,
 						title:"添加书籍",
 						content:$("#bookEditDialog").html(),
 						success:function(layero,index){
 							form.render()
-							form.on('submit(userEditSubmit)',function(data){
-								
+							
+							form.on('submit(bookEditSubmit)',function(data){
+								layer.close(index1)
+								$.post("BookAdd",data.field,function(data){
+									data=JSON.parse(data)
+									layer.msg(data.msg)
+								})
 								return false;
 							})
 						}
 					})
 				}
 			})
+			table.on('tool(roleTable)',function(obj){
+				var data = obj.data
+				typedata();
+				if(obj.event=='del'){
+					obj.del();
+					$.post("BookDelete",data,function(data){
+						data=JSON.parse(data)
+						layer.msg(data.msg)
+					})
+				}else if(obj.event=="edit"){
+					var index = layer.open({
+						type : 1,
+						title : "修改书籍信息",
+						content : $("#bookEditDialog").html(),
+						success : function(layero, index) {
+							$(".eisbn").attr("disabled","")
+							$(".ebname").attr("disabled","")
+							$(".ebauthor").attr("disabled","")
+							$(".ebpublish").attr("disabled","")
+							$(".ebprice").attr("disabled","")
+							form.val('bookEditForm', data);
+							form.on('submit(bookEditSubmit)', function(data) {
+								
+								$.post("BookUpdate", data.field,
+										function(data) {
+											layer.close(index)
+										})
+								return false;
+							})
+						}
+					})
+				}
+			})
+			function typedata(){
+            	$.post("GetAllSontypes",{},function(data){
+            		data=JSON.parse(data)
+            		console.log(data)
+            		$(".setPermission").empty();
+            		$(".setPermission").append('<option value="">请选择一个类别</option>')
+            		data.forEach(function(item,index){
+            			$(".setPermission").append('<option value='+item+'>'+item+'</option>')
+            		})
+            		form.render('select')
+            	})
+            }
         });
-        /* layui.use('layer', function(){
-            var layer = layui.layer;
-            layer.open({
-                type:1,
-                title:'订单详情'
-            })
-        }); */
+        
+        
     </script>
 </body>
 

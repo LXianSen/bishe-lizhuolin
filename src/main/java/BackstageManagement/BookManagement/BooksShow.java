@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import DAO.BookDao;
 import DAO.UserDao;
@@ -55,7 +56,7 @@ public class BooksShow extends HttpServlet {
 				int count=Integer.parseInt(request.getParameter("page"));
 				int size=Integer.parseInt(request.getParameter("limit"));
 				booklist=bkDao.selectbookpages(book, count, size);
-				Gson gson=new Gson();
+				Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 				PrintWriter outPrintWriter=response.getWriter();
 				String userJSON=gson.toJson(booklist);
 				tempList=bkDao.selects(book);
