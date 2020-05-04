@@ -16,6 +16,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import DAO.BkTypeDao;
 import DAO.BookDao;
 import DAO.UserDao;
+import MODEL.book;
 import MODEL.booktype;
 import MODEL.user;
 import net.sf.json.JSONObject;
@@ -46,9 +47,17 @@ public class TypeDelete extends HttpServlet {
 			BkTypeDao bkTypeDao=new BkTypeDao();
 			try {
 				BeanUtils.populate(booktype,paraMap);
-				bkTypeDao.deletes(booktype);
-				jsonobj.put("code", "200");
-				jsonobj.put("msg", "成功删除该用户");
+				String fatherString=booktype.getFathertype().toString();
+				String sonString=booktype.getSontype().toString();
+				if (sonString!=null&&!"".equals(sonString)) {
+					bkTypeDao.changetonull(booktype);
+					bkTypeDao.deletes(booktype);
+					jsonobj.put("code", "200");
+					jsonobj.put("msg", "成功删除该类别");
+				}else {
+					
+				}
+
 			} catch (IllegalAccessException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

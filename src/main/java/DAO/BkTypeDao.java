@@ -114,4 +114,11 @@ public class BkTypeDao extends BaseDAO<booktype> {
 		return sontyypeList;
 		
 	}
+	public void changetonull(booktype oldtype) throws SQLException, Exception{
+		Connection connection=Druid().getConnection();
+		StringBuffer sqlString=new StringBuffer("update booktype set sontype='' where sontype=");
+		sqlString.append(oldtype.getSontype());
+		PreparedStatement pStatement=connection.prepareStatement(sqlString.toString());
+		pStatement.executeUpdate();
+	}
 }

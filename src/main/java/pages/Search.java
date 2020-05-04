@@ -34,7 +34,7 @@ public class Search extends HttpServlet {
 			String inputmsg=(String)request.getParameter("inputmsg");
 			List<book> books=bkDao.getBookNoClear(inputmsg);
 			System.out.println(books);
-			String booksJSON=gson.toJson(books.toString());
+			String booksJSON=gson.toJson(books);
 			System.out.println(booksJSON);
 			out.println(booksJSON);
 		} catch (Exception e) {
