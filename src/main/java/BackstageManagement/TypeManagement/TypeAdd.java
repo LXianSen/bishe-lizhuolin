@@ -1,6 +1,7 @@
 package BackstageManagement.TypeManagement;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class TypeAdd extends HttpServlet {
 			JSONObject jsonobj=new JSONObject();
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=UTF-8");
-			
+			PrintWriter out =response.getWriter();
 			UserDao userDao=new UserDao();
 			user u=userDao.CheckIsLogin(request, response);
 			
@@ -54,6 +55,7 @@ public class TypeAdd extends HttpServlet {
 					jsonobj.put("msg", "该类型已存在");
 					}
 			   }
+			out.println(jsonobj);
 		   }catch (Exception e) {
 			// TODO: handle exception
 		}

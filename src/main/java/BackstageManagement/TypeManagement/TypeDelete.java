@@ -1,6 +1,7 @@
 package BackstageManagement.TypeManagement;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.Map;
@@ -47,13 +48,14 @@ public class TypeDelete extends HttpServlet {
 			BkTypeDao bkTypeDao=new BkTypeDao();
 			try {
 				BeanUtils.populate(booktype,paraMap);
-				String fatherString=booktype.getFathertype().toString();
 				String sonString=booktype.getSontype().toString();
 				if (sonString!=null&&!"".equals(sonString)) {
-					bkTypeDao.changetonull(booktype);
+					bkTypeDao.changetonull(booktype.getSontype().toString());
 					bkTypeDao.deletes(booktype);
 					jsonobj.put("code", "200");
 					jsonobj.put("msg", "成功删除该类别");
+					PrintWriter oPrintWriter=response.getWriter();
+					oPrintWriter.println(jsonobj);
 				}else {
 					
 				}

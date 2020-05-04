@@ -16,6 +16,7 @@ import org.apache.commons.collections.map.HashedMap;
 import com.google.gson.Gson;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
+import MODEL.book;
 import MODEL.booktype;
 
 public class BkTypeDao extends BaseDAO<booktype> {
@@ -114,10 +115,12 @@ public class BkTypeDao extends BaseDAO<booktype> {
 		return sontyypeList;
 		
 	}
-	public void changetonull(booktype oldtype) throws SQLException, Exception{
+	public void changetonull(String nullString) throws SQLException, Exception{
+		book oldbook=new book();
+		oldbook.setSontype(nullString);
 		Connection connection=Druid().getConnection();
-		StringBuffer sqlString=new StringBuffer("update booktype set sontype='' where sontype=");
-		sqlString.append(oldtype.getSontype());
+		StringBuffer sqlString=new StringBuffer("update book set sontype='' where sontype='");
+		sqlString.append(oldbook.getSontype()).append("'");
 		PreparedStatement pStatement=connection.prepareStatement(sqlString.toString());
 		pStatement.executeUpdate();
 	}

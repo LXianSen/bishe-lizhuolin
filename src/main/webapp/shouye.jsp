@@ -25,8 +25,6 @@
 					<div class="m-login-info">
 						<a href="personCenter.jsp" class="m-safe-anchor" data-src="/personal-center/orders"
 							data-target="_blank">
-							<!-- <span class="m-icons m-icons-user-active  h-user-icon" data-src="" href=""
-								style="background: ./images/user.png center center/100% no-repeat; border-radius: 50%;"></span> -->
 							<span class="iconfont icon-icon-test2"></span>
 							<span class="m-username">丑丑小怪物</span>
 							<span class="iconfont icon-icon-test4"></span>

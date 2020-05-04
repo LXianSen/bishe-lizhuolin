@@ -57,7 +57,7 @@
             </div>
           </div>        
           <div class="fixed_bot mar_phone_dis3">
-            <input class="btn332 btn_reg_1" type="submit" value="提交">
+            <input class="btn332 btn_reg_1" type="button" value="提交">
           </div>    
         </div>      
       </div>
@@ -67,4 +67,26 @@
 </div>
 </div>
 </body>
+<script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+function getParams() {
+    var params = {};
+    if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {
+        var paramArray = unescape(this.location.search).substring(1, this.location.search.length).split("&");
+        if (paramArray.length > 0) {
+            paramArray.forEach(function (currentValue) {
+                params[currentValue.split("=")[0]] = currentValue.split("=")[1];
+            });
+        }
+    }
+    return params;
+}
+
+var getparams=getParams().email
+	$(".btn332").click(function(){
+		$.post("ChangePWD",{email:getparams,pwd:$("#repwd").val()},function(data){
+			window.location.href="login.jsp"
+		})
+	})
+</script>
 </html>

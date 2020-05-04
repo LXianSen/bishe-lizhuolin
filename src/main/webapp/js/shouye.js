@@ -4,21 +4,16 @@
 	var book = $('.new_bookList>.book')
 	var userbox = $('.m-user-con')
 	var loginbox = $('.login')
-	var type = [
-
-	]
-	console.log("rrrrrrrrrrrrrrrrrr")
+	var type = []
 	var searchData = [
 		/*{ name: "张爱玲", type: "author", no: "001" },
 		{ name: "白夜行", type: "book", no: "0000001" },
 		{ name: "清华出版社", type: "publish", no: "0011" }*/
 	]
-	// $(window).scroll(function(){
-	//     console.log($("body").scrollTop())
-	// })
+	
 	//处理返回顶部按钮
 	$(".toTop").click(function () {
-		$('body,html').animate({
+		$('body,html').animate({ 
 			scrollTop: 0
 		},
 			500);
@@ -33,12 +28,11 @@
 		})
 	}
 	
-	
+	//点击
 	$(".m-auto-list>ul>li").click(function (e) {
 		let Ttype = $(e.target).data("type")
 		let Tno = $(e.target).data("no")
 		let value = $(e.target).val()
-		console.log(Ttype)
 		if (Ttype == "book") {
 			window.location.href = "detail.jsp?search_name=" + value + "&ISBN=" + Tno
 		} else {
@@ -78,7 +72,6 @@
 
 			navDetails.removeClass('hide')
 			var li = e.target
-			console.log(li)
 			var second = type[$(li).data('no')]
 			$('.nav-details>ul').empty()
 			for (let i = 0; i < second.secondname.length; i++) {
@@ -188,7 +181,7 @@
 		if (user) {
 			userbox.removeClass('userhide')
 			loginbox.addClass('userhide')
-			$('.m-username').text(user.userName || user.userId)
+			$('.m-username').text(user.username || user.userd)
 		}
 
 

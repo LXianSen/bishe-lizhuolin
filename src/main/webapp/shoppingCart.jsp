@@ -459,7 +459,36 @@ img {
 </style>
 </head>
 <body>
-	<header> </header>
+	<header>
+			<div class="headerCenter">
+				<div class=" login">
+					<a href="login.jsp">登录</a> <a href="register.jsp">注册</a>
+				</div>
+				<div class="fr site-item m-user-con userhide">
+					<div class="m-login-info">
+						<a href="personCenter.jsp" class="m-safe-anchor" data-src="/personal-center/orders"
+							data-target="_blank">
+							<!-- <span class="m-icons m-icons-user-active  h-user-icon" data-src="" href=""
+								style="background: ./images/user.png center center/100% no-repeat; border-radius: 50%;"></span> -->
+							<span class="iconfont icon-icon-test2"></span>
+							<span class="m-username">丑丑小怪物</span>
+							<span class="iconfont icon-icon-test4"></span>
+						</a>
+						<div class="site-item-nav hidden">
+							<ul class="site-nav user-nav">
+								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/orders" href="#"
+										class="m-safe-anchor">我的订单</a></li>
+								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/collections" href="#"
+										class="m-safe-anchor">我的收藏</a></li>
+								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/address" href="#"
+										class="m-safe-anchor">地址管理</a></li>
+								<li><a rel="nofollow" href="javascript:;">退出登录</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
 	<div>
 		<div class="express-append">
 			<div class="container">

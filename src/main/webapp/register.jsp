@@ -207,7 +207,6 @@ section {
         }
         
         toLogin.click(function(){
-        	console.log(1111)
         	window.location.href="login.jsp"
         })
         //
@@ -273,8 +272,8 @@ section {
             		type:"add"
             	},function(data){
             		data=JSON.parse(data)
-            		if(data){
-            			
+            		if(data.code=="200"){
+            			window.location.href="login.jsp"
             		}
             		console.log(data)
             	})

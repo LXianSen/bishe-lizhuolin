@@ -123,7 +123,7 @@
 						</dl></li>
 					<li class="layui-nav-item"><a href="backuser.jsp">用户管理</a></li>
 					<li class="layui-nav-item"><a href="javascript:;">权限管理</a></li>
-					<li class="layui-nav-item"><a href="">类别管理</a></li>
+					<li class="layui-nav-item"><a href="backfsttype.jsp">类别管理</a></li>
 					<li class="layui-nav-item layui-this"><a href="javascript:;">订单管理</a></li>
 				</ul>
 			</div>
