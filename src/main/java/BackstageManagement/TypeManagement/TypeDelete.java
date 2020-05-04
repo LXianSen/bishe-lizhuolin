@@ -54,12 +54,13 @@ public class TypeDelete extends HttpServlet {
 					bkTypeDao.deletes(booktype);
 					jsonobj.put("code", "200");
 					jsonobj.put("msg", "成功删除该类别");
-					PrintWriter oPrintWriter=response.getWriter();
-					oPrintWriter.println(jsonobj);
-				}else {
 					
+				}else {
+					jsonobj.put("code", "error");
+					jsonobj.put("msg", "一级类别不能删除，请删除二级类别！");
 				}
-
+				PrintWriter oPrintWriter=response.getWriter();
+				oPrintWriter.println(jsonobj);
 			} catch (IllegalAccessException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

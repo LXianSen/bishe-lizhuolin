@@ -374,6 +374,6 @@
 </body>
 
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="js/shouye.js?ver=2"></script>
+<script type="text/javascript" src="js/shouye.js?ver=1"></script>
 
 </html>

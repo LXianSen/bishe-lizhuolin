@@ -649,20 +649,6 @@
                                             <div class="update isHidden"><span>修改</span><span>删除</span></div>
                                         </div>
                                     </div>
-                                    <div class="address-item others unselected notHidden">
-                                        <div class="address-item-content">
-                                            <div class="mark addr-unvisible">默认</div>
-                                            <div class="content">
-                                                <div class="name">吴琪瑶</div>
-                                                <div class="tel">151****2112</div>
-                                                <div class="city">四川（成都市）金牛区人民北路街道</div>
-                                                <div class="address">龙湖上城五栋一单元</div>
-                                                <div class="city">610036</div>
-                                            </div>
-                                            <div class="update isHidden"><span>设为默认地址</span><span>修改</span><span>删除</span>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="address-item others unselected toAddAddress">
                                         <div class="addIcon"><a class="m-icons m-icons-addAddress " data-src=""
                                                 href="javascript:;"></a></div>
@@ -760,12 +746,12 @@
                         </div>
                         <div class="input-box2">
                             <div class="input-u"><textarea type="text" placeholder="详细地址"
-                                    class="default"></textarea>
+                                    class="m-input default detail"></textarea>
                                 <div class="hint default"> </div>
                             </div>
                         </div>
                         <div class="input-box3">
-                            <div class="input-u"><input type="text" placeholder="邮政编号" class="m-input i-text default"
+                            <div class="input-u"><input type="text" placeholder="邮政编号" class="m-input i-text default cityno"
                                     value="" readonly="">
                                 <div class="hint default"> </div>
                             </div>
@@ -773,7 +759,7 @@
                                     href="javascript:;"></a>&nbsp;&nbsp;设为默认</div>
                         </div>
                         <div class="submit-box"><a class="submit-center m-btns m-btn-lg m-btn-brown"
-                                href="javascript:;">保存</a><a class="submit-margin submit-center m-btns m-btn-lg m-btn-brown"
+                                href="javascript:;">保存</a><a class="submit-margin submit-center m-btns m-btn-lg m-btn-brown canclebtn"
                                 href="javascript:;">取消</a></div>
                         <div class="selectAddress isHidden">
                             <div class="closeIcon"><a class="m-icons m-icons-close-hover " data-src=""
@@ -839,12 +825,14 @@
                     break
                 };
                 case "修改": {
-                    console.log(tar.parents(".address-item-content").children(".content"))
                     let content=tar.parents(".address-item-content").children(".content")
+                    console.log(content)
                     $(".m-modal-portal").removeClass("isHidden")
-                    $(".uname").val(content.children('name').text())
-                    $(".utel").val(content.children('tel').text())
-    
+                    $(".uname").val(content.children('.name').text())
+                    $(".utel").val(content.children('.tel').text())
+    				$(".province").val(content.children(".city").text())
+    				$(".detail").val(content.children(".address").text())
+    				$(".cityno").val(content.children(".cityno").text())
                 }
             }
         })
@@ -859,6 +847,10 @@
         /* $(".img img").attr(src,data.) */
         $(".product-name").text(data.bname)
         $(".txt").text(data.bprice)
+        
+        $(".canclebtn").click(function(){
+        	$(".m-modal-portal").addClass("isHidden")
+        })
     </script>
     
     </html>

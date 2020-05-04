@@ -300,7 +300,7 @@ body {
 					                layer.close(i);
 					                var loadIndex = layer.load(2),postdata;
 					                if(obj.data.hasOwnProperty("children")){
-					                	postdata={fathertype:obj.data.title}
+					                	postdata={fathertype:obj.data.title,sontype:""}
 					                }else{
 					                	postdata={sontype:obj.data.title}
 					                }
