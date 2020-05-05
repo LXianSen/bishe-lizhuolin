@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/shouye.css?ver=2">
 <style>
 * {
 	margin: 0;

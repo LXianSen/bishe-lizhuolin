@@ -5,6 +5,8 @@ var cart = $('.cart')
 	var img = $('.book-info-img .thumb .thumb-container .thumb-pic img')
     var bigImg = $('.book-info-img .image img')
     
+    var getparams=getParams().ISBN  //获得url地址后的isbn参数
+    
     //4.26add
     
     //获得地址后面的参数
@@ -21,11 +23,11 @@ var cart = $('.cart')
         return params;
     }
 
-    var getparams=getParams().ISBN
+    
     
     $.post('BookDetail',{isbn:getparams},function(data){
-    	sessionStorage.setItem("bookinfo",data[0])
         data=JSON.parse(data)
+        sessionStorage.setItem("bookinfo",JSON.stringify(data[0]))
         
         $(".good-name").text(data[0].bname)
         $(".price .value").text(data[0].bprice)
@@ -131,6 +133,7 @@ var cart = $('.cart')
 	
 	//购买
 	$(".buy").click(function(){
+		sessionStorage.setItem("count",$(".count-input").val())
 		window.location.href="order.jsp"
 	})
 	

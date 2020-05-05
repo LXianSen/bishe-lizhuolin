@@ -253,3 +253,7 @@
 
 	})
 	})
+	
+	$(".toCart").click(function(){
+        	window.location.href="shoppingCart.jsp"
+        })

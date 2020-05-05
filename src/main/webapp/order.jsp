@@ -8,6 +8,7 @@
         <title>结算</title>
         <link rel="stylesheet" href="css/order.css">
         <link rel="stylesheet" href="iconfont/iconfont.css">
+        <link rel="stylesheet" href="css/shouye.css?ver=2">
         <style>
             * {
                 margin: 0;
@@ -626,6 +627,34 @@
     </head>
     
     <body>
+    <header>
+			<div class="headerCenter">
+				<div class=" login">
+					<a href="login.jsp">登录</a> <a href="register.jsp">注册</a>
+				</div>
+				<div class="fr site-item m-user-con userhide">
+					<div class="m-login-info">
+						<a href="personCenter.jsp" class="m-safe-anchor" data-src="/personal-center/orders"
+							data-target="_blank">
+							<span class="iconfont icon-icon-test2"></span>
+							<span class="m-username">丑丑小怪物</span>
+							<span class="iconfont icon-icon-test4"></span>
+						</a>
+						<div class="site-item-nav hidden">
+							<ul class="site-nav user-nav">
+								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/orders" href="#"
+										class="m-safe-anchor">我的订单</a></li>
+								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/collections" href="#"
+										class="m-safe-anchor">我的收藏</a></li>
+								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/address" href="#"
+										class="m-safe-anchor">地址管理</a></li>
+								<li><a rel="nofollow" href="javascript:;">退出登录</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
         <div class="express-append">
             <div class="wrapper">
                 <div class="m-secondary-navigator"><span><a href="/">首页</a></span><span><a
@@ -704,8 +733,6 @@
                         <div class="check-freeInfo fr">
                             <div class="freeInfo-item"><span class="freeInfo-key">商品总价：</span><span
                                     class="freeInfo-value">159.00元</span></div>
-                            <div class="freeInfo-item fee-map-item "><span class="freeInfo-key">运费 ：</span><span
-                                    class="freeInfo-value">0.00元</span></div>
                             <div class="freeInfo-item"><span class="freeInfo-key">优惠：</span><span
                                     class="freeInfo-value">0.00元</span></div>
                             <div class="total"><span class="freeInfo-key">合计：</span><span
@@ -774,11 +801,27 @@
                 </div>
             </div>
         </div>
+        
+        <div class="m-fixedBar">
+		<ul class="fixed-nav">
+			<li class="toCart">
+				<span class="iconfont icon-icon-test search_font shopcart"></span>
+				<p class="text">购物车</p>
+			</li>
+			<li class="toPerson">
+				<span class="iconfont icon-icon-test2 search_font"></span>
+				<p class="text">个人中心</p>
+			</li>
+			<li class="toTop">
+				<span class="iconfont icon-icon-test7 search_font"></span>
+				<p class="text">回到顶部</p>
+			</li>
+		</ul>
+	</div>
     </body>
     <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/city-picker.js"></script>
     <script>
-    console.log("eeeeeeee")
     	$.post("OrderCommit",{},function(data){
     		data=JSON.parse(data)
     		if(data.code=="error"){
@@ -843,13 +886,20 @@
             $(".m-modal-portal").removeClass("isHidden")
         })
         var data=JSON.parse(sessionStorage.getItem("bookinfo"))
+        var count = JSON.parse(sessionStorage.getItem("count"))
         console.log(data)
-        /* $(".img img").attr(src,data.) */
+        $(".img img").attr('src',data.img1) 
         $(".product-name").text(data.bname)
-        $(".txt").text(data.bprice)
+        $(".txt").text(data.bprice*count)
+        $(".price").text("¥"+data.bprice+"×"+count)
+        $(".freeInfo-value").text(data.bprice*count+"元")
         
         $(".canclebtn").click(function(){
         	$(".m-modal-portal").addClass("isHidden")
+        })
+        
+        $(".toCart").click(function(){
+        	window.location.href="shoppingCart.jsp"
         })
     </script>
     
