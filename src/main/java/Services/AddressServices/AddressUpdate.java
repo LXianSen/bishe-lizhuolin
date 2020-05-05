@@ -38,7 +38,7 @@ public class AddressUpdate extends HttpServlet {
 
 			user u=userDao.CheckIsLogin(request, response);
 
-			if(u!=null&&"".equals(u.toString())) {
+			if(u!=null&&!"".equals(u.toString())) {
 				AddressDao addressDao=new AddressDao();
 				address newAddress=new address();
 				address oldAddress=new address();

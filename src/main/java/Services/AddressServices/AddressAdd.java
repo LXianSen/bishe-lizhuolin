@@ -49,7 +49,7 @@ public class AddressAdd extends HttpServlet {
 		
 
 		//获取表单所有数据并添加到数据库
-			if(u!=null&&"".equals(u.toString())) {
+			if(u!=null&&!"".equals(u.toString())) {
 				address address=new address();
 				AddressDao addressDao=new AddressDao();
 				Map<String, String[]>addressMap=request.getParameterMap();

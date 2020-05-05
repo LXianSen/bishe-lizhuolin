@@ -794,16 +794,8 @@
                                 <div class="hint default"> </div>
                             </div>
                         </div>
-                        <div class="input-box3">
-                            <div class="input-u"><input type="text" placeholder="邮政编号" class="m-input i-text default cityno"
-                                    value="" readonly="">
-                                <div class="hint default"> </div>
-                            </div>
-                            <div class="m-checkbox">
-                            	<span class="iconfont icon-icon-test4"></span>
-                            &nbsp;&nbsp;设为默认</div>
-                        </div>
-                        <div class="submit-box"><a class="submit-center m-btns m-btn-lg m-btn-brown"
+                        
+                        <div class="submit-box"><a class="submit-center m-btns m-btn-lg m-btn-brown saveaddress"
                                 href="javascript:;">保存</a><a class="submit-margin submit-center m-btns m-btn-lg m-btn-brown canclebtn"
                                 href="javascript:;">取消</a></div>
                         <div class="selectAddress isHidden">
@@ -840,6 +832,9 @@
     <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
     <!-- <script src="js/city-picker.js"></script> -->
     <script>
+    var isadd,addressID
+    addressinit()
+    function addressinit(){
     	$.post("OrderCommit",{},function(data){
     		data=JSON.parse(data)
     		if(data.code=="error"){
@@ -848,11 +843,20 @@
     			console.log(data)
     			$(".address-list").empty()
     			data.forEach(function(item,index){
-    				$(".address-list").append('<div class="address-item first selected notHidden"><div class="address-item-content"><div class="mark addr-visible">默认</div><div class="content"><div class="name">'+item.contact+'</div><div class="tel">'+item.tel+'</div><div class="city">'+item.province+"省"+item.city+"市"+item.county+"区"+'</div><div class="address">'+item.details+'</div><div class="cityno">'+item.addressid+'</div></div><div class="update isHidden"><span>修改</span><span>删除</span></div></div></div>')
+    				$(".address-list").append('<div class="address-item others unselected notHidden" data-no='+item.addressid+'><div class="address-item-content"><div class="mark addr-unvisible">默认</div><div class="content"><div class="name">'+item.contact+'</div><div class="tel">'+item.tel+'</div><div class="city">'+item.province+'/'+item.city+'/'+item.county+'</div><div class="address">'+item.details+'</div></div><div class="update isHidden"><span>设为默认地址</span><span>修改</span><span>删除</span></div></div></div>')
+    				if(item.isdefault=="1"){
+    					$(".address-item").addClass("first").removeClass("others").addClass("selected").removeClass("unselected")
+    					$(".mark").addClass("addr-visible").removeClass("addr-unvisible")
+    					$(".update span:first").remove()
+    				}
+    				
     			})
     			$(".address-list").append('<div class="address-item others unselected toAddAddress"><div class="addIcon"><span class="iconfont icon-add"></span></div><div class="addAds">添加新地址</div></div>')
+    			
     		}
     	})
+    }
+    	
         $(".address-list").on("mouseover",".address-item",function(e){
             console.log(1)
             var tar = $(e.target)
@@ -876,7 +880,9 @@
                     $(".mark").addClass("addr-unvisible").removeClass("addr-visible")
                     tar.parents(".address-item").addClass("selected").removeClass("unselected")
                     tar.parents(".address-item-content").children(".mark").addClass("addr-visible").removeClass("addr-unvisible")
-                    $.post("",{},function(){
+                    $(".update").prepend("<span>设为默认地址</span>")
+    	  			tar.parents(".update").children().first().remove()
+                    $.post("SetDefaultAddress",{addressid:tar.parents(".address-item").data("no"),isdefault:"1"},function(){
     
                     })
                     break
@@ -886,14 +892,17 @@
                     break
                 };
                 case "修改": {
+                	isadd=false
                     let content=tar.parents(".address-item-content").children(".content")
                     $(".layer-title").text("修改收货地址");
                     $(".m-modal-portal").removeClass("isHidden")
                     $(".uname").val(content.children('.name').text())
                     $(".utel").val(content.children('.tel').text())
     				$(".province").val(content.children(".city").text())
-    				$(".detail").val(content.children(".address").text())
+    				$(".address").val(content.children(".address").text())
     				$(".cityno").val(content.children(".cityno").text())
+    				ary=content.children(".city").text().split("/")
+    				addressID=tar.parents(".address-item").data("no")
                 }
             }
         })
@@ -903,6 +912,7 @@
         $(".address-list").on("click",".toAddAddress",function(e){
         	$(".layer-title").text("添加收货地址");
             $(".m-modal-portal").removeClass("isHidden")
+            isadd=true
         })
         var data=JSON.parse(sessionStorage.getItem("bookinfo"))
         var count = JSON.parse(sessionStorage.getItem("count"))||0
@@ -944,12 +954,11 @@
       var provinceData,cityData,areaData,streetData
       var type1="province"
       var code="CITY_CODE"
-    	  var str="";
+    	  var str="",ary=[];
       var testData={
 
       }
       function showProvince(tar,istop){
-    	  debugger
         	if(istop){
         		var index=tar?$(".sd-span").index(tar)+1:0
         		tar.nextAll().remove();
@@ -1010,12 +1019,14 @@
                   break
               };
               case 4:{
-            	  str=""
+            	  ary=[]
+            	  $(".province").val("");
             	  Array.from($(".sd-span")).forEach(function(item,index){
-            		  str=str+$(item).text()+'/'
+            		  ary.push($(item).text())
+            		  /* str=str+$(item).text()+'/' */
             	  })
-            	  str=str.substring(0,str.length-2)
-            	  $(".province").val(str)
+            	  /* str=str.substring(0,str.length-2) */
+            	  $(".province").val(ary.join("/"))
             	  $(".selectTitle .sd-span").remove()
             	  $(".selectAddress").addClass("isHidden")
             	  break
@@ -1083,6 +1094,45 @@
       $(".closeIcon").click(function(){
           $(".selectAddress").addClass("isHidden")
       })
+      
+      $(".saveaddress").click(function(){
+    	  if(isadd){
+    		  $.post("addressadd",{
+    			  province:ary[0],
+    			  city:ary[1],
+    			  county:ary[2],
+    			  details:$(".content .address").val(),
+    			  contact:$(".uname").val(),
+    			  tel:$(".utel").val(),
+    			  isdefault:'0'
+    		  },function(data){
+    			  
+    		  })
+    	  }else{
+    		  $.post("AddressUpdate",{
+    			  province:ary[0],
+    			  city:ary[1],
+    			  county:ary[2],
+    			  details:$(".content .address").val(),
+    			  contact:$(".uname").val(),
+    			  tel:$(".utel").val(),
+    			  addressid:addressID
+    		  },function(){})
+    	  }
+    	  $(".m-modal-portal").addClass("isHidden")
+    	  addressinit()
+      })
+      /* $(".address-list").on("click","")
+      $(".update span").first().click(function(e){
+    	  var tar=$(e.target)
+    	  console.log(tar)
+    	  tar.parents(".address-item").children(".mark").addClass("addr-visible").removeClass("addr-unvisible")
+    	  $(".update").prepend("<span>设为默认地址</span>")
+    	  tar.parents(".update").children().first().remove()
+    	  $.post("SetDefaultAddress",{addressid:tar.parents(".address-item").data("no"),isdefault:"1"},function(data){
+    		  
+    	  })
+      }) */
     </script>
     
     </html>

@@ -1,6 +1,7 @@
 package Services.AddressServices;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +45,8 @@ public class SetDefaultAddress extends HttpServlet {
 			oldAddress.setAddressid(request.getParameter("addressid"));
 			newAddress.setIsdefault(request.getParameter("isdefault"));
 			addressDao.updates(newAddress, oldAddress);
-			
+			PrintWriter out =response.getWriter();
+			out.println("ok");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
