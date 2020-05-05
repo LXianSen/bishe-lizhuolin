@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,6 +54,10 @@ public class AddressAdd extends HttpServlet {
 				AddressDao addressDao=new AddressDao();
 				Map<String, String[]>addressMap=request.getParameterMap();
 				BeanUtils.populate(address, addressMap);
+				address.setUserid(u.getUserid());
+				UUID uuid=UUID.randomUUID();
+				String addressidString=uuid.toString().replace("-", "");
+				address.setAddressid(addressidString);
 				addressDao.adds(address);
 		}
 			}
