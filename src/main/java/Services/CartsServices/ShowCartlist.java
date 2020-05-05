@@ -47,12 +47,12 @@ public class ShowCartlist extends HttpServlet {
 				CartDao cartDao = new CartDao();
 				cart cart =new cart();
 				PrintWriter o=response.getWriter();
-				Map<Integer, cartitem> tempMap=new HashMap<Integer, cartitem>();
+				Map<Integer, Map> tempMap=new HashMap<Integer, Map>();
 				//购物车原价总价、折扣价总价
 				double money1=0,money2=0;
 				cartitem cartitem=new cartitem();
 				cartitem.setUserid(u.getUserid());
-					List<cartitem> list = cartDao.selects(cartitem);
+					List<Map> list = cartDao.showcartitems(cartitem);
 					for (int i = 0; i < list.size(); i++) {
 						tempMap.put(i, list.get(i));
 						money1+=cartDao.getsumPrice(list.get(i));

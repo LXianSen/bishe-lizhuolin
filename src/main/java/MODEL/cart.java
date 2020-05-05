@@ -4,15 +4,13 @@ import java.util.Map;
 
 public class cart {
 	//”√ªßid£¨ ÈºÆ
-	private Map<Integer, cartitem> carMap; 
+	private Map<Integer, Map> carMap; 
 	private double finalprice;
 	private double finaldiscountprice;
-	
-	
-	public Map<Integer, cartitem> getCarMap() {
+	public Map<Integer, Map> getCarMap() {
 		return carMap;
 	}
-	public void setCarMap(Map<Integer, cartitem> carMap) {
+	public void setCarMap(Map<Integer, Map> carMap) {
 		this.carMap = carMap;
 	}
 	public double getFinalprice() {
@@ -32,7 +30,7 @@ public class cart {
 		return "cart [carMap=" + carMap + ", finalprice=" + finalprice + ", finaldiscountprice=" + finaldiscountprice
 				+ "]";
 	}
-	public cart(Map<Integer, cartitem> carMap, double finalprice, double finaldiscountprice) {
+	public cart(Map<Integer, Map> carMap, double finalprice, double finaldiscountprice) {
 		super();
 		this.carMap = carMap;
 		this.finalprice = finalprice;
@@ -42,9 +40,8 @@ public class cart {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	
-
+	
 	
 }
 /*
