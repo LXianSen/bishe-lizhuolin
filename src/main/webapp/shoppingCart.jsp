@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/shouye.css?ver=2">
+<link rel="stylesheet" href="iconfont/iconfont.css?ver=1">
 <style>
 * {
 	margin: 0;
@@ -457,6 +458,10 @@ img {
 .cart-total .total-after-prefer span {
 	color: #333;
 }
+
+.cart-good-items{
+	height:auto
+}
 </style>
 </head>
 <body>
@@ -509,58 +514,77 @@ img {
 					<div>
 						<div class="merchant-item-container">
 							<div class="merchant-info">
-								<a class="m-icons m-icons-check-active select-icon" data-src=""
-									href="javascript:;"></a><span class="name"
-									data-src="/flagshipstore?id=1&amp;title=有品精选">有品精选</span>
+								<a class="m-icons m-icons-check-active select-icon" data-src="" href="javascript:;"></a>
+								<span class="name" data-src="/flagshipstore?id=1&amp;title=有品精选">有品精选</span>
 								<div class="postmarginright mijiapost">
-									<span><span class="postimg">!</span>已免运费</span><span
-										class="layer hide">有品精选商品，即有品配送和第三方商家发货的商品，2018年1月1日起，单笔订单满99元免运费，不满99元收10元运费。*包邮订单拆单后若部分订单退款使得剩余订单不满足包邮条件时将补扣10元运费。</span>
+									<span><span class="postimg">!</span>已免运费</span>
+									<span class="layer hide">有品精选商品，即有品配送和第三方商家发货的商品，2018年1月1日起，单笔订单满99元免运费，不满99元收10元运费。*包邮订单拆单后若部分订单退款使得剩余订单不满足包邮条件时将补扣10元运费。</span>
 								</div>
 							</div>
-							<div>
+							<div class="book-info-list">
 								<div class="good-item-container cart-goods-con">
 									<div class="merchant-reduce-top"></div>
 									<div class="cart-good-items clearfix" data-isbn="0000001">
 										<div class="select">
-											<a class="m-icons m-icons-check-active select-icon"
-												data-src="" href="javascript:;"></a>
+											<span class="iconfont icon-icon-test4"></span>
 										</div>
-										<div class="image"
-											data-src="/detail?gid=120854&amp;pid=126201"
-											data-target="_blank">
-											<img class=""
-												src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
+										<div class="image" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">
+											<img class="" src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
 												data-src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
 												alt="朗菲去污地垫套装（3D）版CS-627 黑色 组合装">
 										</div>
-										<div class="name" data-src="/detail?gid=120854&amp;pid=126201"
-											data-target="_blank">
+										<div class="name" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">
 											<div class="vertical-wrap">
-												<p class="good-name brown-hover">朗菲去污地垫套装（3D）版CS-627 黑色
-													组合装</p>
+												<p class="good-name brown-hover">朗菲去污地垫套装（3D）版CS-627 黑色组合装</p>
 												<div></div>
 											</div>
 										</div>
-										<div class="price">
-											<span>￥159.00</span>
-										</div>
+										<div class="price"><span>￥159.00</span></div>
 										<div class="num">
 											<div class="can-edit">
-												<div class="num-reduce-add" style="width: 134px;">
-													<a class="m-icons m-icons-reduce minus-plus minus" data-src=""
-														href="javascript:;"></a><span class="txt"
-														style="width: 70px;">1</span><a
-														class="m-icons m-icons-add-active minus-plus plus" data-src=""
-														href="javascript:;"></a>
+												<div class="num-reduce-add " style="width: 134px;">
+													<span class="iconfont icon-jianhao minus"></span>
+													<span class="txt" style="width: 70px;">1</span>
+													<span class="iconfont icon-add plus"></span>
 												</div>
 											</div>
 										</div>
-										<div class="subtotal">
-											<span>￥159</span>
-										</div>
+										<div class="subtotal"><span>￥159</span></div>
 										<div class="del">
-											<a class="m-icons m-icons-close-hover icon delete" data-src=""
-												href="javascript:;"></a>
+											<span class="iconfont icon-icon-test5"></span>
+										</div>
+									</div>
+								</div>
+								<div class="good-item-container cart-goods-con">
+									<div class="merchant-reduce-top"></div>
+									<div class="cart-good-items clearfix" data-isbn="0000001">
+										<div class="select">
+											<span class="iconfont icon-icon-test4"></span>
+										</div>
+										<div class="image" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">
+											<img class="" src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
+												data-src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
+												alt="朗菲去污地垫套装（3D）版CS-627 黑色 组合装">
+										</div>
+										<div class="name" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">
+											<div class="vertical-wrap">
+												<p class="good-name brown-hover">朗菲去污地垫套装（3D）版CS-627 黑色组合装</p>
+												<div></div>
+											</div>
+										</div>
+										<div class="price"><span>￥159.00</span></div>
+										<div class="num">
+											<div class="can-edit">
+												<div class="num-reduce-add " style="width: 134px;">
+													<span class="iconfont icon-jianhao minus"></span>
+													<span class="txt" style="width: 70px;">1</span>
+													<span class="iconfont icon-add plus"></span>
+												</div>
+											</div>
+										</div>
+										<div class="subtotal"><span>￥159</span></div>
+										<div class="del">
+											<span class="iconfont icon-icon-test5"></span>
 										</div>
 									</div>
 								</div>
@@ -582,25 +606,89 @@ img {
 			</div>
 		</div>
 	</div>
+	<div class="m-fixedBar">
+		<ul class="fixed-nav">
+			<li class="toIndex">
+				<span class="iconfont icon-icon-test search_font shopcart"></span>
+				<p class="text">首页</p>
+			</li>
+			<li class="toPerson">
+				<span class="iconfont icon-icon-test2 search_font"></span>
+				<p class="text">个人中心</p>
+			</li>
+			<li class="toTop">
+				<span class="iconfont icon-icon-test7 search_font"></span>
+				<p class="text">回到顶部</p>
+			</li>
+		</ul>
+	</div>
 	<footer></footer>
 </body>
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
 <script>
-	var cart;
+	var cart,bookary=[];
+	
+	inituser();   //显示顶部用户信息
+	function inituser(){
+		var user = JSON.parse(sessionStorage.getItem("user"))
+		if (user) {
+			$(".userbox").removeClass('userhide')
+			$(".loginbox").addClass('userhide')
+			$('.m-username').text(user.username || user.userd)
+		}
+	}
+	
 	$.post("ShowCartlist",{},function(data){
 		data=JSON.parse(data)
 		if(data.code=="error"){
 			window.location.href="login.jsp"
 		}else{
 			cart=data.carMap
+			for(let c in cart){
+				bookary.push(cart[c]);
+			}
+			sessionStorage.setItem("bookinfo",JSON.stringify(bookary))
 			init(cart)
 		}
 		
 	})
 	
 	function init(cart){
+		$(".book-info-list").empty()
+		console.log(cart)
 		for(let key in cart){
-			if(cart[key].isbn==$(".cart-good-items").data('ISBN')){
+			console.log(cart[key])
+			$(".book-info-list").append('<div class="good-item-container cart-goods-con">'+
+					'<div class="merchant-reduce-top"></div>'+
+					'<div class="cart-good-items clearfix" data-isbn="0000001">'+
+						'<div class="select">'+
+							'<span class="iconfont icon-icon-test4"></span>'+
+						'</div>'+
+						'<div class="image" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">'+
+							'<img class="" >'+
+						'</div>'+
+						'<div class="name" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">'+
+							'<div class="vertical-wrap">'+
+								'<p class="good-name brown-hover">'+cart[key].bname+'</p>'+
+								'<div></div>'+
+							'</div>'+
+						'</div>'+
+						'<div class="price"><span>￥'+cart[key].bprice+'</span></div>'+
+						'<div class="num">'+
+							'<div class="can-edit">'+
+								'<div class="num-reduce-add " style="width: 134px;">'+
+									'<span class="iconfont icon-jianhao minus"></span>'+
+									'<span class="txt" style="width: 70px;">'+cart[key].count+'</span>'+
+									'<span class="iconfont icon-add plus"></span>'+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+						'<div class="subtotal"><span>￥'+cart[key].bprice+'</span></div>'+
+						'<div class="del">'+
+							'<span class="iconfont icon-icon-test5 delete"></span>'+
+						'</div>'+
+					'</div></div>')
+			if(cart[key].ISBN==$(".cart-good-items").data('ISBN')){
 				$('.txt').text(cart[key].count)
 			}
 		}
@@ -628,6 +716,25 @@ img {
 		},function(){
 			
 		})
+	})
+	
+	function rightboxfn(){
+		//处理跳转到购物车
+		$(".toIndex").click(function(){
+        	window.location.href="shouye.jsp"
+        })
+		//处理返回顶部按钮
+		$(".toTop").click(function () {
+			$('body,html').animate({ 
+				scrollTop: 0
+			},
+				500);
+			return false;
+		});
+	}
+	
+	$(".checkout").click(function(){
+		window.location.href="order.jsp"
 	})
 </script>
 </html>

@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import MODEL.book;
 import MODEL.cart;
 import MODEL.cartitem;
@@ -52,12 +54,12 @@ public class CartDao extends BaseDAO<cartitem> {
 		return price;
 	}
 
-	public List<Map> showcartitems(cartitem cartitem) throws SQLException, Exception
-	{
+	public List<Map> showcartitems(cartitem cartitem,String userid) throws SQLException, Exception
+	{	
 		Connection connection=Druid().getConnection();
 		List<Map> cartitemList=new ArrayList<Map>();
 		StringBuffer sqlString=new StringBuffer("select cartitem.*,book.bname,book.img1 from cartitem LEFT JOIN book on cartitem.ISBN=book.ISBN where userid='");
-		sqlString.append(cartitem.getISBN().toString()).append("'");
+		sqlString.append(userid).append("'");
 		PreparedStatement pStatement=connection.prepareStatement(sqlString.toString());
 		ResultSet rSet=pStatement.executeQuery();  
 		 // 元数据对象(里面包含了表头)

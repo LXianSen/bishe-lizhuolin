@@ -27,7 +27,7 @@
 							data-target="_blank">
 							<span class="iconfont icon-icon-test2"></span>
 							<span class="m-username">丑丑小怪物</span>
-							<span class="iconfont icon-icon-test4"></span>
+							<span class="iconfont icon-icon-test6"></span>
 						</a>
 						<div class="site-item-nav hidden">
 							<ul class="site-nav user-nav">

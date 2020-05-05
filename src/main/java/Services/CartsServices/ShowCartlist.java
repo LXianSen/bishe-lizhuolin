@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import DAO.CartDao;
 import DAO.UserDao;
@@ -43,7 +44,7 @@ public class ShowCartlist extends HttpServlet {
 			user u=userDao.CheckIsLogin(request, response);
 			
 			if(u!=null&&!"".equals(u)) {
-				Gson gsoncart=new Gson();
+				Gson gsoncart=new GsonBuilder().serializeNulls().create();
 				CartDao cartDao = new CartDao();
 				cart cart =new cart();
 				PrintWriter o=response.getWriter();
@@ -52,7 +53,8 @@ public class ShowCartlist extends HttpServlet {
 				double money1=0,money2=0;
 				cartitem cartitem=new cartitem();
 				cartitem.setUserid(u.getUserid());
-					List<Map> list = cartDao.showcartitems(cartitem);
+				String useridString=u.getUserid();
+					List<Map> list = cartDao.showcartitems(cartitem,useridString);
 					for (int i = 0; i < list.size(); i++) {
 						tempMap.put(i, list.get(i));
 						money1+=cartDao.getsumPrice(list.get(i));
@@ -62,6 +64,7 @@ public class ShowCartlist extends HttpServlet {
 					cart.setFinalprice(money1);
 					cart.setFinaldiscountprice(money2);
 					String jsoncart=gsoncart.toJson(cart);
+					jsoncart = jsoncart.replaceAll("null","\"\"");
 					System.out.println(gsoncart.toJson(cart));
 					o.println(jsoncart);
 				}

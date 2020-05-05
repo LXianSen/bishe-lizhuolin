@@ -13,6 +13,13 @@
       "unicode_decimal": 59020
     },
     {
+      "icon_id": "4599457",
+      "name": "减号",
+      "font_class": "jianhao",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
       "icon_id": "8776822",
       "name": "cart_empty",
       "font_class": "icon-test",
@@ -34,37 +41,65 @@
       "unicode_decimal": 58957
     },
     {
-      "icon_id": "8777414",
-      "name": "info",
+      "icon_id": "8777387",
+      "name": "close_filled",
       "font_class": "icon-test3",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "8777388",
+      "name": "check",
+      "font_class": "icon-test4",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "8777389",
+      "name": "close",
+      "font_class": "icon-test5",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "8777390",
+      "name": "check_filled",
+      "font_class": "icon-test6",
       "unicode": "e654",
       "unicode_decimal": 58964
     },
     {
+      "icon_id": "8777414",
+      "name": "info",
+      "font_class": "icon-test7",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
       "icon_id": "8777492",
       "name": "like",
-      "font_class": "icon-test4",
+      "font_class": "icon-test8",
       "unicode": "e657",
       "unicode_decimal": 58967
     },
     {
       "icon_id": "8777493",
       "name": "like_filled",
-      "font_class": "icon-test5",
+      "font_class": "icon-test9",
       "unicode": "e658",
       "unicode_decimal": 58968
     },
     {
       "icon_id": "8777511",
       "name": "arrow_down",
-      "font_class": "icon-test6",
+      "font_class": "icon-test10",
       "unicode": "e659",
       "unicode_decimal": 58969
     },
     {
       "icon_id": "8777534",
       "name": "up_to_top",
-      "font_class": "icon-test7",
+      "font_class": "icon-test11",
       "unicode": "e65a",
       "unicode_decimal": 58970
     }

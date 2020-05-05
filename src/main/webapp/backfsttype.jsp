@@ -116,18 +116,10 @@ body {
 			<div class="layui-side-scroll">
 				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
-					<li class="layui-nav-item layui-this"><a class=""
+					<li class="layui-nav-item"><a class=""
 						href="backbook.jsp">书籍管理</a></li>
 					<li class="layui-nav-item"><a href="backuser.jsp">用户管理</a></li>
-					<li class="layui-nav-item"><a href="">类别管理</a>
-						<dl class="layui-nav-child">
-							<dd>
-								<a href="javascript:;">一级类别</a>
-							</dd>
-							<dd>
-								<a href="javascript:;">二级类别</a>
-							</dd>
-						</dl></li>
+					<li class="layui-nav-item  layui-this"><a href="">类别管理</a></li>
 					<li class="layui-nav-item"><a href="backorder.jsp">订单管理</a></li>
 				</ul>
 			</div>

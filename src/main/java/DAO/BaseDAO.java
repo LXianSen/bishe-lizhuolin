@@ -105,6 +105,7 @@ public  class BaseDAO<T> {
         }
         
         ps.executeUpdate();
+        
 		return parList;
     }
 
@@ -288,6 +289,7 @@ public  class BaseDAO<T> {
 	            objList.add(obj);
 	        }
 	        System.out.println(objList);
+	        con.close();
 	        return objList;
 		}
 

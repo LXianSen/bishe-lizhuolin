@@ -61,7 +61,7 @@ function showProvince(tar){
     //得到的数据中放到data中 省-PROVINCE_CODE 市-CITY_CODE 区-AREA_CODE 街道-STREET_CODE
     //处理下方数据
 
-    $.post("",postData,function(data){
+    $.post("ShowAddress",postData,function(data){
         console.log(data)
         data.forEach(function(item,index){
             $(".address-content").append("<span data-no="+item[code]+">"+item.SHORT_NAME+"</span>")

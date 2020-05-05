@@ -623,6 +623,9 @@
             a {
                 text-decoration: none;
             }
+            .modal-data  .submit-box{
+            	background:white;
+            }
         </style>
     </head>
     
@@ -706,12 +709,25 @@
                                 <div class="good-container clearfix">
                                     <p class="pro-support">
                                     	<a class="m-icons m-icons-service " data-src="" href="javascript:;"></a>
-                                    	支持7天无理由退货
                                     </p>
                                     <span class="img">
-                                    	<img class="" src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
-                                            data-src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
-                                            alt="" style="width: 50px; height: 50px;">
+                                    	<img class="" style="width: 50px; height: 50px;">
+                                    </span>
+                                    <span class="name">
+                                          <span class="product-name">朗菲去污地垫套装（3D）版CS-627 黑色 组合装</span>
+                                    </span>
+                                    <span class="total"><span class="">￥</span>
+                                    <span class="txt">159.00</span>
+                                    </span>
+                                    <span
+                                        class="price">159.00元×1</span>
+                                </div>
+                                <div class="good-container clearfix">
+                                    <p class="pro-support">
+                                    	<a class="m-icons m-icons-service " data-src="" href="javascript:;"></a>
+                                    </p>
+                                    <span class="img">
+                                    	<img class="" style="width: 50px; height: 50px;">
                                     </span>
                                     <span class="name">
                                           <span class="product-name">朗菲去污地垫套装（3D）版CS-627 黑色 组合装</span>
@@ -750,9 +766,10 @@
                 <div class="m-modal m-modal-opened modal-content" tabindex="-1" aria-label="">
                     <div class="modal-data ">
                         <div class="title">
-                            <div class="mark">修改收货地址</div>
-                            <div class="closeIcon"><a class="m-icons m-icons-close-hover " data-src=""
-                                    href="javascript:;"></a></div>
+                            <div class="mark layer-title">修改收货地址</div>
+                            <div class="closeIcon">
+                            	<span class="iconfont icon-icon-test5"></span>
+                            </div>
                         </div>
                         <div class="lines"></div>
                         <div class="input-box">
@@ -772,8 +789,8 @@
                             </div>
                         </div>
                         <div class="input-box2">
-                            <div class="input-u"><textarea type="text" placeholder="详细地址"
-                                    class="m-input default detail"></textarea>
+                            <div class="input-u"><input type="text" placeholder="详细地址"
+                                    class="m-input default address"></input>
                                 <div class="hint default"> </div>
                             </div>
                         </div>
@@ -782,8 +799,9 @@
                                     value="" readonly="">
                                 <div class="hint default"> </div>
                             </div>
-                            <div class="m-checkbox"><a class="m-icons m-icons-check " data-src=""
-                                    href="javascript:;"></a>&nbsp;&nbsp;设为默认</div>
+                            <div class="m-checkbox">
+                            	<span class="iconfont icon-icon-test4"></span>
+                            &nbsp;&nbsp;设为默认</div>
                         </div>
                         <div class="submit-box"><a class="submit-center m-btns m-btn-lg m-btn-brown"
                                 href="javascript:;">保存</a><a class="submit-margin submit-center m-btns m-btn-lg m-btn-brown canclebtn"
@@ -820,7 +838,7 @@
 	</div>
     </body>
     <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/city-picker.js"></script>
+    <!-- <script src="js/city-picker.js"></script> -->
     <script>
     	$.post("OrderCommit",{},function(data){
     		data=JSON.parse(data)
@@ -869,7 +887,7 @@
                 };
                 case "修改": {
                     let content=tar.parents(".address-item-content").children(".content")
-                    console.log(content)
+                    $(".layer-title").text("修改收货地址");
                     $(".m-modal-portal").removeClass("isHidden")
                     $(".uname").val(content.children('.name').text())
                     $(".utel").val(content.children('.tel').text())
@@ -883,16 +901,34 @@
             $(".m-modal-portal").addClass("isHidden")
         })
         $(".address-list").on("click",".toAddAddress",function(e){
+        	$(".layer-title").text("添加收货地址");
             $(".m-modal-portal").removeClass("isHidden")
         })
         var data=JSON.parse(sessionStorage.getItem("bookinfo"))
-        var count = JSON.parse(sessionStorage.getItem("count"))
+        var count = JSON.parse(sessionStorage.getItem("count"))||0
         console.log(data)
-        $(".img img").attr('src',data.img1) 
-        $(".product-name").text(data.bname)
-        $(".txt").text(data.bprice*count)
-        $(".price").text("¥"+data.bprice+"×"+count)
-        $(".freeInfo-value").text(data.bprice*count+"元")
+        $(".merchant-spread").empty();
+        data.forEach(function(item,index){
+        	if(count==0){
+        		count=item.count
+        	}
+        	$(".merchant-spread").append('<div class="good-container clearfix">'+
+                    '<p class="pro-support">'+
+                	'<a class="m-icons m-icons-service " data-src="" href="javascript:;"></a>'+
+                '</p>'+
+                '<span class="img">'+
+                	'<img class="" src="'+item.img1+'" style="width: 50px; height: 50px;">'+
+                '</span>'+
+                '<span class="name">'+
+                      '<span class="product-name">'+item.bname+'</span>'+
+                '</span>'+
+                '<span class="total"><span class="">￥</span>'+
+                '<span class="txt">'+item.bprice+'</span>'+
+                '</span>'+
+                '<span class="price">¥'+item.bprice+'×'+count+'</span></div>')
+            count=0
+        })
+        $(".merchant-spread").append('<div class="form-item"><span class="left-label">买家留言</span><span class="select"><textarea type="text" class="userMessage marginBottom" placeholder="填写内容需与商家协商并确认，45字以内"  maxlength="45"></textarea></span></div>')
         
         $(".canclebtn").click(function(){
         	$(".m-modal-portal").addClass("isHidden")
@@ -901,6 +937,152 @@
         $(".toCart").click(function(){
         	window.location.href="shoppingCart.jsp"
         })
+        
+      //1.点击每一个城市 -- 上面“城市”和“选择“都会发生变化，下面地名也会发生变化
+      //2.点击上方的地名 -- 会去到相应的类别，上面也同样会发生变换
+
+      var provinceData,cityData,areaData,streetData
+      var type1="province"
+      var code="CITY_CODE"
+    	  var str="";
+      var testData={
+
+      }
+      function showProvince(tar,istop){
+    	  debugger
+        	if(istop){
+        		var index=tar?$(".sd-span").index(tar)+1:0
+        		tar.nextAll().remove();
+        		$(".selectTitle").append("<span class='ts-span'></span>")
+        	}else{
+        		tar&&$(".selectTitle .ts-span").before("<span class='sd-span' data-no="+tar.data('no')+">"+tar.text()+"</span>") //点击下方城市添加到上方
+        	}
+        	
+          let postData,choose,code,
+          num=$(".sd-span").length,
+          
+          no=tar?tar.data("no"):""
+          $(".selectAddress").hasClass("isHidden")&&$(".selectAddress").removeClass("isHidden")
+          $(".address-content").empty()
+          /* switch(index){
+              case 0:{
+                  num=0
+                  break
+              };
+              case 1:{
+                  num=1
+                  no=tar.prev().data("no")
+                  break
+              };
+              case 2:{
+                  num=2
+                  no=tar.prev().data("no")
+                  break
+              }
+          } */
+          switch(num){
+              case 0:{
+                  choose="选择省/自治区"
+                  postData={}
+                  code="PROVINCE_CODE"
+                  name="PROVINCE_NAME"
+                  break;
+              };
+              case 1:{
+                  choose="选择城市/地区"
+                  postData={p:no}
+                  code="CITY_CODE"
+                  name="CITY_NAME"
+                  break
+              };
+              case 2:{
+                  choose="选择区县"
+                  postData={c:no}
+                  code="AREA_CODE"
+                  name="AREA_NAME"
+                  break
+              };
+              case 3:{
+                  choose="选择配送区域"
+                  postData={a:no}
+                  code="STREET_CODE"
+                  name="STREET_NAME"
+                  break
+              };
+              case 4:{
+            	  str=""
+            	  Array.from($(".sd-span")).forEach(function(item,index){
+            		  str=str+$(item).text()+'/'
+            	  })
+            	  str=str.substring(0,str.length-2)
+            	  $(".province").val(str)
+            	  $(".selectTitle .sd-span").remove()
+            	  $(".selectAddress").addClass("isHidden")
+            	  break
+              }
+          }
+          
+          // $(".selectTitle>.sd-span").remove() //省-没有 市-保留省 区-保留省市 街道-保留省市区
+          $(".ts-span").text(choose)  //省-选择省/自治区 市-选择城市/地区 区-选择区县 街道-选择配送区域
+          // $(".address-content").addClass("province")
+          //传参：省-不需要传参 市-PROVINCE_CODE 区-CITY_CODE 街道-AREA_CODE
+          //得到的数据中放到data中 省-PROVINCE_CODE 市-CITY_CODE 区-AREA_CODE 街道-STREET_CODE
+          //处理下方数据
+
+          $.post("ChoosePCS",postData,function(data){
+              data=JSON.parse(data)
+              data.forEach(function(item,index){
+                  $(".address-content").append("<span data-no="+item[code]+">"+item[name]+"</span>")
+              })
+          })
+      }
+      //点击input框
+      $(".province").click(function(){
+    	  console.log()
+          showProvince()
+      })
+
+      //点击下面
+      $(".address-content").on("click","span",function(e){
+          let tar=$(e.target)
+          showProvince(tar,false)
+          // let tar=$(e.target)
+          // console.log(tar)
+          // $(".selectAddress").prepend("<span class='sd-span'>"+tar.text()+"</span>")
+          // if(type1=="province"){
+          //     $(".ts-span").text("选择城市/地区")
+          // }else if(type1="city"){
+          //     $(".ts-span").text("选择区县")
+          // }
+          // $.post("",{province_no:tar.data("no"),type:type1},function(data){
+          //     type1="city"
+          //     code="AREA_CODE"
+          //     $(".address-content").empty()
+          //     data.forEach(function(item,index){
+          //         $(".address-content").append("<span data-no="+item[code]+">"+item.SHORT_NAME+"</span>")
+          //     })
+          // })
+      })
+      //点击上方
+      $(".selectTitle").on("click",".sd-span",function(e){
+          let tar=$(e.target)
+          showProvince(tar,true)
+          // let index=$(".sd-span").index(tar)
+          // console.log($(".sd-span").index(tar))
+          // switch(index){
+          //     case 0:{
+          //         showProvince()
+          //         break
+          //     };
+          //     case 1:{
+
+          //     }
+          // }
+      })
+
+      $(".closeIcon").click(function(){
+          $(".selectAddress").addClass("isHidden")
+      })
     </script>
     
     </html>

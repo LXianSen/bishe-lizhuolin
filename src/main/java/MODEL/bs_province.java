@@ -1,6 +1,7 @@
 package MODEL;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class bs_province {
  private int PROVINCE_ID;//自增列
@@ -10,8 +11,8 @@ public class bs_province {
  private String LNG;//经度
  private String LAT;//纬度
  private int SORT;//排序
- private Date GMT_CREATE;//创建时间
- private Date GMT_MODIFIED;//修改时间
+ private Timestamp GMT_CREATE;//创建时间
+ private Timestamp GMT_MODIFIED;//修改时间
  private String MEMO;//备注
  private int DATA_STATE;//状态
  private String TENANT_CODE;//租户id
@@ -57,16 +58,16 @@ public int getSORT() {
 public void setSORT(int sORT) {
 	SORT = sORT;
 }
-public Date getGMT_CREATE() {
+public Timestamp getGMT_CREATE() {
 	return GMT_CREATE;
 }
-public void setGMT_CREATE(Date gMT_CREATE) {
+public void setGMT_CREATE(Timestamp gMT_CREATE) {
 	GMT_CREATE = gMT_CREATE;
 }
-public Date getGMT_MODIFIED() {
+public Timestamp getGMT_MODIFIED() {
 	return GMT_MODIFIED;
 }
-public void setGMT_MODIFIED(Date gMT_MODIFIED) {
+public void setGMT_MODIFIED(Timestamp gMT_MODIFIED) {
 	GMT_MODIFIED = gMT_MODIFIED;
 }
 public String getMEMO() {
@@ -95,7 +96,7 @@ public String toString() {
 			+ DATA_STATE + ", TENANT_CODE=" + TENANT_CODE + "]";
 }
 public bs_province(int pROVINCE_ID, String pROVINCE_CODE, String pROVINCE_NAME, String sHORT_NAME, String lNG,
-		String lAT, int sORT, Date gMT_CREATE, Date gMT_MODIFIED, String mEMO, int dATA_STATE, String tENANT_CODE) {
+		String lAT, int sORT, Timestamp gMT_CREATE, Timestamp gMT_MODIFIED, String mEMO, int dATA_STATE, String tENANT_CODE) {
 	super();
 	PROVINCE_ID = pROVINCE_ID;
 	PROVINCE_CODE = pROVINCE_CODE;

@@ -28,6 +28,8 @@ public class ChoosePCS extends HttpServlet {
     
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset =UTF-8");
 		try {
 			Gson gson=new Gson();
 			PrintWriter out=response.getWriter();
@@ -36,26 +38,23 @@ public class ChoosePCS extends HttpServlet {
 			bs_city city=new bs_city();
 			bs_area area=new bs_area();
 			bs_street street=new bs_street();
-			if (request.getParameter("p")!=null&&!"".equals(request.getParameter("p"))) {
-				if (request.getParameter("c")!=null&&!"".equals(request.getParameter("s"))) {
-					if (request.getParameter("a")!=null&&!"".equals(request.getParameter("c"))) {
-						street.setAREA_CODE(request.getParameter("a"));
-						List<bs_street> streetList=addressDao.selects(street);
-						out.println(gson.toJson(streetList).toString());
-				        }else {
-							area.setCITY_CODE(request.getParameter("c"));
-							List<bs_area> areaList=addressDao.selects(area);
-							out.println(gson.toJson(areaList).toString());
-						}
-			  }else {
+			if(request.getParameter("p")!=null&&!"".equals(request.getParameter("p"))) {
 				city.setPROVINCE_CODE(request.getParameter("p"));
 				List<bs_city> cityList=addressDao.selects(city);
-				out.println(gson.toJson(cityList).toString());
-			}
+				out.println(gson.toJson(cityList));
+			}else if(request.getParameter("c")!=null&&!"".equals(request.getParameter("c"))) {
+				area.setCITY_CODE(request.getParameter("c"));
+				List<bs_area> areaList=addressDao.selects(area);
+				out.println(gson.toJson(areaList));
+			}else if(request.getParameter("a")!=null&&!"".equals(request.getParameter("a"))) {
+				street.setAREA_CODE(request.getParameter("a"));
+				List<bs_street> streetList=addressDao.selects(street);
+				out.println(gson.toJson(streetList));
 			}else {
 				List<bs_province> provinceList=addressDao.selects(province);
-				out.println(gson.toJson(province).toString());
+				out.println(gson.toJson(provinceList));
 			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

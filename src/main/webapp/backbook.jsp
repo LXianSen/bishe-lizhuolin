@@ -95,15 +95,10 @@
                         <a class="" href="javascript:;">书籍管理</a>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="javascript:;">用户管理</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">列表一</a></dd>
-                            <dd><a href="javascript:;">列表二</a></dd>
-                            <dd><a href="">超链接</a></dd>
-                        </dl>
+                        <a href="backuser.jsp">用户管理</a>
                     </li>
-                    <li class="layui-nav-item"><a href="">类别管理</a></li>
-                    <li class="layui-nav-item"><a href="javascript:;">订单管理</a></li>
+                    <li class="layui-nav-item"><a href="backfsttype.jsp">类别管理</a></li>
+                    <li class="layui-nav-item"><a href="backorder.jsp">订单管理</a></li>
                 </ul>
             </div>
         </div>

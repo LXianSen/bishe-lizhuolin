@@ -5,20 +5,26 @@
 	var userbox = $('.m-user-con')
 	var loginbox = $('.login')
 	var type = []
-	var searchData = [
-		/*{ name: "张爱玲", type: "author", no: "001" },
-		{ name: "白夜行", type: "book", no: "0000001" },
-		{ name: "清华出版社", type: "publish", no: "0011" }*/
-	]
+	var searchData = []
 	
-	//处理返回顶部按钮
-	$(".toTop").click(function () {
-		$('body,html').animate({ 
-			scrollTop: 0
-		},
-			500);
-		return false;
-	});
+	rightboxfn();    
+	
+	//右侧导航栏
+	function rightboxfn(){
+		//处理跳转到购物车
+		$(".toCart").click(function(){
+        	window.location.href="shoppingCart.jsp"
+        })
+		//处理返回顶部按钮
+		$(".toTop").click(function () {
+			$('body,html').animate({ 
+				scrollTop: 0
+			},
+				500);
+			return false;
+		});
+	}
+	
 	
 	//渲染搜索列表
 	function searchList(searchData){
@@ -40,6 +46,7 @@
 		}
 		// window.location.href="booklist.jsp?type="+Ttype
 	})
+	
 	$(".search_box").click(function (e) {
 		var e = e || window.event;
 		e.stopPropagation()
@@ -254,6 +261,4 @@
 	})
 	})
 	
-	$(".toCart").click(function(){
-        	window.location.href="shoppingCart.jsp"
-        })
+	

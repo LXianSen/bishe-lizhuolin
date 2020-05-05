@@ -27,7 +27,7 @@ var cart = $('.cart')
     
     $.post('BookDetail',{isbn:getparams},function(data){
         data=JSON.parse(data)
-        sessionStorage.setItem("bookinfo",JSON.stringify(data[0]))
+        sessionStorage.setItem("bookinfo",JSON.stringify(data))
         
         $(".good-name").text(data[0].bname)
         $(".price .value").text(data[0].bprice)
