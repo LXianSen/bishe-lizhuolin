@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import DAO.AddressDao;
 import DAO.UserDao;
@@ -53,8 +54,9 @@ public class OrderCommit extends HttpServlet {
 				address.setUserid(u.getUserid());
 				List<address>addressList=addressDao.selects(address);
 				PrintWriter out=response.getWriter();
-				Gson gson=new Gson();
+				Gson gson=new GsonBuilder().serializeNulls().create();
 				String addressjson = gson.toJson(addressList);
+				addressjson=addressjson.replaceAll("null", "\"\"");
 				out.println(addressjson);
 			}
 		}catch (Exception e) {
