@@ -2,6 +2,9 @@ package Services.OrderServices;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -45,9 +48,15 @@ public class OrderAdd extends HttpServlet {
 				String orderlist = request.getParameter("orderlist");
 				List<orders> orderList = JSONObject.parseArray(orderlist, orders.class);
 				
+				//获取当前
+				Date date=new Date();
+				SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd:HH:mm:ss");
+				Timestamp ctime = new Timestamp(date.getTime());
+				
 				for(int i=0;i<orderList.size();i++) {
 					orderList.get(i);
 					orderList.get(i).setAddressid(request.getParameter("addressid"));
+					orderList.get(i).setDate(ctime);
 					orderDao.adds(orders);
 				}
 				} 

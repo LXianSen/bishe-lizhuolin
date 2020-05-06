@@ -1,12 +1,13 @@
 package MODEL;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class orders {
 	//订单号（父订单号、子订单号）、创单时间、isbn、价格、折扣、数量、订单状态、用户id、收货地址
 	private String fatherorder;
 	private String sonorder;
-	private Date date;
+	private Timestamp date;
 	private String ISBN;
 	private double bprice;
 	private double bdiscount;
@@ -26,10 +27,10 @@ public class orders {
 	public void setSonorder(String sonorder) {
 		this.sonorder = sonorder;
 	}
-	public Date getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 	public String getISBN() {
@@ -80,7 +81,7 @@ public class orders {
 				+ ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", count=" + count + ", status=" + status
 				+ ", userid=" + userid + ", addressid=" + addressid + "]";
 	}
-	public orders(String fatherorder, String sonorder, Date date, String iSBN, double bprice, double bdiscount,
+	public orders(String fatherorder, String sonorder, Timestamp date, String iSBN, double bprice, double bdiscount,
 			int count, String status, String userid, String addressid) {
 		super();
 		this.fatherorder = fatherorder;

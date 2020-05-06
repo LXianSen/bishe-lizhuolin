@@ -52,7 +52,7 @@ public class OrderCommit extends HttpServlet {
 				AddressDao addressDao=new AddressDao();
 				address address=new address();
 				address.setUserid(u.getUserid());
-				List<address>addressList=addressDao.selects(address);
+				List<address>addressList=addressDao.addressesbyisdefault(address);
 				PrintWriter out=response.getWriter();
 				Gson gson=new GsonBuilder().serializeNulls().create();
 				String addressjson = gson.toJson(addressList);
