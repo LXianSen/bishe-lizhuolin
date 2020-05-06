@@ -1133,6 +1133,36 @@
     		  
     	  })
       }) */
+      
+      $(".address-list").on("click",".address-item",function(e){
+    	  var tar=$(e.target);
+    	  $(".address-item").addClass("unselected").remove("selected");
+    	  tar.addClass("selected").removeClass("unselected")
+      })
+      
+      var orders=sessionStorage.getItem("bookinfo")
+      orders.forEach(function(item,index){
+    	  orders[index]=Object.assign(item,{fatherorder:randomNumber(),sonorder:randomNumber()+"index",status:"待支付"})
+      })
+      function randomNumber() {
+    const now = new Date()
+    let month = now.getMonth() + 1
+    let day = now.getDate()
+    let hour = now.getHours()
+    let minutes = now.getMinutes()
+    let seconds = now.getSeconds()
+    month = this.setTimeDateFmt(month)
+    hour = this.setTimeDateFmt(hour)
+    minutes = this.setTimeDateFmt(minutes)
+    seconds = this.setTimeDateFmt(seconds)
+    return now.getFullYear().toString() + month.toString() + day + hour + minutes + seconds + (Math.round(Math.random() * 89 + 100)).toString()
+   }
+      
+      $(".bottom-pay").click(function(){
+    	  $.post("OrderAdd",{addressid:$(".address-item.selected").data("no"),orderlist:orders},function(data){
+    		  
+    	  })
+      })
     </script>
     
     </html>

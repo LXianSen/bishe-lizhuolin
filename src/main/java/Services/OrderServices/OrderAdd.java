@@ -18,7 +18,8 @@ import DAO.OrderDao;
 import DAO.UserDao;
 import MODEL.orders;
 import MODEL.user;
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
+
 
 @WebServlet("/OrderAdd")
 public class OrderAdd extends HttpServlet {
@@ -37,14 +38,18 @@ public class OrderAdd extends HttpServlet {
 			
 			user u=userDao.CheckIsLogin(request, response);
 			
-			if(u!=null&&"".equals(u.toString())) {
+			if(u!=null&&!"".equals(u.toString())) {
 				System.out.println(u);
 				OrderDao orderDao = new OrderDao();
 				orders orders=new orders();
-				Map<String, String[]> parameterMap = request.getParameterMap();
-				BeanUtils.populate(orders, parameterMap);
-				orders.setAddressid(request.getParameter("addressid"));
-				orderDao.adds(orders);
+				String orderlist = request.getParameter("orderlist");
+				List<orders> orderList = JSONObject.parseArray(orderlist, orders.class);
+				
+				for(int i=0;i<orderList.size();i++) {
+					orderList.get(i);
+					orderList.get(i).setAddressid(request.getParameter("addressid"));
+					orderDao.adds(orders);
+				}
 				} 
 		}		catch (Exception e) {
 						// TODO Auto-generated catch block
