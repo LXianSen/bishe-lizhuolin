@@ -48,11 +48,12 @@ public class OrderCommit extends HttpServlet {
 			user u = userDao.CheckIsLogin(request, response);
 
 			if (u != null && !"".equals(u.toString())) {
-
+				System.out.println("aaaaaaaaaaa");
 				AddressDao addressDao=new AddressDao();
 				address address=new address();
 				address.setUserid(u.getUserid());
-				List<address>addressList=addressDao.addressesbyisdefault(address);
+				List<address> addressList=addressDao.addressesbyisdefault(address);
+				System.out.println(addressList);
 				PrintWriter out=response.getWriter();
 				Gson gson=new GsonBuilder().serializeNulls().create();
 				String addressjson = gson.toJson(addressList);

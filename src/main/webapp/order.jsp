@@ -1140,10 +1140,15 @@
     	  tar.addClass("selected").removeClass("unselected")
       })
       
-      var orders=sessionStorage.getItem("bookinfo")
-      orders.forEach(function(item,index){
-    	  orders[index]=Object.assign(item,{fatherorder:randomNumber(),sonorder:randomNumber()+"index",status:"待支付"})
-      })
+      var orders=JSON.parse(sessionStorage.getItem("bookinfo"))
+      var random=randomNumber()
+      orders.map(function(item,index){
+    	  item=Object.assign(item,{fatherorder:random,sonorder:random+index,status:"待支付"})
+    	  return item
+      }) 
+      console.log(orders)
+      var postdata={addressid:$(".address-item.selected").data("no"),orderlist:JSON.stringify(orders)}
+      console.log(postdata)
       function randomNumber() {
     const now = new Date()
     let month = now.getMonth() + 1
@@ -1151,16 +1156,18 @@
     let hour = now.getHours()
     let minutes = now.getMinutes()
     let seconds = now.getSeconds()
-    month = this.setTimeDateFmt(month)
-    hour = this.setTimeDateFmt(hour)
-    minutes = this.setTimeDateFmt(minutes)
-    seconds = this.setTimeDateFmt(seconds)
     return now.getFullYear().toString() + month.toString() + day + hour + minutes + seconds + (Math.round(Math.random() * 89 + 100)).toString()
    }
-      
+     
       $(".bottom-pay").click(function(){
-    	  $.post("OrderAdd",{addressid:$(".address-item.selected").data("no"),orderlist:orders},function(data){
-    		  
+    	  $.ajax({
+    		  url:"OrderAdd",
+    		  data:postdata,
+    		  type:"post",
+    		  traditional:true,
+    		  success:function(data){
+    			  
+    		  }
     	  })
       })
     </script>

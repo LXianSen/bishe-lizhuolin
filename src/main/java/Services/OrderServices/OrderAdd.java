@@ -46,7 +46,9 @@ public class OrderAdd extends HttpServlet {
 				OrderDao orderDao = new OrderDao();
 				orders orders=new orders();
 				String orderlist = request.getParameter("orderlist");
+				
 				List<orders> orderList = JSONObject.parseArray(orderlist, orders.class);
+				System.out.println("orderlist  "+orderlist);
 				
 				//获取当前
 				Date date=new Date();
@@ -57,7 +59,8 @@ public class OrderAdd extends HttpServlet {
 					orderList.get(i);
 					orderList.get(i).setAddressid(request.getParameter("addressid"));
 					orderList.get(i).setDate(ctime);
-					orderDao.adds(orders);
+					orderDao.adds(orderList.get(i));
+					
 				}
 				} 
 		}		catch (Exception e) {

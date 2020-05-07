@@ -27,22 +27,29 @@ public class AddressDao extends BaseDAO {
 		Connection connection=Druid().getConnection();
 		List<address> addressList=new ArrayList<address>();
 		StringBuffer sqlString=new StringBuffer("select * from address where userid='");
-		sqlString.append(address.getUserid()).append("'");
+		sqlString.append(address.getUserid()).append("'").append(" order by isdefault desc");
+		System.out.println(sqlString);
 		PreparedStatement pStatement=connection.prepareStatement(sqlString.toString());
 		ResultSet rSet=pStatement.executeQuery();
 		ResultSetMetaData rsmd=rSet.getMetaData();
 		int count=rsmd.getColumnCount();
 		while(rSet.next()) {
+			
 			address tempAddress=new address();
-			for (int i = 0; i < count; i++) {
+			for (int i = 1; i <= count; i++) {
+				System.out.println(count);
 				   // 根据列号 来获得 列名
                 String columnName = rsmd.getColumnName(i);
+                System.out.println(columnName);
                 // 根据列名 来获取 当前列的数据
                 Object value = rSet.getObject(columnName);
+                System.out.println(value);
                 // 根据列名 通过反射来找属性对象
-                Field f = address.class.getDeclaredField(columnName);
+                Field f = tempAddress.getClass().getDeclaredField(columnName);
+                System.out.println(f);
                 if (f != null)
                 {
+                	System.out.println(f);
                     f.setAccessible(true);
                     f.set(tempAddress, value);
                 }

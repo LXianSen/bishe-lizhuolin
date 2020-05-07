@@ -252,7 +252,22 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="m-fixedBar">
+		<ul class="fixed-nav">
+			<li class="toCart">
+				<span class="iconfont icon-icon-test search_font shopcart"></span>
+				<p class="text">购物车</p>
+			</li>
+			<li class="toPerson">
+				<span class="iconfont icon-icon-test2 search_font"></span>
+				<p class="text">个人中心</p>
+			</li>
+			<li class="toTop">
+				<span class="iconfont icon-icon-test11 search_font"></span>
+				<p class="text">回到顶部</p>
+			</li>
+		</ul>
+	</div>
 	</div>
 
 	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
