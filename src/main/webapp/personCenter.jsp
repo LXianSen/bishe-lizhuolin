@@ -43,13 +43,10 @@
                             <section>
                                 <div class="mijia-personal-selector">
                                     <ul>
-                                        <li class="active  ">待收货(0)</li>
-                                        <li class="  ">待付款(0)</li>
-                                        <li class="  ">已收货</li>
-                                        <li class="  ">退款订单</li>
-                                        <li class="  ">全部订单</li>
-                                        <li class="  delete-tab-item"><a class="m-icons m-icons-trash-hover " data-src=""
-                                                href="javascript:;"></a>回收站</li>
+                                        <li class="active  ">待付款</li>
+                                        <li class="  ">付款成功</li>
+                                        <li class="  ">已完成</li>
+                                        <li class="  ">订单取消</li>
                                     </ul>
                                 </div>
                             </section>
@@ -164,5 +161,6 @@
             <div class="m-toast-group m-toast-top-center"></div>
         </div>
     </body>
-    <script src="js/personcenter.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/personcenter.js?ver=1"></script>
     </html>

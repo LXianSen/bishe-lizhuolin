@@ -50,7 +50,9 @@ public class MyInfomation extends HttpServlet {
 				OrderDao orderDao=new OrderDao();
 				orders orders=new orders();
 				orders.setUserid(u.getUserid());	
+				System.out.println(orders);
 				List<orders> orderList=orderDao.selects(orders);
+				System.out.println("orderList   "+orderList);
 				String orderJSON=gson.toJson(orderList);
 				o.println(orderJSON);
 			}else if (msg.equals("address")) {

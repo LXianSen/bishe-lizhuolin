@@ -15,6 +15,9 @@
 		$(".toCart").click(function(){
         	window.location.href="shoppingCart.jsp"
         })
+        $(".toPerson").click(function(){
+        	window.location.href="personCenter.jsp"
+        })
 		//处理返回顶部按钮
 		$(".toTop").click(function () {
 			$('body,html').animate({ 
