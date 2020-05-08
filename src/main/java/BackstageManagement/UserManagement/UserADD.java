@@ -24,43 +24,38 @@ import net.sf.json.JSONObject;
 @WebServlet("/UserADD")
 public class UserADD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public UserADD() {
-        super();
-    }
 
+	public UserADD() {
+		super();
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
-		JSONObject jsonobj=new JSONObject();
-
-		
-		UserDao userDao=new UserDao();
-		user u=userDao.CheckIsLogin(request, response);
-		
-		if(u!=null&&!"".equals(u.toString())) {
-			user user=new user();
-			Map<String, String[]> paraMap=request.getParameterMap();
+		JSONObject jsonobj = new JSONObject();
+		//验证是否登录
+		UserDao userDao = new UserDao();
+		user u = userDao.CheckIsLogin(request, response);
+		if (u != null && !"".equals(u.toString())) {
+			user user = new user();
+			Map<String, String[]> paraMap = request.getParameterMap();
 			try {
-				user tempUser=new user();
+				user tempUser = new user();
 				tempUser.setEmail(request.getParameter("email"));
-				List<user> tempList=new ArrayList<user>();
-				tempList=userDao.selects(tempUser);
+				List<user> tempList = new ArrayList<user>();
+				tempList = userDao.selects(tempUser);
 				if (tempList.isEmpty()) {
 					BeanUtils.populate(user, paraMap);
 					userDao.adds(user);
 					jsonobj.put("code", "200");
 					jsonobj.put("msg", "该用户添加成功");
-				}else {
+				} else {
 					jsonobj.put("code", "error");
 					jsonobj.put("msg", "该用户已存在");
-					
 				}
-				PrintWriter outPrintWriter=response.getWriter();
+				PrintWriter outPrintWriter = response.getWriter();
 				outPrintWriter.println(jsonobj);
-				
 			} catch (IllegalAccessException | InvocationTargetException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -69,11 +64,11 @@ public class UserADD extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
- 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

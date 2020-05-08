@@ -53,15 +53,12 @@ public class FindPwd extends HttpServlet {
         		System.out.println(res);
         	}else{
         		if(code.equals(session.getAttribute("code"))) {
-        			
         			jsonObject.put("code", "200");
         		}else {
         			jsonObject.put("code", "error");
         		}
         		out.println(jsonObject);
         	}
-            
-            
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

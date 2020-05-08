@@ -19,34 +19,27 @@ import MODEL.book;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/BookDelete")
 public class BookDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public BookDelete() {
-        super();
-    }
 
+	public BookDelete() {
+		super();
+	}
 
-    
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
-		JSONObject jsonobj=new JSONObject();
-
-		
-		UserDao userDao=new UserDao();
-		user u=userDao.CheckIsLogin(request, response);
-		
-		if(u!=null&&!"".equals(u.toString())) {
-			book book=new book();
-			Map<String, String[]> paraMap=request.getParameterMap();
-			BookDao bkDao=new BookDao();
+		JSONObject jsonobj = new JSONObject();
+		UserDao userDao = new UserDao();
+		user u = userDao.CheckIsLogin(request, response);
+		if (u != null && !"".equals(u.toString())) {
+			book book = new book();
+			Map<String, String[]> paraMap = request.getParameterMap();
+			BookDao bkDao = new BookDao();
 			try {
-				BeanUtils.populate(book,paraMap);
+				BeanUtils.populate(book, paraMap);
 				bkDao.deletes(book);
 				System.out.println(book);
 				jsonobj.put("code", "200");
@@ -64,10 +57,8 @@ public class BookDelete extends HttpServlet {
 		}
 	}
 
-
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

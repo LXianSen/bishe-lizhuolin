@@ -19,43 +19,41 @@ import MODEL.address;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/ShowAddress")
 public class ShowAddress extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public ShowAddress() {
-        super();
-    }
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ShowAddress() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset =UTF-8");
-			AddressDao addressDao=new AddressDao();
-			Gson gson=new Gson();
-			address myAddress=new address();
-			
-			//检查用户是否登录
-			UserDao userDao=new UserDao();
-			user u=userDao.CheckIsLogin(request, response);
-
-			if(u!=null&&!"".equals(u.toString())) {
+			AddressDao addressDao = new AddressDao();
+			Gson gson = new Gson();
+			address myAddress = new address();
+			// 检查用户是否登录
+			UserDao userDao = new UserDao();
+			user u = userDao.CheckIsLogin(request, response);
+			if (u != null && !"".equals(u.toString())) {
 				myAddress.setUserid(u.getUserid());
-				List<address> addresslist=addressDao.selects(myAddress);
-				String addressJSON=gson.toJson(addresslist);
-				PrintWriter o=response.getWriter();
+				List<address> addresslist = addressDao.selects(myAddress);
+				String addressJSON = gson.toJson(addresslist);
+				PrintWriter o = response.getWriter();
 				o.println(addressJSON);
-				} 
-			}catch (Exception e) {
+			}
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

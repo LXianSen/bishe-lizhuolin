@@ -26,11 +26,8 @@ public class CartClear extends HttpServlet {
 			response.setContentType("text/html;charset =UTF-8");
 			//检查用户是否登录
 			UserDao userDao=new UserDao();
-
 			user u=userDao.CheckIsLogin(request, response);
-
 			if(u!=null&&"".equals(u.toString())) {
-			
 			//从session获取用户id，用于清空购物车
 			CartDao cartDao=new CartDao();
 			cartitem cartitem=new cartitem();

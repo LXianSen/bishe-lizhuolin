@@ -19,57 +19,49 @@ import MODEL.book;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/BookAdd")
 public class BookAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public BookAdd() {
-        super();
-    }
 
+	public BookAdd() {
+		super();
+	}
 
-    
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			JSONObject jsonobj=new JSONObject();
+			JSONObject jsonobj = new JSONObject();
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=UTF-8");
-			
-			UserDao userDao=new UserDao();
-			user u=userDao.CheckIsLogin(request, response);
-			
-			if(u!=null&&!"".equals(u.toString())) {
-				BookDao bkDao=new BookDao();
-				List<book> tempList=new ArrayList<book>();
-				book book=new book();
+			//验证是否登录
+			UserDao userDao = new UserDao();
+			user u = userDao.CheckIsLogin(request, response);
+			if (u != null && !"".equals(u.toString())) {
+				BookDao bkDao = new BookDao();
+				List<book> tempList = new ArrayList<book>();
+				book book = new book();
 				BeanUtils.populate(book, request.getParameterMap());
-				book tempBook=new book();
+				book tempBook = new book();
 				tempBook.setISBN(book.getISBN());
-				tempList=bkDao.selects(tempBook);
-				if(tempList.isEmpty()) {
+				tempList = bkDao.selects(tempBook);
+				if (tempList.isEmpty()) {
 					bkDao.adds(book);
 					jsonobj.put("code", "200");
 					jsonobj.put("msg", "该用户添加成功");
-				}else {
+				} else {
 					jsonobj.put("code", "error");
 					jsonobj.put("msg", "该用户已存在");
 				}
-				PrintWriter outPrintWriter=response.getWriter();
+				PrintWriter outPrintWriter = response.getWriter();
 				outPrintWriter.println(jsonobj);
 			}
-
-			}catch (Exception e) {
-					// TODO: handle exception
-				}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
-
-
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -15,44 +15,43 @@ import DAO.UserDao;
 import MODEL.collection;
 import MODEL.user;
 
-
 @WebServlet("/ACCollections")
 public class ACCollections extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public ACCollections() {
-        super();
-    }
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	public ACCollections() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset =UTF-8");
-		
-		UserDao userDao=new UserDao();
-		CollectionDao collectionDao=new CollectionDao();
-		List<collection> collections=new ArrayList<collection>();
-
-		user u=userDao.CheckIsLogin(request, response);
-
-		if(u!=null&&"".equals(u.toString())) {
-			collection collection=new collection();
+		UserDao userDao = new UserDao();
+		CollectionDao collectionDao = new CollectionDao();
+		List<collection> collections = new ArrayList<collection>();
+		//验证是否登录
+		user u = userDao.CheckIsLogin(request, response);
+		if (u != null && "".equals(u.toString())) {
+			collection collection = new collection();
 			collection.setUserid(u.getUserid().toString());
 			collection.setISBN(request.getParameter("ISBN"));
 			try {
-				collections=collectionDao.selects(collection);
+				collections = collectionDao.selects(collection);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (collections.get(0)!=null&&!"".equals(collections.get(0))) {
-				//取消收藏
+			if (collections.get(0) != null && !"".equals(collections.get(0))) {
+				// 取消收藏
 				try {
 					collectionDao.deletes(collection);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}else {
-				//添加收藏
+			} else {
+				// 添加收藏
 				try {
 					collectionDao.adds(collection);
 				} catch (Exception e) {
@@ -60,11 +59,11 @@ public class ACCollections extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-			
 		}
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

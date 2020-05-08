@@ -21,45 +21,45 @@ import MODEL.booktype;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/GetAllSontypes")
 public class GetAllSontypes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public GetAllSontypes() {
-        super();
-    }
+	public GetAllSontypes() {
+		super();
+	}
 
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		try {
-			JSONObject jsonobj=new JSONObject();
+			JSONObject jsonobj = new JSONObject();
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=UTF-8");
-			
-			UserDao userDao=new UserDao();
-			user u=userDao.CheckIsLogin(request, response);
-			
-			if(u!=null&&!"".equals(u.toString())) {
-				book book=new book();
-				BkTypeDao bktypeDao=new BkTypeDao();
-				List<String> typeList=new ArrayList<String>();
-				typeList=bktypeDao.getsontypes();
-				Gson gson=new Gson();
-				PrintWriter outPrintWriter=response.getWriter();
-				String typeJSON=gson.toJson(typeList);
+			//ÑéÖ¤ÊÇ·ñµÇÂ¼
+			UserDao userDao = new UserDao();
+			user u = userDao.CheckIsLogin(request, response);
+			if (u != null && !"".equals(u.toString())) {
+				book book = new book();
+				BkTypeDao bktypeDao = new BkTypeDao();
+				List<String> typeList = new ArrayList<String>();
+				typeList = bktypeDao.getsontypes();
+				Gson gson = new Gson();
+				PrintWriter outPrintWriter = response.getWriter();
+				String typeJSON = gson.toJson(typeList);
 				outPrintWriter.println(typeJSON);
-			 }
-			}catch (Exception e) {
-				// TODO: handle exception
 			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

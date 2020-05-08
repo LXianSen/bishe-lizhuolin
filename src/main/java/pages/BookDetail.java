@@ -19,8 +19,11 @@ import com.alibaba.druid.util.StringUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import DAO.BaseDAO;
 import DAO.BookDao;
+import DAO.StockDao;
 import MODEL.book;
+import MODEL.stock;
 import MODEL.user;
 
 
@@ -36,8 +39,11 @@ public class BookDetail extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-
+		PrintWriter out2=response.getWriter();
 		try {
+			StockDao stockDao=new StockDao();
+			stock stock=new stock();
+			stock.setISBN(request.getParameter("isbn"));
 			book book=new book();
 			book.setISBN(request.getParameter("isbn"));
 			BookDao bkDao=new BookDao();
@@ -46,7 +52,9 @@ public class BookDetail extends HttpServlet {
 			//转化为 key value形式
 			Gson gson=new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create();
 			String bookjson=gson.toJson(bkList);
+			String stockString=gson.toJson(stock.getStock());
 			out.println(bookjson);
+			out2.println(stockString);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

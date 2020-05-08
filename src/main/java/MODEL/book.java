@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 public class book {
-	//编号、图片、书名、作者、出版商、出版日期、单价、折扣、简介、库存、类别
+	//编号、图片、书名、作者、出版商、出版日期、单价、折扣、简介、类别
 	private String ISBN;
 	private String img1;
 	private String img2;
@@ -18,7 +18,6 @@ public class book {
 	private double bprice;
 	private double bdiscount;
 	private String synopsis;
-	private long stock;
 	private String sontype;
 	public String getISBN() {
 		return ISBN;
@@ -98,12 +97,6 @@ public class book {
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
 	}
-	public long getStock() {
-		return stock;
-	}
-	public void setStock(long stock) {
-		this.stock = stock;
-	}
 	public String getSontype() {
 		return sontype;
 	}
@@ -114,11 +107,11 @@ public class book {
 	public String toString() {
 		return "book [ISBN=" + ISBN + ", img1=" + img1 + ", img2=" + img2 + ", img3=" + img3 + ", img4=" + img4
 				+ ", img5=" + img5 + ", bname=" + bname + ", bauthor=" + bauthor + ", bpublish=" + bpublish + ", bdate="
-				+ bdate + ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", synopsis=" + synopsis + ", stock="
-				+ stock + ", sontype=" + sontype + "]";
+				+ bdate + ", bprice=" + bprice + ", bdiscount=" + bdiscount + ", synopsis=" + synopsis + ", sontype="
+				+ sontype + "]";
 	}
 	public book(String iSBN, String img1, String img2, String img3, String img4, String img5, String bname,
-			String bauthor, String bpublish, Date bdate, double bprice, double bdiscount, String synopsis, long stock,
+			String bauthor, String bpublish, Date bdate, double bprice, double bdiscount, String synopsis,
 			String sontype) {
 		super();
 		ISBN = iSBN;
@@ -134,7 +127,6 @@ public class book {
 		this.bprice = bprice;
 		this.bdiscount = bdiscount;
 		this.synopsis = synopsis;
-		this.stock = stock;
 		this.sontype = sontype;
 	}
 	public book() {
@@ -142,6 +134,4 @@ public class book {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-
 }

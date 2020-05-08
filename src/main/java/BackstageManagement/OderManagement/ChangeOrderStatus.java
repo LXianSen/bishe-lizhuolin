@@ -17,30 +17,26 @@ import DAO.UserDao;
 import MODEL.orders;
 import MODEL.user;
 
-
 @WebServlet("/ChangeOrderStatus")
 public class ChangeOrderStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-    public ChangeOrderStatus() {
-        super();
-    }
+	public ChangeOrderStatus() {
+		super();
+	}
 
-    
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
-		
-		UserDao userDao=new UserDao();
-		user u=userDao.CheckIsLogin(request, response);
-		
-		if(u!=null&&!"".equals(u.toString())) {
-			OrderDao orderDao=new OrderDao();
-			orders ordernew=new orders();
-			orders orderold=new orders();
-			Map<String, String[]> tempMap=request.getParameterMap();
+		//ÑéÖ¤ÊÇ·ñµÇÂ¼
+		UserDao userDao = new UserDao();
+		user u = userDao.CheckIsLogin(request, response);
+		if (u != null && !"".equals(u.toString())) {
+			OrderDao orderDao = new OrderDao();
+			orders ordernew = new orders();
+			orders orderold = new orders();
+			Map<String, String[]> tempMap = request.getParameterMap();
 			try {
 				BeanUtils.populate(ordernew, tempMap);
 			} catch (IllegalAccessException e1) {
@@ -60,9 +56,8 @@ public class ChangeOrderStatus extends HttpServlet {
 		}
 	}
 
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

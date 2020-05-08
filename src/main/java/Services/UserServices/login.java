@@ -34,15 +34,11 @@ public class login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset =UTF-8");
-        
 		PrintWriter out = response.getWriter();
         PrintWriter writer = response.getWriter();
 		JSONObject jsonobj = new JSONObject();		
 		user user=new user();
 		UserDao dao1=new UserDao();
-
-
-        
             try {
             	Map<String, String[]> parameterMap = request.getParameterMap();
             	if(parameterMap.isEmpty()) {
@@ -61,9 +57,7 @@ public class login extends HttpServlet {
     					jsonobj.put("code", "200");
     					jsonobj.put("user", myuser);
     	        		session.setAttribute("user", myuser);
-    					
     				}else {
-    					
     	        		jsonobj.put("code", "error");
     				}
     				out.println(jsonobj);

@@ -21,33 +21,30 @@ import MODEL.user;
 public class OrderStatusChange extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public OrderStatusChange() {
-        super();
-    }
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public OrderStatusChange() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset =UTF-8");
-			
-			UserDao userDao=new UserDao();
-			userDao.CheckIsLogin(request, response);
-			
-			user u=userDao.CheckIsLogin(request, response);
-			
-			if(u!=null&&"".equals(u.toString())) {
-				OrderDao orderDao=new OrderDao();
-				//定义两个order：原状态order和新状态order
-				orders orderold=new orders();
-				orders ordernew=new orders();
+			// 验证是否登录
+			UserDao userDao = new UserDao();
+			user u = userDao.CheckIsLogin(request, response);
+			if (u != null && "".equals(u.toString())) {
+				OrderDao orderDao = new OrderDao();
+				// 定义两个order：原状态order和新状态order
+				orders orderold = new orders();
+				orders ordernew = new orders();
 				Map<String, String[]> listMap = request.getParameterMap();
 				BeanUtils.populate(orderold, listMap);
-				String newstatus=request.getParameter("status");
+				String newstatus = request.getParameter("status");
 				ordernew.setStatus(newstatus);
 				orderDao.updates(ordernew, orderold);
-				
-			} 
-		}	catch (IllegalAccessException | InvocationTargetException e) {
+			}
+		} catch (IllegalAccessException | InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -55,7 +52,9 @@ public class OrderStatusChange extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

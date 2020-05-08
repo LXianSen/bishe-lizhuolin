@@ -24,64 +24,55 @@ import MODEL.book;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/BooksShow")
 public class BooksShow extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-	
-    public BooksShow() {
-        super();
-    }
+	public BooksShow() {
+		super();
+	}
 
-
-    
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=UTF-8");
-			
-			UserDao userDao=new UserDao();
-			user u=userDao.CheckIsLogin(request, response);
-			
-			if(u!=null&&!"".equals(u.toString())) {
-				JSONObject jsonobj=new JSONObject();
-				BookDao bkDao=new BookDao();
-				List<book>	booklist=new ArrayList<book>();
-				List<book> tempList=new ArrayList<book>();
-				book book=new book();
+			UserDao userDao = new UserDao();
+			user u = userDao.CheckIsLogin(request, response);
+			if (u != null && !"".equals(u.toString())) {
+				JSONObject jsonobj = new JSONObject();
+				BookDao bkDao = new BookDao();
+				List<book> booklist = new ArrayList<book>();
+				List<book> tempList = new ArrayList<book>();
+				book book = new book();
 				BeanUtils.populate(book, request.getParameterMap());
-				int count=Integer.parseInt(request.getParameter("page"));
-				int size=Integer.parseInt(request.getParameter("limit"));
-				booklist=bkDao.selectbookpages(book, count, size);
-				Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-				PrintWriter outPrintWriter=response.getWriter();
-				String userJSON=gson.toJson(booklist);
-				tempList=bkDao.selects(book);
+				int count = Integer.parseInt(request.getParameter("page"));
+				int size = Integer.parseInt(request.getParameter("limit"));
+				booklist = bkDao.selectbookpages(book, count, size);
+				Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+				PrintWriter outPrintWriter = response.getWriter();
+				String userJSON = gson.toJson(booklist);
+				tempList = bkDao.selects(book);
 				jsonobj.put("code", 0);
 				jsonobj.put("msg", "");
-				jsonobj.put("count",tempList.size());
+				jsonobj.put("count", tempList.size());
 				jsonobj.put("data", userJSON);
 				outPrintWriter.println(jsonobj);
-				}
-			}catch (IllegalAccessException | InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
 
-
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

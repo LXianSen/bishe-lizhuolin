@@ -39,22 +39,17 @@ public class MyInfomation extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=UTF-8");
 			JSONObject jsonobj=new JSONObject();
-	
-			
+			//ÑéÖ¤ÊÇ·ñµÇÂ¼
 			UserDao userDao=new UserDao();
 			user u=userDao.CheckIsLogin(request, response);
-			
 			if(u!=null&&!"".equals(u.toString())) {
-
 			PrintWriter o=response.getWriter();
 			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-			
 			String msg=request.getParameter("msg");
 			if (msg.equals("orders")) {
 				OrderDao orderDao=new OrderDao();
 				orders orders=new orders();
-				orders.setUserid(u.getUserid());
-				
+				orders.setUserid(u.getUserid());	
 				List<orders> orderList=orderDao.selects(orders);
 				String orderJSON=gson.toJson(orderList);
 				o.println(orderJSON);
@@ -79,8 +74,6 @@ public class MyInfomation extends HttpServlet {
 				List<collection>collectionList=collectionDao.selects(collection);
 				String	collectionJSON=gson.toJson(collectionList);
 				o.println(collectionJSON);
-
-			
 			}
 			}
 			} 

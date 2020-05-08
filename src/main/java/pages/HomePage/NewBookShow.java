@@ -20,36 +20,31 @@ import MODEL.book;
 @WebServlet("/NewBookShow")
 public class NewBookShow extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public NewBookShow() {
-        super();
-    }
 
+	public NewBookShow() {
+		super();
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset =UTF-8");
 		try {
-			BookDao bkDao=new BookDao();
-			List<book> newbookList=bkDao.selectnewBooks();
-			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").serializeNulls().create();
-			PrintWriter o=response.getWriter();
-			String newbookJSON=gson.toJson(newbookList);
-			newbookJSON=newbookJSON.replaceAll("null", "\"\"");
+			BookDao bkDao = new BookDao();
+			List<book> newbookList = bkDao.selectnewBooks();
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").serializeNulls().create();
+			PrintWriter o = response.getWriter();
+			String newbookJSON = gson.toJson(newbookList);
+			newbookJSON = newbookJSON.replaceAll("null", "\"\"");
 			o.println(newbookJSON);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
-
-
-	
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

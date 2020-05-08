@@ -25,45 +25,41 @@ import MODEL.orders;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/MyOrderList")
 public class ShowOrderList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public ShowOrderList() {
-        super();
-    }
-    
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
 
+	public ShowOrderList() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset =UTF-8");
-			
-			UserDao userDao=new UserDao();
-			userDao.CheckIsLogin(request, response);
-			
-			user u=userDao.CheckIsLogin(request, response);
-			
-			if(u!=null&&"".equals(u.toString())) {
-				OrderDao orderDao=new OrderDao();
-				orders orders=new orders();
+			// ÑéÖ¤ÊÇ·ñµÇÂ¼
+			UserDao userDao = new UserDao();
+			user u = userDao.CheckIsLogin(request, response);
+			if (u != null && "".equals(u.toString())) {
+				OrderDao orderDao = new OrderDao();
+				orders orders = new orders();
 				orders.setUserid(u.getUserid().toString());
-				List<orders> orderlists=orderDao.myOrders(orders);
-				PrintWriter o=response.getWriter();
-				Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-				String orderJSON=gson.toJson(orderlists);
-				o.println(orderlists);
+				List<orders> orderlists = orderDao.myOrders(orders);
+				PrintWriter o = response.getWriter();
+				Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+				String orderJSON = gson.toJson(orderlists);
+				o.println(orderJSON);
 			}
-		}catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

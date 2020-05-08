@@ -17,33 +17,27 @@ import DAO.UserDao;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/UserDELETE")
 public class UserDELETE extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-    public UserDELETE() {
-        super();
-    }
+	public UserDELETE() {
+		super();
+	}
 
-
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
-		JSONObject jsonobj=new JSONObject();
-
-		
-		UserDao userDao=new UserDao();
-		user u=userDao.CheckIsLogin(request, response);
-		
-		if(u!=null&&!"".equals(u.toString())) {
-			user user=new user();
-			Map<String, String[]> paraMap=request.getParameterMap();
+		JSONObject jsonobj = new JSONObject();
+		//验证是否登录
+		UserDao userDao = new UserDao();
+		user u = userDao.CheckIsLogin(request, response);
+		if (u != null && !"".equals(u.toString())) {
+			user user = new user();
+			Map<String, String[]> paraMap = request.getParameterMap();
 			try {
-				BeanUtils.populate(user,paraMap);
+				BeanUtils.populate(user, paraMap);
 				userDao.deletes(user);
 				jsonobj.put("code", "200");
 				jsonobj.put("msg", "成功删除该用户");
@@ -58,12 +52,10 @@ public class UserDELETE extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

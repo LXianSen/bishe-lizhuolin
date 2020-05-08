@@ -29,15 +29,13 @@ public class CollectionShow extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset =UTF-8");
-		
+		//ÑéÖ¤ÊÇ·ñµÇÂ¼
 		UserDao userDao=new UserDao();
 		user user=userDao.CheckIsLogin(request, response);
 		Gson gson=new Gson();
 		PrintWriter out=response.getWriter();
-		
 		if (user!=null&&!"".equals(user.toString())) {
 			List<collection> collectionlist=new ArrayList<collection>();
 			CollectionDao collectionDao=new CollectionDao();
@@ -47,7 +45,6 @@ public class CollectionShow extends HttpServlet {
 				collectionlist=collectionDao.selects(myCollection);
 				String collerctionJSON=gson.toJson(collectionlist);
 				out.println(collerctionJSON);
-				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

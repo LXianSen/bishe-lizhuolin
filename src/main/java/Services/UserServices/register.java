@@ -23,67 +23,72 @@ import MODEL.user;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/register")
 public class register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public register() {
-        super();
-    }
+
+	public register() {
+		super();
+	}
 
 //    public boolean checkuser(user u) throws SQLException, Exception {
 //    	UserDao dao1=new UserDao();
 //    	dao1.adds(u);
 //		
 //	}
-    
-    public boolean adduser(user u) throws SQLException, Exception {
-    	UserDao dao1=new UserDao();
-    	List<user> list=dao1.selects(u);
-		if(list.isEmpty()) {
+
+	public boolean adduser(user u) throws SQLException, Exception {
+		UserDao dao1 = new UserDao();
+		List<user> list = dao1.selects(u);
+		if (list.isEmpty()) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset =UTF-8");
-		UserDao dao1=new UserDao();
+		UserDao dao1 = new UserDao();
 		PrintWriter out = response.getWriter();
-		//实例化json
+		// 实例化json
 		JSONObject jsonobj = new JSONObject();
-//		JSONArray jsonarray = new JSONArray();
+		// JSONArray jsonarray = new JSONArray();
 		try {
 			Map<String, String[]> parameterMap = request.getParameterMap();
-			String type=request.getParameter("type");
-			user user=new user();
+			String type = request.getParameter("type");
+			user user = new user();
 			BeanUtils.populate(user, parameterMap);
 			user.setUserid(request.getParameter("userid"));
-			//输入数据的时候判断数据库是否存在该数据
-			if(type.equals("select")) {
-				if(adduser(user)) {
+			// 输入数据的时候判断数据库是否存在该数据
+			if (type.equals("select")) {
+				if (adduser(user)) {
 					jsonobj.put("code", "200");
-				}else {
+				} else {
 					jsonobj.put("code", "error");
 					jsonobj.put("msg", "该用户已存在");
 				}
-			}else if(type.equals("add")) {
-				
-				List<user> list1=dao1.adds(user);;
-				if(!list1.isEmpty()) {
+			} else if (type.equals("add")) {
+
+				List<user> list1 = dao1.adds(user);
+				;
+				if (!list1.isEmpty()) {
 					jsonobj.put("code", "200");
 				}
-			}else {
+			} else {
 				System.out.println("1");
 			}
 			out.println(jsonobj);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} }
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

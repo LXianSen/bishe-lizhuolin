@@ -22,44 +22,39 @@ import MODEL.booktype;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/TypeDelete")
 public class TypeDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public TypeDelete() {
-        super();
-    }
 
+	public TypeDelete() {
+		super();
+	}
 
-
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
-		JSONObject jsonobj=new JSONObject();
-
-		
-		UserDao userDao=new UserDao();
-		user u=userDao.CheckIsLogin(request, response);
-		
-		if(u!=null&&!"".equals(u.toString())) {
-			booktype booktype=new booktype();
-			Map<String, String[]> paraMap=request.getParameterMap();
-			BkTypeDao bkTypeDao=new BkTypeDao();
+		JSONObject jsonobj = new JSONObject();
+		//验证是否登录
+		UserDao userDao = new UserDao();
+		user u = userDao.CheckIsLogin(request, response);
+		if (u != null && !"".equals(u.toString())) {
+			booktype booktype = new booktype();
+			Map<String, String[]> paraMap = request.getParameterMap();
+			BkTypeDao bkTypeDao = new BkTypeDao();
 			try {
-				BeanUtils.populate(booktype,paraMap);
-				String sonString=booktype.getSontype().toString();
-				if (sonString!=null&&!"".equals(sonString)) {
+				BeanUtils.populate(booktype, paraMap);
+				String sonString = booktype.getSontype().toString();
+				if (sonString != null && !"".equals(sonString)) {
 					bkTypeDao.changetonull(booktype.getSontype().toString());
 					bkTypeDao.deletes(booktype);
 					jsonobj.put("code", "200");
 					jsonobj.put("msg", "成功删除该类别");
-					
-				}else {
+				} else {
 					jsonobj.put("code", "error");
 					jsonobj.put("msg", "一级类别不能删除，请删除二级类别！");
 				}
-				PrintWriter oPrintWriter=response.getWriter();
+				PrintWriter oPrintWriter = response.getWriter();
 				oPrintWriter.println(jsonobj);
 			} catch (IllegalAccessException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
@@ -74,8 +69,8 @@ public class TypeDelete extends HttpServlet {
 		}
 	}
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

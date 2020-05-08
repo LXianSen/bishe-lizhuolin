@@ -26,42 +26,31 @@ import net.sf.json.JSONObject;
 @WebServlet("/addressadd")
 public class AddressAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public AddressAdd() {
-        super();
-    }
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	public AddressAdd() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset =UTF-8");
-			
-			UserDao userDao=new UserDao();
-			user u=userDao.CheckIsLogin(request, response);
-
-			/*
-			 * JSONObject jsonobj=new JSONObject(); PrintWriter out=response.getWriter();
-			 * HttpSession session=request.getSession(); user user=(user)
-			 * session.getAttribute("user"); if (user == null) { jsonobj.put("code",
-			 * "error"); jsonobj.put("msg", "用户未登录或登录态过期！"); out.println(jsonobj); //
-			 * response.sendRedirect("login.jsp"); return; }
-			 */
-		
-		//需要判重吗？判重有必要吗？......
-		
-
-		//获取表单所有数据并添加到数据库
-			if(u!=null&&!"".equals(u.toString())) {
-				address address=new address();
-				AddressDao addressDao=new AddressDao();
-				Map<String, String[]>addressMap=request.getParameterMap();
+			//验证是否登录
+			UserDao userDao = new UserDao();
+			user u = userDao.CheckIsLogin(request, response);
+			if (u != null && !"".equals(u.toString())) {
+				address address = new address();
+				AddressDao addressDao = new AddressDao();
+				Map<String, String[]> addressMap = request.getParameterMap();
 				BeanUtils.populate(address, addressMap);
 				address.setUserid(u.getUserid());
-				UUID uuid=UUID.randomUUID();
-				String addressidString=uuid.toString().replace("-", "");
+				UUID uuid = UUID.randomUUID();
+				String addressidString = uuid.toString().replace("-", "");
 				address.setAddressid(addressidString);
 				addressDao.adds(address);
-		}
 			}
-		 catch (IllegalAccessException | InvocationTargetException e) {
+		} catch (IllegalAccessException | InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -71,8 +60,10 @@ public class AddressAdd extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -28,48 +28,42 @@ import MODEL.orders;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/OrderCommit")
 public class OrderCommit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public OrderCommit() {
-        super();
-    }
-    
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public OrderCommit() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset =UTF-8");
 			UserDao userDao = new UserDao();
-//			userDao.CheckIsLogin(request, response);
-
+			//ÑéÖ¤ÊÇ·ñµÇÂ¼
 			user u = userDao.CheckIsLogin(request, response);
-
 			if (u != null && !"".equals(u.toString())) {
 				System.out.println("aaaaaaaaaaa");
-				AddressDao addressDao=new AddressDao();
-				address address=new address();
+				AddressDao addressDao = new AddressDao();
+				address address = new address();
 				address.setUserid(u.getUserid());
-				List<address> addressList=addressDao.addressesbyisdefault(address);
+				List<address> addressList = addressDao.addressesbyisdefault(address);
 				System.out.println(addressList);
-				PrintWriter out=response.getWriter();
-				Gson gson=new GsonBuilder().serializeNulls().create();
+				PrintWriter out = response.getWriter();
+				Gson gson = new GsonBuilder().serializeNulls().create();
 				String addressjson = gson.toJson(addressList);
-				addressjson=addressjson.replaceAll("null", "\"\"");
+				addressjson = addressjson.replaceAll("null", "\"\"");
 				out.println(addressjson);
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
 
-
-
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

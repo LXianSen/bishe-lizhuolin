@@ -21,45 +21,42 @@ import DAO.UserDao;
 import MODEL.user;
 import net.sf.json.JSONObject;
 
-
 @WebServlet("/UserManagement")
 public class UserManagement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public UserManagement() {
-        super();
-    }
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public UserManagement() {
+		super();
+	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
-		JSONObject jsonobj=new JSONObject();
-
-		
-		UserDao userDao=new UserDao();
-		user u=userDao.CheckIsLogin(request, response);
-		
-		if(u!=null&&!"".equals(u.toString())) {
-			List<user> userlist=new ArrayList<user>();
+		JSONObject jsonobj = new JSONObject();
+		//ÑéÖ¤ÊÇ·ñµÇÂ¼
+		UserDao userDao = new UserDao();
+		user u = userDao.CheckIsLogin(request, response);
+		if (u != null && !"".equals(u.toString())) {
+			List<user> userlist = new ArrayList<user>();
 			Map<String, String[]> parameterMap = request.getParameterMap();
-			List<user> tempList=new ArrayList<user>();
-			user user=new user();
-			int count=Integer.parseInt(request.getParameter("page"));
-			int size=Integer.parseInt(request.getParameter("limit"));
+			List<user> tempList = new ArrayList<user>();
+			user user = new user();
+			int count = Integer.parseInt(request.getParameter("page"));
+			int size = Integer.parseInt(request.getParameter("limit"));
 			try {
 				BeanUtils.populate(user, parameterMap);
 				System.out.println(user);
-				userlist=userDao.selectuserpages(user,count,size);
-				Gson gson=new Gson();
-				PrintWriter outPrintWriter=response.getWriter();
-				String userJSON=gson.toJson(userlist);
-				tempList=userDao.selects(user);
+				userlist = userDao.selectuserpages(user, count, size);
+				Gson gson = new Gson();
+				PrintWriter outPrintWriter = response.getWriter();
+				String userJSON = gson.toJson(userlist);
+				tempList = userDao.selects(user);
 				jsonobj.put("code", 0);
 				jsonobj.put("msg", "");
-				jsonobj.put("count",tempList.size());
+				jsonobj.put("count", tempList.size());
 				jsonobj.put("data", userJSON);
 				outPrintWriter.println(jsonobj);
-
 			} catch (IllegalAccessException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -70,10 +67,8 @@ public class UserManagement extends HttpServlet {
 		}
 	}
 
-
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
