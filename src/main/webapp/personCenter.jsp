@@ -162,5 +162,5 @@
         </div>
     </body>
     <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/personcenter.js?ver=1"></script>
+    <script src="js/personcenter.js?ver=2"></script>
     </html>
