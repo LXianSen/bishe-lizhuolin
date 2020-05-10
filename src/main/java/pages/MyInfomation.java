@@ -64,7 +64,7 @@ public class MyInfomation extends HttpServlet {
 					tempMap.put("fatherorder", fatherList.get(i));
 					orders tempOrders=new orders();
 					tempOrders.setFatherorder(fatherList.get(i));
-					List<orders> sonList=orderDao.selects(tempOrders);
+					List<Map> sonList=orderDao.getsonordersList(fatherList);
 					tempMap.put("sonorder", sonList);
 					orderList.add(tempMap);
 				}

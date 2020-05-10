@@ -95,7 +95,38 @@ public class OrderDao extends BaseDAO {
 		}
 		return fatherList;
 	}
-
+	public List<Map> getsonordersList(List<String> fatherlist) throws SQLException, Exception{
+		Connection connection=Druid().getConnection();
+		List<Map> sonMaps=new ArrayList<Map>();
+		for (int i = 0; i < fatherlist.size(); i++) {
+			StringBuffer sql=new StringBuffer("select `orders`.*,book.bname,book.img1 from `orders` left join book on book.ISBN=`orders`.ISBN where `orders`.fatherorder=");
+			sql.append(fatherlist.get(i));
+			PreparedStatement pStatement=connection.prepareStatement(sql.toString());
+			ResultSet rSet=pStatement.executeQuery();
+			ResultSetMetaData rsmd=rSet.getMetaData();
+			int columnCount=rsmd.getColumnCount();
+			Map<Object, Object> tempMap = new HashMap<Object, Object>();
+			System.out.println("hhhhhhh");
+			for (int j = 1; j <= columnCount; j++) {
+				List<Object> tempList = new ArrayList<Object>();
+				ResultSet rs1 = pStatement.executeQuery();
+				// 元数据对象(里面包含了表头)
+				ResultSetMetaData rsmd1 = rs1.getMetaData();
+				// 根据列号 来获得 列名
+				String columnName = rsmd1.getColumnName(j);
+				while (rs1.next()) {
+					// 根据列名 来获取 当前列的数据
+					Object value = rs1.getObject(columnName);
+					if (tempList.indexOf(value) != -1) {
+					} else {
+						tempList.add(value);
+					}
+				}
+				tempMap.put(columnName, tempList);
+			}
+		}
+		return null;
+	}
 	public List<Map> showorderList(List<String> fatherlist, int pagecount, int size) throws SQLException, Exception {
 		Connection connection = Druid().getConnection();
 		List<Map> orderList = new ArrayList<Map>();
