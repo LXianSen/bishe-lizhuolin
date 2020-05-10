@@ -2,7 +2,10 @@ package pages;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,7 +56,19 @@ public class MyInfomation extends HttpServlet {
 				orders orders=new orders();
 				orders.setUserid(u.getUserid());	
 				System.out.println(orders);
-				List<orders> orderList=orderDao.selects(orders);
+				user tempUser=new user();
+				List<String> fatherList=orderDao.fatherorderList(orders, tempUser);
+				List<Map> orderList=new ArrayList<Map>();
+				for (int i = 0; i < fatherList.size(); i++) {
+					Map<Object, Object> tempMap=new HashMap<Object, Object>();
+					tempMap.put("fatherorder", fatherList.get(i));
+					orders tempOrders=new orders();
+					tempOrders.setFatherorder(fatherList.get(i));
+					List<orders> sonList=orderDao.selects(tempOrders);
+					tempMap.put("sonorder", sonList);
+					orderList.add(tempMap);
+				}
+
 				System.out.println("orderList   "+orderList);
 				String orderJSON=gson.toJson(orderList);
 				o.println(orderJSON);
