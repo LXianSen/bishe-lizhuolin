@@ -61,10 +61,10 @@ public class MyInfomation extends HttpServlet {
 				List<Map> orderList=new ArrayList<Map>();
 				for (int i = 0; i < fatherList.size(); i++) {
 					Map<Object, Object> tempMap=new HashMap<Object, Object>();
-					tempMap.put("fatherorder", fatherList.get(i));
 					orders tempOrders=new orders();
 					tempOrders.setFatherorder(fatherList.get(i));
 					List<Map> sonList=orderDao.getsonordersList(fatherList);
+					System.out.println(sonList);
 					tempMap.put("sonorder", sonList);
 					orderList.add(tempMap);
 				}
