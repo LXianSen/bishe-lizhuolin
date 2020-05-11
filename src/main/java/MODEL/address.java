@@ -1,7 +1,7 @@
 package MODEL;
 
 public class address {
-	//地址编号（自增）、用户id(外键)、省、市、县、详细地址、联系人、联系电话
+	//地址编号（自增）、用户id、省、市、县、详细地址、联系人、联系电话
 	private String addressid;
 	private String userid;
 	private String province;

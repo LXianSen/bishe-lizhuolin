@@ -119,7 +119,7 @@ public class OrderDao extends BaseDAO {
 					tempMap2.put("img1",rSet.getObject("img1"));
 					tempMap2.put("count",rSet.getObject("count"));
 					tempList.add(tempMap2);
-					totalprice+=rSet.getDouble("bprice");
+					totalprice+=rSet.getDouble("bprice")*rSet.getInt("count")*rSet.getDouble("bdiscount");
 				}
 			tempMap.put("sonorder", tempList);
 			tempMap.put("totalprice", totalprice);

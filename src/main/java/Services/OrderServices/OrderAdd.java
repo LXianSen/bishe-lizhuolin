@@ -72,6 +72,7 @@ public class OrderAdd extends HttpServlet {
 					}else {
 						PrintWriter oPrintWriter=response.getWriter();
 						oPrintWriter.println("ø‚¥Ê≤ª◊„£¨«Î÷ÿ ‘");
+						break;
 					}
 				}
 			}
