@@ -106,26 +106,26 @@ public class OrderDao extends BaseDAO {
 			ResultSetMetaData rsmd=rSet.getMetaData();
 			int columnCount=rsmd.getColumnCount();
 			Map<Object, Object> tempMap = new HashMap<Object, Object>();
-			System.out.println("hhhhhhh");
-			for (int j = 1; j <= columnCount; j++) {
-				List<Object> tempList = new ArrayList<Object>();
-				ResultSet rs1 = pStatement.executeQuery();
-				// 元数据对象(里面包含了表头)
-				ResultSetMetaData rsmd1 = rs1.getMetaData();
-				// 根据列号 来获得 列名
-				String columnName = rsmd1.getColumnName(j);
-				while (rs1.next()) {
-					// 根据列名 来获取 当前列的数据
-					Object value = rs1.getObject(columnName);
-					if (tempList.indexOf(value) != -1) {
-					} else {
-						tempList.add(value);
-					}
+			tempMap.put("fatherorder", rSet.getObject("fatherorder"));
+			tempMap.put("date", rSet.getObject("date"));
+			tempMap.put("status",rSet.getObject("status"));
+			List<Map> tempList=new ArrayList<Map>();
+			double totalprice=0;
+			while (rSet.next()) {
+					Map tempMap2=new HashMap();
+					tempMap2.put("sonorder",rSet.getObject("sonorder"));
+					tempMap2.put("bname",rSet.getObject("bname"));
+					tempMap2.put("bprice",rSet.getObject("bprice"));
+					tempMap2.put("img1",rSet.getObject("img1"));
+					tempMap2.put("count",rSet.getObject("count"));
+					tempList.add(tempMap2);
+					totalprice+=rSet.getDouble("bprice");
 				}
-				tempMap.put(columnName, tempList);
-			}
+			tempMap.put("sonorder", tempList);
+			tempMap.put("totalprice", totalprice);
+			sonMaps.add(tempMap);
 		}
-		return null;
+		return sonMaps;
 	}
 	public List<Map> showorderList(List<String> fatherlist, int pagecount, int size) throws SQLException, Exception {
 		Connection connection = Druid().getConnection();

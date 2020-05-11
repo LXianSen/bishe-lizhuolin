@@ -58,17 +58,7 @@ public class MyInfomation extends HttpServlet {
 				System.out.println(orders);
 				user tempUser=new user();
 				List<String> fatherList=orderDao.fatherorderList(orders, tempUser);
-				List<Map> orderList=new ArrayList<Map>();
-				for (int i = 0; i < fatherList.size(); i++) {
-					Map<Object, Object> tempMap=new HashMap<Object, Object>();
-					orders tempOrders=new orders();
-					tempOrders.setFatherorder(fatherList.get(i));
-					List<Map> sonList=orderDao.getsonordersList(fatherList);
-					System.out.println(sonList);
-					tempMap.put("sonorder", sonList);
-					orderList.add(tempMap);
-				}
-
+				List<Map> orderList=orderDao.getsonordersList(fatherList);
 				System.out.println("orderList   "+orderList);
 				String orderJSON=gson.toJson(orderList);
 				o.println(orderJSON);
