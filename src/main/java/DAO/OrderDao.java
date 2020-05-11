@@ -106,11 +106,13 @@ public class OrderDao extends BaseDAO {
 			ResultSetMetaData rsmd=rSet.getMetaData();
 			int columnCount=rsmd.getColumnCount();
 			Map<Object, Object> tempMap = new HashMap<Object, Object>();
+			if(rSet.next()) {
 			tempMap.put("fatherorder", rSet.getObject("fatherorder"));
 			tempMap.put("date", rSet.getObject("date"));
 			tempMap.put("status",rSet.getObject("status"));
 			List<Map> tempList=new ArrayList<Map>();
 			double totalprice=0;
+			rSet.beforeFirst();
 			while (rSet.next()) {
 					Map tempMap2=new HashMap();
 					tempMap2.put("sonorder",rSet.getObject("sonorder"));
@@ -124,6 +126,7 @@ public class OrderDao extends BaseDAO {
 			tempMap.put("sonorder", tempList);
 			tempMap.put("totalprice", totalprice);
 			sonMaps.add(tempMap);
+			}
 		}
 		return sonMaps;
 	}
