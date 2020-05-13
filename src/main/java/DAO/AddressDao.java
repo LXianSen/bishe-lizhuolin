@@ -21,6 +21,7 @@ public class AddressDao extends BaseDAO {
 		sqlString.append(address.getUserid()).append("'");
 		PreparedStatement pStatement=connection.prepareStatement(sqlString.toString());
 		pStatement.executeUpdate();
+		connection.close();
 	}
 	
 	public List<address>addressesbyisdefault(address address) throws SQLException, Exception{
@@ -56,6 +57,7 @@ public class AddressDao extends BaseDAO {
 			}
 			addressList.add(tempAddress);
 		}
+		connection.close();
 		return addressList;
 		
 	}

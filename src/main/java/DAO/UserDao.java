@@ -106,6 +106,7 @@ public class UserDao extends BaseDAO<user> {
 		}
 	}
 
+	//实现分页查询
 	public List<user> selectuserpages(user u, int count, int size) throws SQLException, Exception {
 		Connection connection = Druid().getConnection();
 		List<user> userlist = new ArrayList<user>();
@@ -155,6 +156,7 @@ public class UserDao extends BaseDAO<user> {
 			}
 			userlist.add(user);
 		}
+		connection.close();
 		return userlist;
 	}
 }

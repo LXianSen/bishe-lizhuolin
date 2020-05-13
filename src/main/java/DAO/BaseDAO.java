@@ -90,6 +90,7 @@ public class BaseDAO<T> {
 			ps.setObject(i + 1, parList.get(i));
 		}
 		ps.executeUpdate();
+		connection.close();
 		return parList;
 	}
 
@@ -119,6 +120,7 @@ public class BaseDAO<T> {
 		}
 		System.out.println(sb);
 		ps.executeUpdate();
+		con.close();
 		return parList;
 	}
 
@@ -170,6 +172,7 @@ public class BaseDAO<T> {
 		}
 		System.out.println(ps.toString());
 		int count = ps.executeUpdate();
+		Druid().getConnection().close();
 		return parList;
 
 	}

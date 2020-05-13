@@ -34,6 +34,7 @@ public class CartDao extends BaseDAO<cartitem> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		connection.close();
 		return price;
 	}
 	// 获取折扣总价
@@ -52,6 +53,7 @@ public class CartDao extends BaseDAO<cartitem> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		connection.close();
 		return price;
 	}
 
@@ -79,6 +81,7 @@ public class CartDao extends BaseDAO<cartitem> {
 			}
 			cartitemList.add(tempMap);
 		}
+		connection.close();
 		return cartitemList;
 	}
 }

@@ -43,6 +43,7 @@ public class OrderDao extends BaseDAO {
 			}
 			myOrders.add(tempOrder);
 		}
+		connection.close();
 		return myOrders;
 	}
 
@@ -93,6 +94,7 @@ public class OrderDao extends BaseDAO {
 		while (rs.next()) {
 			fatherList.add(rs.getString("fatherorder"));
 		}
+		connection.close();
 		return fatherList;
 	}
 	public List<Map> getsonordersList(List<String> fatherlist) throws SQLException, Exception{
@@ -128,6 +130,7 @@ public class OrderDao extends BaseDAO {
 			sonMaps.add(tempMap);
 			}
 		}
+		connection.close();
 		return sonMaps;
 	}
 	public List<Map> showorderList(List<String> fatherlist, int pagecount, int size) throws SQLException, Exception {
@@ -167,6 +170,7 @@ public class OrderDao extends BaseDAO {
 			}
 			orderList.add(tempMap);
 		}
+		connection.close();
 		return orderList;
 	}
 
@@ -205,6 +209,7 @@ public class OrderDao extends BaseDAO {
 			}
 			orderList.add(tempMap);
 		}
+		connection.close();
 		return orderList;
 	}
 }

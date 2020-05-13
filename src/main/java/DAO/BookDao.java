@@ -41,6 +41,7 @@ public class BookDao extends BaseDAO<book> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		connection.close();
 		return price;
 	}
 
@@ -78,6 +79,7 @@ public class BookDao extends BaseDAO<book> {
 			}
 			booklist.add(booktemp);
 		}
+		connection.close();
 		return booklist;
 	}
 
@@ -105,6 +107,7 @@ public class BookDao extends BaseDAO<book> {
 			}
 			newbooks.add(tempBook);
 		}
+		connection.close();
 		return newbooks;
 	}
 
@@ -157,6 +160,7 @@ public class BookDao extends BaseDAO<book> {
 			}
 			booklist.add(book);
 		}
+		connection.close();
 		return booklist;
 	}
 }

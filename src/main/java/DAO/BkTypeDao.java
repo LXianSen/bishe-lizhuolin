@@ -31,6 +31,7 @@ public class BkTypeDao extends BaseDAO<booktype> {
 		while (rs.next()) {
 			fatherStrings.add(rs.getString("fathertype"));
 		}
+		connection.close();
 		return fatherStrings;
 	}
 
@@ -53,6 +54,7 @@ public class BkTypeDao extends BaseDAO<booktype> {
 			tempMap.put("secondname", " ");
 			fatherList.add(tempMap);
 		}
+		connection.close();
 		return fatherList;
 	}
 
@@ -94,7 +96,7 @@ public class BkTypeDao extends BaseDAO<booktype> {
 			fatherMap.put("secondname", sonList.get(j));
 			fatherList.add(fatherMap);
 		}
-
+		connection.close();
 		return fatherList;
 	}
 
@@ -107,6 +109,7 @@ public class BkTypeDao extends BaseDAO<booktype> {
 		while (rs.next()) {
 			sontyypeList.add(rs.getString("sontype"));
 		}
+		connection.close();
 		return sontyypeList;
 	}
 
@@ -118,5 +121,6 @@ public class BkTypeDao extends BaseDAO<booktype> {
 		sqlString.append(oldbook.getSontype()).append("'");
 		PreparedStatement pStatement = connection.prepareStatement(sqlString.toString());
 		pStatement.executeUpdate();
+		connection.close();
 	}
 }
