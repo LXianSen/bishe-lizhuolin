@@ -47,10 +47,10 @@ public class BookAdd extends HttpServlet {
 				if (tempList.isEmpty()) {
 					bkDao.adds(book);
 					jsonobj.put("code", "200");
-					jsonobj.put("msg", "该用户添加成功");
+					jsonobj.put("msg", "书籍添加成功");
 				} else {
 					jsonobj.put("code", "error");
-					jsonobj.put("msg", "该用户已存在");
+					jsonobj.put("msg", "该书籍已存在");
 				}
 				PrintWriter outPrintWriter = response.getWriter();
 				outPrintWriter.println(jsonobj);
