@@ -222,7 +222,7 @@
     $.post("Search",{inputmsg:getparams},function(data){
 		data=JSON.parse(data)
 		$(".search-book-list").empty()
-    data.forEach(function(item,index){
+    data.data.forEach(function(item,index){
         $(".search-book-list").append("<div class='per-book' data-isbn="+item.ISBN+" click=clickevent()><div class='per-book-img'><img src="+item.img+" alt="+item.bname+"></div><div class='per-book-detail'><div class='per-book-name'>"+item.bname+"</div><div class='per-book-other'><span class='per-book-author'>"+item.bauthor+"/</span><span class='per-book-publish'>"+item.bpublish+"/</span><span class='per-book-data'>"+item.bdate+"/</span><span class='per-book-price'>"+item.bprice+"元</span></div></div></div>")
 
     })
