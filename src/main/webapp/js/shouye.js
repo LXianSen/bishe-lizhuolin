@@ -9,7 +9,7 @@
 	
 	rightboxfn();    
 	topboxfn();
-	console.log("首页js更新1")
+	console.log("首页js更新2")
 	function topboxfn(){
 		$(".exit").click(function(){
 			console.log("退出登录")
@@ -193,7 +193,7 @@
 		}
 	})
 
-	window.onload = function () {
+	/*window.onload = function () {
 		//处理用户登录
 		var user = JSON.parse(sessionStorage.getItem("user"))
 		if (user) {
@@ -203,8 +203,8 @@
 		}
 
 		
-	}
-	
+	}*/
+	handleUser();
 	function handleUser(){
 		var user = JSON.parse(sessionStorage.getItem("user"))
 		if (user) {

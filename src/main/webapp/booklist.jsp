@@ -187,6 +187,7 @@
 <script>
     //4.26add
 	console.log("aaaaaa")
+	handleUser();
     //获得地址后面的参数
     function getParams() {
         var params = {};
@@ -231,5 +232,15 @@
 	$(".search-book-list").on("click",".per-book",function(){
 		window.location.href="detail.jsp?isbn="+$(".per-book").data('isbn')
 	})
+	
+	
+	function handleUser(){
+		var user = JSON.parse(sessionStorage.getItem("user"))
+		if (user) {
+			$('.m-user-con').removeClass('userhide')
+			$('.login').addClass('userhide')
+			$('.m-username').text(user.username || user.userd)
+		}
+	}
 </script>
 </html>
