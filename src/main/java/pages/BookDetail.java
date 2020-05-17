@@ -39,7 +39,7 @@ public class BookDetail extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		PrintWriter out2=response.getWriter();
+//		PrintWriter out2=response.getWriter();
 		try {
 			StockDao stockDao=new StockDao();
 			stock stock=new stock();
@@ -54,7 +54,7 @@ public class BookDetail extends HttpServlet {
 			String bookjson=gson.toJson(bkList);
 			String stockString=gson.toJson(stock.getStock());
 			out.println(bookjson);
-			out2.println(stockString);
+//			out2.println(stockString);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

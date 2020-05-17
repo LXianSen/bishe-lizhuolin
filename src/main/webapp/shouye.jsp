@@ -27,7 +27,7 @@
 							data-target="_blank">
 							<span class="iconfont icon-icon-test2"></span>
 							<span class="m-username">丑丑小怪物</span>
-							<span class="iconfont icon-icon-test6"></span>
+							<span class="iconfont icon-icon-test10"></span>
 						</a>
 						<div class="site-item-nav hidden">
 							<ul class="site-nav user-nav">
@@ -37,7 +37,7 @@
 										class="m-safe-anchor">我的收藏</a></li>
 								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/address" href="#"
 										class="m-safe-anchor">地址管理</a></li>
-								<li><a rel="nofollow" href="javascript:;">退出登录</a></li>
+								<li class="exit"><a rel="nofollow" href="javascript:;">退出登录</a></li>
 							</ul>
 						</div>
 					</div>
@@ -102,7 +102,7 @@
 					<!-- 轮播（Carousel）项目 -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="https://img.youpin.mi-img.com/youpinoper/b11cfe646f29f79742dc6f8491d5cba6.jpg?id=&w=1080&h=450"
+							<img src="http://img62.ddimg.cn/upload_img/00838/cxtc/750x315-1589001800.jpg" style="width:100%"
 								alt="First slide">
 						</div>
 						<div class="item">
@@ -257,15 +257,27 @@
 					<div class="person-book">
 						<div class="perbook">
 							<div class="perbook-img">
-								<img src="https://img3.doubanio.com/view/subject/l/public/s29053580.jpg">
+								<img src="http://img3m0.ddimg.cn/12/14/24242340-1_b_16.jpg" alt="半小时漫画中国史">
 							</div>
-							<div class="perbook-name">马伯庸笑翻中国简史</div>
+							<div class="perbook-name">半小时漫画中国史</div>
 						</div>
 						<div class="perbook">
 							<div class="perbook-img">
-								<img src="http://img3m0.ddimg.cn/30/25/24156030-1_l_12.jpg" alt="长安十二时辰 上下册套装">
+								<img src="http://img3m9.ddimg.cn/81/1/25272999-1_b_9.jpg" alt="半小时漫画中国史2">
 							</div>
-							<div class="perbook-name">长安十二时辰 上下册套装</div>
+							<div class="perbook-name">半小时漫画中国史2</div>
+						</div>
+						<div class="perbook">
+							<div class="perbook-img">
+								<img src="http://img3m8.ddimg.cn/21/1/25301748-1_b_5.jpg" alt="半小时漫画中国史3">
+							</div>
+							<div class="perbook-name">半小时漫画中国史3</div>
+						</div>
+						<div class="perbook">
+							<div class="perbook-img">
+								<img src="http://img3m3.ddimg.cn/83/14/27931943-1_b_6.jpg" alt="半小时漫画中国史4">
+							</div>
+							<div class="perbook-name">半小时漫画中国史4</div>
 						</div>
 					</div>
 				</div>
@@ -277,6 +289,26 @@
 					<div class="per-person">
 						<span class="per-no">2</span>
 						<span class="per-person-name">安妮宝贝</span>
+					</div>
+					<div class="per-person">
+						<span class="per-no">3</span>
+						<span class="per-person-name">余华</span>
+					</div>
+					<div class="per-person">
+						<span class="per-no">4</span>
+						<span class="per-person-name">余秋雨</span>
+					</div>
+					<div class="per-person">
+						<span class="per-no">5</span>
+						<span class="per-person-name">曹文轩</span>
+					</div>
+					<div class="per-person">
+						<span class="per-no">6</span>
+						<span class="per-person-name">大冰</span>
+					</div>
+					<div class="per-person">
+						<span class="per-no">7</span>
+						<span class="per-person-name">东野圭吾</span>
 					</div>
 				</div>
 			</div>
@@ -374,6 +406,6 @@
 </body>
 
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="js/shouye.js?ver=1"></script>
+<script type="text/javascript" src="js/shouye.js?ver=2"></script>
 
 </html>

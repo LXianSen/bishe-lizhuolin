@@ -37,44 +37,43 @@
 		</div>
 		<div class="book-info">
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">2013</a></li>
-				<li class="active">十一月</li>
+				<li><a href="#">首页</a></li>
+				<li class="active">白夜行</li>
 			</ul>
 			<div class="book-info-detail">
 				<div class="book-info-img">
 					<div class="image">
 						<img
-							src="https://img.youpin.mi-img.com/shopmain/7498afc225c16a574c2c264afd56dbbc.jpg@base@tag=imgScale&F=webp&h=1080&w=1080?w=1080&h=1080">
+							src="http://img3m2.ddimg.cn/62/32/25119332-1_u_9.jpg">
 					</div>
 					<div class="thumb fr" style="display: block;">
 						<div class="thumb-container" style="top: 0px;">
 							<div class="thumb-pic" style="border-color: rgb(132, 95, 63);">
 								<img
-									src="https://img.youpin.mi-img.com/shopmain/7498afc225c16a574c2c264afd56dbbc.jpg@base@tag=imgScale&F=webp&h=1080&w=1080?w=1080&h=1080">
+									src="http://img3m2.ddimg.cn/62/32/25119332-1_u_9.jpg">
 							</div>
 							<div class="thumb-pic" style="border-color: rgb(236, 236, 236);">
 								<img
-									src="https://img.youpin.mi-img.com/shopmain/1ca8b2d451a2016e2c49ce12d58bd9f3.jpg@base@tag=imgScale&amp;F=webp&amp;h=166&amp;w=166">
+									src="http://img3m2.ddimg.cn/62/32/25119332-3_x_8.jpg">
 							</div>
 							<div class="thumb-pic" style="border-color: rgb(236, 236, 236);">
 								<img
-									src="https://img.youpin.mi-img.com/shopmain/da88a49c45a5b6baa239eb0d7af9b644.jpg@base@tag=imgScale&amp;F=webp&amp;h=166&amp;w=166">
+									src="http://img3m2.ddimg.cn/62/32/25119332-4_x_8.jpg">
 							</div>
 							<div class="thumb-pic" style="border-color: rgb(236, 236, 236);">
 								<img
-									src="https://img.youpin.mi-img.com/shopmain/c1e450de5a8e3c42534505efb668ef4d.jpg@base@tag=imgScale&amp;F=webp&amp;h=166&amp;w=166">
+									src="http://img3m2.ddimg.cn/62/32/25119332-5_x_3.jpg">
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="sku-container">
 					<div class="name clearfix">
-						<div class="good-name fl">慧作守护星紫外线杀菌套餐</div>
+						<div class="good-name fl">白夜行</div>
 						<div class="good-tag fl">折扣</div>
 					</div>
 					<div class="summary">
-						<span class="staticWords">守护星！家居紫外线杀菌套餐！众筹火热进行！</span> <span
+						<span class="staticWords">我一直走在白夜里，从来就没有太阳，所以不怕失去。</span> <span
 							class="staticWords hyperlinkWords"></span>
 					</div>
 					<div class="promotion-box"></div>
@@ -82,7 +81,7 @@
 						<div class="price-line">
 							<h5 class="sku-title">售价</h5>
 							<div class="price">
-								<span class="money-symbol">¥</span><span class="value">199</span>
+								<span class="money-symbol">¥</span><span class="value">41.10</span>
 							</div>
 						</div>
 						<div class="service-line">
@@ -193,23 +192,23 @@
 							</div>
 							<div class="service">
 								<div class="service-item">
-									<span class="service-item-text author">作者：<span>路遥</span></span>
+									<span class="service-item-text author">作者：<span>东野圭吾</span></span>
 								</div>
 								<div class="service-item">
-									<span class="service-item-text publish">出版社：<span></span></span>
+									<span class="service-item-text publish">出版社：<span>南海出版社</span></span>
 								</div>
 								<div class="service-item">
-									<span class="service-item-text publish-data">出版时间：<span></span></span>
+									<span class="service-item-text publish-data">出版时间：<span>2017年8月</span></span>
 								</div>
 								<div class="service-item">
-									<span class="service-item-text stock">库存：<span></span></span>
+									<span class="service-item-text stock">库存：<span>99</span></span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="address-line">
 						<h5 class="sku-title">物流</h5>
-						<span class="sku-content">预计2020年05月22日开始发货</span>
+						<span class="sku-content">预计2020年05月17日开始发货</span>
 					</div>
 
 					<div>
@@ -219,13 +218,11 @@
 							<div class="count-container">
 								<div>
 									<div class="minus-btn">
-										<a class="m-icons m-icons-reduce " data-src=""
-											href="javascript:;"></a>
+										<span class="iconfont icon-jianhao"></span>
 									</div>
 									<input type="text" value="1" class="count-input">
 									<div class="minus-btn-active">
-										<a class="m-icons m-icons-add-active " data-src=""
-											href="javascript:;"></a>
+										<span class="iconfont icon-add"></span>
 									</div>
 								</div>
 							</div>
@@ -242,9 +239,8 @@
 						</div>
 						<div class="favor-btn ">
 							<div>
-								<a class="m-icons m-icons-collection " data-src=""
-									href="javascript:;"></a>
-								<p>收藏</p>
+								<span class="iconfont icon-icon-test8" style="font-size:20px"></span>
+								<p style="line-height:24px">收藏</p>
 							</div>
 						</div>
 						

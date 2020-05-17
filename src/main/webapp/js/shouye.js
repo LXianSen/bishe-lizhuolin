@@ -8,6 +8,14 @@
 	var searchData = []
 	
 	rightboxfn();    
+	topboxfn();
+	
+	function topboxfn(){
+		$(".exit").click(function(){
+			console.log("退出登录")
+			sessionStorage.clear()
+		})
+	}
 	
 	//右侧导航栏
 	function rightboxfn(){

@@ -631,9 +631,10 @@ img {
 	inituser();   //显示顶部用户信息
 	function inituser(){
 		var user = JSON.parse(sessionStorage.getItem("user"))
+		console.log(user)
 		if (user) {
-			$(".userbox").removeClass('userhide')
-			$(".loginbox").addClass('userhide')
+			$("..m-user-con").removeClass('userhide')
+			$(".login").addClass('userhide')
 			$('.m-username').text(user.username || user.userd)
 		}
 	}

@@ -65,7 +65,7 @@
                                                     <div class="mijia-personal-product will-click has-price">
                                                         <div class="mijia-personal-product-image mijia-personal-left"><img
                                                                 class=""
-                                                                src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png?w=800&amp;h=800"
+                                                                src="http://img3m2.ddimg.cn/97/30/28544272-1_b_3.jpg"
                                                                 data-src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png?w=800&amp;h=800"
                                                                 alt=""></div><span
                                                             class="mijia-personal-product-text-box mijia-personal-left">
@@ -83,7 +83,7 @@
                                                     <div class="mijia-personal-product will-click has-price">
                                                         <div class="mijia-personal-product-image mijia-personal-left"><img
                                                                 class=""
-                                                                src="https://img.youpin.mi-img.com/800_pic/4a7c044f82615dd80ea498aa6597f907.png"
+                                                                src="http://img3m2.ddimg.cn/97/30/28544272-1_b_3.jpg"
                                                                 data-src="https://img.youpin.mi-img.com/800_pic/4a7c044f82615dd80ea498aa6597f907.png"
                                                                 alt=""></div><span
                                                             class="mijia-personal-product-text-box mijia-personal-left">
@@ -122,7 +122,7 @@
                                                     <div class="mijia-personal-product will-click has-price">
                                                         <div class="mijia-personal-product-image mijia-personal-left"><img
                                                                 class=""
-                                                                src="https://img.youpin.mi-img.com/shopmain/b744a1bb7f5d1e366e325619f57a111f.png?w=800&amp;h=800"
+                                                                src="http://img3m2.ddimg.cn/97/30/28544272-1_b_3.jpg"
                                                                 data-src="https://img.youpin.mi-img.com/shopmain/b744a1bb7f5d1e366e325619f57a111f.png?w=800&amp;h=800"
                                                                 alt=""></div><span
                                                             class="mijia-personal-product-text-box mijia-personal-left">

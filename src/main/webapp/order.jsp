@@ -699,12 +699,12 @@
                     <div>
                         <div class="merchant clearfix">
                             <div class="merchant-info clearfix">
-                                <div class="icon"><img class=""
+                                 <div class="icon"><img class=""
                                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAY1BMVEUAAACGXTKGXjKFXjOFXjObZzOGXzGHXzOGYDOFXTKFXjOGXjKFXjGGYTOGXTGHXzGGXTGHXzOHXTKGXjGGXjKGXTKHXTGKXzOZZj2GXTKGXjGGXjGHXjOHYDSHYjWGYT2FXTE81JceAAAAIHRSTlMA2PBaiASBRlD7Qb6wNt+Mqi5R0aBzaB0IzrV7aToiFU6bVX4AAAC/SURBVEjH7dLJCsMgFIXhq0mrNlPNPLb3/Z+ypiAhAyZ30wHyrzyLDxGEs59L4DzV+LUTSFzFKiLAlgowcoAUTZ2wFXzc/R6IFjtxALkANRWA+j+gA1MFU6HZHnwt6c0b7Ed9mCE3AC5THby7juPiBLacClDsAcVs3F7hBv40i3E3BACZ2TEF3A8DUZblQAHMHMJPAUYBT611RQBTCRVkR0B2s6Ut2tc7wKqQCJSmAdXDRjHnvABTwOexPIIzYi8e5Dp3abNxGgAAAABJRU5ErkJggg=="
                                         data-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAY1BMVEUAAACGXTKGXjKFXjOFXjObZzOGXzGHXzOGYDOFXTKFXjOGXjKFXjGGYTOGXTGHXzGGXTGHXzOHXTKGXjGGXjKGXTKHXTGKXzOZZj2GXTKGXjGGXjGHXjOHYDSHYjWGYT2FXTE81JceAAAAIHRSTlMA2PBaiASBRlD7Qb6wNt+Mqi5R0aBzaB0IzrV7aToiFU6bVX4AAAC/SURBVEjH7dLJCsMgFIXhq0mrNlPNPLb3/Z+ypiAhAyZ30wHyrzyLDxGEs59L4DzV+LUTSFzFKiLAlgowcoAUTZ2wFXzc/R6IFjtxALkANRWA+j+gA1MFU6HZHnwt6c0b7Ed9mCE3AC5THby7juPiBLacClDsAcVs3F7hBv40i3E3BACZ2TEF3A8DUZblQAHMHMJPAUYBT611RQBTCRVkR0B2s6Ut2tc7wKqQCJSmAdXDRjHnvABTwOexPIIzYi8e5Dp3abNxGgAAAABJRU5ErkJggg=="
                                         alt="有品精选" style="width: 30px; height: 30px;"></div><span
-                                    class="name">有品精选</span><span class="threshold"></span>
-                            </div>
+                                    class="name">商品列表</span><span class="threshold"></span>
+                            </div> 
                             <div class="merchant-spread">
                                 <div class="good-container clearfix">
                                     <p class="pro-support">
@@ -714,15 +714,15 @@
                                     	<img class="" style="width: 50px; height: 50px;">
                                     </span>
                                     <span class="name">
-                                          <span class="product-name">朗菲去污地垫套装（3D）版CS-627 黑色 组合装</span>
+                                          <span class="product-name">白夜行</span>
                                     </span>
                                     <span class="total"><span class="">￥</span>
-                                    <span class="txt">159.00</span>
+                                    <span class="txt">41.10</span>
                                     </span>
                                     <span
-                                        class="price">159.00元×1</span>
+                                        class="price">41.10元×1</span>
                                 </div>
-                                <div class="good-container clearfix">
+                                <!-- <div class="good-container clearfix">
                                     <p class="pro-support">
                                     	<a class="m-icons m-icons-service " data-src="" href="javascript:;"></a>
                                     </p>
@@ -737,7 +737,7 @@
                                     </span>
                                     <span
                                         class="price">159.00元×1</span>
-                                </div>
+                                </div> -->
                                 
                                 <div class="form-item"><span class="left-label">买家留言</span><span class="select"><textarea
                                             type="text" class="userMessage marginBottom" placeholder="填写内容需与商家协商并确认，45字以内"
@@ -748,11 +748,11 @@
                     <div class="checkout-summary clearfix">
                         <div class="check-freeInfo fr">
                             <div class="freeInfo-item"><span class="freeInfo-key">商品总价：</span><span
-                                    class="freeInfo-value">159.00元</span></div>
+                                    class="freeInfo-value">32.00元</span></div>
                             <div class="freeInfo-item"><span class="freeInfo-key">优惠：</span><span
                                     class="freeInfo-value">0.00元</span></div>
                             <div class="total"><span class="freeInfo-key">合计：</span><span
-                                    class="freeInfo-value">￥159.00</span></div>
+                                    class="freeInfo-value">￥32.00</span></div>
                         </div>
                     </div>
                     <div class="bottom-pay"><a class="m-btns m-btn-middle m-btn-brown" href="javascript:;">去下单</a></div>
@@ -834,6 +834,27 @@
     <script>
     var isadd,addressID
     addressinit()
+    
+	rightboxfn();    
+	
+	//右侧导航栏
+	function rightboxfn(){
+		//处理跳转到购物车
+		$(".toCart").click(function(){
+        	window.location.href="shoppingCart.jsp"
+        })
+        $(".toPerson").click(function(){
+        	window.location.href="personCenter.jsp"
+        })
+		//处理返回顶部按钮
+		$(".toTop").click(function () {
+			$('body,html').animate({ 
+				scrollTop: 0
+			},
+				500);
+			return false;
+		});
+	}
     function addressinit(){
     	$.post("OrderCommit",{},function(data){
     		data=JSON.parse(data)
@@ -1049,7 +1070,7 @@
       }
       //点击input框
       $(".province").click(function(){
-    	  console.log()
+    	  console.log("测试")
           showProvince()
       })
 
