@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.omg.CORBA.OBJ_ADAPTER;
+
 import DAO.BookDao;
 import DAO.CartDao;
 import DAO.UserDao;
@@ -28,6 +30,10 @@ public class CartitemNumsChange extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset =UTF-8");
+		JSONObject jsonObject=new JSONObject();
+		PrintWriter writer=response.getWriter();
 		try {
 
 			request.setCharacterEncoding("utf-8");
@@ -46,19 +52,33 @@ public class CartitemNumsChange extends HttpServlet {
 				if (cartitemlist.isEmpty()) {
 					cartitem.setCount(Integer.parseInt(request.getParameter("count")));
 					cartDao.adds(cartitem);
+					jsonObject.put("code", "200");
+					jsonObject.put("msg", "该书籍已成功添加到购物车");
+					
 				} else {
 					cartitem.setCount(cartitemlist.get(0).getCount());
 					cartitem cartitem2 = new cartitem();
 					// 增加数量/减少数量
 					if (request.getParameter("type").equals("minus")) {
 						cartitem2.setCount(cartitem.getCount() - Integer.parseInt(request.getParameter("count")));
+						
 					} else {
 						cartitem2.setCount(cartitem.getCount() + Integer.parseInt(request.getParameter("count")));
+						if(request.getParameter("type").equals("add")) {
+							
+						}else {
+							jsonObject.put("code", "200");
+							jsonObject.put("msg", "该书籍已成功添加到购物车");
+						}
+						
+						
 					}
 					System.out.println(cartitem2.getCount());
 					// set ...count=newcount where=....
 					cartDao.updates(cartitem2, cartitem);
+					
 				}
+				writer.println(jsonObject);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

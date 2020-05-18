@@ -11,7 +11,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="./iconfont/iconfont.css">
-<link rel="stylesheet" href="./css/detail.css?ver=1">
+<link rel="stylesheet" href="./css/detail.css?ver=2">
 <!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
 <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
 <!--[if lt IE 9]>
@@ -264,6 +264,9 @@
 			</li>
 		</ul>
 	</div>
+	<div class="fixed-tips">
+		<span>该商品添加成功</span>
+	</div>
 	</div>
 
 	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
@@ -273,7 +276,7 @@
 </body>
 <script type="text/javascript"
 	src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/detail.js?ver=1">
+<script src="js/detail.js?ver=2">
 	
 </script>
 </html>

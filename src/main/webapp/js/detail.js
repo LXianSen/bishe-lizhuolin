@@ -8,6 +8,7 @@ var cart = $('.cart')
     var getparams=getParams().ISBN  //获得url地址后的isbn参数
     
     //4.26add
+    console.log("更新改变")
     
     //获得地址后面的参数
     function getParams() {
@@ -46,12 +47,18 @@ var cart = $('.cart')
     //
 	cart.click(function(e) {
 		
-		 $.post("CartAdd",{isbn:'0000002',count:$('.count-input').val(),type:"add"},function(data){
+		 $.post("CartAdd",{isbn:getparams,count:$('.count-input').val(),type:""},function(data){
 			 data=JSON.parse(data)
 			 if(data.code=="error"){
 				 console.log(111111111111)
 				 
 				 window.location.href="login.jsp"
+			 }else if(data.code=="200"){
+				 console.log("到底添加上没有1")
+				 $(".fixed-tips").attr("style","top:30px;transition:top 0.2s")
+				 setTimeout(function(){
+					 $(".fixed-tips").attr("style","top:-50px;transition:top 0.2s")
+				 },2000)
 			 }
 		 })
 	})

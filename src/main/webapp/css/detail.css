@@ -15343,3 +15343,16 @@
             font-size: 20px;
             color: #6d6d6d
         }
+        .fixed-tips{
+        	position: fixed;
+		    top: -50px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		    width: 300px;
+		    background: rgb(240,249,235);
+		    text-align: center;
+		    height: 50px;
+		    line-height: 50px;
+		    border-radius: 5px;
+		    color: #0080009e;
+        }
