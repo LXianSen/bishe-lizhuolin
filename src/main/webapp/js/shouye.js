@@ -10,14 +10,14 @@
 	rightboxfn();    
 	topboxfn();
 	console.log("首页js更新2")
-	function topboxfn(){
+	/*function topboxfn(){
 		$(".exit").click(function(){
 			console.log("退出登录")
 			sessionStorage.clear()
 		})
-	}
+	}*/
 	
-	//右侧导航栏
+	/*//右侧导航栏
 	function rightboxfn(){
 		//处理跳转到购物车
 		$(".toCart").click(function(){
@@ -34,7 +34,7 @@
 				500);
 			return false;
 		});
-	}
+	}*/
 	
 	
 	//渲染搜索列表
@@ -204,26 +204,18 @@
 
 		
 	}*/
-	handleUser();
-	function handleUser(){
-		var user = JSON.parse(sessionStorage.getItem("user"))
-		if (user) {
-			$('.m-user-con').removeClass('userhide')
-			$('.login').addClass('userhide')
-			$('.m-username').text(user.username || user.userd)
-		}
-	}
+	
 	
 	for (let i = 0; i < type.length; i++) {
 		$('.directory>ul').append("<li data-no=" + i + "><span>" + type[i].firstname + "</span></li>")
 	}
 	var lis = $('.top_box .directory ul li');
-	userbox.mouseenter(function (e) {
+	/*userbox.mouseenter(function (e) {
 		$('.site-item-nav').removeClass('hidden').addClass('show')
 	})
 	userbox.mouseleave(function (e) {
 		$('.site-item-nav').removeClass('show').addClass('hidden')
-	})
+	})*/
 	$('.top_box .directory ul li').mouseenter(function (e) {
 
 		navDetails.removeClass('hide')

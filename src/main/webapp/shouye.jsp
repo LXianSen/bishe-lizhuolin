@@ -17,32 +17,7 @@
 	<body>
 		<!-- 顶部 -->
 		<header>
-			<div class="headerCenter">
-				<div class=" login">
-					<a href="login.jsp">登录</a> <a href="register.jsp">注册</a>
-				</div>
-				<div class="fr site-item m-user-con userhide">
-					<div class="m-login-info">
-						<a href="personCenter.jsp" class="m-safe-anchor" data-src="/personal-center/orders"
-							data-target="_blank">
-							<span class="iconfont icon-icon-test2"></span>
-							<span class="m-username">丑丑小怪物</span>
-							<span class="iconfont icon-icon-test10"></span>
-						</a>
-						<div class="site-item-nav hidden">
-							<ul class="site-nav user-nav">
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/orders" href="#"
-										class="m-safe-anchor">我的订单</a></li>
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/collections" href="#"
-										class="m-safe-anchor">我的收藏</a></li>
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/address" href="#"
-										class="m-safe-anchor">地址管理</a></li>
-								<li class="exit"><a rel="nofollow" href="javascript:;">退出登录</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</header>
 	<!-- 主体 -->
 	<div class="content_center">
@@ -379,24 +354,9 @@
 
 	</div>
 	<div class="m-fixedBar">
-		<ul class="fixed-nav">
-			<li class="toCart">
-				<span class="iconfont icon-icon-test search_font shopcart"></span>
-				<p class="text">购物车</p>
-			</li>
-			<li class="toPerson">
-				<span class="iconfont icon-icon-test2 search_font"></span>
-				<p class="text">个人中心</p>
-			</li>
-			<li class="toTop">
-				<span class="iconfont icon-icon-test11 search_font"></span>
-				<p class="text">回到顶部</p>
-			</li>
-		</ul>
 	</div>
 
 	<footer>
-		<div class="footer-text">@2020.04 </div>
 	</footer>
 
 	<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
@@ -407,5 +367,8 @@
 
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="js/shouye.js?ver=2"></script>
+<script type="text/javascript" src="header.js?ver=1"></script>
+<script type="text/javascript" src="navigation.js?ver=1"></script>
+<script type="text/javascript" src="footer.js?ver=1"></script>
 
 </html>

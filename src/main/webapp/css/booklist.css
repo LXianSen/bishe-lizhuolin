@@ -1863,7 +1863,8 @@ body {
     line-height: 23px;
     border-top: 1px solid #e7e7e7;
     background-color: #fff;
-    color: #666
+    color: #666;
+    width:100%;
 }
 
 .m-footer .footer-item a,

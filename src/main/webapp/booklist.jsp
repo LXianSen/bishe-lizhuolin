@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/booklist.css?ver=1">
+    <link rel="stylesheet" href="css/booklist.css?ver=2">
     <link rel="stylesheet" href="iconfont/iconfont.css?ver=1">
-    <link rel="stylesheet" href="css/shouye.css?ver=2">
+    <link rel="stylesheet" href="css/shouye.css?ver=1">
     <style>
          .content_center {
             width: 1080px;
@@ -63,33 +63,7 @@
 
 <body>
 		<header>
-			<div class="headerCenter">
-				<div class=" login">
-					<a href="login.jsp">登录</a> <a href="register.jsp">注册</a>
-				</div>
-				<div class="fr site-item m-user-con userhide">
-					<div class="m-login-info">
-						<a href="personCenter.jsp" class="m-safe-anchor" data-src="/personal-center/orders"
-							data-target="_blank">
-							<span class="m-icons m-icons-user-active  h-user-icon" data-src="" href=""
-								style="background: ./images/user.png center center/100% no-repeat; border-radius: 50%;"></span>
-							<span class="m-username">丑丑小怪物</span>
-							<span class="m-icons m-icons-dropdown  h-down-icon" data-src="" href=""></span>
-						</a>
-						<div class="site-item-nav hidden">
-							<ul class="site-nav user-nav">
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/orders" href="#"
-										class="m-safe-anchor">我的订单</a></li>
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/collections" href="#"
-										class="m-safe-anchor">我的收藏</a></li>
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/address" href="#"
-										class="m-safe-anchor">地址管理</a></li>
-								<li><a rel="nofollow" href="javascript:;">退出登录</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</header>
     <div class="content_center">
 		<div class="clear">
@@ -181,9 +155,17 @@
         </div>
 
     </div>
+    <div class="m-fixedBar">
+	</div>
+
+	<footer>
+	</footer>
 </body>
 
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="header.js"></script>
+<script type="text/javascript" src="footer.js"></script>
+<script type="text/javascript" src="navigation.js"></script>
 <script>
     //4.26add
 	console.log("aaaaaa")
@@ -221,12 +203,16 @@
     var booktest=[
     ]
     $.post("Search",{inputmsg:getparams},function(data){
+    	
 		data=JSON.parse(data)
 		$(".search-book-list").empty()
     data.data.forEach(function(item,index){
         $(".search-book-list").append("<div class='per-book' data-isbn="+item.ISBN+" click=clickevent()><div class='per-book-img'><img src="+item.img1+" alt="+item.bname+"></div><div class='per-book-detail'><div class='per-book-name'>"+item.bname+"</div><div class='per-book-other'><span class='per-book-author'>"+item.bauthor+"/</span><span class='per-book-publish'>"+item.bpublish+"/</span><span class='per-book-data'>"+item.bdate+"/</span><span class='per-book-price'>"+item.bprice+"元</span></div></div></div>")
 
     })
+    if($("footer").offset().top<654){
+		$("footer").attr("style","position:fixed;bottom:0px")
+	}
     })
     
 	$(".search-book-list").on("click",".per-book",function(){
