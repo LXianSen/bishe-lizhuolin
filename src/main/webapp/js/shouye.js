@@ -7,9 +7,9 @@
 	var type = []
 	var searchData = []
 	
-	rightboxfn();    
-	topboxfn();
-	console.log("首页js更新2")
+//	rightboxfn();    
+//	topboxfn();
+	console.log("首页js更新3")
 	/*function topboxfn(){
 		$(".exit").click(function(){
 			console.log("退出登录")

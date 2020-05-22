@@ -86,13 +86,13 @@ a {
 .m-icons-check-active {
 	width: 18px;
 	height: 18px;
-	background-position: 0 -402px;
+	background-position: 0 -418px;
 }
 
 .m-icons {
 	display: inline-block;
 	background-image:
-		url(https://shop.io.mi-img.com/static/h5/static3/media/yp-icons.2bf57ccf.png);
+		url(images/yp-icons.7c45b9c9.png);
 }
 
 .has-good-container .title .all-txt {
@@ -378,7 +378,7 @@ img {
 .m-icons-reduce {
 	width: 30px;
 	height: 30px;
-	background-position: 0 -1390px;
+	background-position: 0 -1405px;
 }
 
 .num-reduce-add .txt {
@@ -398,7 +398,7 @@ img {
 .m-icons-add-active {
 	width: 30px;
 	height: 30px;
-	background-position: 0 -1050px;
+	background-position: 0 -1032px;
 }
 
 .cart-good-items .del .icon {
@@ -410,7 +410,7 @@ img {
 .m-icons-close-hover {
 	width: 13px;
 	height: 13px;
-	background-position: 0 -119px;
+	background-position: 0 -135px;
 }
 
 .cart-total {
@@ -462,6 +462,17 @@ img {
 .cart-good-items{
 	height:auto
 }
+
+.cart-good-items .del, .cart-good-items .num, .cart-good-items .price, .cart-good-items .select, .cart-good-items .subtotal {
+    padding: 35px 0;
+    height: 72px;
+    line-height: 72px;
+    }
+.m-icons-check {
+    width: 18px;
+    height: 18px;
+    background-position: 0 -506px;
+}
 </style>
 </head>
 <body>
@@ -476,7 +487,7 @@ img {
 			</div>
 			<div class="has-good-container container">
 				<div class="title" id="good-title">
-					<a class="m-icons m-icons-check-active select-icon" data-src=""
+					<a class="m-icons m-icons-check-active select-icon allChecked" data-src=""
 						href="javascript:;"></a><span class="all-txt">全选</span><span
 						class="product">商品信息</span><span class="price">单价</span><span
 						class="num">数量</span><span class="total">金额</span><span
@@ -486,8 +497,8 @@ img {
 					<div>
 						<div class="merchant-item-container">
 							<div class="merchant-info">
-								<a class="m-icons m-icons-check-active select-icon" data-src="" href="javascript:;"></a>
-								<span class="name" data-src="/flagshipstore?id=1&amp;title=有品精选">有品精选</span>
+								<a class="m-icons m-icons-check-active select-icon allChecked" data-src="" href="javascript:;"></a>
+								<span class="name" data-src="/flagshipstore?id=1&amp;title=有品精选">购物车</span>
 								<div class="postmarginright mijiapost">
 									<span><span class="postimg">!</span>已免运费</span>
 									<span class="layer hide">有品精选商品，即有品配送和第三方商家发货的商品，2018年1月1日起，单笔订单满99元免运费，不满99元收10元运费。*包邮订单拆单后若部分订单退款使得剩余订单不满足包邮条件时将补扣10元运费。</span>
@@ -514,18 +525,7 @@ img {
 										<div class="price"><span>￥159.00</span></div>
 										<div class="num">
 											<div class="can-edit">
-												<div class="num-reduce-add " style="width: 134px;">
-													<!-- <span class="iconfont icon-jianhao minus"></span>
-													<span class="txt" style="width: 70px;">1</span>
-													<span class="iconfont icon-add plus"></span> -->
-													<div class="minus-btn minus">
-														<span class="iconfont icon-jianhao"></span>
-													</div>
-													<input type="text" value="1" class="count-input">
-													<div class="minus-btn-active plus">
-														<span class="iconfont icon-add"></span>
-													</div>
-												</div>
+												<div class="num-reduce-add" style="width: 134px;"><a class="m-icons m-icons-reduce minus-plus" data-src="" href="javascript:;"></a><span class="txt" style="width: 70px;">1</span><a class="m-icons m-icons-add-active minus-plus" data-src="" href="javascript:;"></a></div>
 											</div>
 										</div>
 										<div class="subtotal"><span>￥159</span></div>
@@ -573,7 +573,7 @@ img {
 				</div>
 				<div class="cart-total bottom-total ">
 					<div class="ico fl">
-						<a class="m-icons m-icons-check-active select-icon" data-src=""
+						<a class="m-icons m-icons-check-active select-icon allChecked" data-src=""
 							href="javascript:;"></a><span class="select-text">全选</span><span
 							class="already-select">已选1件</span>
 					</div>
@@ -595,18 +595,7 @@ img {
 <script type="text/javascript" src="navigation.js?ver=1"></script>
 <script type="text/javascript" src="footer.js?ver=1"></script>
 <script>
-	var cart,bookary=[];
-	
-	inituser();   //显示顶部用户信息
-	function inituser(){
-		var user = JSON.parse(sessionStorage.getItem("user"))
-		console.log(user)
-		if (user) {
-			$("..m-user-con").removeClass('userhide')
-			$(".login").addClass('userhide')
-			$('.m-username').text(user.username || user.userd)
-		}
-	}
+	var cart,bookary=[],totalPrice=0;
 	
 	$.post("ShowCartlist",{},function(data){
 		data=JSON.parse(data)
@@ -624,15 +613,17 @@ img {
 	})
 	
 	function init(cart){
+		totalPrice=0
 		$(".book-info-list").empty()
 		console.log(cart)
 		for(let key in cart){
+			totalPrice+=cart[key].bprice*cart[key].count
 			console.log(cart[key])
 			$(".book-info-list").append('<div class="good-item-container cart-goods-con">'+
 					'<div class="merchant-reduce-top"></div>'+
-					'<div class="cart-good-items clearfix" data-isbn="0000001">'+
+					'<div class="cart-good-items clearfix" data-isbn='+cart[key].ISBN+'>'+
 						'<div class="select">'+
-							'<span class="iconfont icon-icon-test4"></span>'+
+							'<a class="m-icons m-icons-check-active select-icon" data-src="" href="javascript:;"></a>'+
 						'</div>'+
 						'<div class="image" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">'+
 							'<img class="" >'+
@@ -646,49 +637,118 @@ img {
 						'<div class="price"><span>￥'+cart[key].bprice+'</span></div>'+
 						'<div class="num">'+
 							'<div class="can-edit">'+
-								'<div class="num-reduce-add " style="width: 134px;">'+
-									'<span class="iconfont icon-jianhao minus"></span>'+
-									'<span class="txt" style="width: 70px;">'+cart[key].count+'</span>'+
-									'<span class="iconfont icon-add plus"></span>'+
-								'</div>'+
+								'<div class="num-reduce-add" style="width: 134px;"><a class="m-icons m-icons-reduce minus-plus minus" data-src="" href="javascript:;"></a><span class="txt" style="width: 70px;">'+cart[key].count+'</span><a class="m-icons m-icons-add-active minus-plus add" data-src="" href="javascript:;"></a></div>'+
 							'</div>'+
 						'</div>'+
-						'<div class="subtotal"><span>￥'+cart[key].bprice+'</span></div>'+
+						'<div class="subtotal"><span>￥'+cart[key].bprice*cart[key].count+'</span></div>'+
 						'<div class="del">'+
-							'<span class="iconfont icon-icon-test5 delete"></span>'+
+							'<a class="m-icons m-icons-close-hover icon" data-src="" href="javascript:;"></a>'+
 						'</div>'+
 					'</div></div>')
 			if(cart[key].ISBN==$(".cart-good-items").data('ISBN')){
 				$('.txt').text(cart[key].count)
 			}
 		}
-		$(".cart-good-items")
+		$(".already-select").text("已选"+$(".book-info-list .select-icon").length+"件")
+		$(".total-after-prefer").text("￥"+totalPrice)
 	}
 	
 	$('.txt').text(cart)
 	
-	$(".delete").click(function(){
-		$.post("CartDelete",{isbn:"0000001"},function(){
-			
+	$(".book-info-list").on("click",".del",function(e){
+		var tar=$(e.target)
+		$.post("CartDelete",{isbn:tar.parents(".cart-good-items").data("isbn")},function(data){
+			$.post("ShowCartlist",{},function(data){
+				data=JSON.parse(data)
+				totalPrice=0
+				if(data.code=="error"){
+					window.location.href="login.jsp"
+				}else{
+					cart=data.carMap
+					for(let c in cart){
+						bookary.push(cart[c]);
+						
+					}
+					
+					sessionStorage.setItem("bookinfo",JSON.stringify(bookary))
+					init(cart)
+				}
+			})
 		})
 	})
 	
-	$(".minus").click(function(){
-		var num = $(".txt").text()
+	$(".book-info-list").on("click",".minus",function(e){
+		totalPrice=0
+		var tar=$(e.target)
+		var num = tar.next().text()
 		if (num > 1) {
 			num--
+			tar.next().text(num)
+			$.post("CartAdd",{
+				isbn:tar.parents(".cart-good-items").data("isbn"),
+				type:"minus",
+				count: "1"
+			},function(){
+				$.post("ShowCartlist",{},function(data){
+					data=JSON.parse(data)
+					if(data.code=="error"){
+						window.location.href="login.jsp"
+					}else{
+						cart=data.carMap
+						for(let c in cart){
+							bookary.push(cart[c]);
+							totalPrice+=cart[c].bprice*cart[c].count
+							if(cart[c].ISBN==tar.parents(".cart-good-items").data("isbn")){
+								console.log(cart[c].bprice,cart[c].count)
+								tar.parents(".num").next().children().text("￥"+cart[c].bprice*cart[c].count)
+							}
+						}
+						sessionStorage.setItem("bookinfo",JSON.stringify(bookary))
+						$(".total-after-prefer").text("￥"+totalPrice)
+					}
+					
+				})
+			})
+			
 		}
-		 $(".txt").text(num)
+		
+		
+	})
+	
+	$(".book-info-list").on("click",".add",function(e){
+		totalPrice=0
+		var tar=$(e.target)
+		var num = tar.prev().text()
+			num++
+		tar.prev().text(num)
 		$.post("CartAdd",{
-			isbn:"0000001",
-			type:"minus",
+			isbn:tar.parents(".cart-good-items").data("isbn"),
+			type:"add",
 			count: "1"
 		},function(){
-			
+			$.post("ShowCartlist",{},function(data){
+				data=JSON.parse(data)
+				if(data.code=="error"){
+					window.location.href="login.jsp"
+				}else{
+					cart=data.carMap
+					for(let c in cart){
+						bookary.push(cart[c]);
+						totalPrice+=cart[c].bprice*cart[c].count
+						if(cart[c].ISBN==tar.parents(".cart-good-items").data("isbn")){
+							console.log(cart[c].bprice,cart[c].count)
+							tar.parents(".num").next().children().text("￥"+cart[c].bprice*cart[c].count)
+						}
+					}
+					sessionStorage.setItem("bookinfo",JSON.stringify(bookary))
+					$(".total-after-prefer").text("￥"+totalPrice)
+				}
+				
+			})
 		})
 	})
 	
-	function rightboxfn(){
+	/* function rightboxfn(){
 		//处理跳转到购物车
 		$(".toIndex").click(function(){
         	window.location.href="shouye.jsp"
@@ -701,10 +761,42 @@ img {
 				500);
 			return false;
 		});
-	}
+	} */
 	
 	$(".checkout").click(function(){
 		window.location.href="order.jsp"
 	})
+	
+	$(".allChecked").click(function(){
+		$(".allChecked").toggleClass("m-icons-check-active").toggleClass("m-icons-check")
+		console.log($(".allChecked").is(".m-icons-check-active"))
+		if($(".allChecked").is(".m-icons-check-active")){
+			$(".select-icon").addClass("m-icons-check-active").removeClass("m-icons-check")
+			$(".already-select").text("已选"+$(".book-info-list .select-icon").length+"件")
+		}else{
+			$(".select-icon").removeClass("m-icons-check-active").addClass("m-icons-check")
+			$(".already-select").text("已选0件")
+		}
+	})
+	
+	$(".book-info-list").on("click",".select-icon",function(e){
+		var tar=$(e.target),num=0,booklist=$(".book-info-list .select-icon")
+		tar.toggleClass("m-icons-check-active").toggleClass("m-icons-check")
+		for(let i=0;i<booklist.length;i++){
+			if($(".book-info-list .select-icon").eq(i).is(".m-icons-check-active")){
+				num++
+			}else{
+				
+			}
+		}
+		if(num==booklist.length){
+			$(".allChecked").addClass("m-icons-check-active").removeClass("m-icons-check")
+		}else{
+			$(".allChecked").removeClass("m-icons-check-active").addClass("m-icons-check")
+		}
+		$(".already-select").text("已选"+num+"件")
+	})
+	
+	
 </script>
 </html>

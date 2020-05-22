@@ -61,7 +61,7 @@ public class CartDao extends BaseDAO<cartitem> {
 		Connection connection = Druid().getConnection();
 		List<Map> cartitemList = new ArrayList<Map>();
 		StringBuffer sqlString = new StringBuffer(
-				"select cartitem.*,book.bname,book.img1 from cartitem LEFT JOIN book on cartitem.ISBN=book.ISBN where userid='");
+				"select cartitem.*,book.bname,book.img1,book.bprice from cartitem LEFT JOIN book on cartitem.ISBN=book.ISBN where userid='");
 		sqlString.append(userid).append("'");
 		PreparedStatement pStatement = connection.prepareStatement(sqlString.toString());
 		ResultSet rSet = pStatement.executeQuery();

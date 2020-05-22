@@ -109,9 +109,12 @@ public class BaseDAO<T> {
 			f.setAccessible(true);
 			Object value = f.get(t);
 			if (value != null && !"".equals(value)) {
-				sb.append("and ");
-				sb.append(name).append("=? ");
-				parList.add(value);
+				if ((!value.toString().equalsIgnoreCase("0") && !value.toString().equalsIgnoreCase("0.0"))) {
+					sb.append("and ");
+					sb.append(name).append("=? ");
+					parList.add(value);
+				}
+				
 			}
 		}
 		PreparedStatement ps = con.prepareStatement(sb.toString());

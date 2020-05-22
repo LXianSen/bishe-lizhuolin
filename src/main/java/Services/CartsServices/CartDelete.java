@@ -29,7 +29,7 @@ public class CartDelete extends HttpServlet {
 			// 检查用户是否登录
 			UserDao userDao = new UserDao();
 			user u = userDao.CheckIsLogin(request, response);
-			if (u != null && "".equals(u.toString())) {
+			if (u != null && !"".equals(u.toString())) {
 				cartitem cartitem = new cartitem();
 				cartitem.setISBN(request.getParameter("isbn"));
 				CartDao cartDao = new CartDao();
@@ -40,7 +40,6 @@ public class CartDelete extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("ShowCartlist");
 
 	}
 

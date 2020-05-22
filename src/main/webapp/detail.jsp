@@ -11,7 +11,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="./iconfont/iconfont.css">
-<link rel="stylesheet" href="./css/detail.css?ver=2">
+<link rel="stylesheet" href="./css/detail.css?ver=1">
+<link rel="stylesheet" href="css/shouye.css?ver=2">
 <!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
 <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
 <!--[if lt IE 9]>
@@ -21,9 +22,6 @@
 </head>
 <body>
 	<header>
-		<div class="headerCenter">
-			<a>登录</a> <a>注册</a>
-		</div>
 	</header>
 	<div class="content_center">
 		<div class="clear">
@@ -40,7 +38,7 @@
 				<li><a href="#">首页</a></li>
 				<li class="active">白夜行</li>
 			</ul>
-			<div class="book-info-detail">
+			<div class="book-info-detail clear">
 				<div class="book-info-img">
 					<div class="image">
 						<img
@@ -249,7 +247,7 @@
 			</div>
 		</div>
 		<div class="m-fixedBar">
-		<ul class="fixed-nav">
+		<!-- <ul class="fixed-nav">
 			<li class="toCart">
 				<span class="iconfont icon-icon-test search_font shopcart"></span>
 				<p class="text">购物车</p>
@@ -262,13 +260,13 @@
 				<span class="iconfont icon-icon-test11 search_font"></span>
 				<p class="text">回到顶部</p>
 			</li>
-		</ul>
+		</ul> -->
 	</div>
 	<div class="fixed-tips">
 		<span>该商品添加成功</span>
 	</div>
 	</div>
-
+	<footer></footer>
 	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<!-- 包括所有已编译的插件 -->
@@ -276,7 +274,8 @@
 </body>
 <script type="text/javascript"
 	src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/detail.js?ver=2">
-	
-</script>
+<script src="js/detail.js?ver=2"></script>
+<script type="text/javascript" src="header.js?ver=2"></script>
+<script type="text/javascript" src="navigation.js?ver=1"></script>
+<script type="text/javascript" src="footer.js?ver=1"></script>
 </html>
