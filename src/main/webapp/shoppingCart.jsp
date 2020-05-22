@@ -466,34 +466,6 @@ img {
 </head>
 <body>
 	<header>
-			<div class="headerCenter">
-				<div class=" login">
-					<a href="login.jsp">登录</a> <a href="register.jsp">注册</a>
-				</div>
-				<div class="fr site-item m-user-con userhide">
-					<div class="m-login-info">
-						<a href="personCenter.jsp" class="m-safe-anchor" data-src="/personal-center/orders"
-							data-target="_blank">
-							<!-- <span class="m-icons m-icons-user-active  h-user-icon" data-src="" href=""
-								style="background: ./images/user.png center center/100% no-repeat; border-radius: 50%;"></span> -->
-							<span class="iconfont icon-icon-test2"></span>
-							<span class="m-username">丑丑小怪物</span>
-							<span class="iconfont icon-icon-test4"></span>
-						</a>
-						<div class="site-item-nav hidden">
-							<ul class="site-nav user-nav">
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/orders" href="#"
-										class="m-safe-anchor">我的订单</a></li>
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/collections" href="#"
-										class="m-safe-anchor">我的收藏</a></li>
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/address" href="#"
-										class="m-safe-anchor">地址管理</a></li>
-								<li><a rel="nofollow" href="javascript:;">退出登录</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
 		</header>
 	<div>
 		<div class="express-append">
@@ -543,9 +515,16 @@ img {
 										<div class="num">
 											<div class="can-edit">
 												<div class="num-reduce-add " style="width: 134px;">
-													<span class="iconfont icon-jianhao minus"></span>
+													<!-- <span class="iconfont icon-jianhao minus"></span>
 													<span class="txt" style="width: 70px;">1</span>
-													<span class="iconfont icon-add plus"></span>
+													<span class="iconfont icon-add plus"></span> -->
+													<div class="minus-btn minus">
+														<span class="iconfont icon-jianhao"></span>
+													</div>
+													<input type="text" value="1" class="count-input">
+													<div class="minus-btn-active plus">
+														<span class="iconfont icon-add"></span>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -607,24 +586,14 @@ img {
 		</div>
 	</div>
 	<div class="m-fixedBar">
-		<ul class="fixed-nav">
-			<li class="toIndex">
-				<span class="iconfont icon-icon-test search_font shopcart"></span>
-				<p class="text">首页</p>
-			</li>
-			<li class="toPerson">
-				<span class="iconfont icon-icon-test2 search_font"></span>
-				<p class="text">个人中心</p>
-			</li>
-			<li class="toTop">
-				<span class="iconfont icon-icon-test7 search_font"></span>
-				<p class="text">回到顶部</p>
-			</li>
-		</ul>
+		
 	</div>
 	<footer></footer>
 </body>
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="header.js?ver=1"></script>
+<script type="text/javascript" src="navigation.js?ver=1"></script>
+<script type="text/javascript" src="footer.js?ver=1"></script>
 <script>
 	var cart,bookary=[];
 	
