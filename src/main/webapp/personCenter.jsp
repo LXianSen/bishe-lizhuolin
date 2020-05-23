@@ -8,9 +8,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="css/personcenter.css">
+        <link rel="stylesheet" href="iconfont/iconfont.css">
+    	<link rel="stylesheet" href="css/shouye.css?ver=2">
     </head>
     
     <body>
+    <header></header>
         <div class="mijia-personal-box">
             <div class="mijia-personal-section-box container">
                 <div class="m-secondary-navigator"><span><a>首页</a></span><span><a>个人中心</a></span><span><a>我的订单</a></span>
@@ -160,7 +163,14 @@
             </div>
             <div class="m-toast-group m-toast-top-center"></div>
         </div>
+        <div class="m-fixedBar">
+		
+	</div>
+        <footer></footer>
     </body>
     <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/personcenter.js?ver=2"></script>
+    <script src="js/personcenter.js?ver=1"></script>
+    <script type="text/javascript" src="header.js?ver=1"></script>
+	<script type="text/javascript" src="navigation.js?ver=1"></script>
+	<script type="text/javascript" src="footer.js?ver=1"></script>
     </html>

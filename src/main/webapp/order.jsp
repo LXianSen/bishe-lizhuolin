@@ -631,32 +631,7 @@
     
     <body>
     <header>
-			<div class="headerCenter">
-				<div class=" login">
-					<a href="login.jsp">登录</a> <a href="register.jsp">注册</a>
-				</div>
-				<div class="fr site-item m-user-con userhide">
-					<div class="m-login-info">
-						<a href="personCenter.jsp" class="m-safe-anchor" data-src="/personal-center/orders"
-							data-target="_blank">
-							<span class="iconfont icon-icon-test2"></span>
-							<span class="m-username">丑丑小怪物</span>
-							<span class="iconfont icon-icon-test4"></span>
-						</a>
-						<div class="site-item-nav hidden">
-							<ul class="site-nav user-nav">
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/orders" href="#"
-										class="m-safe-anchor">我的订单</a></li>
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/collections" href="#"
-										class="m-safe-anchor">我的收藏</a></li>
-								<li><a rel="nofollow" data-target="_blank" data-src="/personal-center/address" href="#"
-										class="m-safe-anchor">地址管理</a></li>
-								<li><a rel="nofollow" href="javascript:;">退出登录</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</header>
         <div class="express-append">
             <div class="wrapper">
@@ -748,14 +723,14 @@
                     <div class="checkout-summary clearfix">
                         <div class="check-freeInfo fr">
                             <div class="freeInfo-item"><span class="freeInfo-key">商品总价：</span><span
-                                    class="freeInfo-value">32.00元</span></div>
+                                    class="freeInfo-value">320.00元</span></div>
                             <div class="freeInfo-item"><span class="freeInfo-key">优惠：</span><span
                                     class="freeInfo-value">0.00元</span></div>
                             <div class="total"><span class="freeInfo-key">合计：</span><span
-                                    class="freeInfo-value">￥32.00</span></div>
+                                    class="freeInfo-value">￥320.00</span></div>
                         </div>
                     </div>
-                    <div class="bottom-pay"><a class="m-btns m-btn-middle m-btn-brown" href="javascript:;">去下单</a></div>
+                    <div class="bottom-pay"><a class="m-btns m-btn-middle m-btn-brown goOrder" href="javascript:;">去下单</a></div>
                 </div>
             </div>
             <div class="m-toast-group m-toast-top-center"></div>
@@ -813,48 +788,20 @@
         </div>
         
         <div class="m-fixedBar">
-		<ul class="fixed-nav">
-			<li class="toCart">
-				<span class="iconfont icon-icon-test search_font shopcart"></span>
-				<p class="text">购物车</p>
-			</li>
-			<li class="toPerson">
-				<span class="iconfont icon-icon-test2 search_font"></span>
-				<p class="text">个人中心</p>
-			</li>
-			<li class="toTop">
-				<span class="iconfont icon-icon-test7 search_font"></span>
-				<p class="text">回到顶部</p>
-			</li>
-		</ul>
+		
 	</div>
+	<footer></footer>
     </body>
     <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="header.js?ver=1"></script>
+	<script type="text/javascript" src="navigation.js?ver=1"></script>
+	<script type="text/javascript" src="footer.js?ver=1"></script>
     <!-- <script src="js/city-picker.js"></script> -->
     <script>
-    var isadd,addressID
+    var isadd,addressID,addressFlag=false
     addressinit()
     
-	rightboxfn();    
 	
-	//右侧导航栏
-	function rightboxfn(){
-		//处理跳转到购物车
-		$(".toCart").click(function(){
-        	window.location.href="shoppingCart.jsp"
-        })
-        $(".toPerson").click(function(){
-        	window.location.href="personCenter.jsp"
-        })
-		//处理返回顶部按钮
-		$(".toTop").click(function () {
-			$('body,html').animate({ 
-				scrollTop: 0
-			},
-				500);
-			return false;
-		});
-	}
     function addressinit(){
     	$.post("OrderCommit",{},function(data){
     		data=JSON.parse(data)
@@ -862,10 +809,14 @@
     			window.location.href="login.jsp"
     		}else{
     			console.log(data)
+    			if(data.length==0){
+    				addressFlag=true
+    			}
     			$(".address-list").empty()
     			data.forEach(function(item,index){
     				$(".address-list").append('<div class="address-item others unselected notHidden" data-no='+item.addressid+'><div class="address-item-content"><div class="mark addr-unvisible">默认</div><div class="content"><div class="name">'+item.contact+'</div><div class="tel">'+item.tel+'</div><div class="city">'+item.province+'/'+item.city+'/'+item.county+'</div><div class="address">'+item.details+'</div></div><div class="update isHidden"><span>设为默认地址</span><span>修改</span><span>删除</span></div></div></div>')
     				if(item.isdefault=="1"){
+    					sessionStorage.setItem("addressInfo",JSON.stringify(item))
     					$(".address-item").addClass("first").removeClass("others").addClass("selected").removeClass("unselected")
     					$(".mark").addClass("addr-visible").removeClass("addr-unvisible")
     					$(".update span:first").remove()
@@ -954,7 +905,7 @@
                       '<span class="product-name">'+item.bname+'</span>'+
                 '</span>'+
                 '<span class="total"><span class="">￥</span>'+
-                '<span class="txt">'+item.bprice+'</span>'+
+                '<span class="txt">'+item.bprice*count+'</span>'+
                 '</span>'+
                 '<span class="price">¥'+item.bprice+'×'+count+'</span></div>')
             count=0
@@ -1122,26 +1073,26 @@
     			  province:ary[0],
     			  city:ary[1],
     			  county:ary[2],
-    			  details:$(".content .address").val(),
+    			  details:$(".input-u .address").val(),
     			  contact:$(".uname").val(),
     			  tel:$(".utel").val(),
-    			  isdefault:'0'
+    			  isdefault:addressFlag?'1':'0'
     		  },function(data){
-    			  
+    			  addressinit()
     		  })
     	  }else{
     		  $.post("AddressUpdate",{
     			  province:ary[0],
     			  city:ary[1],
     			  county:ary[2],
-    			  details:$(".content .address").val(),
+    			  details:$(".input-u .address").val(),
     			  contact:$(".uname").val(),
     			  tel:$(".utel").val(),
     			  addressid:addressID
-    		  },function(){})
+    		  },function(){addressinit()})
     	  }
     	  $(".m-modal-portal").addClass("isHidden")
-    	  addressinit()
+    	  
       })
       /* $(".address-list").on("click","")
       $(".update span").first().click(function(e){
@@ -1168,8 +1119,8 @@
     	  return item
       }) 
       console.log(orders)
-      var postdata={addressid:$(".address-item.selected").data("no"),orderlist:JSON.stringify(orders)}
-      console.log(postdata)
+      
+      
       function randomNumber() {
     const now = new Date()
     let month = now.getMonth() + 1
@@ -1181,15 +1132,20 @@
    }
      
       $(".bottom-pay").click(function(){
+    	  var postdata={addressid:$(".selected").data("no"),orderlist:JSON.stringify(orders)}
+    	  sessionStorage.setItem("orderInfo",postdata.orderlist)
     	  $.ajax({
     		  url:"OrderAdd",
     		  data:postdata,
     		  type:"post",
     		  traditional:true,
     		  success:function(data){
-    			  
+    			  window.location.href="topay.jsp"
     		  }
     	  })
+      })
+      $(".goOrder").click(function(){
+    	  /* window.location.href="topay.jsp" */
       })
     </script>
     

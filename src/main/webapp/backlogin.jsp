@@ -115,7 +115,9 @@
             
         </div>
     </div>
-    
+    <div class="fixed-tips">
+		<span>该用户没有权限</span>
+	</div>
 </body>
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script> 
 <script src="js/jsencrypt.min.js"></script>
@@ -134,11 +136,14 @@
         form.on('submit(loginSubmit)', function(data){
             console.log(data.field.username)
             $.post("login",{email:encrypt.encrypt(data.field.username),
-        		pwd:encrypt.encrypt(data.field.password)},function(data){
+        		pwd:encrypt.encrypt(data.field.password),
+        		msg:"admin"},function(data){
 				data=JSON.parse(data)
 				if(data.code=="200"){
 					sessionStorage.setItem("user",JSON.stringify(data))
 					window.location.href="backorder.jsp"
+				}else if(data.code=="400"){
+					
 				}
             })
             return false;

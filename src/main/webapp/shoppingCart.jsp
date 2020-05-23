@@ -5,8 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/shouye.css?ver=2">
 <link rel="stylesheet" href="iconfont/iconfont.css?ver=1">
+<link rel="stylesheet" href="css/shouye.css?ver=2">
+
 <style>
 * {
 	margin: 0;
@@ -375,6 +376,12 @@ img {
 	height: 30px;
 }
 
+.m-icons-reduce-active {
+    width: 30px;
+    height: 30px;
+    background-position: 0 -1372px;
+}
+
 .m-icons-reduce {
 	width: 30px;
 	height: 30px;
@@ -505,7 +512,7 @@ img {
 								</div>
 							</div>
 							<div class="book-info-list">
-								<div class="good-item-container cart-goods-con">
+								<!-- <div class="good-item-container cart-goods-con">
 									<div class="merchant-reduce-top"></div>
 									<div class="cart-good-items clearfix" data-isbn="0000001">
 										<div class="select">
@@ -533,8 +540,8 @@ img {
 											<span class="iconfont icon-icon-test5"></span>
 										</div>
 									</div>
-								</div>
-								<div class="good-item-container cart-goods-con">
+								</div> -->
+								<!-- <div class="good-item-container cart-goods-con">
 									<div class="merchant-reduce-top"></div>
 									<div class="cart-good-items clearfix" data-isbn="0000001">
 										<div class="select">
@@ -566,7 +573,7 @@ img {
 											<span class="iconfont icon-icon-test5"></span>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -619,6 +626,7 @@ img {
 		for(let key in cart){
 			totalPrice+=cart[key].bprice*cart[key].count
 			console.log(cart[key])
+			var minusStyle=cart[key].count>1?"m-icons-reduce-active":"m-icons-reduce"
 			$(".book-info-list").append('<div class="good-item-container cart-goods-con">'+
 					'<div class="merchant-reduce-top"></div>'+
 					'<div class="cart-good-items clearfix" data-isbn='+cart[key].ISBN+'>'+
@@ -626,7 +634,7 @@ img {
 							'<a class="m-icons m-icons-check-active select-icon" data-src="" href="javascript:;"></a>'+
 						'</div>'+
 						'<div class="image" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">'+
-							'<img class="" >'+
+							'<img class="" src='+cart[key].img1+'>'+
 						'</div>'+
 						'<div class="name" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">'+
 							'<div class="vertical-wrap">'+
@@ -637,7 +645,7 @@ img {
 						'<div class="price"><span>￥'+cart[key].bprice+'</span></div>'+
 						'<div class="num">'+
 							'<div class="can-edit">'+
-								'<div class="num-reduce-add" style="width: 134px;"><a class="m-icons m-icons-reduce minus-plus minus" data-src="" href="javascript:;"></a><span class="txt" style="width: 70px;">'+cart[key].count+'</span><a class="m-icons m-icons-add-active minus-plus add" data-src="" href="javascript:;"></a></div>'+
+								'<div class="num-reduce-add" style="width: 134px;"><a class="m-icons '+minusStyle+'  minus-plus minus" data-src="" href="javascript:;"></a><span class="txt" style="width: 70px;">'+cart[key].count+'</span><a class="m-icons m-icons-add-active minus-plus add" data-src="" href="javascript:;"></a></div>'+
 							'</div>'+
 						'</div>'+
 						'<div class="subtotal"><span>￥'+cart[key].bprice*cart[key].count+'</span></div>'+
@@ -659,6 +667,7 @@ img {
 		var tar=$(e.target)
 		$.post("CartDelete",{isbn:tar.parents(".cart-good-items").data("isbn")},function(data){
 			$.post("ShowCartlist",{},function(data){
+				bookary=[]
 				data=JSON.parse(data)
 				totalPrice=0
 				if(data.code=="error"){
@@ -683,6 +692,9 @@ img {
 		var num = tar.next().text()
 		if (num > 1) {
 			num--
+			if(num<=1){
+				tar.removeClass("m-icons-reduce-active").addClass("m-icons-reduce")
+			}
 			tar.next().text(num)
 			$.post("CartAdd",{
 				isbn:tar.parents(".cart-good-items").data("isbn"),
@@ -690,6 +702,7 @@ img {
 				count: "1"
 			},function(){
 				$.post("ShowCartlist",{},function(data){
+					bookary=[]
 					data=JSON.parse(data)
 					if(data.code=="error"){
 						window.location.href="login.jsp"
@@ -710,6 +723,9 @@ img {
 				})
 			})
 			
+		}else{
+				
+			
 		}
 		
 		
@@ -720,6 +736,9 @@ img {
 		var tar=$(e.target)
 		var num = tar.prev().text()
 			num++
+		if(num>1){
+			tar.prevAll().eq(1).addClass("m-icons-reduce-active").removeClass("m-icons-reduce")
+		}
 		tar.prev().text(num)
 		$.post("CartAdd",{
 			isbn:tar.parents(".cart-good-items").data("isbn"),
@@ -727,6 +746,7 @@ img {
 			count: "1"
 		},function(){
 			$.post("ShowCartlist",{},function(data){
+				bookary=[]
 				data=JSON.parse(data)
 				if(data.code=="error"){
 					window.location.href="login.jsp"
@@ -748,20 +768,6 @@ img {
 		})
 	})
 	
-	/* function rightboxfn(){
-		//处理跳转到购物车
-		$(".toIndex").click(function(){
-        	window.location.href="shouye.jsp"
-        })
-		//处理返回顶部按钮
-		$(".toTop").click(function () {
-			$('body,html').animate({ 
-				scrollTop: 0
-			},
-				500);
-			return false;
-		});
-	} */
 	
 	$(".checkout").click(function(){
 		window.location.href="order.jsp"
@@ -773,28 +779,65 @@ img {
 		if($(".allChecked").is(".m-icons-check-active")){
 			$(".select-icon").addClass("m-icons-check-active").removeClass("m-icons-check")
 			$(".already-select").text("已选"+$(".book-info-list .select-icon").length+"件")
+			$.post("ShowCartlist",{},function(data){
+				bookary=[]
+				data=JSON.parse(data)
+				if(data.code=="error"){
+					window.location.href="login.jsp"
+				}else{
+					cart=data.carMap
+					for(let c in cart){
+						bookary.push(cart[c]);
+						/* totalPrice+=cart[c].bprice*cart[c].count
+						if(cart[c].ISBN==tar.parents(".cart-good-items").data("isbn")){
+							console.log(cart[c].bprice,cart[c].count)
+							tar.parents(".num").next().children().text("￥"+cart[c].bprice*cart[c].count)
+						} */
+					}
+					sessionStorage.setItem("bookinfo",JSON.stringify(bookary))
+					/* $(".total-after-prefer").text("￥"+totalPrice) */
+				}
+				
+			})
 		}else{
 			$(".select-icon").removeClass("m-icons-check-active").addClass("m-icons-check")
 			$(".already-select").text("已选0件")
+			sessionStorage.setItem("bookinfo",[])
 		}
+		
 	})
 	
 	$(".book-info-list").on("click",".select-icon",function(e){
+		var cart
+		$.post("ShowCartlist",{},function(data){
+			bookary=[]
+			data=JSON.parse(data)
+			if(data.code=="error"){
+				window.location.href="login.jsp"
+			}else{
+				cart=data.carMap
+				for(let i=0;i<booklist.length;i++){
+					if($(".book-info-list .select-icon").eq(i).is(".m-icons-check-active")){
+						num++
+						bookary.push(cart[i])
+					}else{
+						
+					}
+				}
+				sessionStorage.setItem("bookinfo",JSON.stringify(bookary))
+			}
+			
+		})
 		var tar=$(e.target),num=0,booklist=$(".book-info-list .select-icon")
 		tar.toggleClass("m-icons-check-active").toggleClass("m-icons-check")
-		for(let i=0;i<booklist.length;i++){
-			if($(".book-info-list .select-icon").eq(i).is(".m-icons-check-active")){
-				num++
-			}else{
-				
-			}
-		}
+		
 		if(num==booklist.length){
 			$(".allChecked").addClass("m-icons-check-active").removeClass("m-icons-check")
 		}else{
 			$(".allChecked").removeClass("m-icons-check-active").addClass("m-icons-check")
 		}
 		$(".already-select").text("已选"+num+"件")
+		
 	})
 	
 	

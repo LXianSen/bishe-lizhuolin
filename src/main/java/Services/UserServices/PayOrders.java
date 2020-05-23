@@ -1,6 +1,7 @@
 package Services.UserServices;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import DAO.OrderDao;
 import DAO.UserDao;
 import DAO.WalletsDao;
 import MODEL.orders;
@@ -35,6 +37,7 @@ public class PayOrders extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=UTF-8");
 			JSONObject jsonobj = new JSONObject();
+			PrintWriter writer=response.getWriter();
 			//验证是否登录
 			UserDao userDao = new UserDao();
 			user u = userDao.CheckIsLogin(request, response);
@@ -52,15 +55,22 @@ public class PayOrders extends HttpServlet {
 				// 订单总价
 				double totalprice = Integer.parseInt(request.getParameter("totalmoney"));
 				if (totalprice > myWallets.getBalance()) {
-					jsonobj.put("code", "error");
+					jsonobj.put("code", "500");
 					jsonobj.put("msg", "余额不足");
 				} else if (totalprice <= myWallets.getBalance()) {
 					wallets newWallets = new wallets();
 					newWallets.setBalance(myWallets.getBalance() - totalprice);
 					walletsDao.updates(newWallets, myWallets);
+					orders newOrder=new orders();
+					orders oldOrders=new orders();
+					oldOrders.setFatherorder(request.getParameter("fatherorder"));
+					newOrder.setStatus("支付成功");
+					OrderDao orderDao=new OrderDao();
+					orderDao.updates(newOrder, oldOrders);
 					jsonobj.put("code", "200");
 					jsonobj.put("msg", "支付成功");
 				}
+				writer.println(jsonobj);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

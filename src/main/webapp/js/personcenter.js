@@ -30,6 +30,7 @@ function post_(par){
 			window.location.href="login.jsp"
 		}else{
 			resData=data
+			initOrders(resData) 
 		}
 	})
 }
@@ -78,10 +79,10 @@ var textData=[
 function ordersAry(){
 	
 }
-initOrders(textData)
+/*initOrders(textData)*/
 
 function initOrders(data){
-	var str=""
+	var str="",price=0
 	$(".mijia-personal-main").empty()
 	data.forEach(function(item,index){
 		console.log(index)
@@ -90,7 +91,7 @@ function initOrders(data){
 			console.log(index1)
 			str=str+'<div class="mijia-personal-product will-click has-price">'+
             '<div class="mijia-personal-product-image mijia-personal-left">'+
-			'<img class="" src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png?w=800&amp;h=800"  alt="">'+
+			'<img class="" src='+item1.img1+'  alt="">'+
 		'</div>'+
 		'<span class="mijia-personal-product-text-box mijia-personal-left">'+
             '<div class="mijia-personal-has-price mijia-personal-product-name-box">'+
@@ -123,7 +124,7 @@ function initOrders(data){
 				  '<section>'+
 				  		'<div class="mijia-personal-button-box mijia-personal-right">'+
 				  			'<a class="m-btns m-btn-gray m-btn-sm" href="javascript:;">取消订单</a>'+
-				  			'<a class="m-btns m-btn-brown m-btn-sm" href="javascript:;">去支付</a>'+
+				  			'<a class="m-btns m-btn-brown m-btn-sm topay" href="javascript:;">去支付</a>'+
 				  		'</div>'+
 				  '</section>'+
 				'</div>')	
@@ -181,4 +182,9 @@ function orderItemFn(item){
 	  '</section>'+
 	'</div>'
 }
+
+$(".mijia-personal-main").on("click",".topay",function(){
+	window.location.href="topay.jsp"
+})
+
 

@@ -87,18 +87,7 @@
 		<div class="layui-header">
 			<div class="layui-logo">书店后台管理</div>
 			<ul class="layui-nav layui-layout-right">
-				<li class="layui-nav-item"><a href="javascript:;"> <img
-						src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
-				</a>
-					<dl class="layui-nav-child">
-						<dd>
-							<a href="">基本资料</a>
-						</dd>
-						<dd>
-							<a href="">安全设置</a>
-						</dd>
-					</dl></li>
-				<li class="layui-nav-item"><a href="">退了</a></li>
+				
 			</ul>
 		</div>
 
@@ -511,6 +500,7 @@
 	</div>
 	<!-- <script src="../src/layui.js"></script> -->
 	<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="backheader.js?ver=1" ></script>
 	<script>
 	function genID(length){
     	return Number(Math.random().toString().substr(3,length) + Date.now()).toString(36)
@@ -550,7 +540,7 @@
 			var form = layui.form;
 			table.render({
 				elem : '#roleTable',
-				height : 312,
+				height : 460,
 				url : 'UserManagement' //数据接口
 				,
 				method : "post",

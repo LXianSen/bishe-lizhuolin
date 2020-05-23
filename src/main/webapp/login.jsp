@@ -342,7 +342,8 @@ fieldset {
     	}else{
     		$.post('login',{
         		email:encrypt.encrypt($('.tel').val()),
-        		pwd:encrypt.encrypt($('.password').val())
+        		pwd:encrypt.encrypt($('.password').val()),
+        		msg:"user"
         	},function(data){
         		data=JSON.parse(data)
         		if(data.code=='error'){

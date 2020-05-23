@@ -14847,3 +14847,47 @@ body {
     font-size: 20px;
     color: #6d6d6d
 }
+.center-tips-box{
+	position: fixed;
+    top: 0px;
+    left: 0px;
+    background: rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100%;
+}
+.center-tips-box .content-box{
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 135px;
+    transform: translate(-50%,-50%);
+    background: white;
+    border-radius: 4px;
+    padding:10px;
+}
+.center-tips-box .content-box  .title{
+	font-size: 18px;
+    color: #303133;
+    padding-bottom: 20px;
+}
+.center-tips-box .content-box  .content{
+	color: #606266;
+    height: 60px;
+    font-size: 14px;
+}
+.center-tips-box .content-box  .btn{
+	text-align: right;
+}
+.center-tips-box .content-box  .btn span{
+	display: inline-block;
+    line-height: 32px;
+    height: 32px;
+    color: #fff;
+    background-color: #409eff;
+    border-color: #409eff;
+    font-size: 12px;
+    padding: 0 10px;
+    border-radius: 3px;
+    padding:0 5px;
+}

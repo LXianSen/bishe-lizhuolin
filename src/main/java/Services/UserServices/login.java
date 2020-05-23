@@ -39,29 +39,43 @@ public class login extends HttpServlet {
 		JSONObject jsonobj = new JSONObject();		
 		user user=new user();
 		UserDao dao1=new UserDao();
+		String msgString=request.getParameter("msg");
             try {
             	Map<String, String[]> parameterMap = request.getParameterMap();
             	if(parameterMap.isEmpty()) {
                     String publicKey = RSAUtils.generateBase64PublicKey();
                     writer.write(publicKey); 
             	}else {
-                	//取出表单的user数据，放到user对象中
-            		user.setEmail(RSAUtils.decryptBase64(request.getParameter("email").toString()));
-            		user.setPwd(RSAUtils.decryptBase64(request.getParameter("pwd").toString()));
-            		HttpSession session = request.getSession();
-        			user myuser=new user();
-        			if(!dao1.selects(user).isEmpty()) {
-        				myuser=dao1.selects(user).get(0);
-        			}
-    				if(myuser.getUserid()!=null&&!"".equals(myuser.getUserid())) {
-    					jsonobj.put("code", "200");
-    					jsonobj.put("user", myuser);
-    	        		session.setAttribute("user", myuser);
-    				}else {
-    	        		jsonobj.put("code", "error");
-    				}
-    				out.println(jsonobj);
-				}
+            		
+						
+							//取出表单的user数据，放到user对象中
+	                		user.setEmail(RSAUtils.decryptBase64(request.getParameter("email").toString()));
+	                		user.setPwd(RSAUtils.decryptBase64(request.getParameter("pwd").toString()));
+	                		HttpSession session = request.getSession();
+	            			user myuser=new user();
+	            			if(!dao1.selects(user).isEmpty()) {
+	            				myuser=dao1.selects(user).get(0);
+	            			}
+	        				if(myuser.getUserid()!=null&&!"".equals(myuser.getUserid())) {
+	        					if((msgString.equals("admin") && myuser.getPermission().equals("1")) || (msgString.equals("user")) ||(myuser.getPermission().equals("2"))) {
+	        						jsonobj.put("code", "200");
+		        					jsonobj.put("user", myuser);
+		        	        		session.setAttribute("user", myuser);
+	        					}else {
+	        						jsonobj.put("code", "400");
+	    							jsonobj.put("msg", "该用户无权限");
+	        					}
+	        					
+	        					
+	        				}else {
+	        	        		jsonobj.put("code", "error");
+	        				}
+	        				out.println(jsonobj);
+						
+					
+            			
+					}
+                	
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

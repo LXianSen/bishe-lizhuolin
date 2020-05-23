@@ -97,18 +97,7 @@ body {
 		<div class="layui-header">
 			<div class="layui-logo">书店后台管理</div>
 			<ul class="layui-nav layui-layout-right">
-				<li class="layui-nav-item"><a href="javascript:;"> <img
-						src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
-				</a>
-					<dl class="layui-nav-child">
-						<dd>
-							<a href="">基本资料</a>
-						</dd>
-						<dd>
-							<a href="">安全设置</a>
-						</dd>
-					</dl></li>
-				<li class="layui-nav-item"><a href="">退了</a></li>
+				
 			</ul>
 		</div>
 
@@ -366,7 +355,7 @@ body {
 							function renderbooktable(obj){
 								table.render({
 									elem : '#roleTable',
-									height : 312,
+									height : 520,
 									url : 'BooksShow' //数据接口
 									,
 									page : true //开启分页

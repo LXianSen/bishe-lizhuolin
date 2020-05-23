@@ -58,6 +58,7 @@ public class OrderAdd extends HttpServlet {
 					stock oldbookStock=new stock();
 					stock newbookStock=new stock();
 					oldbookStock.setISBN(orderList.get(i).getISBN());
+					System.out.println("查询的值"+oldbookStock);
 					//查询数据库上次库存修改时间和库存量
 					Timestamp time=stockDao.selects(oldbookStock).get(0).getTime();
 					oldbookStock.setTime(time);
