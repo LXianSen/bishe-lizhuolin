@@ -17,9 +17,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import DAO.CartDao;
 import DAO.OrderDao;
 import DAO.StockDao;
 import DAO.UserDao;
+import MODEL.cartitem;
 import MODEL.orders;
 import MODEL.stock;
 import MODEL.user;
@@ -40,6 +42,7 @@ public class OrderAdd extends HttpServlet {
 			response.setContentType("text/html;charset =UTF-8");
 			//验证是否登录
 			UserDao userDao = new UserDao();
+			CartDao cartDao=new CartDao();
 			user u = userDao.CheckIsLogin(request, response);
 			if (u != null && !"".equals(u.toString())) {
 				System.out.println(u);
@@ -51,6 +54,7 @@ public class OrderAdd extends HttpServlet {
 				Date date = new Date();
 				Timestamp ctime = new Timestamp(date.getTime());
 				for (int i = 0; i < orderList.size(); i++) {
+					cartitem tempCartitem=new cartitem();
 					orderList.get(i).setAddressid(request.getParameter("addressid"));
 					orderList.get(i).setDate(ctime);
 					//并发控制，防止ABA
@@ -70,6 +74,10 @@ public class OrderAdd extends HttpServlet {
 					//修改库存的时候检验上次库存修改时间是否对应       set stock=新库存,time=新时间  where isbn=? and time=上次查询出的时间
 					stockDao.updates(newbookStock, oldbookStock);
 					orderDao.adds(orderList.get(i));
+					tempCartitem.setUserid(u.getUserid());
+					tempCartitem.setISBN(orderList.get(i).getISBN());
+					cartDao.deletes(tempCartitem);
+					
 					}else {
 						PrintWriter oPrintWriter=response.getWriter();
 						oPrintWriter.println("库存不足，请重试");

@@ -12,7 +12,7 @@ $(".layui-nav.layui-layout-right").append(`<li class="layui-nav-item">
                         <dd><a href="">安全设置</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item exit"><a href="">退了</a></li>`)
+                <li class="layui-nav-item exit"><a href="backlogin.jsp">退了</a></li>`)
    handleUser()
     function handleUser(){
 		var user = JSON.parse(sessionStorage.getItem("user"))
@@ -25,7 +25,7 @@ $(".layui-nav.layui-layout-right").on("click",".exit",function(){
 		data=JSON.parse(data)
 		if(data.code=="200"){
 			sessionStorage.clear()
-			window.location.href="backlogin.jsp"
+			/*window.location.href="backlogin.jsp"*/
 		}
 	})
 	

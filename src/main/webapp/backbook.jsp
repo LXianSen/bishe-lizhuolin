@@ -246,7 +246,7 @@
     </div>
     <!-- <script src="../src/layui.js"></script> -->
     <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="backheader.js?ver=1" ></script>
+    <script type="text/javascript" src="backheader.js?ver=2" ></script>
     <script>
         //JavaScript代码区域
         layui.use('element', function () {
