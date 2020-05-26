@@ -7,35 +7,13 @@
 	var type = []
 	var searchData = []
 	
-//	rightboxfn();    
-//	topboxfn();
+
 	console.log("首页js更新3")
-	/*function topboxfn(){
-		$(".exit").click(function(){
-			console.log("退出登录")
-			sessionStorage.clear()
-		})
-	}*/
 	
-	/*//右侧导航栏
-	function rightboxfn(){
-		//处理跳转到购物车
-		$(".toCart").click(function(){
-        	window.location.href="shoppingCart.jsp"
-        })
-        $(".toPerson").click(function(){
-        	window.location.href="personCenter.jsp"
-        })
-		//处理返回顶部按钮
-		$(".toTop").click(function () {
-			$('body,html').animate({ 
-				scrollTop: 0
-			},
-				500);
-			return false;
-		});
-	}*/
-	
+	//点击搜索框旁的购物车
+	$(".shopcart-mark").click(function(){
+		window.location.href="shoppingCart.jsp"
+	})
 	
 	//渲染搜索列表
 	function searchList(searchData){
@@ -45,7 +23,7 @@
 		})
 	}
 	
-	//点击
+	//点击搜索出来的下拉列表
 	$(".m-auto-list>ul").on("click","li",function(e){
 		let value = $(e.target).text()
 		console.log(value)
@@ -66,6 +44,7 @@
 		{ name: "人生（茅盾文学奖得主路遥代表作，全新精装版）", isbn: "0000001", author: "路遥", price: "40.00", disprice: "25.80", img: "./images/28504153-1_l_3.jpg" },
 	]
 
+	//初始化图书分类
 	$.post("BookTypeShow", { typename: "" }, function (data) {
 		type = JSON.parse(data)
 		$('.directory>ul').empty()
@@ -193,17 +172,6 @@
 		}
 	})
 
-	/*window.onload = function () {
-		//处理用户登录
-		var user = JSON.parse(sessionStorage.getItem("user"))
-		if (user) {
-			userbox.removeClass('userhide')
-			loginbox.addClass('userhide')
-			$('.m-username').text(user.username || user.userd)
-		}
-
-		
-	}*/
 	
 	
 	for (let i = 0; i < type.length; i++) {

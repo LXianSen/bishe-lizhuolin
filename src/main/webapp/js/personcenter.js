@@ -6,12 +6,16 @@ var businessObj={
 	"我的资产":"wallets",
 	"我的收藏":"collection",
 	"地址管理":"address",
-},resData,newAry=[],statusNo=""
+},resData,newAry=[],statusNo="待付款"
 
 post_("我的订单")
 
 $(".mijia-personal-functional-list-box ul li").click(function(e){
 	let tar=$(e.target);
+	$(".mijia-personal-functional-list-box ul li").removeClass("active")
+	$(".mijia-personal-functional-list-box ul li active-circle").remove()
+	tar.parent().addClass("active")
+	tar.parent().prepend('<span class="active-circle"></span>')
 	statusNo="代付款"
 	post_(tar.text())
 	
@@ -20,6 +24,9 @@ $(".mijia-personal-functional-list-box ul li").click(function(e){
 $(".mijia-personal-selector ul li").click(function(e){
 	let tar=$(e.target);
 	statusNo=tar.text()
+	console.log(statusNo)
+	$(".mijia-personal-selector ul li").removeClass("active")
+	tar.addClass("active")
 	post_("我的订单")
 })
 
@@ -30,7 +37,7 @@ function post_(par){
 			window.location.href="login.jsp"
 		}else{
 			resData=data
-			initOrders(resData) 
+			initOrders(resData,statusNo) 
 		}
 	})
 }
@@ -81,10 +88,28 @@ function ordersAry(){
 }
 /*initOrders(textData)*/
 
-function initOrders(data){
-	var str="",price=0
+function initOrders(data,statusNo){
+	var str="",price=0,ary=[],btnHtml=""
 	$(".mijia-personal-main").empty()
 	data.forEach(function(item,index){
+		if(item.status==statusNo){
+			ary.push(item)
+		}
+	})
+	switch(statusNo){
+	case "待付款":btnHtml='<a class="m-btns m-btn-gray m-btn-sm" href="javascript:;">取消订单</a>'+
+		'<a class="m-btns m-btn-brown m-btn-sm topay" href="javascript:;">去支付</a>'
+	break
+	case "支付成功":btnHtml='<a class="m-btns m-btn-brown m-btn-sm torecive" href="javascript:;">确认收货</a>'
+	break
+	case "已完成":btnHtml=""
+		break
+	case "订单取消":btnHtml=""
+		break
+	}
+	ary.forEach(function(item,index){
+		
+		
 		console.log(index)
 		str=""
 		item.sonorder.forEach(function(item1,index1){
@@ -123,8 +148,7 @@ function initOrders(data){
 				  '</section>'+
 				  '<section>'+
 				  		'<div class="mijia-personal-button-box mijia-personal-right">'+
-				  			'<a class="m-btns m-btn-gray m-btn-sm" href="javascript:;">取消订单</a>'+
-				  			'<a class="m-btns m-btn-brown m-btn-sm topay" href="javascript:;">去支付</a>'+
+				  		btnHtml+
 				  		'</div>'+
 				  '</section>'+
 				'</div>')	

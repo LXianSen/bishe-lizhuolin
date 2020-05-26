@@ -31,10 +31,10 @@
                         <section>
                             <div class="mijia-personal-functional-list-box">
                                 <ul>
-                                    <li class="active"><span class="active-circle"></span><a href="#">我的订单</a></li>
-                                    <li><a href="#">我的资产</a></li>
-                                    <li><a href="#">我的收藏</a></li>
-                                    <li><a href="#">地址管理</a></li>
+                                    <li class="active"><span class="active-circle"></span><a href="javascript:void(0)">我的订单</a></li>
+                                    <li><a href="javascript:void(0)">我的资产</a></li>
+                                    <li><a href="javascript:void(0)">我的收藏</a></li>
+                                    <li><a href="javascript:void(0)">地址管理</a></li>
                                 </ul>
                             </div>
                         </section>
@@ -46,8 +46,8 @@
                             <section>
                                 <div class="mijia-personal-selector">
                                     <ul>
-                                        <li class="active  ">待付款</li>
-                                        <li class="  ">付款成功</li>
+                                        <li class="active">待付款</li>
+                                        <li class="  ">支付成功</li>
                                         <li class="  ">已完成</li>
                                         <li class="  ">订单取消</li>
                                     </ul>
@@ -169,7 +169,7 @@
         <footer></footer>
     </body>
     <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/personcenter.js?ver=1"></script>
+    <script src="js/personcenter.js?ver=2"></script>
     <script type="text/javascript" src="header.js?ver=1"></script>
 	<script type="text/javascript" src="navigation.js?ver=1"></script>
 	<script type="text/javascript" src="footer.js?ver=1"></script>

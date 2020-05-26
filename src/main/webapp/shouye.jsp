@@ -30,7 +30,7 @@
 					<input type="text" class="search-input">
 				</div>
 				<span class="iconfont icon-icon-test search_font shopcart"></span>
-				<div class="shopcart-mark">1</div>
+				<!-- <div class="shopcart-mark">1</div> -->
 				<div class="m-auto-list">
 					<ul>
 						<li class="">扫地机器人</li>
