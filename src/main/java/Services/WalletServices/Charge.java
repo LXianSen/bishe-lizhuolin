@@ -33,13 +33,14 @@ public class Charge extends HttpServlet {
 		response.setCharacterEncoding("text/html;charset=UTF-8");
 		UserDao userDao = new UserDao();
 		user u = userDao.CheckIsLogin(request, response);
+		WalletsDao walletsDao=new WalletsDao();
 		if (u != null && !"".equals(u.toString())) {
 			wallets oldWallets = new wallets();
 			wallets newWallets = new wallets();
-			newWallets.setBalance(Double.parseDouble(request.getParameter("balance")));
-			oldWallets.setuserId(u.getUserid());
-			WalletsDao walletsDao = new WalletsDao();
 			try {
+				oldWallets.setuserId(u.getUserid());
+				double oldbalance=walletsDao.selects(oldWallets).get(0).getBalance();
+				newWallets.setBalance(Double.parseDouble(request.getParameter("balance"))+oldbalance);
 				walletsDao.updates(newWallets, oldWallets);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

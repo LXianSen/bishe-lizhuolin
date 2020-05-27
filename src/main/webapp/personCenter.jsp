@@ -7,7 +7,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="css/personcenter.css">
+        <link rel="stylesheet" href="css/personcenter.css?ver=1">
         <link rel="stylesheet" href="iconfont/iconfont.css">
     	<link rel="stylesheet" href="css/shouye.css?ver=2">
     </head>
@@ -26,6 +26,7 @@
                                     style="background-image: url(&quot;https://cdn.cnbj1.fds.api.mi-img.com/user-avatar/d2179842-90bf-418e-b9f4-7dfa372f8f23.jpg&quot;); background-position: center center; background-size: 100%;">
                                 </div>
                                 <p class="mijia-personal-profile-username">🙊</p>
+                                <!-- <p style="padding:10px 0 0;">余额:<span class="balance">680</span><a style="padding-left:10px;cursor:pointer;color:#E6A23C">充值</a></p> -->
                             </div>
                         </section>
                         <section>
@@ -41,124 +42,7 @@
                     </div>
                 </div>
                 <div class="mijia-personal-container-box">
-                    <div class="mijia-personal-main-box">
-                        <div>
-                            <section>
-                                <div class="mijia-personal-selector">
-                                    <ul>
-                                        <li class="active">待付款</li>
-                                        <li class="  ">支付成功</li>
-                                        <li class="  ">已完成</li>
-                                        <li class="  ">订单取消</li>
-                                    </ul>
-                                </div>
-                            </section>
-                            <section></section>
-                            <section>
-                                <div class="mijia-personal-main">
-                                    <div class="mijia-personal-order-item">
-                                        <section class="mijia-personal-item-header"><span>订单日期：2020/04/27
-                                                15:38:03</span><span
-                                                class="mijia-personal-sub-font mijia-personal-sub-title">59分钟后订单关闭</span><span
-                                                class="mijia-personal-active-font mijia-personal-right">待付款</span></section>
-                                        <section>
-                                            <div class="mijia-personal-products-box mijia-personal-block"
-                                                style="margin-top: 0px;">
-                                                <div>
-                                                    <div class="mijia-personal-product will-click has-price">
-                                                        <div class="mijia-personal-product-image mijia-personal-left"><img
-                                                                class=""
-                                                                src="http://img3m2.ddimg.cn/97/30/28544272-1_b_3.jpg"
-                                                                data-src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png?w=800&amp;h=800"
-                                                                alt=""></div><span
-                                                            class="mijia-personal-product-text-box mijia-personal-left">
-                                                            <div
-                                                                class="mijia-personal-has-price mijia-personal-product-name-box">
-                                                                <p>朗菲去污地垫套装（3D）版CS-627 黑色 组合装</p>
-                                                                <p
-                                                                    class="mijia-personal-price mijia-personal-product-price">
-                                                                    ￥159</p>
-                                                            </div>
-                                                        </span><span
-                                                            class="mijia-personal-product-count mijia-personal-right">X&nbsp;1</span><span
-                                                            class="mijia-personal-product-refound mijia-personal-right"></span>
-                                                    </div>
-                                                    <div class="mijia-personal-product will-click has-price">
-                                                        <div class="mijia-personal-product-image mijia-personal-left"><img
-                                                                class=""
-                                                                src="http://img3m2.ddimg.cn/97/30/28544272-1_b_3.jpg"
-                                                                data-src="https://img.youpin.mi-img.com/800_pic/4a7c044f82615dd80ea498aa6597f907.png"
-                                                                alt=""></div><span
-                                                            class="mijia-personal-product-text-box mijia-personal-left">
-                                                            <div
-                                                                class="mijia-personal-has-price mijia-personal-product-name-box">
-                                                                <p>小米米家液晶小黑板 10英寸</p>
-                                                                <p
-                                                                    class="mijia-personal-price mijia-personal-product-price">
-                                                                    ￥49</p>
-                                                            </div>
-                                                        </span><span
-                                                            class="mijia-personal-product-count mijia-personal-right">X&nbsp;1</span><span
-                                                            class="mijia-personal-product-refound mijia-personal-right"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section><span
-                                                class="mijia-personal-right mijia-personal-price-box">共二件商品,&nbsp;订单总金额:&nbsp;<span
-                                                    class="mijia-personal-price">208元</span></span></section>
-                                        <section>
-                                            <div class="mijia-personal-button-box mijia-personal-right"><a
-                                                    class="m-btns m-btn-gray m-btn-sm" href="javascript:;">取消订单</a><a
-                                                    class="m-btns m-btn-brown m-btn-sm" href="javascript:;">去支付</a></div>
-                                        </section>
-                                    </div>
-                                    <div class="mijia-personal-order-item">
-                                        <section class="mijia-personal-item-header"><span>订单日期：2020/04/27
-                                                15:34:58</span><span
-                                                class="mijia-personal-sub-font mijia-personal-sub-title">26分钟后订单关闭</span><span
-                                                class="mijia-personal-active-font mijia-personal-right">待付款</span></section>
-                                        <section>
-                                            <div class="mijia-personal-products-box mijia-personal-block"
-                                                style="margin-top: 0px;">
-                                                <div>
-                                                    <div class="mijia-personal-product will-click has-price">
-                                                        <div class="mijia-personal-product-image mijia-personal-left"><img
-                                                                class=""
-                                                                src="http://img3m2.ddimg.cn/97/30/28544272-1_b_3.jpg"
-                                                                data-src="https://img.youpin.mi-img.com/shopmain/b744a1bb7f5d1e366e325619f57a111f.png?w=800&amp;h=800"
-                                                                alt=""></div><span
-                                                            class="mijia-personal-product-text-box mijia-personal-left">
-                                                            <div
-                                                                class="mijia-personal-has-price mijia-personal-product-name-box">
-                                                                <p>洁致折叠小方桌 白色 独立装</p>
-                                                                <p
-                                                                    class="mijia-personal-price mijia-personal-product-price">
-                                                                    ￥49</p>
-                                                            </div>
-                                                        </span><span
-                                                            class="mijia-personal-product-count mijia-personal-right">X&nbsp;1</span><span
-                                                            class="mijia-personal-product-refound mijia-personal-right"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section><span
-                                                class="mijia-personal-right mijia-personal-price-box">共一件商品,&nbsp;订单总金额:&nbsp;<span
-                                                    class="mijia-personal-price">49元</span></span></section>
-                                        <section>
-                                            <div class="mijia-personal-button-box mijia-personal-right"><a
-                                                    class="m-btns m-btn-gray m-btn-sm" href="javascript:;">取消订单</a><a
-                                                    class="m-btns m-btn-brown m-btn-sm" href="javascript:;">去支付</a></div>
-                                        </section>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div></div>
-                            </section>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <div class="m-toast-group m-toast-top-center"></div>
@@ -166,10 +50,24 @@
         <div class="m-fixedBar">
 		
 	</div>
+	<div class="center-tips-box hide">
+		<div class="content-box">
+			<div class="title">充值</div>
+			<div class="price">
+				<span>金额:</span>
+				<input type="text" class="price-input">
+			</div>
+			<div class="btn">
+				<span class="recharge" style="cursor:pointer">确定</span>
+				<span class="cancel" style="cursor:pointer">取消</span>
+			</div>
+		</div>
+		
+	</div>
         <footer></footer>
     </body>
     <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/personcenter.js?ver=2"></script>
+    <script src="js/personcenter.js?ver=1"></script>
     <script type="text/javascript" src="header.js?ver=1"></script>
 	<script type="text/javascript" src="navigation.js?ver=1"></script>
 	<script type="text/javascript" src="footer.js?ver=1"></script>

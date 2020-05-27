@@ -8,7 +8,10 @@ var businessObj={
 	"地址管理":"address",
 },resData,newAry=[],statusNo="待付款"
 
+
+	
 post_("我的订单")
+
 
 $(".mijia-personal-functional-list-box ul li").click(function(e){
 	let tar=$(e.target);
@@ -17,11 +20,13 @@ $(".mijia-personal-functional-list-box ul li").click(function(e){
 	tar.parent().addClass("active")
 	tar.parent().prepend('<span class="active-circle"></span>')
 	statusNo="代付款"
+	console.log(tar.text())
 	post_(tar.text())
 	
 })
 
-$(".mijia-personal-selector ul li").click(function(e){
+
+$(".mijia-personal-container-box").on("click",".mijia-personal-selector ul li",function(e){
 	let tar=$(e.target);
 	statusNo=tar.text()
 	console.log(statusNo)
@@ -37,7 +42,12 @@ function post_(par){
 			window.location.href="login.jsp"
 		}else{
 			resData=data
-			initOrders(resData,statusNo) 
+			if(par=="我的订单"){
+				initOrders(resData,statusNo) 
+			}else if(par=="我的资产"){
+				initWalllet(resData)
+			}
+			
 		}
 	})
 }
@@ -88,14 +98,60 @@ function ordersAry(){
 }
 /*initOrders(textData)*/
 
+function initWalllet(data){
+	$(".mijia-personal-container-box").empty()
+	$(".mijia-personal-container-box").html(`
+			<div class="mijia-personal-main-box">
+                    	<div class="m-coupon-wrap">
+                    		<h2 class="person-tit">账户金额</h2>
+                    	</div>
+                    	<p style="font-size:20px;padding:20px 0">您的账户余额：￥<span> ${data[0].balance} </span></p>
+                    	<a class="m-btns m-btn-brown m-btn-sm recharge" href="javascript:;">充值</a>
+                    </div>
+	`)
+}
+
+$(".mijia-personal-container-box").on("click",".recharge",function(){
+	$(".center-tips-box").removeClass("hide")
+})
+
+$(".recharge").click(function(){
+	$.post("Charge",{balance:$(".price-input").val()},function(data){
+		$(".center-tips-box").addClass("hide")
+		post_("我的资产")
+	})
+})
+
 function initOrders(data,statusNo){
 	var str="",price=0,ary=[],btnHtml=""
-	$(".mijia-personal-main").empty()
+	
 	data.forEach(function(item,index){
 		if(item.status==statusNo){
 			ary.push(item)
 		}
 	})
+	if(statusNo=="待付款"){
+		$(".mijia-personal-container-box").empty()
+		$(".mijia-personal-container-box").append(`
+				<div class="mijia-personal-main-box">
+		                        <div>
+		                            <section>
+		                                <div class="mijia-personal-selector">
+		                                    <ul>
+		                                        <li class="active">待付款</li>
+		                                        <li class="">支付成功</li>
+		                                        <li class="">已完成</li>
+		                                        <li class="">订单取消</li>
+		                                    </ul>
+		                                </div>
+		                            </section>
+		                            <section></section>
+		                            <section>
+		                                <div class="mijia-personal-main"></div>
+		                                </section>
+				`) 
+	}
+	
 	switch(statusNo){
 	case "待付款":btnHtml='<a class="m-btns m-btn-gray m-btn-sm" href="javascript:;">取消订单</a>'+
 		'<a class="m-btns m-btn-brown m-btn-sm topay" href="javascript:;">去支付</a>'
