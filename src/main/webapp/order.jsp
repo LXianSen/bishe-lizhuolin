@@ -681,7 +681,7 @@
                                     class="name">商品列表</span><span class="threshold"></span>
                             </div> 
                             <div class="merchant-spread">
-                                <div class="good-container clearfix">
+                                <!-- <div class="good-container clearfix">
                                     <p class="pro-support">
                                     	<a class="m-icons m-icons-service " data-src="" href="javascript:;"></a>
                                     </p>
@@ -696,7 +696,7 @@
                                     </span>
                                     <span
                                         class="price">41.10元×1</span>
-                                </div>
+                                </div> -->
                                 <!-- <div class="good-container clearfix">
                                     <p class="pro-support">
                                     	<a class="m-icons m-icons-service " data-src="" href="javascript:;"></a>
@@ -722,9 +722,9 @@
                     </div>
                     <div class="checkout-summary clearfix">
                         <div class="check-freeInfo fr">
-                            <div class="freeInfo-item"><span class="freeInfo-key">商品总价：</span><span
+                            <div class="freeInfo-item book-total"><span class="freeInfo-key">商品总价：</span><span
                                     class="freeInfo-value">320.00元</span></div>
-                            <div class="freeInfo-item"><span class="freeInfo-key">优惠：</span><span
+                            <div class="freeInfo-item discount-total"><span class="freeInfo-key">优惠：</span><span
                                     class="freeInfo-value">0.00元</span></div>
                             <div class="total"><span class="freeInfo-key">合计：</span><span
                                     class="freeInfo-value">￥320.00</span></div>
@@ -802,6 +802,8 @@
     addressinit()
     
 	
+    
+    
     function addressinit(){
     	$.post("OrderCommit",{},function(data){
     		data=JSON.parse(data)
@@ -888,9 +890,12 @@
         })
         var data=JSON.parse(sessionStorage.getItem("bookinfo"))
         var count = JSON.parse(sessionStorage.getItem("count"))||0
+        var totalPrice=0,discountPrice=0
         console.log(data)
         $(".merchant-spread").empty();
         data.forEach(function(item,index){
+        	totalPrice+=item.bprice*item.count
+        	discountPrice+=item.bprice*(1-item.bdiscount)
         	if(count==0){
         		count=item.count
         	}
@@ -910,6 +915,10 @@
                 '<span class="price">¥'+item.bprice+'×'+count+'</span></div>')
             count=0
         })
+        
+        $(".book-total .freeInfo-value").text(totalPrice+"元")
+        $(".discount-total .freeInfo-value").text(discountPrice+"元")
+        $(".total .freeInfo-value").text("￥"+(totalPrice-discountPrice))
         $(".merchant-spread").append('<div class="form-item"><span class="left-label">买家留言</span><span class="select"><textarea type="text" class="userMessage marginBottom" placeholder="填写内容需与商家协商并确认，45字以内"  maxlength="45"></textarea></span></div>')
         
         $(".canclebtn").click(function(){
