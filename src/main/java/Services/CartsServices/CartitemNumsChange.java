@@ -16,6 +16,7 @@ import org.omg.CORBA.OBJ_ADAPTER;
 import DAO.BookDao;
 import DAO.CartDao;
 import DAO.UserDao;
+import MODEL.book;
 import MODEL.cartitem;
 import MODEL.user;
 import net.sf.json.JSONObject;
@@ -50,7 +51,13 @@ public class CartitemNumsChange extends HttpServlet {
 				List<cartitem> cartitemlist = cartDao.selects(cartitem);
 				// 如果用户购物车存在该购物项，购物项数量+count，否则新建一个购物项，数量为count
 				if (cartitemlist.isEmpty()) {
+					BookDao bookDao=new BookDao();
+					book book=new book();
+					book.setISBN(request.getParameter("isbn").toString());
+					List<book> books=bookDao.selects(book);
 					cartitem.setCount(Integer.parseInt(request.getParameter("count")));
+					cartitem.setBprice(books.get(0).getBprice());
+					cartitem.setBdiscount(books.get(0).getBdiscount());
 					cartDao.adds(cartitem);
 					jsonObject.put("code", "200");
 					jsonObject.put("msg", "该书籍已成功添加到购物车");

@@ -6,7 +6,7 @@ var businessObj={
 	"我的资产":"wallets",
 	"我的收藏":"collection",
 	"地址管理":"address",
-},resData,newAry=[],statusNo="待付款"
+},resData,newAry=[],statusNo="待支付"
 
 
 	
@@ -19,7 +19,7 @@ $(".mijia-personal-functional-list-box ul li").click(function(e){
 	$(".mijia-personal-functional-list-box ul li active-circle").remove()
 	tar.parent().addClass("active")
 	tar.parent().prepend('<span class="active-circle"></span>')
-	statusNo="代付款"
+	statusNo="代支付"
 	console.log(tar.text())
 	post_(tar.text())
 	
@@ -46,6 +46,8 @@ function post_(par){
 				initOrders(resData,statusNo) 
 			}else if(par=="我的资产"){
 				initWalllet(resData)
+			}else if(par=="地址管理"){
+				initAddress(resData)
 			}
 			
 		}
@@ -98,6 +100,108 @@ function ordersAry(){
 }
 /*initOrders(textData)*/
 
+function initAddress(data){
+	$(".mijia-personal-container-box").empty()
+	$(".mijia-personal-container-box").html(`
+			<div class="mijia-personal-main-box">
+                    	<div>
+                    		<section><div class="person-tit"><p>地址管理</p></div></section>
+                    		<section>
+                    			<div class="mijia-personal-main mijia-personal-address-box">
+                    				<div class="address-list ">
+                    					<div class="address-list "></div>
+                    				</div>
+                    			</div>
+                    		</section>
+                    	</div>
+                    	
+                    </div>
+	`)
+	
+	
+    	
+    		
+    		
+    console.log(data)
+    if(data.length==0){
+    		addressFlag=true
+    }
+    $(".address-list").empty()
+    data.forEach(function(item,index){
+	    $(".address-list").append('<div class="address-item others unselected notHidden" data-no='+item.addressid+'><div class="address-item-content"><div class="mark addr-unvisible">默认</div><div class="content"><div class="name">'+item.contact+'</div><div class="tel">'+item.tel+'</div><div class="city">'+item.province+'/'+item.city+'/'+item.county+'</div><div class="address">'+item.details+'</div></div><div class="update isHidden"><span>设为默认地址</span><span>修改</span><span>删除</span></div></div></div>')
+	    if(item.isdefault=="1"){
+	    	sessionStorage.setItem("addressInfo",JSON.stringify(item))
+	    	$(".address-item").addClass("first").removeClass("others").addClass("selected").removeClass("unselected")
+	    	$(".mark").addClass("addr-visible").removeClass("addr-unvisible")
+	    	$(".update span:first").remove()
+	    }
+    				
+    })
+    $(".address-list").append('<div class="address-item others unselected toAddAddress"><div class="addIcon"><span class="iconfont icon-add"></span></div><div class="addAds">添加新地址</div></div>')
+    			
+    		
+    
+    
+}
+
+$(".mijia-personal-container-box").on("mouseover",".address-item",function(e){
+    console.log(1)
+    var tar = $(e.target)
+    tar.children().children(".update").removeClass("isHidden")
+})
+$(".mijia-personal-container-box").on("mouseleave",".address-item",function(e){
+    console.log($(e.target))
+    var tar = $(e.target)
+    if (tar.is("span")) {
+        $(".update").addClass("isHidden")
+    } else {
+        tar.children().children(".update").addClass("isHidden")
+    }
+
+})
+$(".mijia-personal-container-box").on("click",".update",function(e){
+    var tar = $(e.target)
+    switch (tar.text()) {
+        case "设为默认地址": {
+            $(".address-item").addClass("unselected").removeClass("selected")
+            $(".mark").addClass("addr-unvisible").removeClass("addr-visible")
+            tar.parents(".address-item").addClass("selected").removeClass("unselected")
+            tar.parents(".address-item-content").children(".mark").addClass("addr-visible").removeClass("addr-unvisible")
+            $(".update").prepend("<span>设为默认地址</span>")
+  			tar.parents(".update").children().first().remove()
+            $.post("SetDefaultAddress",{addressid:tar.parents(".address-item").data("no"),isdefault:"1"},function(){
+
+            })
+            break
+        };
+        case "删除": {
+            tar.parents(".address-item").remove()
+            break
+        };
+        case "修改": {
+        	isadd=false
+            let content=tar.parents(".address-item-content").children(".content")
+            $(".layer-title").text("修改收货地址");
+            $(".m-modal-portal").removeClass("isHidden")
+            $(".uname").val(content.children('.name').text())
+            $(".utel").val(content.children('.tel').text())
+			$(".province").val(content.children(".city").text())
+			$(".address").val(content.children(".address").text())
+			$(".cityno").val(content.children(".cityno").text())
+			ary=content.children(".city").text().split("/")
+			addressID=tar.parents(".address-item").data("no")
+        }
+    }
+})
+$(".title>.closeIcon").click(function(){
+    $(".m-modal-portal").addClass("isHidden")
+})
+$(".mijia-personal-container-box").on("click",".toAddAddress",function(e){
+	$(".layer-title").text("添加收货地址");
+    $(".m-modal-portal").removeClass("isHidden")
+    isadd=true
+})
+
 function initWalllet(data){
 	$(".mijia-personal-container-box").empty()
 	$(".mijia-personal-container-box").html(`
@@ -130,7 +234,7 @@ function initOrders(data,statusNo){
 			ary.push(item)
 		}
 	})
-	if(statusNo=="待付款"){
+	if(statusNo=="待支付"){
 		$(".mijia-personal-container-box").empty()
 		$(".mijia-personal-container-box").append(`
 				<div class="mijia-personal-main-box">
@@ -138,7 +242,7 @@ function initOrders(data,statusNo){
 		                            <section>
 		                                <div class="mijia-personal-selector">
 		                                    <ul>
-		                                        <li class="active">待付款</li>
+		                                        <li class="active">待支付</li>
 		                                        <li class="">支付成功</li>
 		                                        <li class="">已完成</li>
 		                                        <li class="">订单取消</li>
@@ -153,7 +257,7 @@ function initOrders(data,statusNo){
 	}
 	
 	switch(statusNo){
-	case "待付款":btnHtml='<a class="m-btns m-btn-gray m-btn-sm" href="javascript:;">取消订单</a>'+
+	case "待支付":btnHtml='<a class="m-btns m-btn-gray m-btn-sm" href="javascript:;">取消订单</a>'+
 		'<a class="m-btns m-btn-brown m-btn-sm topay" href="javascript:;">去支付</a>'
 	break
 	case "支付成功":btnHtml='<a class="m-btns m-btn-brown m-btn-sm torecive" href="javascript:;">确认收货</a>'
@@ -163,6 +267,7 @@ function initOrders(data,statusNo){
 	case "订单取消":btnHtml=""
 		break
 	}
+	$(".mijia-personal-main").empty()
 	ary.forEach(function(item,index){
 		
 		
@@ -177,7 +282,7 @@ function initOrders(data,statusNo){
 		'<span class="mijia-personal-product-text-box mijia-personal-left">'+
             '<div class="mijia-personal-has-price mijia-personal-product-name-box">'+
                  '<p>'+item1.bname+'</p>'+
-                 '<p class="mijia-personal-price mijia-personal-product-price">￥'+item1.bprice+'</p>'+
+                 '<p class="mijia-personal-price mijia-personal-product-price">￥'+(item1.bprice*item1.bdiscount).toFixed(2)+'</p>'+
              '</div>'+
          '</span>'+
 		 '<span class="mijia-personal-product-count mijia-personal-right">X&nbsp;'+item1.count+'</span>'+
@@ -189,7 +294,7 @@ function initOrders(data,statusNo){
 		$(".mijia-personal-main").append('<div class="mijia-personal-order-item">'+
 				  '<section class="mijia-personal-item-header">'+
 				  		'<span>订单日期：'+item.date+'</span>'+
-				  		'<span class="mijia-personal-sub-font mijia-personal-sub-title">59分钟后订单关闭</span>'+
+				  		'<span class="mijia-personal-sub-font mijia-personal-sub-title">30分钟后订单关闭</span>'+
 			    		'<span class="mijia-personal-active-font mijia-personal-right">'+item.status+'</span>'+
 				  '</section>'+
 				  '<section>'+
@@ -199,7 +304,7 @@ function initOrders(data,statusNo){
 				  '</section>'+
 			    '<section>'+
 						'<span class="mijia-personal-right mijia-personal-price-box">订单总金额:&nbsp;'+
-							'<span class="mijia-personal-price">'+item.totalprice+'元</span>'+
+							'<span class="mijia-personal-price">'+(item.totalprice).toFixed(2)+'元</span>'+
 						'</span>'+
 				  '</section>'+
 				  '<section>'+
@@ -262,8 +367,9 @@ function orderItemFn(item){
 	  '</section>'+
 	'</div>'
 }
-
-$(".mijia-personal-main").on("click",".topay",function(){
+console.log(22222222222)
+$(".mijia-personal-container-box").on("click",".topay",function(){
+	console.log(11111111111)
 	window.location.href="topay.jsp"
 })
 

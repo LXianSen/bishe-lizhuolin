@@ -49,7 +49,7 @@ public class MyInfomation extends HttpServlet {
 			user u=userDao.CheckIsLogin(request, response);
 			if(u!=null&&!"".equals(u.toString())) {
 			PrintWriter o=response.getWriter();
-			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
 			String msg=request.getParameter("msg");
 			if (msg.equals("orders")) {
 				OrderDao orderDao=new OrderDao();

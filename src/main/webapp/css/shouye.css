@@ -233,7 +233,7 @@ header {
 .m-icons {
     display: inline-block;
     background-image:
-        url(https://shop.io.mi-img.com/static/h5/static3/media/yp-icons.2bf57ccf.png);
+        url(../images/yp-icons.7c45b9c9.png);
 }
 
 .m-fixedBar .fixed-service-pop {
@@ -361,11 +361,6 @@ footer {
     width: 30px;
     height: 30px;
     background-position: 0 -710px;
-}
-
-.m-icons {
-    display: inline-block;
-    background-image: url(https://shop.io.mi-img.com/static/h5/static3/media/yp-icons.2bf57ccf.png);
 }
 
 .m-username {

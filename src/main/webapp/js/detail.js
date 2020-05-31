@@ -5,10 +5,12 @@ var cart = $('.cart')
 	var img = $('.book-info-img .thumb .thumb-container .thumb-pic img')
     var bigImg = $('.book-info-img .image img')
     
-    var getparams=getParams().ISBN  //获得url地址后的isbn参数
+    var getparams=getParams().isbn  //获得url地址后的isbn参数
     
     //4.26add
-    console.log("更新改变")
+    console.log("更新改变1") 
+    var imgUrl=""
+    
     
     //获得地址后面的参数
     function getParams() {
@@ -29,7 +31,7 @@ var cart = $('.cart')
     $.post('BookDetail',{isbn:getparams},function(data){
         data=JSON.parse(data)
         sessionStorage.setItem("bookinfo",JSON.stringify(data))
-        
+        imgUrl=data[0].img1
         $(".good-name").text(data[0].bname)
         $(".price .value").text(data[0].bprice)
         $(".author span").text(data[0].bauthor)
@@ -37,6 +39,12 @@ var cart = $('.cart')
         $(".publish-data span").text(data[0].bdate)
         $(".stock span").text(data[0].stock)
         $(".staticWords").text(data[0].synopsis)
+        $(".breadcrumb .active").text(data[0].bname)
+        $(".book-info-img .image>img").attr("src",data[0].img1)
+        $(".thumb-container .thumb-pic img").eq(0).attr("src",data[0].img2)
+        $(".thumb-container .thumb-pic img").eq(1).attr("src",data[0].img3)
+        $(".thumb-container .thumb-pic img").eq(2).attr("src",data[0].img4)
+        $(".thumb-container .thumb-pic img").eq(3).attr("src",data[0].img5)
 	})
     
     //
@@ -90,6 +98,9 @@ var cart = $('.cart')
 		var url = tar.attr('src')
 		console.log(url)
 		bigImg.attr('src', url)
+	})
+	img.mouseleave(function(e){
+		bigImg.attr('src', imgUrl)
 	})
 	//跳转到购物车
 	$('.shopcart').click(function(){

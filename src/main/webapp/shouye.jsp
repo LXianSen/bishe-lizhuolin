@@ -81,11 +81,11 @@
 								alt="First slide">
 						</div>
 						<div class="item">
-							<img src="https://img.youpin.mi-img.com/youpinoper/b11cfe646f29f79742dc6f8491d5cba6.jpg?id=&w=1080&h=450"
+							<img src="images/750x315-1589874530.jpg" style="width:100%"
 								alt="Second slide">
 						</div>
 						<div class="item">
-							<img src="https://img.youpin.mi-img.com/youpinoper/b11cfe646f29f79742dc6f8491d5cba6.jpg?id=&w=1080&h=450"
+							<img src="images/750x315-1590132559.jpg" style="width:100%"
 								alt="Third slide">
 						</div>
 					</div>
@@ -366,7 +366,7 @@
 </body>
 
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="js/shouye.js?ver=1"></script>
+<script type="text/javascript" src="js/shouye.js?ver=2"></script>
 <script type="text/javascript" src="header.js?ver=1"></script>
 <script type="text/javascript" src="navigation.js?ver=1"></script>
 <script type="text/javascript" src="footer.js?ver=1"></script>

@@ -85,7 +85,7 @@
 			price=0
 			orderlist.forEach(function(item,index){
 				strary.push(item.bname)
-				price+=item.bprice*item.count
+				price+=(item.bprice*item.bdiscount)*item.count
 				orderno=item.fatherorder
 			})
 			
@@ -95,7 +95,7 @@
                     '<div class="order-warm">请在30分钟内完成支付, 超时后将取消订单</div>'+
                     '<ul class="order-detail">'+
                         '<li><span class="item-label">订单编号：</span>'+orderlist[0].fatherorder+'</li>'+
-                        '<li class="price"><span class="item-label">订单价格：</span>'+price+'元</li>'+
+                        '<li class="price"><span class="item-label">订单价格：</span>'+(price).toFixed(2)+'元</li>'+
                         '<li><span class="item-label">收货信息：</span><span class="item">'+addressinfo.contact+'</span><span'+
                                 'class="item">'+addressinfo.tel+'</span><span class="item">'+addressinfo.province+'</span><span'+
                                 'class="item">'+addressinfo.city+'</span><span class="item">'+addressinfo.county+'</span><span'+

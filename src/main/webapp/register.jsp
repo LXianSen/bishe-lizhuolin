@@ -269,7 +269,8 @@ section {
             		phone:$(".tel").val(),
             		email:$(".email").val(),
             		pwd:qrInput.val(),
-            		type:"add"
+            		type:"add",
+            		permission:"0"
             	},function(data){
             		data=JSON.parse(data)
             		if(data.code=="200"){

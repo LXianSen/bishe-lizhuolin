@@ -53,7 +53,9 @@ public class PayOrders extends HttpServlet {
 				walletlist = walletsDao.selects(tempWallets);
 				myWallets = walletlist.get(0);
 				// 订单总价
-				double totalprice = Integer.parseInt(request.getParameter("totalmoney"));
+				double totalprice = Double.parseDouble(request.getParameter("totalmoney"));
+				System.out.println(totalprice);
+				System.out.println(totalprice > myWallets.getBalance());
 				if (totalprice > myWallets.getBalance()) {
 					jsonobj.put("code", "500");
 					jsonobj.put("msg", "余额不足");

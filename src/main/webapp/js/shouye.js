@@ -220,7 +220,7 @@
 	$(".new_bookList").on("click",".book",function(e){
 		var tar = $(e.target)
 		var Isbn = tar.parents('.book').data('isbn')
-		window.location.href = "detail.jsp?ISBN="+Isbn
+		window.location.href = "detail.jsp?isbn="+Isbn
 	})
 	
 	$.post("NewBookShow",{},function(data){

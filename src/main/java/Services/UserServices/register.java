@@ -19,7 +19,9 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.BaseDAO;
 import DAO.UserDao;
+import DAO.WalletsDao;
 import MODEL.user;
+import MODEL.wallets;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -52,6 +54,8 @@ public class register extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset =UTF-8");
 		UserDao dao1 = new UserDao();
+		wallets wallets=new wallets();
+		WalletsDao walletsDao=new WalletsDao();
 		PrintWriter out = response.getWriter();
 		// 实例化json
 		JSONObject jsonobj = new JSONObject();
@@ -62,6 +66,9 @@ public class register extends HttpServlet {
 			user user = new user();
 			BeanUtils.populate(user, parameterMap);
 			user.setUserid(request.getParameter("userid"));
+			wallets.setuserId(user.getUserid());
+			wallets.setName(user.getUsername());
+			wallets.setBalance(0);
 			// 输入数据的时候判断数据库是否存在该数据
 			if (type.equals("select")) {
 				if (adduser(user)) {
@@ -71,7 +78,7 @@ public class register extends HttpServlet {
 					jsonobj.put("msg", "该用户已存在");
 				}
 			} else if (type.equals("add")) {
-
+				List<wallets>  list2=walletsDao.adds(wallets);
 				List<user> list1 = dao1.adds(user);
 				;
 				if (!list1.isEmpty()) {

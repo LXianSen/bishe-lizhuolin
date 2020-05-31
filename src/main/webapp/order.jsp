@@ -916,9 +916,9 @@
             count=0
         })
         
-        $(".book-total .freeInfo-value").text(totalPrice+"元")
-        $(".discount-total .freeInfo-value").text(discountPrice+"元")
-        $(".total .freeInfo-value").text("￥"+(totalPrice-discountPrice))
+        $(".book-total .freeInfo-value").text((totalPrice).toFixed(2)+"元")
+        $(".discount-total .freeInfo-value").text((discountPrice).toFixed(2)+"元")
+        $(".total .freeInfo-value").text("￥"+((totalPrice-discountPrice).toFixed(2)))
         $(".merchant-spread").append('<div class="form-item"><span class="left-label">买家留言</span><span class="select"><textarea type="text" class="userMessage marginBottom" placeholder="填写内容需与商家协商并确认，45字以内"  maxlength="45"></textarea></span></div>')
         
         $(".canclebtn").click(function(){
