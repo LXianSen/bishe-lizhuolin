@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +12,6 @@
 <link rel="stylesheet" href="./iconfont/iconfont.css">
 <link rel="stylesheet" href="./css/detail.css?ver=2">
 <link rel="stylesheet" href="css/shouye.css?ver=1">
-<!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
-<!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
-<!--[if lt IE 9]>
-         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-      <![endif]-->
 </head>
 <body>
 	<header>
@@ -93,7 +86,7 @@
 											style="width: 500px; left: 20px; top: 20px;">
 											<div class="container" style="width: 494px;">
 												<div class="content-main">
-													<div class="text-item">
+													<!-- <div class="text-item">
 														<p class="text-title">满99包邮</p>
 														<p class="text-content">本商品满99元可包邮，不足99元收取运费10元</p>
 													</div>
@@ -135,13 +128,13 @@
 														<p class="text-content">经营范围：
 															设计、生产、销售：电光源、照明灯具及配件、半导体光电器具及组件、输配电及控制设备、模具、家用通风电器及其他照明器具和灯用电器附件：经营货物技术进出口业务（国家限定公司经营和国家禁止进出口的商品除外；不单列贸易方式）；承接环境灯光安装及设计工程（依法须经批准的项目，经相关部门批准后方可开展经营）
 														</p>
-													</div>
+													</div> -->
 												</div>
 											</div>
 										</div>
 										<div class="size">
 											<div class="content-main">
-												<div class="text-item">
+												<!-- <div class="text-item">
 													<p class="text-title">满99包邮</p>
 													<p class="text-content">本商品满99元可包邮，不足99元收取运费10元</p>
 												</div>
@@ -182,7 +175,7 @@
 													<p class="text-content">经营范围：
 														设计、生产、销售：电光源、照明灯具及配件、半导体光电器具及组件、输配电及控制设备、模具、家用通风电器及其他照明器具和灯用电器附件：经营货物技术进出口业务（国家限定公司经营和国家禁止进出口的商品除外；不单列贸易方式）；承接环境灯光安装及设计工程（依法须经批准的项目，经相关部门批准后方可开展经营）
 													</p>
-												</div>
+												</div> -->
 											</div>
 										</div>
 									</div>
