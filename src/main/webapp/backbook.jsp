@@ -202,7 +202,7 @@
 		<div class="layui-form-item">
             <label class="layui-form-label layui-form-required">出版日期:</label>
             <div class="layui-input-block">
-                <input type="text" class="layui-input ebdate" id="test1">
+                <input name="bdate" type="text" class="layui-input ebdate" id="test1" placeholder="yyyy-MM-dd">
             </div>
         </div>
 		<div class="layui-form-item">
@@ -274,9 +274,7 @@
         var laydate=layui.laydate;
         var form =layui.form;
         
-        laydate.render({
-        	elem:'#test1',
-        })
+        
         
         form.on('submit(roleTbSearch)',function(obj){
         	table.render({
@@ -295,7 +293,6 @@
                 ,{field: 'bdate', title: '出版日期', width: '10%'}
                 ,{field: 'bprice', title: '单价', width: '10%'}
                 ,{field: 'bdiscount', title: '折扣', width: '10%'}
-                ,{field: 'stock', title: '库存', width: '10%'}
                 ,{field: 'sontype', title: '类别', width: '10%'}
                 ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
                 ]],
@@ -324,7 +321,6 @@
                 ,{field: 'bdate', title: '出版日期', width: '10%'}
                 ,{field: 'bprice', title: '单价', width: '10%'}
                 ,{field: 'bdiscount', title: '折扣', width: '10%'}
-                ,{field: 'stock', title: '库存', width: '10%'}
                 ,{field: 'sontype', title: '类别', width: '10%'}
                 ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
                 ]],
@@ -344,12 +340,39 @@
 						content:$("#bookEditDialog").html(),
 						success:function(layero,index){
 							form.render()
-							
+							laydate.render({
+					        	elem:'#test1',
+					        })
 							form.on('submit(bookEditSubmit)',function(data){
 								layer.close(index1)
+								console.log(data) 
 								$.post("BookAdd",data.field,function(data){
 									data=JSON.parse(data)
 									layer.msg(data.msg)
+									table.render({
+						                elem: '#roleTable'
+						                ,height: 430
+						                ,url: 'BooksShow' //数据接口
+						                ,page: true //开启分页
+						                ,method:'post'
+						                ,cols: [[ //表头
+						                {type: 'checkbox', fixed: 'left'}
+						                ,{field: 'ISBN', title: 'ISBN', width:'10%', fixed: 'left'}
+						                ,{field: 'bname', title: '书名', width:'10%'}
+						                ,{field: 'bauthor', title: '作者', width:'10%' , sort: true}
+						                ,{field: 'bpublish', title: '出版社', width: '10%'}
+						                ,{field: 'bdate', title: '出版日期', width: '10%'}
+						                ,{field: 'bprice', title: '单价', width: '10%'}
+						                ,{field: 'bdiscount', title: '折扣', width: '10%'}
+						                ,{field: 'sontype', title: '类别', width: '10%'}
+						                ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
+						                ]],
+						            toolbar: ['<p>',
+						                '<button lay-event="add" class="layui-btn layui-btn-sm icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>&nbsp;',
+						                '</p>'].join(''),
+						                defaultToolbar : [],
+						                // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
+						            });
 								})
 								return false;
 							})
@@ -377,6 +400,7 @@
 							$(".ebauthor").attr("disabled","")
 							$(".ebpublish").attr("disabled","")
 							$(".ebprice").attr("disabled","")
+							$(".ebdate").attr("disabled","")
 							form.val('bookEditForm', data);
 							form.on('submit(bookEditSubmit)', function(data) {
 								

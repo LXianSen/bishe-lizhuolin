@@ -141,7 +141,7 @@
 				data=JSON.parse(data)
 				if(data.code=="200"){
 					sessionStorage.setItem("user",JSON.stringify(data))
-					window.location.href="backorder.jsp"
+					window.location.href="backbook.jsp"
 				}else if(data.code=="400"){
 					
 				}

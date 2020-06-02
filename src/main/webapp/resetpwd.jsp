@@ -82,7 +82,7 @@ function getParams() {
     return params;
 }
 
-var getparams=getParams().email
+var getparams=getParams().user
 	$(".btn332").click(function(){
 		$.post("ChangePWD",{email:getparams,pwd:$("#repwd").val()},function(data){
 			window.location.href="login.jsp"

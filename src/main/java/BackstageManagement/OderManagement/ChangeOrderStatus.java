@@ -46,7 +46,7 @@ public class ChangeOrderStatus extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			orderold.setUserid(u.getUserid());
+			orderold.setFatherorder(request.getParameter("fatherorder"));;
 			try {
 				orderDao.updates(ordernew, orderold);
 			} catch (Exception e) {

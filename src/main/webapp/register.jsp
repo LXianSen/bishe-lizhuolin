@@ -145,50 +145,67 @@ section {
 				class="formStyle" >
 				
 				<div class="boxStyle">
-					<span class="name">用户名</span> <input type="text"
-						class="inputStyle username" onblur="telBlur('username')"
-						onfocus="telFoucus('username')" name="username">
+					<span class="name">用户名</span> 
+					<input type="text" 
+						class="inputStyle username" 
+						onblur="telBlur('username')"  
+						onfocus="telFoucus('username')" 
+						name="username">
 					<p id="text0" class="alertText"></p>
 				</div>
 				<div class="boxStyle">
-					<span class="name">手机号码</span> <input type="text"
+					<span class="name">手机号码</span> 
+					<input type="text"
 						class="inputStyle tel" onblur="telBlur('tel')"
 						onfocus="telFoucus('tel')" name="phone">
 					<p id="text1" class="alertText"></p>
 				</div>
 				<div class="boxStyle">
-					<span class="name"><span class="redrequire">*</span>邮箱</span> <input type="text"
+					<span class="name">
+						<span class="redrequire">*</span>邮箱
+					</span> 
+					<input type="text"
 						class="inputStyle email" onblur="telBlur('email')"
 						onfocus="telFoucus('email')" name="email">
 					<p id="text" class="alertText"></p>
 				</div>
 				<div class="boxStyle">
-					<span class="name"><span class="redrequire">*</span>登录密码</span> <input type="password"
+					<span class="name">
+						<span class="redrequire">*</span>登录密码
+					</span> 
+					<input type="password"
 						class="inputStyle password" onblur="pswdBlur(this)"
 						onfocus="pswdFoucus()" onkeyup="pswdChange(this)" name="pwd">
 					<span id="text2" class="infoText"> </span>
 				</div>
 				<div class="boxStyle">
-					<span class="name"><span class="redrequire">*</span>确认密码</span> <input type="password"
+					<span class="name">
+						<span class="redrequire">*</span>确认密码
+					</span> 
+					<input type="password"
 						class="inputStyle qrpswd" onblur="qrBlur(this)"
 						onfocus="qrFoucus()">
 					<p id="text3" class="alertText"></p>
 				</div>
 				<div class="boxStyle">
-					<span class="name"><span class="redrequire">*</span>验证码</span> <input type="text"
-						class="inputStyle short"> <span><canvas id="canvas"
-							width="100" height="36" style="border: 1px solid #000000;"></canvas></span>
+					<span class="name">
+						<span class="redrequire">*</span>验证码
+					</span> 
+					<input type="text" class="inputStyle short"> 
+					<span>
+						<canvas id="canvas"
+							width="100" height="36" 
+							style="border: 1px solid #000000;">
+						</canvas>
+					</span>
 					<p id="text4" class="alertText"></p>
 				</div>
 				<input type="button" value="立即注册" class="btn">
 			</form>
 		</section>
     </div>
-    
     <div class="over">
-        
     </div>
-
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -209,7 +226,7 @@ section {
         toLogin.click(function(){
         	window.location.href="login.jsp"
         })
-        //
+        
         function telBlur(e){
         	var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
         	var ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -414,9 +431,12 @@ section {
             var sCode = "a,b,c,d,e,f,g,h,i,j,k,m,n,p,q,r,s,t,u,v,w,x,y,z,A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0";
             var aCode = sCode.split(",");
             var aLength = aCode.length;//获取到数组的长度
-            for (var i = 0; i < 4; i++) { //这里的for循环可以控制验证码位数（如果想显示6位数，4改成6即可）
-                var j = Math.floor(Math.random() * aLength);//获取到随机的索引值
-                // var deg = Math.random() * 30 * Math.PI / 180;//产生0~30之间的随机弧度
+          //这里的for循环可以控制验证码位数（如果想显示6位数，4改成6即可）
+            for (var i = 0; i < 4; i++) { 
+            	//获取到随机的索引值
+                var j = Math.floor(Math.random() * aLength);
+                //产生0~30之间的随机弧度
+                // var deg = Math.random() * 30 * Math.PI / 180;
                 var deg = Math.random() - 0.5; //产生一个随机弧度
                 var txt = aCode[j];//得到随机的一个内容
                 show_num[i] = txt.toLowerCase();

@@ -184,7 +184,6 @@
 			© layui.com - 底部固定区域
 		</div>
 		<script type="text/html" id="barDemo">
-                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
             </script>
 		<script type="text/html" id="orderViewDialog">
@@ -294,15 +293,11 @@
 					field : 'username',
 					title : '用户名',
 				}, {
-					field : 'address',
-					title : '地址',
-				}, {
 					fixed : 'right',
 					width : 165,
 					align : 'center',
 					toolbar : '#barDemo'
-				} ] ],
-				toolbar : 'default'
+				} ] ]
 			// ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
 			});
 			table.on('tool(roleTable)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
@@ -322,6 +317,42 @@
 								$.post("ChangeOrderStatus", data.field,
 										function(data) {
 											layer.close(index)
+											table.render({
+												elem : '#roleTable',
+												height : 312,
+												url : 'OderSearch' //数据接口
+												,
+												method : "post",
+												page : true //开启分页
+												,
+												cols : [ [ //表头
+												{
+													type : 'checkbox',
+													fixed : 'left'
+												}, {
+													field : 'fatherorder',
+													title : '订单号',
+												}, {
+													field : 'date',
+													title : '日期',
+													sort : true
+												}, {
+													field : 'bprice',
+													title : '总价',
+												}, {
+													field : 'status',
+													title : '订单状态',
+												}, {
+													field : 'username',
+													title : '用户名',
+												}, {
+													fixed : 'right',
+													width : 165,
+													align : 'center',
+													toolbar : '#barDemo'
+												} ] ]
+											// ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
+											});
 										})
 								return false
 							})

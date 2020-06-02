@@ -7,23 +7,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="css/personcenter.css?ver=1">
+        <link rel="stylesheet" href="css/personcenter.css?ver=2">
         <link rel="stylesheet" href="iconfont/iconfont.css">
-    	<link rel="stylesheet" href="css/shouye.css?ver=2">
+    	<link rel="stylesheet" href="css/shouye.css">
     </head>
     
     <body>
     <header></header>
         <div class="mijia-personal-box">
             <div class="mijia-personal-section-box container">
-                <div class="m-secondary-navigator"><span><a>首页</a></span><span><a>个人中心</a></span><span><a>我的订单</a></span>
+                <div class="m-secondary-navigator"><span><a href="shouye.jsp">首页</a></span><span><a>个人中心</a></span><span><a>我的订单</a></span>
                 </div>
                 <div class="mijia-personal-list-box">
                     <div>
                         <section>
                             <div class="mijia-personal-profile">
                                 <div class="m-icons m-icons-per-user mijia-personal-profile-photo" data-src="" href=""
-                                    style="background-image: url(&quot;https://cdn.cnbj1.fds.api.mi-img.com/user-avatar/d2179842-90bf-418e-b9f4-7dfa372f8f23.jpg&quot;); background-position: center center; background-size: 100%;">
+                                    >
                                 </div>
                                 <p class="mijia-personal-profile-username">🙊</p>
                                 <!-- <p style="padding:10px 0 0;">余额:<span class="balance">680</span><a style="padding-left:10px;cursor:pointer;color:#E6A23C">充值</a></p> -->
@@ -117,7 +117,7 @@
         </div>
     </body>
     <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/personcenter.js?ver=1"></script>
+    <script src="js/personcenter.js?ver=2"></script>
     <script type="text/javascript" src="header.js?ver=1"></script>
 	<script type="text/javascript" src="navigation.js?ver=1"></script>
 	<script type="text/javascript" src="footer.js?ver=1"></script>

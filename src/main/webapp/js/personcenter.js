@@ -8,18 +8,21 @@ var businessObj={
 	"地址管理":"address",
 },resData,newAry=[],statusNo="待支付"
 
-
+console.log("测试修改")
 	
 post_("我的订单")
 
+$(".mijia-personal-profile-username").text(JSON.parse(sessionStorage.getItem("user")).username)
+
 
 $(".mijia-personal-functional-list-box ul li").click(function(e){
+//	debugger
 	let tar=$(e.target);
 	$(".mijia-personal-functional-list-box ul li").removeClass("active")
 	$(".mijia-personal-functional-list-box ul li active-circle").remove()
 	tar.parent().addClass("active")
 	tar.parent().prepend('<span class="active-circle"></span>')
-	statusNo="代支付"
+	statusNo="待支付"
 	console.log(tar.text())
 	post_(tar.text())
 	

@@ -895,7 +895,7 @@
         $(".merchant-spread").empty();
         data.forEach(function(item,index){
         	totalPrice+=item.bprice*item.count
-        	discountPrice+=item.bprice*(1-item.bdiscount)
+        	discountPrice+=item.bprice*(1-item.bdiscount)*item.count
         	if(count==0){
         		count=item.count
         	}
@@ -1149,7 +1149,7 @@
     		  type:"post",
     		  traditional:true,
     		  success:function(data){
-    			  window.location.href="topay.jsp"
+    			  /* window.location.href="topay.jsp" */
     		  }
     	  })
       })

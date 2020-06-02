@@ -48,6 +48,11 @@ public class UserManagement extends HttpServlet {
 				BeanUtils.populate(user, parameterMap);
 				System.out.println(user);
 				userlist = userDao.selectuserpages(user, count, size);
+				for(int i=0;i<userlist.size();i++) {
+					if(userlist.get(i).getUsername().equals("admin")) {
+						userlist.remove(i);
+					}
+				}
 				Gson gson = new Gson();
 				PrintWriter outPrintWriter = response.getWriter();
 				String userJSON = gson.toJson(userlist);

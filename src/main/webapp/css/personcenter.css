@@ -1,13 +1,13 @@
 .m-icons {
     display: inline-block;
-    background-image: url(https://shop.io.mi-img.com/static/h5/static3/media/yp-icons.2bf57ccf.png)
+    background-image: url(../images/yp-icons.7c45b9c9.png)
 }
 
 @media (-o-min-device-pixel-ratio:2/1),
 (-webkit-min-device-pixel-ratio:2),
 (min-resolution:192dpi) {
     .m-icons {
-        background-image: url(https://shop.io.mi-img.com/static/h5/static3/media/yp-icons@2x.5f639807.png);
+        background-image: url(../images/yp-icons.7c45b9c9.png);
         background-size: 85px 2569px
     }
 }
@@ -521,7 +521,7 @@
 .m-icons-per-user {
     width: 54px;
     height: 54px;
-    background-position: 0 -2278px
+    background-position: 0 -2293px
 }
 
 .m-icons-phone-active {

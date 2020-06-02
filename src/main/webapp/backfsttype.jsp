@@ -394,10 +394,6 @@ body {
 										title : '折扣',
 										width : '10%'
 									}, {
-										field : 'stock',
-										title : '库存',
-										width : '10%'
-									}, {
 										field : 'sontype',
 										title : '类别',
 										width : '10%'

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>物资管理系统-登录</title>
+<title>用户登录</title>
 <link rel="stylesheet" href="./css/iconfont.css">
 <style type="text/css">
 * {
@@ -248,48 +248,29 @@ fieldset {
 						<p id="text1" class="alertText"></p>
 					</div>
 					<div class="boxStyle">
-						<input type="password" class="inputStyle password"
-							placeholder="密码"> <span id="text2" class="infoText">
-						</span>
+						<input type="password" class="inputStyle password" placeholder="密码"> 
+						<span id="text2" class="infoText"></span>
 					</div>
 					<div class="tips hide">
-						<span class="iconfont icon-icon-test"></span> <span class="text"></span>
+						<span class="iconfont icon-icon-test"></span> 
+						<span class="text"></span>
 					</div>
 					<input type="button" value="登录" class="btn" onclick=Check()>
 					<div class="register">
 						<a href="${pageContext.request.contextPath}/register.jsp"
-							class="registerNow">立即注册</a> <span>|</span> <a href="${pageContext.request.contextPath}/forgetpwd.jsp"
+							class="registerNow">立即注册</a> 
+						<span>|</span> 
+						<a href="${pageContext.request.contextPath}/forgetpwd.jsp"
 							class="forgotPswd">忘记密码？</a>
 					</div>
-					<!-- <fieldset class="oth_type_tit">
-						<legend align="center" class="oth_type_txt">其他方式登录</legend>
-					</fieldset>
-					<div id="sns-login-links" class="oth_type_links">
-						<a class="icon_type btn_qq sns-login-link" data-type="qq"
-							href="/pass/sns/login/auth?appid=100284651&amp;&amp;callback=https%3A%2F%2Fshopapi.io.mi.com%2Fapp%2Fshop%2Fauth%3Flogid%3D1584256117.236496375%26sign%3Db5353420a9974156016281cb5793f8f8%26followup%3Dhttps%253A%252F%252Fwww.xiaomiyoupin.com%252F&amp;sid=miotstore"
-							title="QQ登录" target="_blank"> <i
-							class="btn_sns_icontype icon_default_qq"></i>
-						</a> <a class="icon_type btn_weibo sns-login-link" data-type="weibo"
-							href="/pass/sns/login/auth?appid=2996826273&amp;&amp;callback=https%3A%2F%2Fshopapi.io.mi.com%2Fapp%2Fshop%2Fauth%3Flogid%3D1584256117.236496375%26sign%3Db5353420a9974156016281cb5793f8f8%26followup%3Dhttps%253A%252F%252Fwww.xiaomiyoupin.com%252F&amp;sid=miotstore"
-							title="微博登录" target="_blank"> <i
-							class="btn_sns_icontype icon_default_weibo"></i>
-						</a> <a class="icon_type btn_alipay sns-login-link" data-type="alipay"
-							href="/pass/sns/login/auth?appid=2088011127562160&amp;&amp;callback=https%3A%2F%2Fshopapi.io.mi.com%2Fapp%2Fshop%2Fauth%3Flogid%3D1584256117.236496375%26sign%3Db5353420a9974156016281cb5793f8f8%26followup%3Dhttps%253A%252F%252Fwww.xiaomiyoupin.com%252F&amp;sid=miotstore"
-							title="支付宝登录" target="_blank"> <i
-							class="btn_sns_icontype icon_default_alipay"></i>
-						</a> <a class="icon_type btn_weixin sns-login-link" data-type="weixin"
-							href="/pass/sns/login/auth?appid=wxxmzh&amp;scope=snsapi_login&amp;callback=https%3A%2F%2Fshopapi.io.mi.com%2Fapp%2Fshop%2Fauth%3Flogid%3D1584256117.236496375%26sign%3Db5353420a9974156016281cb5793f8f8%26followup%3Dhttps%253A%252F%252Fwww.xiaomiyoupin.com%252F&amp;sid=miotstore"
-							title="微信登录" target="_blank"> <i
-							class="btn_sns_icontype icon_default_weixin"></i>
-						</a>
-					</div> -->
 				</form>
-
 			</div>
 		</section>
 		<footer>
 			<ul class="languge">
-				<li><a class="choose" data-name="simplified">简体</a> <span>|</span>
+				<li>
+					<a class="choose" data-name="simplified">简体</a> 
+					<span>|</span>
 				</li>
 				<li><a data-name="complex">繁体</a> <span>|</span></li>
 				<li><a data-name="english">English</a></li>
@@ -309,22 +290,6 @@ fieldset {
     	publicKey=data
     	encrypt.setPublicKey(publicKey);
     })
-    /* if(publicKey != null){
-			            encrypt.setPublicKey(publicKey);
-			            var password = encrypt.encrypt(pstring);
-			            var username = encrypt.encrypt(ustring);
-			            //提交之前，检查是否已经加密。假设用户的密码不超过20位，加密后的密码不小于20位
-			            if(password.length < 20) {
-			                //加密失败提示
-			            	alert("登录失败，请稍后重试...");
-			            }else{
-			            	 $.ajax({
-						url: "login",
-				            	type: "post",
-				            	data: {"usname": username,"pwd": password,"vcstring": vcstring},
-				            	dataType: "json",
-				    }
-				} */
     function Check(){
     	var loginName=$('.tel').val(),name='nickname'
     	if(/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(loginName)){

@@ -45,7 +45,7 @@ public class OderSearch extends HttpServlet {
 			if (u != null && !"".equals(u.toString())) {
 				OrderDao orderDao = new OrderDao();
 				PrintWriter out = response.getWriter();
-				Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+				Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
 				// 保存用户输入的搜索条件
 				orders orders = new orders();
 				user user = new user();

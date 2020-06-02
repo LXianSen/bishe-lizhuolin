@@ -31,14 +31,16 @@ public class ChangePWD extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		// ÑéÖ¤ÊÇ·ñµÇÂ¼
 		UserDao userDao = new UserDao();
-		user u = userDao.CheckIsLogin(request, response);
-		if (u != null && !"".equals(u.toString())) {
+//		user u = userDao.CheckIsLogin(request, response);
+//		if (u != null && !"".equals(u.toString())) {
 			user usernew = new user();
 			user userold = new user();
 			Map<String, String[]> paraMap = request.getParameterMap();
 			try {
 				BeanUtils.populate(usernew, paraMap);
 				userold.setEmail(usernew.getEmail());
+				System.out.println(usernew);
+				System.out.println(userold);
 				userDao.updates(usernew, userold);
 			} catch (IllegalAccessException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
@@ -47,7 +49,7 @@ public class ChangePWD extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+//		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
