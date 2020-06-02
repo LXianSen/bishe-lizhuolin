@@ -7,6 +7,7 @@ public class stock {
 	private long stock;
 	private long sales;
 	private Timestamp time;
+	private String sontype;
 	public String getISBN() {
 		return ISBN;
 	}
@@ -31,20 +32,28 @@ public class stock {
 	public void setTime(Timestamp time) {
 		this.time = time;
 	}
+	public String getSontype() {
+		return sontype;
+	}
+	public void setSontype(String sontype) {
+		this.sontype = sontype;
+	}
 	@Override
 	public String toString() {
-		return "stock [ISBN=" + ISBN + ", stock=" + stock + ", sales=" + sales + ", time=" + time + "]";
+		return "stock [ISBN=" + ISBN + ", stock=" + stock + ", sales=" + sales + ", time=" + time + ", sontype="
+				+ sontype + "]";
 	}
-	public stock(String iSBN, long stock, long sales, Timestamp time) {
+	public stock(String iSBN, long stock, long sales, Timestamp time, String sontype) {
 		super();
 		ISBN = iSBN;
 		this.stock = stock;
 		this.sales = sales;
 		this.time = time;
+		this.sontype = sontype;
 	}
 	public stock() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }

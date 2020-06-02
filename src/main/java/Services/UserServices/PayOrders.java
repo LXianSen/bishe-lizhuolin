@@ -15,9 +15,11 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.OrderDao;
+import DAO.StockDao;
 import DAO.UserDao;
 import DAO.WalletsDao;
 import MODEL.orders;
+import MODEL.stock;
 import MODEL.user;
 import MODEL.wallets;
 import net.sf.json.JSONObject;
@@ -69,6 +71,17 @@ public class PayOrders extends HttpServlet {
 					newOrder.setStatus("支付成功");
 					OrderDao orderDao=new OrderDao();
 					orderDao.updates(newOrder, oldOrders);
+					user newuser=new user();
+					user olduser=new user();
+					newuser.setLastview(oldOrders.getISBN());
+					olduser.setUserid(u.getUserid());
+					userDao.updates(newuser, olduser);
+					stock newStock=new stock();
+					stock oldStock=new stock();
+					newStock.setSales(oldOrders.getCount());
+					oldStock.setISBN(oldOrders.getISBN());
+					StockDao stockDao=new StockDao();
+					stockDao.updates(newStock, oldStock);
 					jsonobj.put("code", "200");
 					jsonobj.put("msg", "支付成功");
 				}

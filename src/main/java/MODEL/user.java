@@ -9,21 +9,7 @@ public class user {
 	private String phone;
 	private String gender;
 	private String permission;
-	public user() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public user(String userid, String username, String pwd, String email, String phone, String gender,
-			String permission) {
-		super();
-		this.userid = userid;
-		this.username = username;
-		this.pwd = pwd;
-		this.email = email;
-		this.phone = phone;
-		this.gender = gender;
-		this.permission = permission;
-	}
+	private String lastview;
 	public String getUserid() {
 		return userid;
 	}
@@ -66,11 +52,32 @@ public class user {
 	public void setPermission(String permission) {
 		this.permission = permission;
 	}
+	public String getLastview() {
+		return lastview;
+	}
+	public void setLastview(String lastview) {
+		this.lastview = lastview;
+	}
 	@Override
 	public String toString() {
 		return "user [userid=" + userid + ", username=" + username + ", pwd=" + pwd + ", email=" + email + ", phone="
-				+ phone + ", gender=" + gender + ", permission=" + permission + "]";
+				+ phone + ", gender=" + gender + ", permission=" + permission + ", lastview=" + lastview + "]";
 	}
-	
+	public user(String userid, String username, String pwd, String email, String phone, String gender,
+			String permission, String lastview) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.pwd = pwd;
+		this.email = email;
+		this.phone = phone;
+		this.gender = gender;
+		this.permission = permission;
+		this.lastview = lastview;
+	}
+	public user() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 }
