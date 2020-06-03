@@ -512,68 +512,7 @@ img {
 								</div>
 							</div>
 							<div class="book-info-list">
-								<!-- <div class="good-item-container cart-goods-con">
-									<div class="merchant-reduce-top"></div>
-									<div class="cart-good-items clearfix" data-isbn="0000001">
-										<div class="select">
-											<span class="iconfont icon-icon-test4"></span>
-										</div>
-										<div class="image" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">
-											<img class="" src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
-												data-src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
-												alt="朗菲去污地垫套装（3D）版CS-627 黑色 组合装">
-										</div>
-										<div class="name" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">
-											<div class="vertical-wrap">
-												<p class="good-name brown-hover">朗菲去污地垫套装（3D）版CS-627 黑色组合装</p>
-												<div></div>
-											</div>
-										</div>
-										<div class="price"><span>￥159.00</span></div>
-										<div class="num">
-											<div class="can-edit">
-												<div class="num-reduce-add" style="width: 134px;"><a class="m-icons m-icons-reduce minus-plus" data-src="" href="javascript:;"></a><span class="txt" style="width: 70px;">1</span><a class="m-icons m-icons-add-active minus-plus" data-src="" href="javascript:;"></a></div>
-											</div>
-										</div>
-										<div class="subtotal"><span>￥159</span></div>
-										<div class="del">
-											<span class="iconfont icon-icon-test5"></span>
-										</div>
-									</div>
-								</div> -->
-								<!-- <div class="good-item-container cart-goods-con">
-									<div class="merchant-reduce-top"></div>
-									<div class="cart-good-items clearfix" data-isbn="0000001">
-										<div class="select">
-											<span class="iconfont icon-icon-test4"></span>
-										</div>
-										<div class="image" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">
-											<img class="" src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
-												data-src="https://img.youpin.mi-img.com/shopmain/ab0c338dd9f4ae4901fbc2ad60a7a132.png@base@tag=imgScale&amp;F=webp&amp;h=800&amp;w=800?w=800&amp;h=800"
-												alt="朗菲去污地垫套装（3D）版CS-627 黑色 组合装">
-										</div>
-										<div class="name" data-src="/detail?gid=120854&amp;pid=126201" data-target="_blank">
-											<div class="vertical-wrap">
-												<p class="good-name brown-hover">朗菲去污地垫套装（3D）版CS-627 黑色组合装</p>
-												<div></div>
-											</div>
-										</div>
-										<div class="price"><span>￥159.00</span></div>
-										<div class="num">
-											<div class="can-edit">
-												<div class="num-reduce-add " style="width: 134px;">
-													<span class="iconfont icon-jianhao minus"></span>
-													<span class="txt" style="width: 70px;">1</span>
-													<span class="iconfont icon-add plus"></span>
-												</div>
-											</div>
-										</div>
-										<div class="subtotal"><span>￥159</span></div>
-										<div class="del">
-											<span class="iconfont icon-icon-test5"></span>
-										</div>
-									</div>
-								</div> -->
+								
 							</div>
 						</div>
 					</div>

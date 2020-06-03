@@ -65,15 +65,15 @@
     <div class="content_center">
 		<div class="clear">
 			<div class="search_box">
-				<div class="search">
+				<!-- <div class="search">
 					<span class="iconfont icon-icon-test1 search_font"></span>
 					<input type="text" class="search-input">
 				</div>
 				<span class="iconfont icon-icon-test search_font shopcart"></span>
-				<!-- <div class="shopcart-mark">1</div> -->
+				<div class="shopcart-mark">1</div>
 				<div class="m-auto-list">
 					<ul></ul>
-				</div>
+				</div> -->
 			</div>
 		</div>
         <div class="search-title">
@@ -95,6 +95,7 @@
 <script type="text/javascript" src="header.js"></script>
 <script type="text/javascript" src="footer.js"></script>
 <script type="text/javascript" src="navigation.js"></script>
+<script type="text/javascript" src="search.js"></script>
 <script>
     //4.26add
 	console.log("aaaaaa")
@@ -144,8 +145,9 @@
 	}
     })
     
-	$(".search-book-list").on("click",".per-book",function(){
-		window.location.href="detail.jsp?isbn="+$(".per-book").data('isbn')
+	$(".search-book-list").on("click",".per-book",function(e){
+		var tar=$(e.target)
+		window.location.href="detail.jsp?isbn="+tar.parents(".per-book").data('isbn')
 	})
 	
 	

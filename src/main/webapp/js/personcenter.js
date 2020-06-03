@@ -316,6 +316,15 @@ function initOrders(data,statusNo){
 				  		'</div>'+
 				  '</section>'+
 				'</div>')	
+				
+				console.log(statusNo+"为什么不输出")
+		if(statusNo=="待支付"){
+			
+		}else{
+			console.log("进来没")
+			$(".mijia-personal-sub-font.mijia-personal-sub-title").remove()
+		}
+		
 	})
 	
 	

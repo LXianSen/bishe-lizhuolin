@@ -73,13 +73,14 @@ public class PayOrders extends HttpServlet {
 					orderDao.updates(newOrder, oldOrders);
 					user newuser=new user();
 					user olduser=new user();
-					newuser.setLastview(oldOrders.getISBN());
+					List<orders> ordersList=orderDao.selects(oldOrders);
+					newuser.setLastview(ordersList.get(0).getISBN());
 					olduser.setUserid(u.getUserid());
 					userDao.updates(newuser, olduser);
 					stock newStock=new stock();
 					stock oldStock=new stock();
-					newStock.setSales(oldOrders.getCount());
-					oldStock.setISBN(oldOrders.getISBN());
+					newStock.setSales(ordersList.get(0).getCount());
+					oldStock.setISBN(ordersList.get(0).getISBN());
 					StockDao stockDao=new StockDao();
 					stockDao.updates(newStock, oldStock);
 					jsonobj.put("code", "200");

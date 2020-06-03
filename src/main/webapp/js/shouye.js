@@ -235,4 +235,29 @@
 	})
 	})
 	
+	$.post("Recommend",{},function(data){
+		data=JSON.parse(data)
+		console.log(data)
+		if(data.code=="error"){
+			
+		}else{
+			$(".like_box").append(`<div class="like_title">
+				<h2>猜你喜欢</h2>
+			</div>
+			<div class="like_bookList"></div>`)
+			
+			$('.like_box .like_bookList').empty()
+			if(data.length==0){
+				$('.like_box .like_bookList').append('当前暂无推荐')
+			}else{
+				data.forEach(function (item, index) {
+
+					$('.like_box .like_bookList').append('<div data-ISBN=' + item.ISBN + ' class="book"><div class="newBook clearfix"><div style="width:150px;height:150px;text-align:center"><img src=' + item.img1 + ' alt="" class="img" style="width:150px;height:150px"></div><div style="text-align:left"><p class="titleText"><a title="人生（茅盾文学奖得主路遥代表作，全新精装版）" target="_blank">' + item.bname + '</a><p class="author">' + item.bauthor + '</p><p class="price"><span class="rob"> <span class="sign">¥</span> <span class="num">' + (item.bprice*item.bdiscount).toFixed(2) + '</span> </span> <span class="price_r"> <span class="sign">¥</span> <span class="num">' + item.bprice + '</span></span></p></div></p></div></div>')
+
+				})
+			}
+	
+		}
+	})
+	
 	

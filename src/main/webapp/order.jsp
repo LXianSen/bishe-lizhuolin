@@ -1149,7 +1149,7 @@
     		  type:"post",
     		  traditional:true,
     		  success:function(data){
-    			  /* window.location.href="topay.jsp" */
+    			   window.location.href="topay.jsp"
     		  }
     	  })
       })

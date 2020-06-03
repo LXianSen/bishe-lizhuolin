@@ -194,6 +194,10 @@ header {
     display: flex;
     justify-content: space-between;
 }
+.like_bookList {
+    display: flex;
+    justify-content: start;
+}
 
 .m-fixedBar {
     position: fixed;

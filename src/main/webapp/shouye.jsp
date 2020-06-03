@@ -8,7 +8,7 @@
 	<!-- 引入 Bootstrap -->
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="./iconfont/iconfont.css?ver=1">
-	<link rel="stylesheet" href="css/shouye.css?ver=2">
+	<link rel="stylesheet" href="css/shouye.css?var=1">
 </head>
 <body>
 	<header>
@@ -93,6 +93,13 @@
 				<h2>新书上架</h2>
 			</div>
 			<div class="new_bookList"></div>
+		</div>
+		
+		<div class="like_box">
+			<!-- <div class="like_title">
+				<h2>猜你喜欢</h2>
+			</div>
+			<div class="like_bookList"></div> -->
 		</div>
 
 		<div class="hot-author">
@@ -197,7 +204,7 @@
 </body>
 
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="js/shouye.js?ver=2"></script>
+<script type="text/javascript" src="js/shouye.js?ver=1"></script>
 <script type="text/javascript" src="header.js?ver=1"></script>
 <script type="text/javascript" src="navigation.js?ver=1"></script>
 <script type="text/javascript" src="footer.js?ver=1"></script>
