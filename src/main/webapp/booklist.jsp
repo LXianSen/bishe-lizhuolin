@@ -8,7 +8,7 @@
     <title>图书列表</title>
     <link rel="stylesheet" href="css/booklist.css?ver=2">
     <link rel="stylesheet" href="iconfont/iconfont.css?ver=1">
-    <link rel="stylesheet" href="css/shouye.css?ver=1">
+    <link rel="stylesheet" href="css/shouye.css">
     <style>
          .content_center {
             width: 1080px;
@@ -95,7 +95,7 @@
 <script type="text/javascript" src="header.js"></script>
 <script type="text/javascript" src="footer.js"></script>
 <script type="text/javascript" src="navigation.js"></script>
-<script type="text/javascript" src="search.js"></script>
+<script type="text/javascript" src="search.js?ver=1"></script>
 <script>
     //4.26add
 	console.log("aaaaaa")

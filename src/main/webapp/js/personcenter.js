@@ -16,7 +16,7 @@ $(".mijia-personal-profile-username").text(JSON.parse(sessionStorage.getItem("us
 
 
 $(".mijia-personal-functional-list-box ul li").click(function(e){
-//	debugger
+// debugger
 	let tar=$(e.target);
 	$(".mijia-personal-functional-list-box ul li").removeClass("active")
 	$(".mijia-personal-functional-list-box ul li active-circle").remove()
@@ -61,7 +61,7 @@ function post_(par){
 var textData=[
 				{
 					fatherorder:"123",
-					totalprice:"50.00", //总价
+					totalprice:"50.00", // 总价
 					date:"2020/04/27 15:38:03",
 					status:"代付款",
 					sonorder:[
@@ -83,7 +83,7 @@ var textData=[
 				},
 				{
 					fatherorder:"234",
-					totalprice:"66.00", //总价
+					totalprice:"66.00", // 总价
 					date:"2020/04/27 15:38:03",
 					status:"代付款",
 					sonorder:[
@@ -101,7 +101,7 @@ var textData=[
 function ordersAry(){
 	
 }
-/*initOrders(textData)*/
+/* initOrders(textData) */
 
 function initAddress(data){
 	$(".mijia-personal-container-box").empty()
@@ -349,9 +349,10 @@ function initOrders(data,statusNo){
 	
 					 
  	
-	/*if(dataAry.length==0){
-		$(".mijia-personal-main").html("<div style='text-align:center'>没有相应订单数据</div>")
-	}*/
+	/*
+	 * if(dataAry.length==0){ $(".mijia-personal-main").html("<div
+	 * style='text-align:center'>没有相应订单数据</div>") }
+	 */
 }
 
 function orderItemFn(item){

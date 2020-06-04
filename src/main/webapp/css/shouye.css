@@ -116,7 +116,7 @@ header {
 }
 
 .show {
-    display: block
+    display: block !important;
 }
 
 .top_box .directory .nav-details {

@@ -73,17 +73,6 @@
         <div class="layui-header">
             <div class="layui-logo">书店后台管理</div>
             <ul class="layui-nav layui-layout-right">
-                <!-- <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                        贤心
-                    </a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="">基本资料</a></dd>
-                        <dd><a href="">安全设置</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a href="">退了</a></li> -->
             </ul>
         </div>
 
@@ -94,7 +83,7 @@
                     <li class="layui-nav-item layui-this">
                         <a class="" href="javascript:;">书籍管理</a>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item usermanage" style="display:none">
                         <a href="backuser.jsp">用户管理</a>
                     </li>
                     <li class="layui-nav-item"><a href="backfsttype.jsp">类别管理</a></li>
@@ -246,8 +235,12 @@
     </div>
     <!-- <script src="../src/layui.js"></script> -->
     <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="backheader.js?ver=2" ></script>
+    <script type="text/javascript" src="backheader.js" ></script>
+    <!-- <script type="text/javascript" src="backnavigation.js?ver=1" ></script> -->
     <script>
+    if(JSON.parse(sessionStorage.getItem("user")).user.permission=="2"){
+    	$(".usermanage").attr("style","display:block")
+    }
         //JavaScript代码区域
         layui.use('element', function () {
             var element = layui.element;
@@ -300,7 +293,6 @@
                 '<button lay-event="add" class="layui-btn layui-btn-sm icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>&nbsp;',
                 '</p>'].join(''),
                 defaultToolbar : [],
-                // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
             });
         	return false;
         })
@@ -328,7 +320,6 @@
                 '<button lay-event="add" class="layui-btn layui-btn-sm icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>&nbsp;',
                 '</p>'].join(''),
                 defaultToolbar : [],
-                // ,data=[{id:"001",orderno:"1234532143",date:"2020-2-19",totalprice:"50.00",orderstatus:"待付款",username:"李四",address:"四川省遂宁市"}]
             });
             table.on('toolbar(roleTable)',function(obj){
             	typedata();

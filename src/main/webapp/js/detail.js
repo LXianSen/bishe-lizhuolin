@@ -1,4 +1,4 @@
-var cart = $('.cart')
+	var cart = $('.cart')
 	var plus = $('.m-icons-add-active')
 	var minu = $('.m-icons-reduce')
 	var count = $('.count-input')

@@ -17,10 +17,24 @@
 	
 	//渲染搜索列表
 	function searchList(searchData){
+		let ary=[]
 		$(".m-auto-list>ul").empty()
-		searchData.forEach(function (item, index) {
+		/*searchData.forEach(function (item, index) {
 			$(".m-auto-list>ul").append("<li data-type=" + item.type + " data-no=" + item.no + ">" + item.name + "</li>")
-		})
+		})*/
+		searchData.data.forEach(function (item, index) {
+						for(var i in item){
+							if(typeof(item[i])=="string"){
+								if(item[i].indexOf($(".search-input").val())!=-1){
+									if(ary.indexOf(item[i])==-1){
+										console.log(i,item[i])
+										ary.push(item[i])
+										$('.m-auto-list>ul').append("<li data-type=" + item.sontype + " data-no=" + item.no + ">" + item[i] + "</li>")
+									}
+								}
+							}	
+						}
+					})
 	}
 	
 	//点击搜索出来的下拉列表
@@ -235,11 +249,31 @@
 	})
 	})
 	
+	function handleUser(){
+		var user = JSON.parse(sessionStorage.getItem("user"))
+		if (user) {
+			$('.m-user-con').removeClass('userhide')
+			$('.login').addClass('userhide')
+			$('.m-username').text(user.username || user.userd)
+		}else{
+			$('.m-user-con').addClass('userhide')
+			$('.login').removeClass('userhide')
+		}
+	}
+	
 	$.post("Recommend",{},function(data){
 		data=JSON.parse(data)
 		console.log(data)
 		if(data.code=="error"){
-			
+			sessionStorage.clear()
+			handleUser()
+		}else if(data.code=="504"){
+			$(".like_box").append(`<div class="like_title">
+					<h2>猜你喜欢</h2>
+				</div>
+				<div class="like_bookList"></div>`)
+				$('.like_box .like_bookList').empty()
+				$('.like_box .like_bookList').html('<p style="padding-left:440px; font-size: 20px;line-height: 90px;">当前暂无推荐</p>')
 		}else{
 			$(".like_box").append(`<div class="like_title">
 				<h2>猜你喜欢</h2>

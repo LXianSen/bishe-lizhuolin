@@ -58,6 +58,8 @@ topboxfn();
 				if(data.code=="200"){
 					sessionStorage.clear()
 					handleUser()
+					console.log("header")
+					window.reload()
 				}
 			})
 			

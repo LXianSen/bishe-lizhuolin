@@ -26,9 +26,9 @@
                         <h2 class="tit">订单提交成功！去付款咯～</h2>
                         <div class="order-warm">请在30分钟内完成支付, 超时后将取消订单</div>
                         <ul class="order-detail">
-                            <li><span class="item-label">订单编号：</span>4200427800804029</li>
-                            <li class="price"><span class="item-label">订单价格：</span>49元</li>
-                            <li><span class="item-label">收货信息：</span><span class="item">吴琪瑶</span><span
+                            <li><span class="item-label">订单编号：</span></li>
+                            <li class="price"><span class="item-label">订单价格：</span></li>
+                            <li><span class="item-label">收货信息：</span><span class="item"></span><span
                                     class="item">151****2112</span><span class="item">四川</span><span
                                     class="item">成都市</span><span class="item">金牛区</span><span
                                     class="item">龙湖上城五栋一单元</span></li>

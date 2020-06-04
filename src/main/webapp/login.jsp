@@ -244,7 +244,7 @@ fieldset {
 				<h1 class="title">登录</h1>
 				<form class="formStyle">
 					<div class="boxStyle">
-						<input type="text" class="inputStyle tel" placeholder="邮箱/昵称/手机号码">
+						<input type="text" class="inputStyle tel" placeholder="邮箱">
 						<p id="text1" class="alertText"></p>
 					</div>
 					<div class="boxStyle">

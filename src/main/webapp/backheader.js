@@ -16,9 +16,20 @@ $(".layui-nav.layui-layout-right").append(`<li class="layui-nav-item">
    handleUser()
     function handleUser(){
 		var user = JSON.parse(sessionStorage.getItem("user"))
+		/*if(user.permission=="2"){
+			
+		}else{
+			console.log("backheader")
+			$(".layui-nav-item").eq(1).remove()
+		}*/
 		$('.user').text(user.user.username || user.user.userid)
 		
 	}
+
+if(JSON.parse(sessionStorage.getItem("user")).user.permission=="2"){
+	console.log(11111111)
+	$(".usermanage").attr("style","display:block")
+}
 
 $(".layui-nav.layui-layout-right").on("click",".exit",function(){
 	$.post("exit",{},function(){

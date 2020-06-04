@@ -1,7 +1,7 @@
 /**
  * 
  */
-console.log(1111111111111)
+console.log(22222222222)
 $(".search_box").append(`
 		<div class="search">
 					<span class="iconfont icon-icon-test1 search_font"></span>
@@ -14,11 +14,25 @@ $(".search_box").append(`
 `)
 
 function searchList(searchData){
+	let ary=[]
 	console.log($(".m-auto-list>ul"))
 		$(".m-auto-list>ul").empty()
-		searchData.forEach(function (item, index) {
+		/*searchData.forEach(function (item, index) {
 			$(".m-auto-list>ul").append("<li data-type=" + item.type + " data-no=" + item.no + ">" + item.name + "</li>")
-		})
+		})*/
+		searchData.data.forEach(function (item, index) {
+						for(var i in item){
+							if(typeof(item[i])=="string"){
+								if(item[i].indexOf($(".search-input").val())!=-1){
+									if(ary.indexOf(item[i])==-1){
+										console.log(i,item[i])
+										ary.push(item[i])
+										$('.m-auto-list>ul').append("<li data-type=" + item.sontype + " data-no=" + item.no + ">" + item[i] + "</li>")
+									}
+								}
+							}	
+						}
+					})
 	}
 
 //点击搜索出来的下拉列表
@@ -114,7 +128,7 @@ $(".search_box").click(function (e) {
 				if(data){
 					console.log(data)
 					$('.m-auto-list').addClass('show')
-					searchList(data.data)
+					searchList(data)
 				}
 				
 			})

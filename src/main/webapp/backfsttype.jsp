@@ -107,7 +107,7 @@ body {
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
 					<li class="layui-nav-item"><a class=""
 						href="backbook.jsp">书籍管理</a></li>
-					<li class="layui-nav-item"><a href="backuser.jsp">用户管理</a></li>
+					<li class="layui-nav-item usermanage" style="display:none"><a href="backuser.jsp">用户管理</a></li>
 					<li class="layui-nav-item  layui-this"><a href="">类别管理</a></li>
 					<li class="layui-nav-item"><a href="backorder.jsp">订单管理</a></li>
 				</ul>
@@ -189,7 +189,12 @@ body {
 	</div>
 	<!-- <script src="../src/layui.js"></script> -->
 	<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="backheader.js?ver=1" ></script>
+	<!-- <script type="text/javascript" src="backnavigation.js?ver=2" ></script> -->
 	<script>
+	if(JSON.parse(sessionStorage.getItem("user")).user.permission=="2"){
+    	$(".usermanage").attr("style","display:block")
+    }
 		//JavaScript代码区域
 		layui.use('element', function() {
 			var element = layui.element;

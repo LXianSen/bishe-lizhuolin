@@ -205,7 +205,7 @@
 
 <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="js/shouye.js?ver=1"></script>
-<script type="text/javascript" src="header.js?ver=1"></script>
+<script type="text/javascript" src="header.js?ver=2"></script>
 <script type="text/javascript" src="navigation.js?ver=1"></script>
 <script type="text/javascript" src="footer.js?ver=1"></script>
 

@@ -484,12 +484,12 @@ img {
 </head>
 <body>
 	<header>
-		</header>
+	</header>
 	<div>
 		<div class="express-append">
 			<div class="container">
 				<div class="m-secondary-navigator">
-					<span><a href="/">首页</a></span><span><a href="#">购物车</a></span>
+					<span><a href="shouye.jsp">首页</a></span><span><a href="#">购物车</a></span>
 				</div>
 			</div>
 			<div class="has-good-container container">

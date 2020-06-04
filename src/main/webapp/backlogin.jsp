@@ -154,17 +154,6 @@
     $("#canvas").click(function(){
     	show_num=draw([])
     })
-    
-    /* $(".short").blur(function(){
-        	if($(".short").val()==show_num.join("")){
-        		$("#text4").text("")
-        		isreg=true
-        	}else{
-        		$("#text4").text("验证码输入错误！")
-        		$("#text4").addClass("alertText").removeClass("infoText")
-        		isreg=false
-        	}
-        }) */
     function draw(show_num) {
         var canvas_width=$('#canvas').width();
         var canvas_height=$('#canvas').height();
