@@ -243,7 +243,7 @@ section {
         				isusername=true
         			}
         		}
-        	}else if(e=="phone"){
+        	}else if(e=="tel"){
         		if(!(/^1[3456789]\d{9}$/.test(telInput.val()))){
                     text1.text('手机格式不正确，请重新输入')
                     telInput.addClass('red')

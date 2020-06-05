@@ -10,7 +10,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="./iconfont/iconfont.css">
-<link rel="stylesheet" href="./css/detail.css?ver=2">
+<link rel="stylesheet" href="./css/detail.css?ver=1">
 <link rel="stylesheet" href="css/shouye.css?ver=1">
 </head>
 <body>
@@ -126,7 +126,8 @@
 							<div class="count-container">
 								<div>
 									<div class="minus-btn">
-										<span class="iconfont icon-jianhao"></span>
+									<a class="m-icons m-icons-reduce " data-src="" href="javascript:;"></a>
+										<!-- <span class="iconfont icon-jianhao"></span> -->
 									</div>
 									<input type="text" value="1" class="count-input">
 									<div class="minus-btn-active">
@@ -171,7 +172,7 @@
 </body>
 <script type="text/javascript"
 	src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/detail.js?ver=2"></script>
+<script src="js/detail.js?ver=1"></script>
 <script type="text/javascript" src="header.js?ver=2"></script>
 <script type="text/javascript" src="navigation.js?ver=1"></script>
 <script type="text/javascript" src="footer.js?ver=1"></script>
