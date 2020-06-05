@@ -260,7 +260,7 @@ function initOrders(data,statusNo){
 	}
 	
 	switch(statusNo){
-	case "待支付":btnHtml='<a class="m-btns m-btn-gray m-btn-sm" href="javascript:;">取消订单</a>'+
+	case "待支付":btnHtml='<a class="m-btns m-btn-gray m-btn-sm cancleOrder" href="javascript:;">取消订单</a>'+
 		'<a class="m-btns m-btn-brown m-btn-sm topay" href="javascript:;">去支付</a>'
 	break
 	case "支付成功":btnHtml='<a class="m-btns m-btn-brown m-btn-sm torecive" href="javascript:;">确认收货</a>'
@@ -380,10 +380,15 @@ function orderItemFn(item){
 	  '</section>'+
 	'</div>'
 }
-console.log(22222222222)
 $(".mijia-personal-container-box").on("click",".topay",function(){
 	console.log(11111111111)
 	window.location.href="topay.jsp"
+})
+
+$(".mijia-personal-container-box").on("click",".cancleOrder",function(){
+	$.post("OrderCancel",{status:"订单取消",fatherorder:""},function(data){
+		console.log(data)
+	})
 })
 
 

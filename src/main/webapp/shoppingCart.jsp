@@ -747,7 +747,9 @@ img {
 	})
 	
 	$(".book-info-list").on("click",".select-icon",function(e){
-		var cart
+		var cart,num=0
+		var tar=$(e.target),booklist=$(".book-info-list .select-icon")
+		tar.toggleClass("m-icons-check-active").toggleClass("m-icons-check")
 		$.post("ShowCartlist",{},function(data){
 			bookary=[]
 			data=JSON.parse(data)
@@ -756,26 +758,26 @@ img {
 			}else{
 				cart=data.carMap
 				for(let i=0;i<booklist.length;i++){
+					
 					if($(".book-info-list .select-icon").eq(i).is(".m-icons-check-active")){
-						num++
+						num=num+1
 						bookary.push(cart[i])
 					}else{
 						
 					}
 				}
 				sessionStorage.setItem("bookinfo",JSON.stringify(bookary))
+				if(num==booklist.length){
+					$(".allChecked").addClass("m-icons-check-active").removeClass("m-icons-check")
+				}else{
+					$(".allChecked").removeClass("m-icons-check-active").addClass("m-icons-check")
+				}
+				$(".already-select").text("已选"+num+"件")
 			}
 			
 		})
-		var tar=$(e.target),num=0,booklist=$(".book-info-list .select-icon")
-		tar.toggleClass("m-icons-check-active").toggleClass("m-icons-check")
+		console.log(num)
 		
-		if(num==booklist.length){
-			$(".allChecked").addClass("m-icons-check-active").removeClass("m-icons-check")
-		}else{
-			$(".allChecked").removeClass("m-icons-check-active").addClass("m-icons-check")
-		}
-		$(".already-select").text("已选"+num+"件")
 		
 	})
 	

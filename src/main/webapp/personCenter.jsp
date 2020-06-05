@@ -127,7 +127,7 @@
 	</div>
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/personcenter.js?"></script>
+<script src="js/personcenter.js?ver=1"></script>
 <script type="text/javascript" src="header.js?ver=1"></script>
 <script type="text/javascript" src="navigation.js?ver=1"></script>
 <script type="text/javascript" src="footer.js?ver=1"></script>

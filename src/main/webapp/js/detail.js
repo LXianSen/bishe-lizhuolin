@@ -37,7 +37,7 @@
         $(".author span").text(data[0].bauthor)
         $(".publish span").text(data[0].bpublish)
         $(".publish-data span").text(data[0].bdate)
-        $(".stock span").text(data[0].stock)
+        $(".stock span").text(data[0].stock||100)
         $(".staticWords").text(data[0].synopsis)
         $(".breadcrumb .active").text(data[0].bname)
         $(".book-info-img .image>img").attr("src",data[0].img1)

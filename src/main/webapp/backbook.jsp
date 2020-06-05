@@ -226,6 +226,15 @@
 				</select>
             </div>
         </div>
+		<div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">上传图片:</label>
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="test2">
+  					<i class="layui-icon">&#xe67c;</i>上传图片
+				</button>
+            </div>
+        </div>
+		
         <div class="layui-form-item text-right">
             <button class="layui-btn" lay-filter="bookEditSubmit" lay-submit>保存</button>
             <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
@@ -261,11 +270,12 @@
         //     console.log(tar)
         //     tar.toggleClass("layui-form-selected")
         // })
-        layui.use(['table','layer','laydate','form'], function(){
+        layui.use(['table','layer','laydate','form','upload'], function(){
         var table = layui.table;
         var layer=layui.layer;
         var laydate=layui.laydate;
         var form =layui.form;
+        var upload = layui.upload;
         
         
         
@@ -334,6 +344,14 @@
 							laydate.render({
 					        	elem:'#test1',
 					        })
+					        var uploadInst = upload.render({
+							    elem: '#test2' //绑定元素
+							    ,url: '/upload/' //上传接口
+							    ,done: function(res){
+							    }
+							    ,error: function(){
+							    }
+							  });
 							form.on('submit(bookEditSubmit)',function(data){
 								layer.close(index1)
 								console.log(data) 
