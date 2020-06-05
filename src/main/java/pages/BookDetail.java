@@ -47,7 +47,7 @@ public class BookDetail extends HttpServlet {
 			book book=new book();
 			book.setISBN(request.getParameter("isbn"));
 			BookDao bkDao=new BookDao();
-			List<book> bkList=bkDao.selects(book);
+			List<book> bkList=bkDao.selectsa(book);
 			System.out.println(bkList);
 			//转化为 key value形式
 			Gson gson=new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create();
